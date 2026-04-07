@@ -1,0 +1,136 @@
+/* Color Palette:
+   Earth: #fdf6e3 (Cream/Parchment)
+   Maroon: #800000 
+   Indigo: #1a2a6c
+   Mustard: #e9af15
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fdf6e3; /* Parchment background */
+    font-family: 'Lora', serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+header {
+    background-color: #800000; /* Deep Maroon */
+    color: #e9af15; /* Mustard Yellow */
+    padding: 2rem 0;
+    text-align: center;
+    border-bottom: 8px double #e9af15;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-style: italic;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fdf6e3;
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #e9af15;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-image: radial-gradient(circle, rgba(233, 175, 21, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px; /* Subtle pattern effect */
+}
+
+.hero h2 {
+    font-family: 'Cinzel', serif;
+    color: #1a2a6c;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+/* Product Cards */
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 5px 5px 0px #e9af15; /* Traditional block shadow */
+}
+
+.product-image {
+    height: 350px;
+    background-color: #eee;
+    margin-bottom: 15px;
+    border: 5px solid #fdf6e3;
+    /* You would replace these with actual Kalamkari images */
+    background-image: repeating-linear-gradient(45deg, #800000 0, #800000 1px, transparent 0, transparent 50%);
+    background-size: 10px 10px;
+}
+
+.product-card h3 {
+    color: #800000;
+    margin-bottom: 5px;
+}
+
+.price {
+    display: block;
+    font-weight: bold;
+    color: #1a2a6c;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.btn {
+    background: #800000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #e9af15;
+    color: #800000;
+}
