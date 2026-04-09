@@ -3,51 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalamkari Heritage Boutique</title>
+    <title>Aura Boutique | Heritage Meets Modernity</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <h1>Heritage Loom</h1>
-            <p class="subtitle">The Art of Hand-Painted Elegance</p>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
+    <nav class="navbar">
+        <div class="logo">AURA</div>
+        <ul class="nav-links">
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Shop</a></li>
+        </ul>
+        <div class="nav-icons">
+            <span class="icon">🔍</span>
+            <span class="icon">👜 <small id="cart-count">0</small></span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Handcrafted Elegance</h1>
+            <p>Discover the timeless beauty of Kalamkari and fine silks.</p>
+            <button class="btn-primary">Explore Collection</button>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h2>The Kalamkari Collection</h2>
-            <p>Hand-crafted sarees and dresses inspired by ancient temple art.</p>
-        </section>
-
-        <section class="products">
+    <section class="shop-section">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="product-grid">
             <div class="product-card">
-                <div class="product-image saree-img"></div>
-                <h3>Floral Vine Silk Saree</h3>
-                <p>Natural dyes on hand-spun silk</p>
-                <span class="price">₹12,500</span>
-                <button class="btn">View Details</button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600" alt="Saree">
+                    <button class="quick-add" onclick="updateCart()">Add to Cart</button>
+                </div>
+                <h3>Floral Kalamkari Silk</h3>
+                <p class="price">$240.00</p>
             </div>
-
             <div class="product-card">
-                <div class="product-image dress-img"></div>
-                <h3>Peacock Anarkali</h3>
-                <p>Signature Srikalahasti style painting</p>
-                <span class="price">₹8,900</span>
-                <button class="btn">View Details</button>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80&w=600" alt="Dress">
+                    <button class="quick-add" onclick="updateCart()">Add to Cart</button>
+                </div>
+                <h3>Midnight Lotus Saree</h3>
+                <p class="price">$310.00</p>
             </div>
-        </section>
-    </main>
+            <div class="product-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&q=80&w=600" alt="Silk">
+                    <button class="quick-add" onclick="updateCart()">Add to Cart</button>
+                </div>
+                <h3>Golden Weave Heritage</h3>
+                <p class="price">$185.00</p>
+            </div>
+        </div>
+    </section>
 
+    <script src="script.js"></script>
 </body>
 </html>

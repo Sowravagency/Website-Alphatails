@@ -1,136 +1,154 @@
-/* Color Palette:
-   Earth: #fdf6e3 (Cream/Parchment)
-   Maroon: #800000 
-   Indigo: #1a2a6c
-   Mustard: #e9af15
-*/
+:root {
+    --primary: #5d1a1a; /* Deep Madder Red */
+    --accent: #d4af37;  /* Metallic Gold */
+    --text: #333;
+    --bg: #fdfaf5;      /* Ivory canvas feel */
+    --transition: all 0.3s ease;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
 }
 
 body {
-    background-color: #fdf6e3; /* Parchment background */
-    font-family: 'Lora', serif;
-    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
     line-height: 1.6;
 }
 
-/* Header & Navigation */
-header {
-    background-color: #800000; /* Deep Maroon */
-    color: #e9af15; /* Mustard Yellow */
-    padding: 2rem 0;
-    text-align: center;
-    border-bottom: 8px double #e9af15;
-}
-
-h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 3rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-.subtitle {
-    font-style: italic;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-}
-
-nav ul {
-    list-style: none;
+/* Navbar */
+.navbar {
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    position: sticky;
+    top: 0;
+    background: rgba(253, 250, 245, 0.95);
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
 }
 
-nav ul li {
-    margin: 0 20px;
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-nav ul li a {
-    color: #fdf6e3;
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
     text-decoration: none;
-    font-weight: 500;
-    text-transform: uppercase;
+    color: var(--text);
     font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    color: #e9af15;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 /* Hero Section */
 .hero {
-    text-align: center;
-    padding: 4rem 1rem;
-    background-image: radial-gradient(circle, rgba(233, 175, 21, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px; /* Subtle pattern effect */
-}
-
-.hero h2 {
-    font-family: 'Cinzel', serif;
-    color: #1a2a6c;
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-}
-
-/* Product Cards */
-.products {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('https://images.unsplash.com/photo-1529298735065-91f26f1f68ca?auto=format&fit=crop&q=80&w=1200');
+    background-size: cover;
+    background-position: center;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 2rem;
-    flex-wrap: wrap;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.btn-primary {
+    padding: 1rem 2.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent);
+}
+
+/* Product Grid */
+.shop-section {
+    padding: 5rem 5%;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
 }
 
 .product-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    width: 300px;
     text-align: center;
-    box-shadow: 5px 5px 0px #e9af15; /* Traditional block shadow */
+    transition: var(--transition);
 }
 
-.product-image {
-    height: 350px;
-    background-color: #eee;
-    margin-bottom: 15px;
-    border: 5px solid #fdf6e3;
-    /* You would replace these with actual Kalamkari images */
-    background-image: repeating-linear-gradient(45deg, #800000 0, #800000 1px, transparent 0, transparent 50%);
-    background-size: 10px 10px;
+.image-container {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
 }
 
-.product-card h3 {
-    color: #800000;
-    margin-bottom: 5px;
+.image-container img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.quick-add {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    transition: var(--transition);
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card:hover .quick-add {
+    bottom: 0;
 }
 
 .price {
-    display: block;
-    font-weight: bold;
-    color: #1a2a6c;
-    margin: 10px 0;
-    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
 }
 
-.btn {
-    background: #800000;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background: #e9af15;
-    color: #800000;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-content h1 { font-size: 2.5rem; }
 }
