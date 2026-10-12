@@ -1,272 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop — Alphatails</title>
-<meta name="description" content="Shop vet-approved food, toys, beds and supplies for dogs, cats, birds, fish and small pets.">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="shop.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphatails | Premium Pet Care & Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#00796B',
+                        secondary: '#E0F7FA',
+                        textMain: '#023047',
+                        accentPink: '#FFD1DC',
+                        accentYellow: '#FFFACD',
+                        accentMint: '#F5FFFA'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .toast {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s linear;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white text-textMain font-sans antialiased overflow-x-hidden">
 
-<!-- Announcement -->
-<div class="announcement">Free delivery on orders over $49 · Same-day dispatch before 2pm</div>
+    <header class="bg-primary text-white sticky top-0 z-50 shadow-md border-b-4 border-accentYellow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-paw text-2xl mr-2 text-accentPink"></i>
+                    <span class="font-bold text-2xl tracking-wider">Alphatails</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 font-semibold">
+                    <a href="#home" class="hover:text-accentYellow transition-colors">Home</a>
+                    <a href="#shop" class="hover:text-accentYellow transition-colors">Shop</a>
+                    <a href="#veterinarian" class="hover:text-accentYellow transition-colors">Veterinarian</a>
+                    <a href="#about" class="hover:text-accentYellow transition-colors">About</a>
+                </nav>
 
-<!-- Header -->
-<header>
-  <div class="container nav">
-    <a class="logo" href="index.html"><span class="logo-mark">🐾</span>Alphatails</a>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="shop.html" class="active">Shop</a>
-      <a href="booking.html">Consult a Vet</a>
-      <a href="booking.html#help">Grooming</a>
-      <a href="#">About</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" id="searchOpen" aria-label="Search">🔍</button>
-      <button class="icon-btn cart-btn" id="cartOpen" aria-label="Open cart">
-        🛒<span class="cart-count" id="cartCount">0</span>
-      </button>
-      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
-    </div>
-  </div>
-</header>
+                <!-- Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="showToast('Cart opened!')" class="relative p-2 text-white hover:text-accentYellow transition-colors">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-primary transform translate-x-1/4 -translate-y-1/4 bg-white rounded-full">2</span>
+                    </button>
+                    <a href="#veterinarian" class="bg-white text-primary px-5 py-2 rounded-full font-bold hover:bg-secondary hover:text-textMain transition-all shadow-sm border-2 border-transparent hover:border-accentPink">
+                        Book Appointment
+                    </a>
+                </div>
 
-<main>
-
-  <!-- Page hero -->
-  <section class="page-hero">
-    <div class="container">
-      <div class="crumbs"><a href="index.html">Home</a> / Shop</div>
-      <h1>Everything your pet needs,<br>vet-approved.</h1>
-      <p>Food, toys, bedding and care essentials — hand-picked by our vets and delivered to your door.</p>
-      <div class="hero-chips">
-        <span class="chip">🚚 Free shipping over $49</span>
-        <span class="chip">🩺 Vet-approved brands</span>
-        <span class="chip">↩️ 30-day easy returns</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Shop -->
-  <section class="shop-section">
-    <div class="container">
-      <div class="shop-layout">
-
-        <!-- Filters -->
-        <aside class="filters" id="filters" aria-label="Product filters">
-          <div class="filters-head">
-            <strong>Filters</strong>
-            <button class="filters-close" id="filtersClose" aria-label="Close filters">✕</button>
-            <button class="link-clear" id="clearFilters">Clear all</button>
-          </div>
-
-          <div class="filter-block">
-            <h3>Pet</h3>
-            <label class="f-check"><input type="checkbox" data-filter="pet" value="Dogs"> Dogs</label>
-            <label class="f-check"><input type="checkbox" data-filter="pet" value="Cats"> Cats</label>
-            <label class="f-check"><input type="checkbox" data-filter="pet" value="Birds"> Birds</label>
-            <label class="f-check"><input type="checkbox" data-filter="pet" value="Fish"> Fish</label>
-            <label class="f-check"><input type="checkbox" data-filter="pet" value="Small Pets"> Small Pets</label>
-          </div>
-
-          <div class="filter-block">
-            <h3>Brand</h3>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="NutriPaw"> NutriPaw</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="WhiskerWell"> WhiskerWell</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="PlayPet"> PlayPet</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="CozyDen"> CozyDen</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="AviCare"> AviCare</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="AquaClear"> AquaClear</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="TinyPaws"> TinyPaws</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="TrailHound"> TrailHound</label>
-            <label class="f-check"><input type="checkbox" data-filter="brand" value="VetriCare"> VetriCare</label>
-          </div>
-
-          <div class="filter-block">
-            <h3>Max price</h3>
-            <div class="price-range">
-              <input type="range" id="priceRange" min="5" max="150" step="5" value="150" aria-label="Maximum price">
-              <span class="price-out" id="priceOut">$150</span>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-accentYellow focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
-            <div class="price-scale"><span>$5</span><span>$150</span></div>
-          </div>
+        </div>
 
-          <div class="filter-block">
-            <h3>Rating</h3>
-            <label class="f-check"><input type="radio" name="rating" value="0" checked> Any rating</label>
-            <label class="f-check"><input type="radio" name="rating" value="4"> 4.0 &amp; up</label>
-            <label class="f-check"><input type="radio" name="rating" value="4.5"> 4.5 &amp; up</label>
-          </div>
-
-          <div class="filter-block">
-            <h3>Availability</h3>
-            <label class="f-check"><input type="checkbox" id="inStockOnly"> In stock only</label>
-          </div>
-        </aside>
-
-        <!-- Results -->
-        <div class="shop-main">
-
-          <div class="shop-toolbar">
-            <div class="result-count" id="resultCount">Loading…</div>
-
-            <div class="toolbar-right">
-              <button class="btn btn-light filter-toggle" id="filtersOpen">⚙ Filters</button>
-
-              <label class="field-search">
-                <span>🔍</span>
-                <input type="search" id="shopSearch" placeholder="Search products…" aria-label="Search products">
-              </label>
-
-              <span class="select-wrap">
-                <select id="sortSelect" aria-label="Sort products">
-                  <option value="featured">Featured</option>
-                  <option value="price-asc">Price: low to high</option>
-                  <option value="price-desc">Price: high to low</option>
-                  <option value="rating">Top rated</option>
-                  <option value="newest">Newest</option>
-                </select>
-              </span>
-
-              <span class="view-toggle" role="group" aria-label="View mode">
-                <button data-view="grid" aria-pressed="true" aria-label="Grid view">▦</button>
-                <button data-view="list" aria-pressed="false" aria-label="List view">☰</button>
-              </span>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary border-t border-white/20">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary hover:text-textMain">Home</a>
+                <a href="#shop" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary hover:text-textMain">Shop</a>
+                <a href="#veterinarian" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary hover:text-textMain">Veterinarian</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary hover:text-textMain">About</a>
+                <button onclick="showToast('Cart opened!')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-secondary hover:text-textMain">Cart (2)</button>
             </div>
-          </div>
-
-          <div class="active-filters" id="activeFilters"></div>
-
-          <div class="shop-grid" id="shopGrid"></div>
-
-          <div class="shop-empty" id="shopEmpty" hidden>
-            <strong>No products match those filters</strong>
-            Try widening the price range or clearing a filter.
-          </div>
-
-          <div class="pager" id="pager"></div>
         </div>
+    </header>
 
-      </div>
+    <section id="home" class="relative pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden border-b-8 border-accentPink">
+        <div class="absolute inset-0 z-0">
+            <!-- Decorative background shapes -->
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+            <div class="absolute top-32 -right-24 w-96 h-96 bg-accentYellow rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Expert Care & <br>
+                        <span class="text-primary">Premium Supplies</span>
+                        <br>for Your Best Friend
+                    </h1>
+                    <p class="text-lg sm:text-xl mb-8 text-textMain/80 max-w-2xl mx-auto lg:mx-0">
+                        Alphatails provides top-tier veterinary services and a curated selection of wholesome pet products. Because they deserve the best.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#shop" class="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 hover:-translate-y-1 transition-all shadow-lg border-2 border-primary">
+                            Shop Now
+                        </a>
+                        <a href="#veterinarian" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-secondary transition-all shadow-lg border-2 border-accentPink">
+                            Book a Vet
+                        </a>
+                    </div>
+                </div>
+                <div class="relative mt-10 lg:mt-0">
+                    <!-- Placeholder for Hero Image -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-accentYellow">
+                        <img src="https://placehold.co/800x600/E0F7FA/023047?text=Happy+Dogs+and+Cats" alt="Happy pets" class="w-full h-auto object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="veterinarian" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-textMain mb-4">Our Veterinary Services</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-lg text-textMain/70 max-w-2xl mx-auto">Compassionate, professional healthcare for every stage of your pet's life.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-secondary rounded-2xl p-8 border-b-4 border-accentPink shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                        <i class="fa-solid fa-stethoscope text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">General Consultation</h3>
+                    <p class="text-textMain/80 mb-6">Comprehensive health check-ups and expert advice from our experienced veterinarians to keep your pet thriving.</p>
+                    <button onclick="showToast('Redirecting to booking system...')" class="text-primary font-bold hover:text-textMain transition-colors">Book Session &rarr;</button>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-secondary rounded-2xl p-8 border-b-4 border-accentYellow shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                        <i class="fa-solid fa-syringe text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Vaccinations</h3>
+                    <p class="text-textMain/80 mb-6">Stay up-to-date with essential immunizations to protect your pets from common and preventable diseases.</p>
+                    <button onclick="showToast('Redirecting to booking system...')" class="text-primary font-bold hover:text-textMain transition-colors">Schedule Shots &rarr;</button>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-secondary rounded-2xl p-8 border-b-4 border-accentMint shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                        <i class="fa-solid fa-bath text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Premium Grooming</h3>
+                    <p class="text-textMain/80 mb-6">Spa days for your pets! Professional bathing, clipping, and grooming services for a fresh, clean coat.</p>
+                    <button onclick="showToast('Redirecting to booking system...')" class="text-primary font-bold hover:text-textMain transition-colors">Book Grooming &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-20 bg-secondary border-y-8 border-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-textMain mb-4">Alphatails Shop</h2>
+                    <div class="w-24 h-1 bg-primary rounded-full"></div>
+                </div>
+                <a href="#" class="hidden sm:inline-block text-primary font-bold hover:underline">View All Products &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden border-2 border-accentPink shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/400x400/E0F7FA/00796B?text=Dog+Food" alt="Premium Dog Food" class="w-full h-full object-cover mix-blend-multiply p-4" />
+                        <div class="absolute top-2 right-2 bg-accentYellow text-textMain text-xs font-bold px-2 py-1 rounded-full">Bestseller</div>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-primary font-semibold mb-1">Nutrition</p>
+                        <h3 class="text-lg font-bold mb-2">Premium Dry Dog Food</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$45.99</span>
+                            <button onclick="addToCart('Premium Dry Dog Food')" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-textMain transition-colors shadow-md">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden border-2 border-accentMint shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/400x400/E0F7FA/00796B?text=Cat+Toy" alt="Interactive Cat Toy" class="w-full h-full object-cover mix-blend-multiply p-4" />
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-primary font-semibold mb-1">Toys</p>
+                        <h3 class="text-lg font-bold mb-2">Interactive Feather Wand</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$12.50</span>
+                            <button onclick="addToCart('Interactive Feather Wand')" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-textMain transition-colors shadow-md">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden border-2 border-accentYellow shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/400x400/E0F7FA/00796B?text=Grooming+Kit" alt="Grooming Kit" class="w-full h-full object-cover mix-blend-multiply p-4" />
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-primary font-semibold mb-1">Care</p>
+                        <h3 class="text-lg font-bold mb-2">Deluxe Grooming Brush</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$18.00</span>
+                            <button onclick="addToCart('Deluxe Grooming Brush')" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-textMain transition-colors shadow-md">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden border-2 border-accentPink shadow-sm hover:shadow-lg transition-all group">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/400x400/E0F7FA/00796B?text=Pet+Bed" alt="Orthopedic Pet Bed" class="w-full h-full object-cover mix-blend-multiply p-4" />
+                    </div>
+                    <div class="p-5">
+                        <p class="text-sm text-primary font-semibold mb-1">Comfort</p>
+                        <h3 class="text-lg font-bold mb-2">Orthopedic Pet Bed</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$65.00</span>
+                            <button onclick="addToCart('Orthopedic Pet Bed')" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-textMain transition-colors shadow-md">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center sm:hidden">
+                <a href="#" class="inline-block bg-primary text-white px-6 py-3 rounded-full font-bold hover:bg-opacity-90">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <!-- Accent background for image -->
+                    <div class="absolute inset-0 bg-accentPink rounded-3xl transform -rotate-3 scale-105"></div>
+                    <img src="https://placehold.co/600x600/E0F7FA/00796B?text=Vet+with+Dog" alt="Veterinarian with a dog" class="relative z-10 rounded-3xl shadow-xl w-full border-4 border-white object-cover" />
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-textMain mb-6">Holistic Care for Happy, Healthy Pets</h2>
+                    <p class="text-lg text-textMain/80 mb-6 leading-relaxed">
+                        At Alphatails, we believe pets are family. Founded by a passionate team of veterinary experts, our platform bridges the gap between premium medical care and everyday wellness. 
+                    </p>
+                    <p class="text-lg text-textMain/80 mb-8 leading-relaxed">
+                        Whether you're booking an annual checkup, seeking advice for a complex condition, or just picking up their favorite healthy treats, we provide a seamless, stress-free experience designed entirely around your pet's well-being.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-textMain font-semibold">
+                            <i class="fa-solid fa-check text-primary mr-3 bg-secondary p-1.5 rounded-full"></i> Certified Veterinarians
+                        </li>
+                        <li class="flex items-center text-textMain font-semibold">
+                            <i class="fa-solid fa-check text-primary mr-3 bg-secondary p-1.5 rounded-full"></i> Quality-Tested Products
+                        </li>
+                        <li class="flex items-center text-textMain font-semibold">
+                            <i class="fa-solid fa-check text-primary mr-3 bg-secondary p-1.5 rounded-full"></i> 24/7 Emergency Support
+                        </li>
+                    </ul>
+
+                    <a href="#veterinarian" class="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition-all shadow-md">
+                        Meet Our Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-white pt-16 pb-8 border-t-8 border-accentMint">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-paw text-2xl mr-2 text-accentPink"></i>
+                        <span class="font-bold text-2xl tracking-wider">Alphatails</span>
+                    </div>
+                    <p class="text-white/80 mb-6">Your trusted partner in modern pet care and premium wellness supplies.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accentPink hover:text-textMain transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accentYellow hover:text-textMain transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accentMint hover:text-textMain transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-accentYellow">Quick Links</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#shop" class="hover:text-white transition-colors">Shop</a></li>
+                        <li><a href="#veterinarian" class="hover:text-white transition-colors">Veterinarian</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-accentYellow">Services</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li><a href="#" class="hover:text-white transition-colors">Consultations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Vaccinations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Grooming</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pet Pharmacy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-accentYellow">Contact</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-accentPink"></i> 123 Paws Avenue, Pet City, PC 10001</li>
+                        <li class="flex items-center"><i class="fa-solid fa-phone mr-3 text-accentPink"></i> 1-800-ALPHATAILS</li>
+                        <li class="flex items-center"><i class="fa-solid fa-envelope mr-3 text-accentPink"></i> hello@alphatails.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/60">
+                <p>&copy; 2024 Alphatails. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Toast Notification Box (Replaces alert) -->
+    <div id="custom-toast" class="toast fixed bottom-5 right-5 bg-textMain text-white px-6 py-4 rounded-xl shadow-2xl z-50 flex items-center border-l-4 border-accentMint">
+        <i class="fa-solid fa-circle-check text-accentMint mr-3 text-xl"></i>
+        <span id="toast-message" class="font-medium">Action successful!</span>
     </div>
-  </section>
 
-  <!-- Help strip -->
-  <section class="shop-help">
-    <div class="container">
-      <div class="help-grid">
-        <div class="help-card">
-          <div class="help-icon">🚚</div>
-          <h3>Fast, free delivery</h3>
-          <p>Free shipping on orders over $49. Dispatched the same day when you order before 2pm.</p>
-        </div>
-        <div class="help-card">
-          <div class="help-icon">↩️</div>
-          <h3>30-day returns</h3>
-          <p>Changed your mind? Send unopened items back within 30 days for a full refund.</p>
-        </div>
-        <div class="help-card">
-          <div class="help-icon">💬</div>
-          <h3>Ask a vet</h3>
-          <p>Not sure what to feed your pet? Book a free 10-minute consultation with our team.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
-  <!-- Newsletter -->
-  <section class="shop-newsletter">
-    <div class="container">
-      <div class="newsletter">
-        <div>
-          <h2>Get 10% off your first order</h2>
-          <p>Join the Alphatails list for care tips, new arrivals and members-only offers.</p>
-        </div>
-        <form class="email-box" onsubmit="event.preventDefault();this.reset();">
-          <input type="email" placeholder="you@example.com" aria-label="Email address" required>
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-</main>
+        // Custom Notification Logic
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('custom-toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="logo" href="index.html"><span class="logo-mark">🐾</span>Alphatails</a>
-        <p>Vet-approved food, supplies and care for the animals you love — delivered across the country.</p>
-      </div>
-      <div>
-        <div class="footer-title">Shop</div>
-        <div class="footer-links">
-          <a href="shop.html">All products</a>
-          <a href="shop.html">Dog</a>
-          <a href="shop.html">Cat</a>
-          <a href="shop.html">Small pets</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-title">Services</div>
-        <div class="footer-links">
-          <a href="booking.html">Vet consultation</a>
-          <a href="booking.html">Home visits</a>
-          <a href="booking.html">Video calls</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-title">Support</div>
-        <div class="footer-links">
-          <a href="#">Shipping &amp; returns</a>
-          <a href="#">Track your order</a>
-          <a href="#">Contact us</a>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      <span>© 2025 Alphatails. All rights reserved.</span>
-      <span>Privacy · Terms · Cookies</span>
-    </div>
-  </div>
-</footer>
-
-<!-- Mobile filter backdrop -->
-<div class="filter-backdrop" id="filterBackdrop"></div>
-
-<!-- Search overlay -->
-<div class="search-overlay" id="searchOverlay">
-  <div class="search-box">
-    <button class="close-search" id="searchClose" aria-label="Close search">✕</button>
-    <div class="search-row">
-      <input type="search" placeholder="Search for food, toys, beds…" id="overlaySearch">
-      <button type="button">Search</button>
-    </div>
-  </div>
-</div>
-
-<!-- Cart panel -->
-<aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
-  <div class="cart-head">
-    <strong>Your cart</strong>
-    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
-  </div>
-  <div class="cart-items" id="cartItems">
-    <div class="empty-cart">Your cart is empty.</div>
-  </div>
-  <div class="cart-foot">
-    <div class="total-row"><span>Subtotal</span><span id="cartTotal">$0.00</span></div>
-    <button class="btn btn-primary" style="width:100%">Checkout</button>
-  </div>
-</aside>
-
-<div class="toast" id="toast"></div>
-
-<script src="shop.js"></script>
+        function addToCart(productName) {
+            showToast(productName + ' added to cart!');
+        }
+    </script>
 </body>
 </html>
