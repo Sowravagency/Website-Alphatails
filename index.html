@@ -1,65 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Boutique | Heritage Meets Modernity</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop — Alphatails</title>
+<meta name="description" content="Shop vet-approved food, toys, beds and supplies for dogs, cats, birds, fish and small pets.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="shop.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">AURA</div>
-        <ul class="nav-links">
-            <li><a href="#">Collections</a></li>
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">Shop</a></li>
-        </ul>
-        <div class="nav-icons">
-            <span class="icon">🔍</span>
-            <span class="icon">👜 <small id="cart-count">0</small></span>
-        </div>
+<!-- Announcement -->
+<div class="announcement">Free delivery on orders over $49 · Same-day dispatch before 2pm</div>
+
+<!-- Header -->
+<header>
+  <div class="container nav">
+    <a class="logo" href="index.html"><span class="logo-mark">🐾</span>Alphatails</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="booking.html">Consult a Vet</a>
+      <a href="booking.html#help">Grooming</a>
+      <a href="#">About</a>
     </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchOpen" aria-label="Search">🔍</button>
+      <button class="icon-btn cart-btn" id="cartOpen" aria-label="Open cart">
+        🛒<span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Handcrafted Elegance</h1>
-            <p>Discover the timeless beauty of Kalamkari and fine silks.</p>
-            <button class="btn-primary">Explore Collection</button>
+<main>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Home</a> / Shop</div>
+      <h1>Everything your pet needs,<br>vet-approved.</h1>
+      <p>Food, toys, bedding and care essentials — hand-picked by our vets and delivered to your door.</p>
+      <div class="hero-chips">
+        <span class="chip">🚚 Free shipping over $49</span>
+        <span class="chip">🩺 Vet-approved brands</span>
+        <span class="chip">↩️ 30-day easy returns</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop -->
+  <section class="shop-section">
+    <div class="container">
+      <div class="shop-layout">
+
+        <!-- Filters -->
+        <aside class="filters" id="filters" aria-label="Product filters">
+          <div class="filters-head">
+            <strong>Filters</strong>
+            <button class="filters-close" id="filtersClose" aria-label="Close filters">✕</button>
+            <button class="link-clear" id="clearFilters">Clear all</button>
+          </div>
+
+          <div class="filter-block">
+            <h3>Pet</h3>
+            <label class="f-check"><input type="checkbox" data-filter="pet" value="Dogs"> Dogs</label>
+            <label class="f-check"><input type="checkbox" data-filter="pet" value="Cats"> Cats</label>
+            <label class="f-check"><input type="checkbox" data-filter="pet" value="Birds"> Birds</label>
+            <label class="f-check"><input type="checkbox" data-filter="pet" value="Fish"> Fish</label>
+            <label class="f-check"><input type="checkbox" data-filter="pet" value="Small Pets"> Small Pets</label>
+          </div>
+
+          <div class="filter-block">
+            <h3>Brand</h3>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="NutriPaw"> NutriPaw</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="WhiskerWell"> WhiskerWell</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="PlayPet"> PlayPet</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="CozyDen"> CozyDen</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="AviCare"> AviCare</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="AquaClear"> AquaClear</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="TinyPaws"> TinyPaws</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="TrailHound"> TrailHound</label>
+            <label class="f-check"><input type="checkbox" data-filter="brand" value="VetriCare"> VetriCare</label>
+          </div>
+
+          <div class="filter-block">
+            <h3>Max price</h3>
+            <div class="price-range">
+              <input type="range" id="priceRange" min="5" max="150" step="5" value="150" aria-label="Maximum price">
+              <span class="price-out" id="priceOut">$150</span>
+            </div>
+            <div class="price-scale"><span>$5</span><span>$150</span></div>
+          </div>
+
+          <div class="filter-block">
+            <h3>Rating</h3>
+            <label class="f-check"><input type="radio" name="rating" value="0" checked> Any rating</label>
+            <label class="f-check"><input type="radio" name="rating" value="4"> 4.0 &amp; up</label>
+            <label class="f-check"><input type="radio" name="rating" value="4.5"> 4.5 &amp; up</label>
+          </div>
+
+          <div class="filter-block">
+            <h3>Availability</h3>
+            <label class="f-check"><input type="checkbox" id="inStockOnly"> In stock only</label>
+          </div>
+        </aside>
+
+        <!-- Results -->
+        <div class="shop-main">
+
+          <div class="shop-toolbar">
+            <div class="result-count" id="resultCount">Loading…</div>
+
+            <div class="toolbar-right">
+              <button class="btn btn-light filter-toggle" id="filtersOpen">⚙ Filters</button>
+
+              <label class="field-search">
+                <span>🔍</span>
+                <input type="search" id="shopSearch" placeholder="Search products…" aria-label="Search products">
+              </label>
+
+              <span class="select-wrap">
+                <select id="sortSelect" aria-label="Sort products">
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: low to high</option>
+                  <option value="price-desc">Price: high to low</option>
+                  <option value="rating">Top rated</option>
+                  <option value="newest">Newest</option>
+                </select>
+              </span>
+
+              <span class="view-toggle" role="group" aria-label="View mode">
+                <button data-view="grid" aria-pressed="true" aria-label="Grid view">▦</button>
+                <button data-view="list" aria-pressed="false" aria-label="List view">☰</button>
+              </span>
+            </div>
+          </div>
+
+          <div class="active-filters" id="activeFilters"></div>
+
+          <div class="shop-grid" id="shopGrid"></div>
+
+          <div class="shop-empty" id="shopEmpty" hidden>
+            <strong>No products match those filters</strong>
+            Try widening the price range or clearing a filter.
+          </div>
+
+          <div class="pager" id="pager"></div>
         </div>
-    </header>
 
-    <section class="shop-section">
-        <h2 class="section-title">New Arrivals</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=600" alt="Saree">
-                    <button class="quick-add" onclick="updateCart()">Add to Cart</button>
-                </div>
-                <h3>Floral Kalamkari Silk</h3>
-                <p class="price">$240.00</p>
-            </div>
-            <div class="product-card">
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80&w=600" alt="Dress">
-                    <button class="quick-add" onclick="updateCart()">Add to Cart</button>
-                </div>
-                <h3>Midnight Lotus Saree</h3>
-                <p class="price">$310.00</p>
-            </div>
-            <div class="product-card">
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&q=80&w=600" alt="Silk">
-                    <button class="quick-add" onclick="updateCart()">Add to Cart</button>
-                </div>
-                <h3>Golden Weave Heritage</h3>
-                <p class="price">$185.00</p>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help strip -->
+  <section class="shop-help">
+    <div class="container">
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="help-icon">🚚</div>
+          <h3>Fast, free delivery</h3>
+          <p>Free shipping on orders over $49. Dispatched the same day when you order before 2pm.</p>
         </div>
-    </section>
+        <div class="help-card">
+          <div class="help-icon">↩️</div>
+          <h3>30-day returns</h3>
+          <p>Changed your mind? Send unopened items back within 30 days for a full refund.</p>
+        </div>
+        <div class="help-card">
+          <div class="help-icon">💬</div>
+          <h3>Ask a vet</h3>
+          <p>Not sure what to feed your pet? Book a free 10-minute consultation with our team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- Newsletter -->
+  <section class="shop-newsletter">
+    <div class="container">
+      <div class="newsletter">
+        <div>
+          <h2>Get 10% off your first order</h2>
+          <p>Join the Alphatails list for care tips, new arrivals and members-only offers.</p>
+        </div>
+        <form class="email-box" onsubmit="event.preventDefault();this.reset();">
+          <input type="email" placeholder="you@example.com" aria-label="Email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><span class="logo-mark">🐾</span>Alphatails</a>
+        <p>Vet-approved food, supplies and care for the animals you love — delivered across the country.</p>
+      </div>
+      <div>
+        <div class="footer-title">Shop</div>
+        <div class="footer-links">
+          <a href="shop.html">All products</a>
+          <a href="shop.html">Dog</a>
+          <a href="shop.html">Cat</a>
+          <a href="shop.html">Small pets</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Services</div>
+        <div class="footer-links">
+          <a href="booking.html">Vet consultation</a>
+          <a href="booking.html">Home visits</a>
+          <a href="booking.html">Video calls</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Support</div>
+        <div class="footer-links">
+          <a href="#">Shipping &amp; returns</a>
+          <a href="#">Track your order</a>
+          <a href="#">Contact us</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2025 Alphatails. All rights reserved.</span>
+      <span>Privacy · Terms · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile filter backdrop -->
+<div class="filter-backdrop" id="filterBackdrop"></div>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <button class="close-search" id="searchClose" aria-label="Close search">✕</button>
+    <div class="search-row">
+      <input type="search" placeholder="Search for food, toys, beds…" id="overlaySearch">
+      <button type="button">Search</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart panel -->
+<aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
+  <div class="cart-head">
+    <strong>Your cart</strong>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="empty-cart">Your cart is empty.</div>
+  </div>
+  <div class="cart-foot">
+    <div class="total-row"><span>Subtotal</span><span id="cartTotal">$0.00</span></div>
+    <button class="btn btn-primary" style="width:100%">Checkout</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="shop.js"></script>
 </body>
 </html>
