@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetic Pet Care & Shop | Premium Pet Care & Supplies</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#00796B',
+                            hover: '#004D40',
+                            light: '#E0F7FA',
+                            lightest: '#F0FDF4',
+                        },
+                        heading: '#023047',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FFFFFF; color: #334155; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .badge-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    </style>
+</head>
+<body class="bg-white flex flex-col min-h-screen">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="bg-white/20 text-white text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full">Offer</span>
+        <span>Free Express Delivery on orders above ₹999! Use Code: <strong class="underline decoration-wavy">VETIC20</strong> for 20% OFF</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-10 h-10 rounded-2xl bg-brand flex items-center justify-center text-white shadow-md shadow-brand/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid font-bold fa-paw text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-tight text-heading flex items-center gap-1">
+                            vetic<span class="text-brand font-extrabold text-3xl leading-none">.</span>
+                        </span>
+                        <span class="text-[10px] tracking-widest uppercase font-bold text-slate-400 -mt-1">Pet Clinic & Superstore</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links (Desktop) -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#" class="hover:text-brand transition-colors">Home</a>
+                    <a href="#" class="hover:text-brand transition-colors flex items-center gap-1.5">
+                        Veterinarians <span class="bg-emerald-100 text-emerald-800 text-[10px] px-1.5 py-0.5 rounded-md font-bold">24/7</span>
+                    </a>
+                    <a href="#" class="text-brand font-bold relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-brand after:rounded-full">Shop Store</a>
+                    <a href="#" class="hover:text-brand transition-colors">About Us</a>
+                    <a href="#" class="hover:text-brand transition-colors">Pet Blog</a>
+                </nav>
+
+                <!-- Search & Actions -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <!-- Search Input Desktop -->
+                    <div class="relative hidden sm:block w-48 xl:w-64">
+                        <input type="text" id="navSearchInput" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-brand focus:bg-white transition-all">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                    </div>
+
+                    <!-- Cart Button -->
+                    <button onclick="toggleCart(true)" class="relative p-2.5 rounded-full hover:bg-slate-100 text-slate-700 transition-colors">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="cartBadge" class="absolute -top-1 -right-1 bg-amber-500 text-white text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow-sm border-2 border-white">0</span>
+                    </button>
+
+                    <!-- Book Appointment CTA -->
+                    <button class="hidden sm:flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shadow-md shadow-brand/20 hover:shadow-lg">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>Book Appointment</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-slate-600 hover:text-brand">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Search Bar (Visible only on mobile) -->
+        <div class="sm:hidden px-4 pb-3">
+            <div class="relative w-full">
+                <input type="text" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-100 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-brand">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Banner -->
+    <section class="bg-brand-light/60 py-8 lg:py-12 border-b border-teal-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                <!-- Main Promo Content -->
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="inline-flex items-center gap-1.5 bg-brand/10 text-brand font-bold text-xs px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-shield-cat"></i> Vet-Approved Quality Guaranteed
+                    </span>
+                    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-heading tracking-tight leading-tight">
+                        Premium Pet Care & Nutrition Delivered to Your Doorstep
+                    </h1>
+                    <p class="text-slate-600 text-sm sm:text-base max-w-xl">
+                        Shop doctor-recommended diets, essential healthcare, ticks & flea protection, and everyday grooming goodies for your furry family members.
+                    </p>
+
+                    <!-- Quick Category Pills / Shortcuts -->
+                    <div class="pt-2 flex flex-wrap gap-2 text-xs font-bold">
+                        <span class="text-slate-500 self-center mr-1">Quick Filters:</span>
+                        <button onclick="filterByPet('Dog')" class="bg-white hover:bg-brand hover:text-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-dog text-amber-600"></i> Dogs
+                        </button>
+                        <button onclick="filterByPet('Cat')" class="bg-white hover:bg-brand hover:text-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-cat text-purple-600"></i> Cats
+                        </button>
+                        <button onclick="filterByCategory('Healthcare & Deworming')" class="bg-white hover:bg-brand hover:text-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-kit-medical text-rose-500"></i> Healthcare
+                        </button>
+                        <button onclick="filterByCategory('Prescription Diets')" class="bg-white hover:bg-brand hover:text-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-stethoscope text-emerald-600"></i> Vet Diets
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Banner Feature Cards -->
+                <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-teal-100/80 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 text-xl">
+                            <i class="fa-solid fa-percent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-heading text-sm">20% Off Premium Dog Diets</h4>
+                            <p class="text-xs text-slate-500">Royal Canin, Farmina, Hill's Prescription</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-teal-100/80 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center shrink-0 text-xl">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-heading text-sm">Free Express Clinic Delivery</h4>
+                            <p class="text-xs text-slate-500">On all store orders above ₹999</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Filter Panel -->
+            <aside class="w-full lg:w-64 shrink-0 space-y-6">
+                <div class="bg-slate-50/80 border border-slate-200/80 rounded-2xl p-5 space-y-6 sticky top-28">
+                    
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <h3 class="font-bold text-heading text-base flex items-center gap-2">
+                            <i class="fa-solid fa-filter text-brand"></i> Filters
+                        </h3>
+                        <button onclick="resetFilters()" class="text-xs font-semibold text-brand hover:underline">Reset All</button>
+                    </div>
+
+                    <!-- Pet Type Filter -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Pet Type</label>
+                        <div class="space-y-1.5" id="petTypeContainer">
+                            <!-- Populated dynamically JS -->
+                        </div>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Category</label>
+                        <div class="space-y-1.5" id="categoryContainer">
+                            <!-- Populated dynamically JS -->
+                        </div>
+                    </div>
+
+                    <!-- Price Filter Badges -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Price Filter</label>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <button onclick="setPriceFilter(0, 499)" class="price-btn bg-white border border-slate-200 px-2.5 py-1.5 rounded-lg text-slate-600 hover:border-brand hover:text-brand font-medium">Under ₹499</button>
+                            <button onclick="setPriceFilter(500, 1499)" class="price-btn bg-white border border-slate-200 px-2.5 py-1.5 rounded-lg text-slate-600 hover:border-brand hover:text-brand font-medium">₹500 - ₹1,499</button>
+                            <button onclick="setPriceFilter(1500, 10000)" class="price-btn bg-white border border-slate-200 px-2.5 py-1.5 rounded-lg text-slate-600 hover:border-brand hover:text-brand font-medium">₹1,500+</button>
+                        </div>
+                    </div>
+
+                    <!-- Vet Guarantee Card -->
+                    <div class="bg-brand-light border border-teal-200 rounded-xl p-3.5 text-xs text-teal-900 space-y-1">
+                        <div class="font-bold flex items-center gap-1.5 text-brand">
+                            <i class="fa-solid fa-user-doctor"></i> Vet Support Line
+                        </div>
+                        <p class="text-[11px] text-teal-800">Unsure about diet or medication? Speak to a clinic practitioner.</p>
+                        <a href="#" class="inline-block pt-1 font-bold text-brand hover:underline">Consult Vetic Doctor &rarr;</a>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- Product Display Section -->
+            <section class="flex-1 space-y-6">
+                
+                <!-- Toolbar: Result Count & Sort -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+                    <div>
+                        <h2 class="font-bold text-heading text-lg">Store Catalog</h2>
+                        <p class="text-xs text-slate-500" id="resultCount">Showing all items</p>
+                    </div>
+
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <label for="sortSelect" class="text-xs font-bold text-slate-500 whitespace-nowrap">Sort By:</label>
+                        <select id="sortSelect" onchange="handleSort(this.value)" class="bg-white border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-brand w-full sm:w-auto">
+                            <option value="popular">Popularity</option>
+                            <option value="low-high">Price: Low to High</option>
+                            <option value="high-low">Price: High to Low</option>
+                            <option value="discount">Highest Discount</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Dynamic Product Cards injected here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden text-center py-16 space-y-4">
+                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-slate-400 text-2xl">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-700 text-lg">No matching pet products found</h3>
+                    <p class="text-xs text-slate-500 max-w-sm mx-auto">Try resetting filters or searching for alternative terms like "Royal Canin", "Shampoo", or "Ticks".</p>
+                    <button onclick="resetFilters()" class="bg-brand text-white text-xs font-bold px-4 py-2 rounded-xl">Clear All Filters</button>
+                </div>
+
+                <!-- Vet Recommended Bundles Showcase -->
+                <div class="mt-12 bg-gradient-to-r from-slate-900 to-heading rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-9xl font-black">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="relative z-10 max-w-xl space-y-3">
+                        <span class="bg-amber-400 text-slate-900 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full">
+                            Curated Care Packs
+                        </span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold">Monthly Wellness & Flea Protection Bundles</h3>
+                        <p class="text-xs sm:text-sm text-slate-300">Save up to 30% with complete monthly care kits recommended directly by Vetic clinical specialists.</p>
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <button onclick="addBundleToCart(101)" class="bg-brand hover:bg-emerald-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md">
+                                Add Flea & Tick Shield Bundle (₹1,299)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- Cart Drawer (Slide-over) -->
+    <div id="cartDrawerOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        
+        <!-- Cart Header -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-brand text-lg"></i>
+                <h3 class="font-bold text-heading text-base">Your Pet Care Cart</h3>
+                <span id="drawerCartCount" class="bg-brand-light text-brand text-xs font-bold px-2 py-0.5 rounded-full">0 items</span>
+            </div>
+            <button onclick="toggleCart(false)" class="p-2 text-slate-400 hover:text-slate-600 rounded-full">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Free Delivery Progress Bar -->
+        <div class="p-4 bg-teal-50/60 border-b border-teal-100 text-xs">
+            <div class="flex justify-between font-medium text-slate-700 mb-1.5" id="freeShippingText">
+                <span>Free Express Delivery Target:</span>
+                <span class="font-bold text-brand">₹999</span>
+            </div>
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                <div id="freeShippingBar" class="bg-brand h-full transition-all duration-500 w-0"></div>
+            </div>
+        </div>
+
+        <!-- Cart Items Scroll Area -->
+        <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
+            <!-- Dynamic Cart Items injected here -->
+        </div>
+
+        <!-- Cart Footer / Summary -->
+        <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+            
+            <!-- Coupon Code Input -->
+            <div class="flex gap-2">
+                <input type="text" id="couponInput" uppercase placeholder="Coupon (e.g. VETIC20)" class="uppercase flex-1 bg-white border border-slate-200 text-xs font-semibold px-3 py-2 rounded-xl focus:outline-none focus:border-brand">
+                <button onclick="applyCoupon()" class="bg-slate-800 hover:bg-black text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors">Apply</button>
+            </div>
+            <div id="couponMessage" class="text-[11px] font-bold hidden"></div>
+
+            <!-- Price Breakdown -->
+            <div class="space-y-1.5 text-xs text-slate-600 pt-1">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span font-semibold id="summarySubtotal">₹0</span>
+                </div>
+                <div class="flex justify-between text-emerald-600 font-medium">
+                    <span>Coupon Discount</span>
+                    <span id="summaryDiscount">-₹0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Delivery Charge</span>
+                    <span id="summaryDelivery">₹0</span>
+                </div>
+                <div class="flex justify-between text-base font-extrabold text-heading pt-2 border-t border-slate-200">
+                    <span>Total Amount</span>
+                    <span id="summaryTotal" class="text-brand">₹0</span>
+                </div>
+            </div>
+
+            <!-- Checkout CTA -->
+            <button onclick="checkout()" class="w-full bg-brand hover:bg-brand-hover text-white font-bold py-3.5 rounded-xl text-sm transition-all shadow-md shadow-brand/20 flex items-center justify-center gap-2">
+                <span>Proceed to Checkout</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quickViewModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col md:flex-row">
+            
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 z-10 bg-slate-100 text-slate-500 hover:text-slate-800 p-2 rounded-full">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Image -->
+            <div class="w-full md:w-1/2 bg-slate-50 p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-100">
+                <img id="modalImage" src="" alt="" class="max-h-56 object-contain">
+            </div>
+
+            <!-- Modal Content -->
+            <div class="w-full md:w-1/2 p-6 overflow-y-auto space-y-4">
+                <div>
+                    <span id="modalCategory" class="text-[10px] font-extrabold uppercase bg-brand-light text-brand px-2.5 py-0.5 rounded-full">Category</span>
+                    <h3 id="modalTitle" class="text-lg font-bold text-heading mt-2">Product Name</h3>
+                    <div id="modalRating" class="text-xs text-amber-500 mt-1">★ 4.9 (120 reviews)</div>
+                </div>
+
+                <div class="text-xl font-extrabold text-heading flex items-center gap-2">
+                    <span id="modalPrice">₹0</span>
+                    <span id="modalOriginalPrice" class="text-xs text-slate-400 line-through font-normal">₹0</span>
+                </div>
+
+                <div class="border-t border-slate-100 pt-3 space-y-2">
+                    <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Vet Recommendation Note</h4>
+                    <p id="modalVetNote" class="text-xs text-slate-600 bg-emerald-50 border border-emerald-100 p-2.5 rounded-xl italic">"High protein formula ideal for active breeds."</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Key Ingredients / Specs</h4>
+                    <p id="modalDescription" class="text-xs text-slate-500 leading-relaxed">Product detailed specifications and dosage parameters.</p>
+                </div>
+
+                <div class="pt-4">
+                    <button id="modalAddToCartBtn" class="w-full bg-brand hover:bg-brand-hover text-white font-bold py-3 rounded-xl text-xs transition-all shadow-md">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Order Success Toast / Modal -->
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center space-y-4 shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-heading">Order Placed Successfully!</h3>
+            <p class="text-xs text-slate-500">Thank you for shopping with Vetic. Your pet goodies are being dispatched from our nearest clinic hub.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-brand text-white font-bold py-2.5 rounded-xl text-xs">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-heading text-slate-300 mt-16 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-slate-800 pb-10">
+                
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-xl bg-brand flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <span class="text-xl font-black text-white">vetic<span class="text-brand">.</span></span>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+                        India's modern pet care clinic network providing seamless veterinary consultations, grooming, and clinic-approved supplies right to your home.
+                    </p>
+                    <div class="flex gap-3 text-slate-400 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:text-white hover:bg-brand transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:text-white hover:bg-brand transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:text-white hover:bg-brand transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-white">Find a Clinic</a></li>
+                        <li><a href="#" class="hover:text-white">Book Vet Consultation</a></li>
+                        <li><a href="#" class="hover:text-white">Grooming Packages</a></li>
+                        <li><a href="#" class="hover:text-white">Prescription Upload</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Store Categories</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-white">Dog Nutrition</a></li>
+                        <li><a href="#" class="hover:text-white">Cat Food & Litter</a></li>
+                        <li><a href="#" class="hover:text-white">Flea & Tick Prevention</a></li>
+                        <li><a href="#" class="hover:text-white">Veterinary Supplements</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-bold text-white text-sm mb-1">Clinic Hotline</h4>
+                    <p class="text-brand font-bold text-sm">+91 1800-VETIC-PET</p>
+                    <p class="text-slate-400 text-[11px]">Emergency support available 24/7 at all primary regional clinics.</p>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-[11px] gap-4">
+                <p>&copy; 2026 Vetic Pet Care Technologies Pvt Ltd. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-cc-visa text-lg"></i>
+                    <i class="fa-brands fa-cc-mastercard text-lg"></i>
+                    <i class="fa-brands fa-google-pay text-lg"></i>
+                    <span class="font-bold">UPI / NetBanking</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Sample Product Database
+        const products = [
+            {
+                id: 1,
+                name: "Royal Canin Mini Adult Dry Dog Food",
+                pet: "Dog",
+                category: "Food & Treats",
+                badge: "BESTSELLER",
+                badgeColor: "bg-amber-100 text-amber-800",
+                rating: 4.9,
+                reviews: 240,
+                variants: [
+                    { weight: "800g", price: 650, originalPrice: 750 },
+                    { weight: "2kg", price: 1550, originalPrice: 1800 },
+                    { weight: "4kg", price: 2900, originalPrice: 3400 }
+                ],
+                image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=500&auto=format&fit=crop&q=80",
+                vetNote: "High digestability protein crafted for small breed energy needs.",
+                description: "Formulated with L-carnitine to support fat metabolism and maintain ideal weight."
+            },
+            {
+                id: 2,
+                name: "Farmina N&D Grain Free Chicken & Pomegranate",
+                pet: "Dog",
+                category: "Food & Treats",
+                badge: "20% OFF",
+                badgeColor: "bg-rose-100 text-rose-800",
+                rating: 4.8,
+                reviews: 115,
+                variants: [
+                    { weight: "2.5kg", price: 2199, originalPrice: 2750 },
+                    { weight: "7kg", price: 5400, originalPrice: 6500 }
+                ],
+                image: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Low glycemic index grain-free formulation suitable for sensitive stomachs.",
+                description: "70% high-quality animal ingredients with natural antioxidants."
+            },
+            {
+                id: 3,
+                name: "Bravecto Chewable Tick & Flea Protection",
+                pet: "Dog",
+                category: "Healthcare & Deworming",
+                badge: "VET APPROVED",
+                badgeColor: "bg-emerald-100 text-emerald-800",
+                rating: 5.0,
+                reviews: 310,
+                variants: [
+                    { weight: "Single Chew (10-20kg)", price: 1850, originalPrice: 2100 }
+                ],
+                image: "https://images.unsplash.com/photo-1608248597263-0057e57b4524?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Provides up to 12 weeks of continuous protection against ticks and fleas.",
+                description: "Oral chewable tablet with tasty flavor that dogs accept readily."
+            },
+            {
+                id: 4,
+                name: "Whiskas Adult Wet Cat Food Gravy Pouches",
+                pet: "Cat",
+                category: "Food & Treats",
+                badge: "BESTSELLER",
+                badgeColor: "bg-amber-100 text-amber-800",
+                rating: 4.7,
+                reviews: 180,
+                variants: [
+                    { weight: "Pack of 12 (1020g)", price: 540, originalPrice: 600 }
+                ],
+                image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=500&auto=format&fit=crop&q=80",
+                vetNote: "High moisture content helps prevent urinary tract infections in cats.",
+                description: "Real fish chunks in savory gravy rich in Omega 6 & Zinc for shiny coat."
+            },
+            {
+                id: 5,
+                name: "Vetic Clinical Oatmeal & Neem Anti-Itch Shampoo",
+                pet: "Dog",
+                category: "Grooming & Care",
+                badge: "VETIC EXCLUSIVE",
+                badgeColor: "bg-teal-100 text-teal-800",
+                rating: 4.9,
+                reviews: 95,
+                variants: [
+                    { weight: "250ml", price: 399, originalPrice: 499 },
+                    { weight: "500ml", price: 699, originalPrice: 899 }
+                ],
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80",
+                vetNote: "pH balanced specifically for canine skin to relieve seasonal allergies.",
+                description: "Enriched with colloidal oatmeal and natural neem extract for deep soothing."
+            },
+            {
+                id: 6,
+                name: "Hill's Prescription Diet i/d Digestive Care",
+                pet: "Dog",
+                category: "Prescription Diets",
+                badge: "PRESCRIPTION ONLY",
+                badgeColor: "bg-purple-100 text-purple-800",
+                rating: 4.9,
+                reviews: 78,
+                variants: [
+                    { weight: "1.5kg", price: 1890, originalPrice: 2100 }
+                ],
+                image: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Clinically proven nutrition to calm digestive upsets in dogs.",
+                description: "Highly digestible formula with optimal blend of soluble & insoluble fibers."
+            },
+            {
+                id: 7,
+                name: "Interactive Feather Teaser Wand & Catnip Toy",
+                pet: "Cat",
+                category: "Toys & Accessories",
+                badge: "POPULAR",
+                badgeColor: "bg-sky-100 text-sky-800",
+                rating: 4.6,
+                reviews: 64,
+                variants: [
+                    { weight: "Standard", price: 299, originalPrice: 450 }
+                ],
+                image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Encourages essential indoor physical activity and mental stimulation.",
+                description: "Flexible wand with organic catnip pouch and non-toxic dye feathers."
+            },
+            {
+                id: 8,
+                name: "Ergonomic Padded No-Pull Harness & Leash Set",
+                pet: "Dog",
+                category: "Toys & Accessories",
+                badge: "NEW",
+                badgeColor: "bg-indigo-100 text-indigo-800",
+                rating: 4.8,
+                reviews: 42,
+                variants: [
+                    { weight: "Medium (M)", price: 899, originalPrice: 1299 },
+                    { weight: "Large (L)", price: 1099, originalPrice: 1499 }
+                ],
+                image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Prevents tracheal strain by distributing pulling force across chest.",
+                description: "Reflective stitching for nighttime safety with breathable mesh padding."
+            }
+        ];
+
+        // Curated Special Bundle
+        const bundleItem = {
+            id: 101,
+            name: "Flea & Tick Shield Monthly Care Bundle",
+            pet: "Dog",
+            category: "Healthcare & Deworming",
+            selectedVariantIndex: 0,
+            variants: [{ weight: "Complete Combo", price: 1299, originalPrice: 1800 }],
+            image: "https://images.unsplash.com/photo-1608248597263-0057e57b4524?w=500&auto=format&fit=crop&q=80"
+        };
+
+        // State Management
+        let cart = [];
+        let activePetFilter = "All";
+        let activeCategoryFilter = "All";
+        let activePriceFilter = { min: 0, max: 10000 };
+        let searchQuery = "";
+        let currentSort = "popular";
+        let appliedDiscountPercent = 0;
+
+        // Categories & Pet Types Config
+        const petTypes = ["All", "Dog", "Cat"];
+        const categories = [
+            "All",
+            "Food & Treats",
+            "Healthcare & Deworming",
+            "Grooming & Care",
+            "Prescription Diets",
+            "Toys & Accessories"
+        ];
+
+        // Initialize Page
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSidebarFilters();
+            renderProducts();
+            updateCartUI();
+        });
+
+        // Render Filter Options
+        function renderSidebarFilters() {
+            // Render Pet Filter
+            const petContainer = document.getElementById('petTypeContainer');
+            petContainer.innerHTML = petTypes.map(pet => `
+                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 cursor-pointer p-1.5 rounded-lg hover:bg-slate-100">
+                    <div class="flex items-center gap-2">
+                        <input type="radio" name="petType" value="${pet}" ${activePetFilter === pet ? 'checked' : ''} onchange="filterByPet('${pet}')" class="text-brand focus:ring-brand">
+                        <span>${pet === 'All' ? 'All Pets' : pet + 's'}</span>
+                    </div>
+                </label>
+            `).join('');
+
+            // Render Category Filter
+            const categoryContainer = document.getElementById('categoryContainer');
+            categoryContainer.innerHTML = categories.map(cat => `
+                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 cursor-pointer p-1.5 rounded-lg hover:bg-slate-100">
+                    <div class="flex items-center gap-2">
+                        <input type="radio" name="categoryType" value="${cat}" ${activeCategoryFilter === cat ? 'checked' : ''} onchange="filterByCategory('${cat}')" class="text-brand focus:ring-brand">
+                        <span>${cat}</span>
+                    </div>
+                </label>
+            `).join('');
+        }
+
+        // Render Products Grid
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            const countEl = document.getElementById('resultCount');
+
+            // Apply Filters
+            let filtered = products.filter(p => {
+                const matchesPet = activePetFilter === "All" || p.pet === activePetFilter;
+                const matchesCat = activeCategoryFilter === "All" || p.category === activeCategoryFilter;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.category.toLowerCase().includes(searchQuery.toLowerCase());
+                
+                // Check if at least one variant fits price filter
+                const matchesPrice = p.variants.some(v => v.price >= activePriceFilter.min && v.price <= activePriceFilter.max);
+
+                return matchesPet && matchesCat && matchesSearch && matchesPrice;
+            });
+
+            // Sorting
+            if (currentSort === "low-high") {
+                filtered.sort((a, b) => a.variants[0].price - b.variants[0].price);
+            } else if (currentSort === "high-low") {
+                filtered.sort((a, b) => b.variants[0].price - a.variants[0].price);
+            } else if (currentSort === "discount") {
+                filtered.sort((a, b) => {
+                    const discA = (a.variants[0].originalPrice - a.variants[0].price);
+                    const discB = (b.variants[0].originalPrice - b.variants[0].price);
+                    return discB - discA;
+                });
+            }
+
+            countEl.textContent = `Showing ${filtered.length} products`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = "";
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            grid.innerHTML = filtered.map(product => {
+                const selectedVar = product.variants[0];
+                return `
+                <div class="bg-white rounded-2xl border border-slate-100 p-4 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group relative">
+                    
+                    <!-- Badge -->
+                    <div class="absolute top-3 left-3 z-10">
+                        <span class="${product.badgeColor} text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm">
+                            ${product.badge}
+                        </span>
+                    </div>
+
+                    <!-- Quick View Trigger -->
+                    <button onclick="openQuickView(${product.id})" class="absolute top-3 right-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full text-slate-500 hover:text-brand hover:bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm" title="Quick View">
+                        <i class="fa-solid fa-eye text-xs"></i>
+                    </button>
+
+                    <div>
+                        <!-- Product Image -->
+                        <div class="h-44 w-full bg-slate-50 rounded-xl overflow-hidden p-3 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
+                            <img src="${product.image}" alt="${product.name}" class="h-full object-contain">
+                        </div>
+
+                        <!-- Product Category & Ratings -->
+                        <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                            <span class="font-medium text-[11px] uppercase tracking-wider">${product.pet} • ${product.category}</span>
+                            <span class="text-amber-500 font-bold flex items-center gap-1">
+                                ★ ${product.rating} <span class="text-slate-400 font-normal">(${product.reviews})</span>
+                            </span>
+                        </div>
+
+                        <!-- Product Title -->
+                        <h3 class="font-bold text-heading text-sm line-clamp-2 hover:text-brand transition-colors cursor-pointer" onclick="openQuickView(${product.id})">
+                            ${product.name}
+                        </h3>
+                    </div>
+
+                    <div class="mt-4 space-y-3 pt-2 border-t border-slate-50">
+                        
+                        <!-- Variant Selector (if multiple) -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-semibold text-slate-400">Variant:</span>
+                            <select id="var-select-${product.id}" onchange="updateCardPrice(${product.id})" class="text-xs font-bold text-slate-700 bg-slate-100 rounded-lg px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand">
+                                ${product.variants.map((v, i) => `<option value="${i}">${v.weight}</option>`).join('')}
+                            </select>
+                        </div>
+
+                        <!-- Price Tag & Add To Cart Button -->
+                        <div class="flex items-center justify-between pt-1">
+                            <div>
+                                <span id="price-display-${product.id}" class="text-lg font-extrabold text-heading">₹${selectedVar.price}</span>
+                                <span id="orig-price-display-${product.id}" class="text-xs text-slate-400 line-through ml-1">₹${selectedVar.originalPrice}</span>
+                            </div>
+
+                            <button onclick="addToCartFromGrid(${product.id})" class="bg-brand-light hover:bg-brand hover:text-white text-brand font-bold text-xs px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-plus text-xs"></i> Add
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            `}).join('');
+        }
+
+        // Dynamically update card prices when variant select changes
+        function updateCardPrice(productId) {
+            const product = products.find(p => p.id === productId);
+            const selectEl = document.getElementById(`var-select-${productId}`);
+            const selectedIdx = selectEl.value;
+            const selectedVar = product.variants[selectedIdx];
+
+            document.getElementById(`price-display-${productId}`).textContent = `₹${selectedVar.price}`;
+            document.getElementById(`orig-price-display-${productId}`).textContent = `₹${selectedVar.originalPrice}`;
+        }
+
+        // Filter Handlers
+        function filterByPet(pet) {
+            activePetFilter = pet;
+            renderSidebarFilters();
+            renderProducts();
+        }
+
+        function filterByCategory(cat) {
+            activeCategoryFilter = cat;
+            renderSidebarFilters();
+            renderProducts();
+        }
+
+        function setPriceFilter(min, max) {
+            activePriceFilter = { min, max };
+            renderProducts();
+        }
+
+        function handleSearch(val) {
+            searchQuery = val;
+            renderProducts();
+        }
+
+        function handleSort(val) {
+            currentSort = val;
+            renderProducts();
+        }
+
+        function resetFilters() {
+            activePetFilter = "All";
+            activeCategoryFilter = "All";
+            activePriceFilter = { min: 0, max: 10000 };
+            searchQuery = "";
+            document.getElementById('navSearchInput').value = "";
+            renderSidebarFilters();
+            renderProducts();
+        }
+
+        // Cart Actions
+        function addToCartFromGrid(productId) {
+            const product = products.find(p => p.id === productId);
+            const selectEl = document.getElementById(`var-select-${productId}`);
+            const variantIdx = parseInt(selectEl.value);
+            
+            addToCart(product, variantIdx);
+        }
+
+        function addBundleToCart(bundleId) {
+            addToCart(bundleItem, 0);
+            toggleCart(true);
+        }
+
+        function addToCart(product, variantIndex) {
+            const variant = product.variants[variantIndex];
+            const existingIdx = cart.findIndex(item => item.id === product.id && item.variantIndex === variantIndex);
+
+            if (existingIdx > -1) {
+                cart[existingIdx].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    image: product.image,
+                    weight: variant.weight,
+                    price: variant.price,
+                    variantIndex: variantIndex,
+                    qty: 1
+                });
+            }
+
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateCartQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartBadge = document.getElementById('cartBadge');
+            const drawerCartCount = document.getElementById('drawerCartCount');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartBadge.textContent = totalItems;
+            drawerCartCount.textContent = `${totalItems} items`;
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-slate-300"></i>
+                        <p class="text-slate-500 text-xs font-semibold">Your pet store bag is empty.</p>
+                        <button onclick="toggleCart(false)" class="text-xs font-bold text-brand hover:underline">Explore Products &rarr;</button>
+                    </div>
+                `;
+            } else {
+                cartItemsList.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <img src="${item.image}" class="w-14 h-14 object-contain rounded-xl bg-white p-1">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-xs text-heading truncate">${item.name}</h4>
+                            <p class="text-[11px] text-slate-400">${item.weight}</p>
+                            <span class="font-extrabold text-xs text-brand">₹${item.price}</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-2 py-1">
+                            <button onclick="updateCartQty(${index}, -1)" class="text-xs text-slate-500 hover:text-brand font-bold">-</button>
+                            <span class="text-xs font-bold text-heading px-1">${item.qty}</span>
+                            <button onclick="updateCartQty(${index}, 1)" class="text-xs text-slate-500 hover:text-brand font-bold">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const discount = Math.round(subtotal * (appliedDiscountPercent / 100));
+            const freeDeliveryThreshold = 999;
+            const deliveryFee = (subtotal >= freeDeliveryThreshold || subtotal === 0) ? 0 : 99;
+            const total = Math.max(0, subtotal - discount + deliveryFee);
+
+            // Free Delivery Progress
+            const progressPercent = Math.min(100, (subtotal / freeDeliveryThreshold) * 100);
+            document.getElementById('freeShippingBar').style.width = `${progressPercent}%`;
+            
+            const freeShippingText = document.getElementById('freeShippingText');
+            if (subtotal >= freeDeliveryThreshold) {
+                freeShippingText.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check"></i> Unlocked FREE Express Delivery!</span>`;
+            } else {
+                const diff = freeDeliveryThreshold - subtotal;
+                freeShippingText.innerHTML = `<span>Add <strong class="text-brand">₹${diff}</strong> more for FREE Delivery</span>`;
+            }
+
+            // Summaries
+            document.getElementById('summarySubtotal').textContent = `₹${subtotal}`;
+            document.getElementById('summaryDiscount').textContent = `-₹${discount}`;
+            document.getElementById('summaryDelivery').textContent = deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`;
+            document.getElementById('summaryTotal').textContent = `₹${total}`;
+        }
+
+        // Coupon Application
+        function applyCoupon() {
+            const input = document.getElementById('couponInput').value.trim().toUpperCase();
+            const msg = document.getElementById('couponMessage');
+            
+            if (input === "VETIC20") {
+                appliedDiscountPercent = 20;
+                msg.textContent = "Coupon 'VETIC20' applied (20% OFF)!";
+                msg.className = "text-[11px] font-bold text-emerald-600 block";
+            } else if (input === "PETLOVE") {
+                appliedDiscountPercent = 10;
+                msg.textContent = "Coupon 'PETLOVE' applied (10% OFF)!";
+                msg.className = "text-[11px] font-bold text-emerald-600 block";
+            } else {
+                msg.textContent = "Invalid coupon code. Try VETIC20";
+                msg.className = "text-[11px] font-bold text-rose-500 block";
+            }
+            updateCartUI();
+        }
+
+        // Drawer Controls
+        function toggleCart(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartDrawerOverlay');
+
+            if (open) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Quick View Modal Controls
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalCategory').textContent = `${product.pet} • ${product.category}`;
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalRating').textContent = `★ ${product.rating} (${product.reviews} customer reviews)`;
+            document.getElementById('modalPrice').textContent = `₹${product.variants[0].price}`;
+            document.getElementById('modalOriginalPrice').textContent = `₹${product.variants[0].originalPrice}`;
+            document.getElementById('modalVetNote').textContent = `"${product.vetNote}"`;
+            document.getElementById('modalDescription').textContent = product.description;
+
+            const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+            modalAddToCartBtn.onclick = () => {
+                addToCart(product, 0);
+                closeQuickView();
+            };
+
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.remove('scale-95');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.add('scale-95');
+        }
+
+        // Checkout Flow
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            toggleCart(false);
+            const successModal = document.getElementById('successModal');
+            successModal.classList.remove('opacity-0', 'pointer-events-none');
+
+            // Reset cart
+            cart = [];
+            appliedDiscountPercent = 0;
+            document.getElementById('couponInput').value = "";
+            document.getElementById('couponMessage').classList.add('hidden');
+            updateCartUI();
+        }
+
+        function closeSuccessModal() {
+            const successModal = document.getElementById('successModal');
+            successModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function toggleMobileNav() {
+            alert("Vetic Clinic Menu: Use header search or filter sidebar to explore products.");
+        }
+    </script>
+</body>
+</html>
