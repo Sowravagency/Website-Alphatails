@@ -43,43 +43,34 @@
 </head>
 <body class="bg-white flex flex-col min-h-screen">
 
-    <!-- TOP SCROLLING OFFER BANNER -->
-<div class="bg-[#00796B] text-white py-2 overflow-hidden text-xs sm:text-sm font-medium relative shadow-inner">
-    <div class="animate-ticker flex items-center space-x-12">
-        <!-- Content Container -->
-        <div class="animate-ticker flex items-center space-x-12">
-            
-            <!-- FIRST SET OF ANNOUNCEMENTS -->
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-yellow-300"></i> FLASH SALE: Use Code <strong class="underline">VETIC20</strong> for Extra 20% Off!
-            </span>
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-truck-fast text-[#E0F7FA]"></i> Free Same-Day Delivery on Orders Above ₹999
-            </span>
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-shield-heart text-pink-200"></i> 100% Vet-Approved & Certified Pet Care Supplies
-            </span>
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-phone text-emerald-200"></i> 24/7 Expert Veterinary Support Helpline Available
-            </span>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Shop</title>
+    
+    <!-- PASTE THE CSS HERE INSIDE <style> TAGS -->
+    <style>
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-            <!-- DUPLICATE SET (Required for a seamless, glitch-free infinite loop) -->
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-yellow-300"></i> FLASH SALE: Use Code <strong class="underline">VETIC20</strong> for Extra 20% Off!
-            </span>
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-truck-fast text-[#E0F7FA]"></i> Free Same-Day Delivery on Orders Above ₹999
-            </span>
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-shield-heart text-pink-200"></i> 100% Vet-Approved & Certified Pet Care Supplies
-            </span>
-            <span class="flex items-center gap-2">
-                <i class="fa-solid fa-phone text-emerald-200"></i> 24/7 Expert Veterinary Support Helpline Available
-            </span>
+        .animate-ticker {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: ticker 25s linear infinite;
+        }
 
-        </div>
-    </div>
-</div>
+        .animate-ticker:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your website body content here -->
+</body>
+</html>
 
 
     <!-- Header Navigation -->
