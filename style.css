@@ -12,3 +12,18 @@
 .animate-ticker:hover {
     animation-play-state: paused;
 }
+.cat-tail {
+  /* Position relative to the cat body */
+  position: absolute;
+  bottom: 12px; /* Move UP or DOWN */
+  right: -5px;  /* Move LEFT or RIGHT */
+  
+  /* Pivot point for tail movement (where the tail meets the body) */
+  transform-origin: bottom left; 
+  
+  /* Initial angle rotation */
+  transform: rotate(15deg); 
+  
+  /* Tail sway speed */
+  animation: catTailSway 3s infinite ease-in-out;
+}
