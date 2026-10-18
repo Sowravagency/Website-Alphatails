@@ -802,9 +802,7 @@ I cannot thank Dr. Anudeep enough for saving my 36-day-old female Labrador puppy
         <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
         <span id="toastMessage" class="text-xs font-semibold">Item added to cart</span>
     </div>
-
-    <!-- Footer -->
-  <!-- Footer -->
+<!-- Footer -->
     <footer class="bg-heading text-slate-300 mt-16 text-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 border-b border-slate-800 pb-10">
@@ -845,219 +843,579 @@ I cannot thank Dr. Anudeep enough for saving my 36-day-old female Labrador puppy
                         <li><a href="#" class="hover:text-white">Veterinary Supplements</a></li>
                     </ul>
                 </div>
-  <style>
-  <!-- Interactive Speech Bubble -->
-  <div id="speechBubble" class="fixed hidden bg-white text-slate-800 text-xs font-bold px-3 py-2 rounded-2xl shadow-xl border border-slate-200 z-50 pointer-events-none transition-all transform -translate-x-1/2 -translate-y-full">
-    <span id="speechText">Woof! Meow! 🐢</span>
-  </div>
 
-  <script>
-    // Trigger Pet Group Speech Bubble on Click
-    function petGroupClick(e) {
-      e.stopPropagation();
-      const rect = e.currentTarget.getBoundingClientRect();
-      const greetings = [
-        "Woof! Meow! 🐢 *resting together*",
-        "Enjoying the fresh wind! 🍃",
-        "Best friends sitting in the grass! 🐾",
-        "Purrr... 🐶🐱🐢"
-      ];
-      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-      showSpeech(rect.left + rect.width / 2, rect.top + 10, randomGreeting);
-    }
+                <div class="space-y-3">
+                    <h4 class="font-bold text-white text-sm mb-1">Clinic Hotline</h4>
+                    <p class="text-brand font-bold text-sm">+91 1800-VETIC-PET</p>
+                    <p class="text-slate-400 text-[11px]">Emergency support available 24/7 at all primary regional clinics.</p>
+                </div>
+            </div>
 
-    function triggerPetGreeting() {
-      const petCorner = document.getElementById('petCorner');
-      const rect = petCorner.getBoundingClientRect();
-      showSpeech(rect.left + rect.width / 2, rect.top + 10, "Hello from the cozy corner! 🍃🐾");
-    }
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-[11px] gap-4">
+                <p>&copy; 2026 Vetic Pet Care Technologies Pvt Ltd. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-cc-visa text-lg"></i>
+                    <i class="fa-brands fa-cc-mastercard text-lg"></i>
+                    <i class="fa-brands fa-google-pay text-lg"></i>
+                    <span class="font-bold">UPI / NetBanking</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    function showSpeech(x, y, text) {
-      const bubble = document.getElementById('speechBubble');
-      const speechText = document.getElementById('speechText');
-      
-      speechText.innerText = text;
-      bubble.style.left = x + 'px';
-      bubble.style.top = (y - 12) + 'px';
-      bubble.classList.remove('hidden');
-
-      setTimeout(() => {
-        bubble.classList.add('hidden');
-      }, 1800);
-    }
-  </script>
-
-</body>
-</html>
-
+    <!-- JavaScript Application Logic -->
     <script>
+        // Sample Product Database
+        const products = [
+            {
+                id: 1,
+                name: "Royal Canin Mini Adult Dry Dog Food",
+                pet: "Dog",
+                category: "Food & Treats",
+                badge: "BESTSELLER",
+                badgeColor: "bg-amber-100 text-amber-800",
+                rating: 4.9,
+                reviews: 240,
+                variants: [
+                    { weight: "800g", price: 650, originalPrice: 750 },
+                    { weight: "2kg", price: 1550, originalPrice: 1800 },
+                    { weight: "4kg", price: 2900, originalPrice: 3400 }
+                ],
+                image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=500&auto=format&fit=crop&q=80",
+                vetNote: "High digestability protein crafted for small breed energy needs.",
+                description: "Formulated with L-carnitine to support fat metabolism and maintain ideal weight."
+            },
+            {
+                id: 2,
+                name: "Farmina N&D Grain Free Chicken & Pomegranate",
+                pet: "Dog",
+                category: "Food & Treats",
+                badge: "20% OFF",
+                badgeColor: "bg-rose-100 text-rose-800",
+                rating: 4.8,
+                reviews: 115,
+                variants: [
+                    { weight: "2.5kg", price: 2199, originalPrice: 2750 },
+                    { weight: "7kg", price: 5400, originalPrice: 6500 }
+                ],
+                image: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Low glycemic index grain-free formulation suitable for sensitive stomachs.",
+                description: "70% high-quality animal ingredients with natural antioxidants."
+            },
+            {
+                id: 3,
+                name: "Bravecto Chewable Tick & Flea Protection",
+                pet: "Dog",
+                category: "Healthcare & Deworming",
+                badge: "VET APPROVED",
+                badgeColor: "bg-emerald-100 text-emerald-800",
+                rating: 5.0,
+                reviews: 310,
+                variants: [
+                    { weight: "Single Chew (10-20kg)", price: 1850, originalPrice: 2100 }
+                ],
+                image: "https://images.unsplash.com/photo-1608248597263-0057e57b4524?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Provides up to 12 weeks of continuous protection against ticks and fleas.",
+                description: "Oral chewable tablet with tasty flavor that dogs accept readily."
+            },
+            {
+                id: 4,
+                name: "Whiskas Adult Wet Cat Food Gravy Pouches",
+                pet: "Cat",
+                category: "Food & Treats",
+                badge: "BESTSELLER",
+                badgeColor: "bg-amber-100 text-amber-800",
+                rating: 4.7,
+                reviews: 180,
+                variants: [
+                    { weight: "Pack of 12 (1020g)", price: 540, originalPrice: 600 }
+                ],
+                image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=500&auto=format&fit=crop&q=80",
+                vetNote: "High moisture content helps prevent urinary tract infections in cats.",
+                description: "Real fish chunks in savory gravy rich in Omega 6 & Zinc for shiny coat."
+            },
+            {
+                id: 5,
+                name: "Vetic Clinical Oatmeal & Neem Anti-Itch Shampoo",
+                pet: "Dog",
+                category: "Grooming & Care",
+                badge: "VETIC EXCLUSIVE",
+                badgeColor: "bg-teal-100 text-teal-800",
+                rating: 4.9,
+                reviews: 95,
+                variants: [
+                    { weight: "250ml", price: 399, originalPrice: 499 },
+                    { weight: "500ml", price: 699, originalPrice: 899 }
+                ],
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80",
+                vetNote: "pH balanced specifically for canine skin to relieve seasonal allergies.",
+                description: "Enriched with colloidal oatmeal and natural neem extract for deep soothing."
+            },
+            {
+                id: 6,
+                name: "Hill's Prescription Diet i/d Digestive Care",
+                pet: "Dog",
+                category: "Prescription Diets",
+                badge: "PRESCRIPTION ONLY",
+                badgeColor: "bg-purple-100 text-purple-800",
+                rating: 4.9,
+                reviews: 78,
+                variants: [
+                    { weight: "1.5kg", price: 1890, originalPrice: 2100 }
+                ],
+                image: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Clinically proven nutrition to calm digestive upsets in dogs.",
+                description: "Highly digestible formula with optimal blend of soluble & insoluble fibers."
+            },
+            {
+                id: 7,
+                name: "Interactive Feather Teaser Wand & Catnip Toy",
+                pet: "Cat",
+                category: "Toys & Accessories",
+                badge: "POPULAR",
+                badgeColor: "bg-sky-100 text-sky-800",
+                rating: 4.6,
+                reviews: 64,
+                variants: [
+                    { weight: "Standard", price: 299, originalPrice: 450 }
+                ],
+                image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Encourages essential indoor physical activity and mental stimulation.",
+                description: "Flexible wand with organic catnip pouch and non-toxic dye feathers."
+            },
+            {
+                id: 8,
+                name: "Ergonomic Padded No-Pull Harness & Leash Set",
+                pet: "Dog",
+                category: "Toys & Accessories",
+                badge: "NEW",
+                badgeColor: "bg-indigo-100 text-indigo-800",
+                rating: 4.8,
+                reviews: 42,
+                variants: [
+                    { weight: "Medium (M)", price: 899, originalPrice: 1299 },
+                    { weight: "Large (L)", price: 1099, originalPrice: 1499 }
+                ],
+                image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=500&auto=format&fit=crop&q=80",
+                vetNote: "Prevents tracheal strain by distributing pulling force across chest.",
+                description: "Reflective stitching for nighttime safety with breathable mesh padding."
+            }
+        ];
+
+        // Curated Special Bundle
+        const bundleItem = {
+            id: 101,
+            name: "Flea & Tick Shield Monthly Care Bundle",
+            pet: "Dog",
+            category: "Healthcare & Deworming",
+            selectedVariantIndex: 0,
+            variants: [{ weight: "Complete Combo", price: 1299, originalPrice: 1800 }],
+            image: "https://images.unsplash.com/photo-1608248597263-0057e57b4524?w=500&auto=format&fit=crop&q=80"
+        };
+
+        // State Management
         let cart = [];
+        let activePetFilter = "All";
+        let activeCategoryFilter = "All";
+        let activePriceFilter = { min: 0, max: 10000 };
+        let searchQuery = "";
+        let currentSort = "popular";
+        let appliedDiscountPercent = 0;
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+        // Categories & Pet Types Config
+        const petTypes = ["All", "Dog", "Cat"];
+        const categories = [
+            "All",
+            "Food & Treats",
+            "Healthcare & Deworming",
+            "Grooming & Care",
+            "Prescription Diets",
+            "Toys & Accessories"
+        ];
+
+        // Initialize Page
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSidebarFilters();
+            renderProducts();
+            updateCartUI();
+        });
+
+        // Render Filter Options
+        function renderSidebarFilters() {
+            // Render Pet Filter
+            const petContainer = document.getElementById('petTypeContainer');
+            petContainer.innerHTML = petTypes.map(pet => `
+                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 cursor-pointer p-1.5 rounded-lg hover:bg-slate-100">
+                    <div class="flex items-center gap-2">
+                        <input type="radio" name="petType" value="${pet}" ${activePetFilter === pet ? 'checked' : ''} onchange="filterByPet('${pet}')" class="text-brand focus:ring-brand">
+                        <span>${pet === 'All' ? 'All Pets' : pet + 's'}</span>
+                    </div>
+                </label>
+            `).join('');
+
+            // Render Category Filter
+            const categoryContainer = document.getElementById('categoryContainer');
+            categoryContainer.innerHTML = categories.map(cat => `
+                <label class="flex items-center justify-between text-xs font-semibold text-slate-700 cursor-pointer p-1.5 rounded-lg hover:bg-slate-100">
+                    <div class="flex items-center gap-2">
+                        <input type="radio" name="categoryType" value="${cat}" ${activeCategoryFilter === cat ? 'checked' : ''} onchange="filterByCategory('${cat}')" class="text-brand focus:ring-brand">
+                        <span>${cat}</span>
+                    </div>
+                </label>
+            `).join('');
         }
 
-        function openBookingModal(serviceName) {
-            const modal = document.getElementById('bookingModal');
-            const select = document.getElementById('bookingServiceSelect');
-            const form = document.getElementById('bookingForm');
-            const success = document.getElementById('bookingSuccessMessage');
+        // Render Products Grid
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            const countEl = document.getElementById('resultCount');
 
-            if (serviceName && select) {
-                for (let option of select.options) {
-                    if (option.value.toLowerCase().includes(serviceName.toLowerCase()) || 
-                        option.text.toLowerCase().includes(serviceName.toLowerCase())) {
-                        option.selected = true;
-                        break;
-                    }
-                }
-            }
-
-            form.classList.remove('hidden');
-            success.classList.add('hidden');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.children[0].classList.remove('scale-95');
-        }
-
-        function closeBookingModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.children[0].classList.add('scale-95');
-        }
-
-        function handleBookingSubmit(e) {
-            e.preventDefault();
-            document.getElementById('bookingForm').classList.add('hidden');
-            document.getElementById('bookingSuccessMessage').classList.remove('hidden');
-        }
-
-        function openCartModal() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.children[0].classList.remove('translate-x-full');
-            renderCartItems();
-        }
-
-        function closeCartModal() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.children[0].classList.add('translate-x-full');
-        }
-
-        function addToCart(title, price) {
-            const existing = cart.find(item => item.title === title);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ title, price, qty: 1 });
-            }
-            updateCartBadges();
-            showToast(`Added "${title}" to your cart!`);
-        }
-
-        function updateCartBadges() {
-            const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-            const badgeDesktop = document.getElementById('cartBadge');
-            const badgeMobile = document.getElementById('cartBadgeMobile');
-
-            if (totalCount > 0) {
-                badgeDesktop.innerText = totalCount;
-                badgeDesktop.classList.remove('hidden');
-                badgeDesktop.classList.add('flex');
+            // Apply Filters
+            let filtered = products.filter(p => {
+                const matchesPet = activePetFilter === "All" || p.pet === activePetFilter;
+                const matchesCat = activeCategoryFilter === "All" || p.category === activeCategoryFilter;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.category.toLowerCase().includes(searchQuery.toLowerCase());
                 
-                badgeMobile.innerText = totalCount;
-                badgeMobile.classList.remove('hidden');
-                badgeMobile.classList.add('flex');
-            } else {
-                badgeDesktop.classList.add('hidden');
-                badgeMobile.classList.add('hidden');
+                // Check if at least one variant fits price filter
+                const matchesPrice = p.variants.some(v => v.price >= activePriceFilter.min && v.price <= activePriceFilter.max);
+
+                return matchesPet && matchesCat && matchesSearch && matchesPrice;
+            });
+
+            // Sorting
+            if (currentSort === "low-high") {
+                filtered.sort((a, b) => a.variants[0].price - b.variants[0].price);
+            } else if (currentSort === "high-low") {
+                filtered.sort((a, b) => b.variants[0].price - a.variants[0].price);
+            } else if (currentSort === "discount") {
+                filtered.sort((a, b) => {
+                    const discA = (a.variants[0].originalPrice - a.variants[0].price);
+                    const discB = (b.variants[0].originalPrice - b.variants[0].price);
+                    return discB - discA;
+                });
             }
-        }
 
-        function renderCartItems() {
-            const cartList = document.getElementById('cartItemsList');
-            const cartTotal = document.getElementById('cartTotal');
+            countEl.textContent = `Showing ${filtered.length} products`;
 
-            if (cart.length === 0) {
-                cartList.innerHTML = `
-                    <div class="text-center py-12 text-slate-400 text-sm">
-                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 block opacity-30"></i>
-                        Your shopping cart is currently empty.
-                    </div>`;
-                cartTotal.innerText = '₹0';
+            if (filtered.length === 0) {
+                grid.innerHTML = "";
+                emptyState.classList.remove('hidden');
                 return;
+            } else {
+                emptyState.classList.add('hidden');
             }
 
-            let total = 0;
-            cartList.innerHTML = cart.map((item, index) => {
-                const itemTotal = item.price * item.qty;
-                total += itemTotal;
+            grid.innerHTML = filtered.map(product => {
+                const selectedVar = product.variants[0];
                 return `
-                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <div class="pr-2">
-                            <h5 class="text-xs font-bold text-[#023047] line-clamp-1">${item.title}</h5>
-                            <span class="text-xs text-[#00796B] font-extrabold">₹${item.price} x ${item.qty}</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 bg-white border border-slate-200 rounded text-xs font-bold text-slate-600">-</button>
-                            <span class="text-xs font-bold text-[#023047]">${item.qty}</span>
-                            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 bg-white border border-slate-200 rounded text-xs font-bold text-slate-600">+</button>
-                        </div>
-                    </div>`;
-            }).join('');
+                <div class="bg-white rounded-2xl border border-slate-100 p-4 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group relative">
+                    
+                    <!-- Badge -->
+                    <div class="absolute top-3 left-3 z-10">
+                        <span class="${product.badgeColor} text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm">
+                            ${product.badge}
+                        </span>
+                    </div>
 
-            cartTotal.innerText = '₹' + total.toLocaleString('en-IN');
+                    <!-- Quick View Trigger -->
+                    <button onclick="openQuickView(${product.id})" class="absolute top-3 right-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full text-slate-500 hover:text-brand hover:bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm" title="Quick View">
+                        <i class="fa-solid fa-eye text-xs"></i>
+                    </button>
+
+                    <div>
+                        <!-- Product Image -->
+                        <div class="h-44 w-full bg-slate-50 rounded-xl overflow-hidden p-3 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
+                            <img src="${product.image}" alt="${product.name}" class="h-full object-contain">
+                        </div>
+
+                        <!-- Product Category & Ratings -->
+                        <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                            <span class="font-medium text-[11px] uppercase tracking-wider">${product.pet} • ${product.category}</span>
+                            <span class="text-amber-500 font-bold flex items-center gap-1">
+                                ★ ${product.rating} <span class="text-slate-400 font-normal">(${product.reviews})</span>
+                            </span>
+                        </div>
+
+                        <!-- Product Title -->
+                        <h3 class="font-bold text-heading text-sm line-clamp-2 hover:text-brand transition-colors cursor-pointer" onclick="openQuickView(${product.id})">
+                            ${product.name}
+                        </h3>
+                    </div>
+
+                    <div class="mt-4 space-y-3 pt-2 border-t border-slate-50">
+                        
+                        <!-- Variant Selector (if multiple) -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-semibold text-slate-400">Variant:</span>
+                            <select id="var-select-${product.id}" onchange="updateCardPrice(${product.id})" class="text-xs font-bold text-slate-700 bg-slate-100 rounded-lg px-2 py-1 focus:outline-none focus:ring-1 focus:ring-brand">
+                                ${product.variants.map((v, i) => `<option value="${i}">${v.weight}</option>`).join('')}
+                            </select>
+                        </div>
+
+                        <!-- Price Tag & Add To Cart Button -->
+                        <div class="flex items-center justify-between pt-1">
+                            <div>
+                                <span id="price-display-${product.id}" class="text-lg font-extrabold text-heading">₹${selectedVar.price}</span>
+                                <span id="orig-price-display-${product.id}" class="text-xs text-slate-400 line-through ml-1">₹${selectedVar.originalPrice}</span>
+                            </div>
+
+                            <button onclick="addToCartFromGrid(${product.id})" class="bg-brand-light hover:bg-brand hover:text-white text-brand font-bold text-xs px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-plus text-xs"></i> Add
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            `}).join('');
         }
 
-        function changeQty(index, change) {
+        // Dynamically update card prices when variant select changes
+        function updateCardPrice(productId) {
+            const product = products.find(p => p.id === productId);
+            const selectEl = document.getElementById(`var-select-${productId}`);
+            const selectedIdx = selectEl.value;
+            const selectedVar = product.variants[selectedIdx];
+
+            document.getElementById(`price-display-${productId}`).textContent = `₹${selectedVar.price}`;
+            document.getElementById(`orig-price-display-${productId}`).textContent = `₹${selectedVar.originalPrice}`;
+        }
+
+        // Filter Handlers
+        function filterByPet(pet) {
+            activePetFilter = pet;
+            renderSidebarFilters();
+            renderProducts();
+        }
+
+        function filterByCategory(cat) {
+            activeCategoryFilter = cat;
+            renderSidebarFilters();
+            renderProducts();
+        }
+
+        function setPriceFilter(min, max) {
+            activePriceFilter = { min, max };
+            renderProducts();
+        }
+
+        function handleSearch(val) {
+            searchQuery = val;
+            renderProducts();
+        }
+
+        function handleSort(val) {
+            currentSort = val;
+            renderProducts();
+        }
+
+        function resetFilters() {
+            activePetFilter = "All";
+            activeCategoryFilter = "All";
+            activePriceFilter = { min: 0, max: 10000 };
+            searchQuery = "";
+            document.getElementById('navSearchInput').value = "";
+            renderSidebarFilters();
+            renderProducts();
+        }
+
+        // Cart Actions
+        function addToCartFromGrid(productId) {
+            const product = products.find(p => p.id === productId);
+            const selectEl = document.getElementById(`var-select-${productId}`);
+            const variantIdx = parseInt(selectEl.value);
+            
+            addToCart(product, variantIdx);
+        }
+
+        function addBundleToCart(bundleId) {
+            addToCart(bundleItem, 0);
+            toggleCart(true);
+        }
+
+        function addToCart(product, variantIndex) {
+            const variant = product.variants[variantIndex];
+            const existingIdx = cart.findIndex(item => item.id === product.id && item.variantIndex === variantIndex);
+
+            if (existingIdx > -1) {
+                cart[existingIdx].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    image: product.image,
+                    weight: variant.weight,
+                    price: variant.price,
+                    variantIndex: variantIndex,
+                    qty: 1
+                });
+            }
+
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateCartQty(index, change) {
             cart[index].qty += change;
             if (cart[index].qty <= 0) {
                 cart.splice(index, 1);
             }
-            updateCartBadges();
-            renderCartItems();
+            updateCartUI();
         }
 
-        function checkoutCart() {
+        function updateCartUI() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartBadge = document.getElementById('cartBadge');
+            const drawerCartCount = document.getElementById('drawerCartCount');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartBadge.textContent = totalItems;
+            drawerCartCount.textContent = `${totalItems} items`;
+
             if (cart.length === 0) {
-                showToast('Your cart is empty!');
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-slate-300"></i>
+                        <p class="text-slate-500 text-xs font-semibold">Your pet store bag is empty.</p>
+                        <button onclick="toggleCart(false)" class="text-xs font-bold text-brand hover:underline">Explore Products &rarr;</button>
+                    </div>
+                `;
+            } else {
+                cartItemsList.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <img src="${item.image}" class="w-14 h-14 object-contain rounded-xl bg-white p-1">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-xs text-heading truncate">${item.name}</h4>
+                            <p class="text-[11px] text-slate-400">${item.weight}</p>
+                            <span class="font-extrabold text-xs text-brand">₹${item.price}</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-2 py-1">
+                            <button onclick="updateCartQty(${index}, -1)" class="text-xs text-slate-500 hover:text-brand font-bold">-</button>
+                            <span class="text-xs font-bold text-heading px-1">${item.qty}</span>
+                            <button onclick="updateCartQty(${index}, 1)" class="text-xs text-slate-500 hover:text-brand font-bold">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const discount = Math.round(subtotal * (appliedDiscountPercent / 100));
+            const freeDeliveryThreshold = 999;
+            const deliveryFee = (subtotal >= freeDeliveryThreshold || subtotal === 0) ? 0 : 99;
+            const total = Math.max(0, subtotal - discount + deliveryFee);
+
+            // Free Delivery Progress
+            const progressPercent = Math.min(100, (subtotal / freeDeliveryThreshold) * 100);
+            document.getElementById('freeShippingBar').style.width = `${progressPercent}%`;
+            
+            const freeShippingText = document.getElementById('freeShippingText');
+            if (subtotal >= freeDeliveryThreshold) {
+                freeShippingText.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check"></i> Unlocked FREE Express Delivery!</span>`;
+            } else {
+                const diff = freeDeliveryThreshold - subtotal;
+                freeShippingText.innerHTML = `<span>Add <strong class="text-brand">₹${diff}</strong> more for FREE Delivery</span>`;
+            }
+
+            // Summaries
+            document.getElementById('summarySubtotal').textContent = `₹${subtotal}`;
+            document.getElementById('summaryDiscount').textContent = `-₹${discount}`;
+            document.getElementById('summaryDelivery').textContent = deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`;
+            document.getElementById('summaryTotal').textContent = `₹${total}`;
+        }
+
+        // Coupon Application
+        function applyCoupon() {
+            const input = document.getElementById('couponInput').value.trim().toUpperCase();
+            const msg = document.getElementById('couponMessage');
+            
+            if (input === "VETIC20") {
+                appliedDiscountPercent = 20;
+                msg.textContent = "Coupon 'VETIC20' applied (20% OFF)!";
+                msg.className = "text-[11px] font-bold text-emerald-600 block";
+            } else if (input === "PETLOVE") {
+                appliedDiscountPercent = 10;
+                msg.textContent = "Coupon 'PETLOVE' applied (10% OFF)!";
+                msg.className = "text-[11px] font-bold text-emerald-600 block";
+            } else {
+                msg.textContent = "Invalid coupon code. Try VETIC20";
+                msg.className = "text-[11px] font-bold text-rose-500 block";
+            }
+            updateCartUI();
+        }
+
+        // Drawer Controls
+        function toggleCart(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartDrawerOverlay');
+
+            if (open) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Quick View Modal Controls
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalCategory').textContent = `${product.pet} • ${product.category}`;
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalRating').textContent = `★ ${product.rating} (${product.reviews} customer reviews)`;
+            document.getElementById('modalPrice').textContent = `₹${product.variants[0].price}`;
+            document.getElementById('modalOriginalPrice').textContent = `₹${product.variants[0].originalPrice}`;
+            document.getElementById('modalVetNote').textContent = `"${product.vetNote}"`;
+            document.getElementById('modalDescription').textContent = product.description;
+
+            const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+            modalAddToCartBtn.onclick = () => {
+                addToCart(product, 0);
+                closeQuickView();
+            };
+
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.remove('scale-95');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.add('scale-95');
+        }
+
+        // Checkout Flow
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
                 return;
             }
-            alert('Thank you for choosing Vetic! Proceeding to payment...');
+
+            toggleCart(false);
+            const successModal = document.getElementById('successModal');
+            successModal.classList.remove('opacity-0', 'pointer-events-none');
+
+            // Reset cart
             cart = [];
-            updateCartBadges();
-            closeCartModal();
+            appliedDiscountPercent = 0;
+            document.getElementById('couponInput').value = "";
+            document.getElementById('couponMessage').classList.add('hidden');
+            updateCartUI();
         }
 
-        function filterShop(category) {
-            const buttons = document.querySelectorAll('.shop-filter-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-[#00796B]', 'text-white');
-                btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
-            });
-            event.target.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
-            event.target.classList.add('bg-[#00796B]', 'text-white');
-
-            const items = document.querySelectorAll('.shop-item');
-            items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+        function closeSuccessModal() {
+            const successModal = document.getElementById('successModal');
+            successModal.classList.add('opacity-0', 'pointer-events-none');
         }
 
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMessage');
-            toastMsg.innerText = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+        function toggleMobileNav() {
+            alert("Vetic Clinic Menu: Use header search or filter sidebar to explore products.");
         }
     </script>
 </body>
