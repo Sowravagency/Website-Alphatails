@@ -804,71 +804,408 @@ I cannot thank Dr. Anudeep enough for saving my 36-day-old female Labrador puppy
     </div>
 
     <!-- Footer -->
-    <footer class="bg-[#023047] text-white pt-16 pb-12 mt-auto">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-700/60">
-                
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-[#00796B] rounded-xl flex items-center justify-center text-white">
-                            <i class="fa-solid fa-paw text-xl"></i>
-                        </div>
-                        <span class="text-2xl font-black text-white">Alphatails<span class="text-[#00796B]"></span></span>
-                         
-</div>
-                    <p class="text-xs text-slate-300 leading-relaxed max-w-sm">
-From everyday essentials to expert pet care, Alphatails is here for every paw, every tail, and every little moment that matters. 🐾
-                    </p>
-                    <div class="flex space-x-3 text-slate-300 pt-2">
-                        <a href="#" class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-[#00796B] transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-[#00796B] transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-[#00796B] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-[#00796B] transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
+   <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cozy Corner Animated Footer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ================= KEYFRAME ANIMATIONS ================= */
 
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-[#E0F7FA] mb-4">Quick Links</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-300">
-                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#vets" class="hover:text-white transition-colors">About us</a></li>
-                        <li><a href="#shop" class="hover:text-white transition-colors">Terms & Conditions</a></li>
-                        <li><a href="#about" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="#blog" class="hover:text-white transition-colors">Contact Us</a></li>
-                    </ul>
-                </div>
+    /* Birds Flying in Sky */
+    @keyframes flyBird1 {
+      0% { transform: translateX(-60px) translateY(0px) scale(0.85); }
+      50% { transform: translateX(50vw) translateY(-18px) scale(0.95); }
+      100% { transform: translateX(105vw) translateY(8px) scale(0.85); }
+    }
 
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-[#E0F7FA] mb-4">Services</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-300">
-                        <li><a href="#home" class="hover:text-white transition-colors">Vet Consultation</a></li>
-                        <li><a href="#home" class="hover:text-white transition-colors">Grooming & Spa</a></li>
-                        <li><a href="#home" class="hover:text-white transition-colors">Vaccination at Home</a></li>
-                        <li><a href="#home" class="hover:text-white transition-colors">Diagnostics</a></li>
-                        <li><a href="#home" class="hover:text-white transition-colors">Surgeries </a></li>
-                    </ul>
-                </div>
+    @keyframes flyBird2 {
+      0% { transform: translateX(-80px) translateY(12px) scale(0.65); }
+      100% { transform: translateX(105vw) translateY(-20px) scale(0.7); }
+    }
 
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-[#E0F7FA] mb-4 hidden"></h4>
-                    <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700 space-y-2 hidden">
-                        <div class="text-xs text-slate-400"></div>
-                        <a href="tel:+91 863 921 5804" class="text-m font-extrabold text-teal-300 block hidden">+91 863 921 5804-Alphatails</a>
-                        <p class="text-[8px] text-slate-400 hidden">Available in Tirupati.</p>
-                    </div>
-                </div>
+    @keyframes wingFlap {
+      0%, 100% { transform: rotate(0deg) scaleY(1); }
+      50% { transform: rotate(-28deg) scaleY(0.35); }
+    }
 
+    /* Wind / Grass Swaying Animations */
+    @keyframes grassSwayDeep {
+      0%, 100% { transform: rotate(-6deg) skewX(-3deg); }
+      50% { transform: rotate(8deg) skewX(4deg); }
+    }
+
+    @keyframes grassSwaySoft {
+      0%, 100% { transform: rotate(5deg) skewX(2deg); }
+      50% { transform: rotate(-7deg) skewX(-3deg); }
+    }
+
+    @keyframes grassSwayFast {
+      0%, 100% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    /* Sitting Dog Animations */
+    @keyframes dogEarFlap {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(8deg); }
+    }
+
+    @keyframes dogTailWag {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(18deg); }
+    }
+
+    /* Sitting Cat Animations */
+    @keyframes catTailSway {
+      0%, 100% { transform: rotate(-12deg); }
+      50% { transform: rotate(15deg); }
+    }
+
+    @keyframes catEarTwitch {
+      0%, 90%, 100% { transform: rotate(0deg); }
+      93% { transform: rotate(-10deg); }
+      96% { transform: rotate(5deg); }
+    }
+
+    /* Tortoise Animations */
+    @keyframes tortoiseHeadPeek {
+      0%, 100% { transform: translateX(0px) translateY(0px); }
+      50% { transform: translateX(4px) translateY(-2px); }
+    }
+
+    /* Gentle Breathing / Resting Motion for all sitting pets */
+    @keyframes petBreathing {
+      0%, 100% { transform: translateY(0px) scaleY(1); }
+      50% { transform: translateY(-2px) scaleY(1.02); }
+    }
+
+    /* Eye Blinking */
+    @keyframes eyeBlink {
+      0%, 48%, 52%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+
+    /* CSS Helper Classes */
+    .bird-1 { animation: flyBird1 22s linear infinite; }
+    .bird-2 { animation: flyBird2 15s linear infinite 5s; }
+
+    .wing-l { transform-origin: 20px 18px; animation: wingFlap 0.32s ease-in-out infinite alternate; }
+    .wing-r { transform-origin: 25px 18px; animation: wingFlap 0.32s ease-in-out infinite alternate 0.12s; }
+
+    /* Grass blades with different delays and speeds */
+    .grass-blade-1 { transform-origin: bottom center; animation: grassSwayDeep 4s ease-in-out infinite; }
+    .grass-blade-2 { transform-origin: bottom center; animation: grassSwaySoft 3.2s ease-in-out infinite 0.5s; }
+    .grass-blade-3 { transform-origin: bottom center; animation: grassSwayFast 2.5s ease-in-out infinite 1s; }
+
+    /* Pet Sub-animations */
+    .dog-tail-sitting { transform-origin: bottom left; animation: dogTailWag 0.8s ease-in-out infinite; }
+    .dog-ear { transform-origin: top center; animation: dogEarFlap 2.5s ease-in-out infinite; }
+    
+    .cat-tail-sitting { transform-origin: bottom right; animation: catTailSway 1.8s ease-in-out infinite; }
+    .cat-ear { transform-origin: bottom center; animation: catEarTwitch 4s ease-in-out infinite; }
+
+    .tortoise-head { transform-origin: center left; animation: tortoiseHeadPeek 4s ease-in-out infinite; }
+
+    .pet-rest { animation: petBreathing 3.5s ease-in-out infinite; }
+    .blink-eye { transform-origin: center; animation: eyeBlink 4s ease-in-out infinite; }
+
+    /* Hover effects for interactive corner group */
+    .pet-corner-group:hover .dog-tail-sitting {
+      animation-duration: 0.3s;
+    }
+    .pet-corner-group:hover .cat-tail-sitting {
+      animation-duration: 0.8s;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+  <!-- Demo Content Top Section -->
+  <main class="container mx-auto px-6 py-12 flex-grow">
+    <div class="max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-sm border border-slate-200 text-center">
+      <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+        <i class="fa-solid fa-leaf mr-1"></i> Cozy Nature Edition
+      </span>
+      <h1 class="text-3xl font-extrabold text-slate-800 mt-4 mb-3">Swaying Grass & Corner Pet Scene</h1>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Scroll down to experience the peaceful footer animation featuring flying birds in the sky, wind-swaying grass blades, and a sitting Dog, Cat, and Tortoise resting side by side in the corner!
+      </p>
+      <button onclick="triggerPetGreeting()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md">
+        <i class="fa-solid fa-heart mr-2"></i>Say Hi to the Friends
+      </button>
+    </div>
+  </main>
+
+  <!-- ================= START OF REDESIGNED FOOTER ================= -->
+  <footer class="relative bg-slate-900 text-slate-300 pt-20 overflow-hidden select-none">
+
+    <!-- 1. FLYING BIRDS SKY AREA (TOP OF FOOTER) -->
+    <div class="absolute top-0 left-0 right-0 h-32 pointer-events-none overflow-hidden z-0">
+      <!-- Sky Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-sky-950/40 via-transparent to-transparent"></div>
+
+      <!-- Flying Bird 1 -->
+      <div class="bird-1 absolute top-5 left-0">
+        <svg width="46" height="30" viewBox="0 0 50 35" fill="none">
+          <path class="wing-l" d="M25 18 C15 5, 5 10, 2 15 C10 18, 20 20, 25 18 Z" fill="#94A3B8"/>
+          <path class="wing-r" d="M25 18 C35 5, 45 10, 48 15 C40 18, 30 20, 25 18 Z" fill="#CBD5E1"/>
+          <ellipse cx="25" cy="18" rx="8" ry="3" fill="#64748B"/>
+        </svg>
+      </div>
+
+      <!-- Flying Bird 2 -->
+      <div class="bird-2 absolute top-12 left-0">
+        <svg width="36" height="24" viewBox="0 0 50 35" fill="none">
+          <path class="wing-l" d="M25 18 C15 5, 5 10, 2 15 C10 18, 20 20, 25 18 Z" fill="#38BDF8"/>
+          <path class="wing-r" d="M25 18 C35 5, 45 10, 48 15 C40 18, 30 20, 25 18 Z" fill="#7DD3FC"/>
+          <ellipse cx="25" cy="18" rx="7" ry="2.5" fill="#0284C7"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2. FOOTER CONTENT LINKS GRID -->
+    <div class="container mx-auto px-6 relative z-10 pb-36">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Brand Intro -->
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2 text-white font-bold text-xl">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <i class="fa-solid fa-paw"></i>
             </div>
-
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-                <div>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</div>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
-                    <a href="#" class="hover:underline">Terms of Service</a>
-                </div>
-            </div>
+            <span>Haven Veterinary</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Creating calm, peaceful environments for all pets—big, small, furry, or shelled.
+          </p>
         </div>
-    </footer>
+
+        <!-- Links Col 1 -->
+        <div>
+          <h3 class="text-white font-semibold mb-3 text-xs tracking-widest uppercase text-emerald-400">Services</h3>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Wellness Examinations</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Exotic & Reptile Care</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Dermatology & Fur Care</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Dental & Surgery</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 2 -->
+        <div>
+          <h3 class="text-white font-semibold mb-3 text-xs tracking-widest uppercase text-emerald-400">Explore</h3>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Pet Behavior Advice</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Nutrition & Diet Plans</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Emergency Clinic</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition-colors">Community Adoption</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h3 class="text-white font-semibold mb-3 text-xs tracking-widest uppercase text-emerald-400">Newsletter</h3>
+          <p class="text-xs text-slate-400 mb-3">Join our pet care digest for seasonal health tips.</p>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Enter email..." class="bg-slate-800 text-xs text-white px-3 py-2.5 rounded-xl border border-slate-700/80 focus:outline-none focus:border-emerald-500 w-full">
+            <button class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm">
+              Subscribe
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. SWAYING TALL GRASS & CORNER SITTING PETS SCENE -->
+    <div class="absolute bottom-10 left-0 right-0 h-28 pointer-events-none z-20">
+      
+      <!-- SWAYING TALL GRASS BLADES (SPREAD ACROSS BOTTOM) -->
+      <div class="absolute bottom-0 inset-x-0 h-24 flex justify-between items-end px-4 overflow-hidden">
+        
+        <!-- Left Grass Cluster -->
+        <div class="flex items-end space-x-1 opacity-80">
+          <svg class="grass-blade-1 text-emerald-600" width="18" height="65" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 2 50, 0 20, 18 0 C 12 30, 12 55, 10 80 Z"/></svg>
+          <svg class="grass-blade-2 text-emerald-500" width="14" height="80" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 18 45, 15 15, 2 0 C 8 30, 8 55, 10 80 Z"/></svg>
+          <svg class="grass-blade-3 text-teal-600" width="20" height="50" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 0 40, 5 20, 15 0 C 10 25, 10 50, 10 80 Z"/></svg>
+          <svg class="grass-blade-1 text-emerald-700" width="12" height="70" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 15 45, 18 20, 5 0 C 8 25, 9 50, 10 80 Z"/></svg>
+        </div>
+
+        <!-- Center-Left Grass Cluster -->
+        <div class="hidden sm:flex items-end space-x-2 opacity-70">
+          <svg class="grass-blade-2 text-emerald-600" width="16" height="55" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 0 40, 5 20, 18 0 Z"/></svg>
+          <svg class="grass-blade-3 text-emerald-700" width="14" height="75" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 18 45, 15 15, 2 0 Z"/></svg>
+          <svg class="grass-blade-1 text-teal-600" width="18" height="45" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 2 50, 0 20, 18 0 Z"/></svg>
+        </div>
+
+        <!-- Center-Right Grass Cluster -->
+        <div class="hidden md:flex items-end space-x-1.5 opacity-75">
+          <svg class="grass-blade-3 text-emerald-500" width="15" height="70" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 18 45, 15 15, 2 0 Z"/></svg>
+          <svg class="grass-blade-1 text-emerald-600" width="12" height="50" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 0 40, 5 20, 18 0 Z"/></svg>
+          <svg class="grass-blade-2 text-teal-700" width="18" height="85" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 2 50, 0 20, 18 0 Z"/></svg>
+        </div>
+
+        <!-- Right Grass Cluster Framing the Pet Corner -->
+        <div class="flex items-end space-x-1 opacity-90 mr-48 sm:mr-64">
+          <svg class="grass-blade-1 text-emerald-500" width="16" height="75" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 0 40, 5 20, 18 0 Z"/></svg>
+          <svg class="grass-blade-3 text-teal-600" width="22" height="90" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 18 45, 15 15, 2 0 Z"/></svg>
+          <svg class="grass-blade-2 text-emerald-600" width="14" height="60" viewBox="0 0 20 80" fill="currentColor"><path d="M10 80 C 2 50, 0 20, 18 0 Z"/></svg>
+        </div>
+
+      </div>
+
+      <!-- COZY RIGHT CORNER RESTING SCENE: DOG, CAT & TORTOISE -->
+      <div class="absolute bottom-1 right-4 sm:right-12 pointer-events-auto flex items-end pet-corner-group cursor-pointer" id="petCorner" onclick="petGroupClick(event)" title="Click to greet the sitting friends!">
+        
+        <div class="relative flex items-end">
+
+          <!-- 1. TORTOISE (Sitting on the Left of the Trio) -->
+          <div class="relative -mr-2 z-30 transform translate-y-1">
+            <svg width="48" height="32" viewBox="0 0 60 40" fill="none">
+              <!-- Tortoise Shell -->
+              <path d="M 12 30 C 12 14, 24 10, 42 10 C 52 10, 54 20, 52 30 Z" fill="#15803D" stroke="#166534" stroke-width="1.5"/>
+              <!-- Shell Hexagon Pattern Lines -->
+              <path d="M 22 14 L 32 18 L 42 14 M 32 18 L 32 28 M 22 26 L 32 28 L 42 26" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- Feet -->
+              <ellipse cx="20" cy="31" rx="5" ry="3" fill="#166534"/>
+              <ellipse cx="44" cy="31" rx="5" ry="3" fill="#166534"/>
+              <!-- Head (Peeking out animation) -->
+              <g class="tortoise-head">
+                <path d="M 14 26 C 6 26, 4 18, 10 16 C 14 15, 18 20, 16 26 Z" fill="#22C55E"/>
+                <!-- Eye -->
+                <circle class="blink-eye" cx="9" cy="19" r="1.2" fill="#052E16"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 2. SITTING CAT (Middle of the Trio) -->
+          <div class="relative -mr-3 z-20 pet-rest">
+            <svg width="50" height="65" viewBox="0 0 60 80" fill="none">
+              <!-- Cat Tail (Swaying behind) -->
+              <path class="cat-tail-sitting" d="M 18 68 C 6 68, 2 55, 8 45 C 10 42, 14 45, 12 50 C 8 58, 14 62, 22 62 Z" fill="#F97316"/>
+              
+              <!-- Cat Body (Sitting) -->
+              <path d="M 20 40 C 15 50, 16 70, 42 70 C 45 70, 46 50, 38 40 Z" fill="#FB923C"/>
+              <!-- Paws -->
+              <ellipse cx="26" cy="69" rx="5" ry="3" fill="#FED7AA"/>
+              <ellipse cx="36" cy="69" rx="5" ry="3" fill="#FED7AA"/>
+
+              <!-- Cat Head -->
+              <circle cx="29" cy="32" r="15" fill="#FB923C"/>
+              <!-- Ears -->
+              <polygon class="cat-ear" points="16,24 22,10 28,22" fill="#EA580C"/>
+              <polygon class="cat-ear" points="30,22 36,10 42,24" fill="#EA580C"/>
+              <!-- Inner Ears -->
+              <polygon points="18,22 22,13 26,21" fill="#FCA5A5"/>
+              <polygon points="32,21 36,13 40,22" fill="#FCA5A5"/>
+
+              <!-- Face Details -->
+              <circle class="blink-eye" cx="23" cy="30" r="2" fill="#0F172A"/>
+              <circle class="blink-eye" cx="35" cy="30" r="2" fill="#0F172A"/>
+              <polygon points="28,34 30,34 29,36" fill="#F43F5E"/>
+              <!-- Whiskers -->
+              <path d="M 16 33 L 8 31 M 16 35 L 7 36 M 42 33 L 50 31 M 42 35 L 51 36" stroke="#FFEDD5" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- 3. SITTING DOG (Right side of the Trio) -->
+          <div class="relative z-10 pet-rest" style="animation-delay: 0.5s;">
+            <svg width="68" height="80" viewBox="0 0 80 95" fill="none">
+              <!-- Dog Tail (Wagging) -->
+              <path class="dog-tail-sitting" d="M 58 72 C 68 70, 78 60, 72 50 C 70 48, 66 50, 68 54 C 72 60, 64 66, 56 66 Z" fill="#D97706"/>
+              
+              <!-- Dog Body (Sitting) -->
+              <path d="M 22 48 C 16 60, 18 85, 58 85 C 60 85, 62 60, 50 48 Z" fill="#F59E0B"/>
+              <!-- Chest Patch -->
+              <path d="M 32 48 C 28 60, 32 80, 46 80 C 50 75, 48 55, 40 48 Z" fill="#FEF3C7"/>
+              <!-- Front Paws -->
+              <ellipse cx="32" cy="84" rx="6" ry="4" fill="#FEF3C7"/>
+              <ellipse cx="46" cy="84" rx="6" ry="4" fill="#FEF3C7"/>
+
+              <!-- Head & Snout -->
+              <circle cx="38" cy="34" r="18" fill="#F59E0B"/>
+              <ellipse cx="38" cy="40" rx="10" ry="7" fill="#FEF3C7"/>
+              <!-- Nose -->
+              <ellipse cx="38" cy="36" rx="3.5" ry="2.5" fill="#78350F"/>
+
+              <!-- Floppy Ears -->
+              <path class="dog-ear" d="M 22 24 C 15 28, 14 42, 20 44 C 23 42, 24 32, 25 26 Z" fill="#B45309"/>
+              <path class="dog-ear" d="M 54 24 C 61 28, 62 42, 56 44 C 53 42, 52 32, 51 26 Z" fill="#B45309"/>
+
+              <!-- Eyes -->
+              <circle class="blink-eye" cx="31" cy="30" r="2.2" fill="#1E293B"/>
+              <circle class="blink-eye" cx="45" cy="30" r="2.2" fill="#1E293B"/>
+
+              <!-- Red Collar -->
+              <path d="M 26 48 C 34 52, 42 52, 50 48" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Ground Strip -->
+      <div class="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-950 border-t border-emerald-700/50"></div>
+    </div>
+
+    <!-- 4. BOTTOM COPYRIGHT BAR -->
+    <div class="bg-slate-950 py-4 text-center text-xs text-slate-500 relative z-30 border-t border-slate-800/80">
+      <p>© 2026 Haven Veterinary Services. All rights reserved. Designed with swaying nature & corner friends.</p>
+    </div>
+
+  </footer>
+  <!-- ================= END OF REDESIGNED FOOTER ================= -->
+
+  <!-- Interactive Speech Bubble -->
+  <div id="speechBubble" class="fixed hidden bg-white text-slate-800 text-xs font-bold px-3 py-2 rounded-2xl shadow-xl border border-slate-200 z-50 pointer-events-none transition-all transform -translate-x-1/2 -translate-y-full">
+    <span id="speechText">Woof! Meow! 🐢</span>
+  </div>
+
+  <script>
+    // Trigger Pet Group Speech Bubble on Click
+    function petGroupClick(e) {
+      e.stopPropagation();
+      const rect = e.currentTarget.getBoundingClientRect();
+      const greetings = [
+        "Woof! Meow! 🐢 *resting together*",
+        "Enjoying the fresh wind! 🍃",
+        "Best friends sitting in the grass! 🐾",
+        "Purrr... 🐶🐱🐢"
+      ];
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+      showSpeech(rect.left + rect.width / 2, rect.top + 10, randomGreeting);
+    }
+
+    function triggerPetGreeting() {
+      const petCorner = document.getElementById('petCorner');
+      const rect = petCorner.getBoundingClientRect();
+      showSpeech(rect.left + rect.width / 2, rect.top + 10, "Hello from the cozy corner! 🍃🐾");
+    }
+
+    function showSpeech(x, y, text) {
+      const bubble = document.getElementById('speechBubble');
+      const speechText = document.getElementById('speechText');
+      
+      speechText.innerText = text;
+      bubble.style.left = x + 'px';
+      bubble.style.top = (y - 12) + 'px';
+      bubble.classList.remove('hidden');
+
+      setTimeout(() => {
+        bubble.classList.add('hidden');
+      }, 1800);
+    }
+  </script>
+
+</body>
+</html>
 
     <script>
         let cart = [];
