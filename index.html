@@ -101,7 +101,12 @@
                    <section hidden>
                      <a href="#Booking.html" class="text-[#023047] hover:text-[#00796B] transition-colors">Appointment Booking</a>
                 </nav>
-
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <!-- Search Input Desktop -->
+                    <div class="relative hidden sm:block w-48 xl:w-64">
+                        <input type="text" id="navSearchInput" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-brand focus:bg-white transition-all">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                    </div>
                 <!-- Header Actions -->
                 <div class="hidden sm:flex items-center space-x-4">
                     <button onclick="openCartModal()" class="relative p-2.5 text-[#023047] hover:text-[#00796B] hover:bg-[#E0F7FA] rounded-xl transition-all">
@@ -113,12 +118,6 @@
     <span>Book Appointment</span>
 </a>
 <!-- Search & Actions -->
-                <div class="flex items-center gap-3 sm:gap-4">
-                    <!-- Search Input Desktop -->
-                    <div class="relative hidden sm:block w-48 xl:w-64">
-                        <input type="text" id="navSearchInput" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-brand focus:bg-white transition-all">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                    </div>
                 <!-- Mobile Navigation Trigger -->
                 <div class="flex items-center space-x-2 lg:hidden">
                     <button onclick="openCartModal()" class="relative p-2 text-[#023047]">
