@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphatails Pet Care & Clinic - Book Appointment</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#00796B',
+              dark: '#004D40',
+              light: '#E0F7FA',
+              heading: '#023047',
+              accent: '#FFB703',
+              amber: '#FB8500'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F8FAFC;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="text-slate-700 min-h-screen flex flex-col justify-between">
+
+  <!-- Top Announcement Banner -->
+  <div class="bg-brand text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-sm flex items-center justify-center gap-2">
+    <i class="fa-solid fa-sparkles text-brand-accent"></i>
+    <span>Welcome to Alphatails Pet Care & Clinic — Professional Care with Real-time Booking Slot Reservation!</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-brand text-white flex items-center justify-center text-2xl shadow-md shadow-brand/20">
+            <i class="fa-solid fa-shield-cat"></i>
+          </div>
+          <div>
+            <span class="text-2xl font-extrabold text-brand-heading tracking-tight block leading-none">
+              Alphatails
+            </span>
+            <span class="text-xs font-semibold text-brand tracking-widest uppercase">Pet Care & Clinic</span>
+          </div>
+        </div>
+
+        <!-- Navigation Link -->
+        <nav class="flex items-center gap-6">
+          <a href="#" class="text-brand font-bold text-sm sm:text-base border-b-2 border-brand pb-1 flex items-center gap-2">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Book a Slot</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+    
+    <!-- Hero / Intro Banner -->
+    <div class="mb-8 bg-gradient-to-r from-brand-heading to-slate-800 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-9xl pointer-events-none">
+        <i class="fa-solid fa-paw"></i>
+      </div>
+      <div class="relative z-10 max-w-2xl">
+        <span class="inline-flex items-center gap-1.5 bg-brand/30 border border-brand/50 text-brand-light text-xs font-semibold px-3 py-1 rounded-full mb-3">
+          <i class="fa-solid fa-bolt text-brand-accent"></i> Instant Slot Reservation System
+        </span>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
+          Reserve Your Pet's Appointment
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base">
+          Select a service and date. Slots are exclusively locked per appointment — once reserved, the time slot is immediately unavailable across all services.
+        </p>
+      </div>
+    </div>
+
+    <!-- Booking Progress Indicator -->
+    <div class="mb-8 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
+      <div class="flex justify-between items-center max-w-3xl mx-auto relative">
+        <!-- Connecting Line -->
+        <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 z-0"></div>
+        <div id="progress-line" class="absolute top-1/2 left-0 h-1 bg-brand -translate-y-1/2 z-0 transition-all duration-300" style="width: 0%;"></div>
+
+        <!-- Steps -->
+        <div class="step-node relative z-10 flex flex-col items-center" data-step="1">
+          <div class="w-10 h-10 rounded-full bg-brand text-white font-bold flex items-center justify-center text-sm shadow-md transition-all">1</div>
+          <span class="text-xs font-semibold mt-2 text-brand-heading">Service</span>
+        </div>
+        <div class="step-node relative z-10 flex flex-col items-center" data-step="2">
+          <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 font-bold flex items-center justify-center text-sm transition-all">2</div>
+          <span class="text-xs font-semibold mt-2 text-slate-400">Pet Details</span>
+        </div>
+        <div class="step-node relative z-10 flex flex-col items-center" data-step="3">
+          <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 font-bold flex items-center justify-center text-sm transition-all">3</div>
+          <span class="text-xs font-semibold mt-2 text-slate-400">Date & Slot</span>
+        </div>
+        <div class="step-node relative z-10 flex flex-col items-center" data-step="4">
+          <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 font-bold flex items-center justify-center text-sm transition-all">4</div>
+          <span class="text-xs font-semibold mt-2 text-slate-400">Owner Info</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout Grid: Main Wizard + Sidebar -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Booking Wizard Column -->
+      <div class="lg:col-span-8 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+        
+        <!-- ALERT MESSAGE CONTAINER -->
+        <div id="alert-banner" class="hidden mb-6 p-4 rounded-2xl flex items-start gap-3 border text-sm">
+          <i id="alert-icon" class="fa-solid fa-circle-info text-lg mt-0.5"></i>
+          <div id="alert-text" class="flex-grow"></div>
+        </div>
+
+        <form id="booking-form" onsubmit="event.preventDefault();">
+
+          <!-- STEP 1: SERVICE SELECTION -->
+          <div id="step-1" class="step-content space-y-6">
+            <div>
+              <h2 class="text-xl font-bold text-brand-heading">Step 1: Choose a Service</h2>
+              <p class="text-sm text-slate-500">Select the primary service required for your pet today.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Service Option 1: Vaccination -->
+              <label class="service-card cursor-pointer border-2 border-slate-200 rounded-2xl p-5 hover:border-brand/60 transition-all flex flex-col justify-between relative group" data-service-id="vaccination" data-price="45">
+                <input type="radio" name="service" value="Vaccination" class="sr-only">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-xl bg-teal-50 text-brand flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                      <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <span class="text-lg font-bold text-brand-heading">$45</span>
+                  </div>
+                  <h3 class="font-bold text-slate-800 text-base mb-1">Vaccination</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">Core immunization and booster shots for dogs and cats.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                  <span><i class="fa-regular fa-clock mr-1"></i> Standard Slots</span>
+                  <i class="fa-solid fa-circle-check text-xl text-slate-200 check-icon"></i>
+                </div>
+              </label>
+
+              <!-- Service Option 2: Deworming -->
+              <label class="service-card cursor-pointer border-2 border-slate-200 rounded-2xl p-5 hover:border-brand/60 transition-all flex flex-col justify-between relative group" data-service-id="deworming" data-price="30">
+                <input type="radio" name="service" value="Deworming" class="sr-only">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                      <i class="fa-solid fa-capsules"></i>
+                    </div>
+                    <span class="text-lg font-bold text-brand-heading">$30</span>
+                  </div>
+                  <h3 class="font-bold text-slate-800 text-base mb-1">Deworming</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">Preventative and therapeutic internal parasite treatment.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                  <span><i class="fa-regular fa-clock mr-1"></i> Standard Slots</span>
+                  <i class="fa-solid fa-circle-check text-xl text-slate-200 check-icon"></i>
+                </div>
+              </label>
+
+              <!-- Service Option 3: Consultation -->
+              <label class="service-card cursor-pointer border-2 border-slate-200 rounded-2xl p-5 hover:border-brand/60 transition-all flex flex-col justify-between relative group" data-service-id="consultation" data-price="55">
+                <input type="radio" name="service" value="Consultation" class="sr-only">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-brand-amber flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                      <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <span class="text-lg font-bold text-brand-heading">$55</span>
+                  </div>
+                  <h3 class="font-bold text-slate-800 text-base mb-1">Consultation</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">Full physical checkup, health assessment, and expert diagnosis.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                  <span><i class="fa-regular fa-clock mr-1"></i> Standard Slots</span>
+                  <i class="fa-solid fa-circle-check text-xl text-slate-200 check-icon"></i>
+                </div>
+              </label>
+
+              <!-- Service Option 4: Grooming (CUSTOM TIMINGS) -->
+              <label class="service-card cursor-pointer border-2 border-slate-200 rounded-2xl p-5 hover:border-brand/60 transition-all flex flex-col justify-between relative group bg-gradient-to-b from-white to-teal-50/20" data-service-id="grooming" data-price="75">
+                <input type="radio" name="service" value="Grooming" class="sr-only">
+                <div class="absolute -top-3 -right-2 bg-brand text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm tracking-wide">
+                  4 SLOTS ONLY
+                </div>
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-brand-dark flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                      <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <span class="text-lg font-bold text-brand-heading">$75</span>
+                  </div>
+                  <h3 class="font-bold text-slate-800 text-base mb-1">Full Grooming</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">Bath, haircut, nail trimming, ear cleaning & coat conditioning.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-medium text-brand">
+                  <span><i class="fa-solid fa-clock-rotate-left mr-1"></i> 2-Hour Fixed Slots</span>
+                  <i class="fa-solid fa-circle-check text-xl text-slate-200 check-icon"></i>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 2: PET DETAILS -->
+          <div id="step-2" class="step-content hidden space-y-6">
+            <div>
+              <h2 class="text-xl font-bold text-brand-heading">Step 2: Tell Us About Your Pet</h2>
+              <p class="text-sm text-slate-500">Provide basic information to help our veterinary team prepare.</p>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Pet Name *</label>
+                <input type="text" id="pet-name" placeholder="e.g. Milo" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Pet Type *</label>
+                  <select id="pet-type" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm bg-white">
+                    <option value="">Select Pet Type</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Breed / Species (Optional)</label>
+                  <input type="text" id="pet-breed" placeholder="e.g. Golden Retriever" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Pet Age</label>
+                  <input type="text" id="pet-age" placeholder="e.g. 2 Years" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Weight (Approx Kg)</label>
+                  <input type="text" id="pet-weight" placeholder="e.g. 12 kg" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: DATE & TIME SLOT SELECTION -->
+          <div id="step-3" class="step-content hidden space-y-6">
+            <div>
+              <h2 class="text-xl font-bold text-brand-heading">Step 3: Select Date & Time Slot</h2>
+              <p class="text-sm text-slate-500">Pick an available slot. Booked slots are locked for all services.</p>
+            </div>
+
+            <!-- Date Selector -->
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Select Appointment Date *</label>
+              <div class="relative">
+                <input type="date" id="booking-date" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm bg-white cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Slot Type Alert Banner -->
+            <div id="slot-notice" class="p-3.5 rounded-xl text-xs font-medium bg-brand-light text-brand-dark border border-brand/20 flex items-center gap-2.5">
+              <i class="fa-solid fa-circle-info text-brand text-base"></i>
+              <span id="slot-notice-text">Showing standard hourly time slots.</span>
+            </div>
+
+            <!-- Slots Grid Section -->
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <label class="block text-xs font-bold uppercase text-slate-600">Available Time Slots *</label>
+                <span class="text-xs text-slate-400"><i class="fa-solid fa-lock text-slate-300"></i> Locked slots cannot be re-booked</span>
+              </div>
+
+              <!-- Container for generated slots -->
+              <div id="slots-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Dynamically populated via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: OWNER DETAILS -->
+          <div id="step-4" class="step-content hidden space-y-6">
+            <div>
+              <h2 class="text-xl font-bold text-brand-heading">Step 4: Contact Information</h2>
+              <p class="text-sm text-slate-500">Enter your owner details to receive booking confirmation.</p>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Full Name *</label>
+                <input type="text" id="owner-name" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Phone Number *</label>
+                  <input type="tel" id="owner-phone" placeholder="+1 (555) 000-0000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Email Address *</label>
+                  <input type="email" id="owner-email" placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-2">Special Instructions / Notes</label>
+                <textarea id="booking-notes" rows="3" placeholder="Any health conditions, behavioral notes or requests..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand text-slate-800 text-sm"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wizard Navigation Buttons -->
+          <div class="mt-8 pt-6 border-t border-slate-200 flex justify-between items-center">
+            <button type="button" id="btn-prev" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-all invisible">
+              <i class="fa-solid fa-arrow-left mr-2"></i> Back
+            </button>
+
+            <button type="button" id="btn-next" class="px-7 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-md shadow-brand/20 transition-all flex items-center gap-2">
+              <span>Continue</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Live Summary Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- Booking Summary Card -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sticky top-28">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+            <h3 class="font-bold text-brand-heading text-lg flex items-center gap-2">
+              <i class="fa-solid fa-receipt text-brand"></i> Booking Summary
+            </h3>
+            <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">Live Preview</span>
+          </div>
+
+          <div class="py-4 space-y-3 text-sm">
+            <div class="flex justify-between items-start">
+              <span class="text-slate-400 text-xs uppercase font-semibold">Selected Service</span>
+              <span id="summary-service" class="font-bold text-slate-800 text-right">Not Selected</span>
+            </div>
+
+            <div class="flex justify-between items-start">
+              <span class="text-slate-400 text-xs uppercase font-semibold">Pet</span>
+              <span id="summary-pet" class="font-semibold text-slate-700 text-right">-</span>
+            </div>
+
+            <div class="flex justify-between items-start">
+              <span class="text-slate-400 text-xs uppercase font-semibold">Date</span>
+              <span id="summary-date" class="font-semibold text-slate-700 text-right">-</span>
+            </div>
+
+            <div class="flex justify-between items-start">
+              <span class="text-slate-400 text-xs uppercase font-semibold">Time Slot</span>
+              <span id="summary-slot" class="font-bold text-brand text-right">-</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 space-y-2">
+            <div class="flex justify-between text-slate-500 text-sm">
+              <span>Service Fee</span>
+              <span id="summary-price">$0.00</span>
+            </div>
+            <div class="flex justify-between text-slate-500 text-sm">
+              <span>Facility & Tech Fee</span>
+              <span>$0.00</span>
+            </div>
+            <div class="flex justify-between items-center text-base font-extrabold text-brand-heading pt-2 border-t border-dashed border-slate-200">
+              <span>Total Estimated Fee</span>
+              <span id="summary-total" class="text-xl text-brand">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Feature Badges -->
+          <div class="mt-6 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-brand"></i>
+              <span>Guaranteed Slot Exclusivity</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-brand"></i>
+              <span>Free cancellation up to 4 hrs before</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Developer Slot Lock Demo Controls -->
+        <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-md border border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-extrabold uppercase tracking-wider text-brand-accent flex items-center gap-1.5">
+              <i class="fa-solid fa-sliders"></i> Slot Reservation Demo Controls
+            </h4>
+          </div>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            Real-time slot locking state is stored in your browser session. Use this trigger to view or clear reserved slots.
+          </p>
+          <div class="flex flex-col gap-2">
+            <button type="button" id="btn-seed-locks" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-database"></i> Add Sample Pre-booked Slots
+            </button>
+            <button type="button" id="btn-clear-locks" class="w-full py-2 px-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-trash-can"></i> Reset All Reserved Slots
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-heading text-slate-400 text-sm py-8 border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      <div class="flex items-center justify-center gap-2 text-white font-bold text-lg">
+        <i class="fa-solid fa-shield-cat text-brand"></i> Alphatails Pet Care & Clinic
+      </div>
+      <p class="text-xs text-slate-400 max-w-lg mx-auto">
+        Providing top-tier veterinary consultations, vaccinations, deworming, and specialized grooming services with guaranteed single-booking time slots.
+      </p>
+      <div class="text-xs text-slate-500 pt-2 border-t border-slate-800">
+        &copy; 2026 Alphatails Pet Care & Clinic. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOKING CONFIRMATION MODAL -->
+  <div id="modal-success" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl animate-fade-in relative overflow-hidden">
+      <div class="w-16 h-16 bg-teal-100 text-brand rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      
+      <h2 class="text-2xl font-extrabold text-brand-heading text-center mb-1">Appointment Confirmed!</h2>
+      <p class="text-xs text-slate-500 text-center mb-6">Your time slot has been successfully locked & reserved.</p>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3 mb-6 text-xs text-slate-700">
+        <div class="flex justify-between border-b border-slate-200/80 pb-2">
+          <span class="text-slate-400 uppercase font-bold">Booking Ref</span>
+          <span id="modal-ref" class="font-mono font-bold text-brand text-sm">#ALPHA-000000</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Service:</span>
+          <span id="modal-service" class="font-bold text-slate-800">Grooming</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Pet Name:</span>
+          <span id="modal-pet" class="font-semibold text-slate-800">Milo</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Date & Slot:</span>
+          <span id="modal-slot" class="font-bold text-brand">Oct 24, 2026 | 10:00 AM - 12:00 PM</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Owner Name:</span>
+          <span id="modal-owner" class="font-semibold text-slate-800">John Doe</span>
+        </div>
+      </div>
+
+      <div class="p-3 bg-brand-light border border-brand/20 rounded-xl text-xs text-brand-dark mb-6 flex items-start gap-2">
+        <i class="fa-solid fa-lock mt-0.5"></i>
+        <span>This slot is now locked and unavailable for any other appointments on this date.</span>
+      </div>
+
+      <button type="button" id="btn-close-modal" class="w-full py-3.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-md transition-all">
+        Done & Return to Booking
+      </button>
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC -->
+  <script>
+    // --- APP STATE ---
+    const STORAGE_KEY = 'alphatails_booked_slots_v2';
+
+    let currentStep = 1;
+    let selectedService = null;
+    let selectedServicePrice = 0;
+    let selectedSlot = null;
+
+    // GROOMING EXCLUSIVE SLOTS (4 SLOTS MANDATED)
+    const GROOMING_SLOTS = [
+      '10:00 AM - 12:00 PM',
+      '12:00 PM - 02:00 PM',
+      '04:00 PM - 06:00 PM',
+      '06:00 PM - 08:00 PM'
+    ];
+
+    // STANDARD SLOTS FOR OTHER SERVICES
+    const STANDARD_SLOTS = [
+      '09:00 AM - 10:00 AM',
+      '10:00 AM - 11:00 AM',
+      '11:00 AM - 12:00 PM',
+      '12:00 PM - 01:00 PM',
+      '02:00 PM - 03:00 PM',
+      '03:00 PM - 04:00 PM',
+      '04:00 PM - 05:00 PM',
+      '05:00 PM - 06:00 PM',
+      '06:00 PM - 07:00 PM',
+      '07:00 PM - 08:00 PM'
+    ];
+
+    // --- DOM ELEMENTS ---
+    const stepNodes = document.querySelectorAll('.step-node');
+    const stepContents = document.querySelectorAll('.step-content');
+    const progressLine = document.getElementById('progress-line');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const alertBanner = document.getElementById('alert-banner');
+    const alertText = document.getElementById('alert-text');
+    const alertIcon = document.getElementById('alert-icon');
+    const bookingDateInput = document.getElementById('booking-date');
+    const slotsGrid = document.getElementById('slots-grid');
+    const slotNoticeText = document.getElementById('slot-notice-text');
+
+    // Summary Elements
+    const summaryService = document.getElementById('summary-service');
+    const summaryPet = document.getElementById('summary-pet');
+    const summaryDate = document.getElementById('summary-date');
+    const summarySlot = document.getElementById('summary-slot');
+    const summaryPrice = document.getElementById('summary-price');
+    const summaryTotal = document.getElementById('summary-total');
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set Default Date to Today
+      const today = new Date().toISOString().split('T')[0];
+      bookingDateInput.value = today;
+      bookingDateInput.min = today;
+
+      // Initialize Sample Seed if empty
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        seedSampleBookings();
+      }
+
+      setupServiceSelection();
+      setupDateListener();
+      setupDemoButtons();
+      updateStepUI();
+    });
+
+    // --- LOCAL STORAGE SLOT MANAGEMENT ---
+    function getBookedSlotsMap() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
+      } catch (e) {
+        console.error("Error reading localStorage:", e);
+        return {};
+      }
+    }
+
+    function saveBookedSlot(dateStr, slotStr, serviceName, petName) {
+      const map = getBookedSlotsMap();
+      if (!map[dateStr]) {
+        map[dateStr] = [];
+      }
+      map[dateStr].push({
+        slot: slotStr,
+        service: serviceName,
+        pet: petName,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+    }
+
+    function isSlotBooked(dateStr, slotStr) {
+      const map = getBookedSlotsMap();
+      const dayBookings = map[dateStr] || [];
+      return dayBookings.some(b => b.slot === slotStr);
+    }
+
+    function seedSampleBookings() {
+      const today = new Date().toISOString().split('T')[0];
+      const sampleMap = {};
+      
+      // Sample booked slots on today
+      sampleMap[today] = [
+        { slot: '10:00 AM - 12:00 PM', service: 'Grooming', pet: 'Buddy' },
+        { slot: '02:00 PM - 03:00 PM', service: 'Consultation', pet: 'Luna' }
+      ];
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sampleMap));
+    }
+
+    // --- SERVICE SELECTION ---
+    function setupServiceSelection() {
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          // Deselect others
+          cards.forEach(c => {
+            c.classList.remove('border-brand', 'bg-teal-50/40', 'ring-2', 'ring-brand/30');
+            c.classList.add('border-slate-200');
+            const check = c.querySelector('.check-icon');
+            if (check) {
+              check.classList.remove('text-brand');
+              check.classList.add('text-slate-200');
+            }
+          });
+
+          // Select clicked
+          card.classList.remove('border-slate-200');
+          card.classList.add('border-brand', 'bg-teal-50/40', 'ring-2', 'ring-brand/30');
+          const check = card.querySelector('.check-icon');
+          if (check) {
+            check.classList.remove('text-slate-200');
+            check.classList.add('text-brand');
+          }
+
+          const radio = card.querySelector('input[type="radio"]');
+          radio.checked = true;
+
+          selectedService = radio.value;
+          selectedServicePrice = parseFloat(card.dataset.price);
+
+          // Reset slot selection whenever service changes
+          selectedSlot = null;
+
+          hideAlert();
+          updateSummary();
+          renderTimeSlots();
+        });
+      });
+    }
+
+    // --- DATE LISTENER ---
+    function setupDateListener() {
+      bookingDateInput.addEventListener('change', () => {
+        selectedSlot = null;
+        updateSummary();
+        renderTimeSlots();
+      });
+    }
+
+    // --- TIME SLOT RENDERING & LOCKING ---
+    function renderTimeSlots() {
+      slotsGrid.innerHTML = '';
+
+      if (!selectedService) {
+        slotsGrid.innerHTML = `
+          <div class="col-span-full text-center py-8 text-slate-400 bg-slate-50 border border-dashed border-slate-200 rounded-2xl">
+            <i class="fa-solid fa-hand-pointer text-2xl mb-2 text-slate-300"></i>
+            <p class="text-xs">Please select a service in Step 1 to load slots.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const dateStr = bookingDateInput.value;
+      const isGrooming = selectedService === 'Grooming';
+      const availableSlotsList = isGrooming ? GROOMING_SLOTS : STANDARD_SLOTS;
+
+      // Update slot banner text
+      if (isGrooming) {
+        slotNoticeText.innerHTML = `<strong>Grooming Special Schedule:</strong> Showing ONLY the 4 exclusive 2-hour grooming slots.`;
+      } else {
+        slotNoticeText.innerHTML = `Showing standard hourly appointment slots.`;
+      }
+
+      if (!dateStr) {
+        slotsGrid.innerHTML = `
+          <div class="col-span-full text-center py-6 text-slate-400">
+            Select a date above to view available time slots.
+          </div>
+        `;
+        return;
+      }
+
+      availableSlotsList.forEach(slotText => {
+        const booked = isSlotBooked(dateStr, slotText);
+        const isSelected = selectedSlot === slotText;
+
+        const slotBtn = document.createElement('button');
+        slotBtn.type = 'button';
+
+        if (booked) {
+          // DISABLED / BOOKED STATE
+          slotBtn.className = 'w-full p-3.5 rounded-2xl border border-slate-200 bg-slate-100 text-slate-400 flex items-center justify-between cursor-not-allowed opacity-80';
+          slotBtn.disabled = true;
+          slotBtn.innerHTML = `
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-lock text-slate-400"></i>
+              <span class="font-medium text-xs sm:text-sm line-through">${slotText}</span>
+            </div>
+            <span class="text-[10px] font-bold bg-slate-200 text-slate-600 px-2.5 py-1 rounded-full uppercase tracking-wider">
+              Booked / Unavailable
+            </span>
+          `;
+        } else {
+          // AVAILABLE STATE
+          const baseClasses = 'w-full p-3.5 rounded-2xl border-2 transition-all flex items-center justify-between font-semibold text-xs sm:text-sm';
+          const activeClasses = isSelected
+            ? 'border-brand bg-brand text-white shadow-md shadow-brand/20'
+            : 'border-slate-200 bg-white text-slate-700 hover:border-brand/50 hover:bg-teal-50/30';
+
+          slotBtn.className = `${baseClasses} ${activeClasses}`;
+          slotBtn.innerHTML = `
+            <div class="flex items-center gap-2">
+              <i class="fa-regular fa-clock ${isSelected ? 'text-white' : 'text-brand'}"></i>
+              <span>${slotText}</span>
+            </div>
+            <span class="text-[10px] ${isSelected ? 'bg-white/20 text-white' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'} font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              ${isSelected ? 'Selected' : 'Available'}
+            </span>
+          `;
+
+          slotBtn.addEventListener('click', () => {
+            selectedSlot = slotText;
+            hideAlert();
+            renderTimeSlots();
+            updateSummary();
+          });
+        }
+
+        slotsGrid.appendChild(slotBtn);
+      });
+    }
+
+    // --- NAVIGATION WIZARD ENGINE ---
+    btnNext.addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        if (currentStep < 4) {
+          currentStep++;
+          updateStepUI();
+        } else {
+          // Final Submit
+          processBookingSubmission();
+        }
+      }
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepUI();
+      }
+    });
+
+    function updateStepUI() {
+      // Toggle Step visibility
+      stepContents.forEach((content, index) => {
+        if (index + 1 === currentStep) {
+          content.classList.remove('hidden');
+          content.classList.add('animate-fade-in');
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+
+      // Update Step Nodes UI
+      stepNodes.forEach((node, index) => {
+        const stepNum = index + 1;
+        const circle = node.querySelector('div');
+        const label = node.querySelector('span');
+
+        if (stepNum < currentStep) {
+          // Completed
+          circle.className = 'w-10 h-10 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center text-sm shadow-md';
+          circle.innerHTML = '<i class="fa-solid fa-check"></i>';
+          label.className = 'text-xs font-semibold mt-2 text-slate-700';
+        } else if (stepNum === currentStep) {
+          // Active
+          circle.className = 'w-10 h-10 rounded-full bg-brand text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-brand/20';
+          circle.innerText = stepNum;
+          label.className = 'text-xs font-bold mt-2 text-brand-heading';
+        } else {
+          // Future
+          circle.className = 'w-10 h-10 rounded-full bg-slate-200 text-slate-500 font-bold flex items-center justify-center text-sm';
+          circle.innerText = stepNum;
+          label.className = 'text-xs font-semibold mt-2 text-slate-400';
+        }
+      });
+
+      // Progress Line width
+      const percentage = ((currentStep - 1) / (stepNodes.length - 1)) * 100;
+      progressLine.style.width = `${percentage}%`;
+
+      // Buttons Control
+      if (currentStep === 1) {
+        btnPrev.classList.add('invisible');
+      } else {
+        btnPrev.classList.remove('invisible');
+      }
+
+      if (currentStep === 4) {
+        btnNext.innerHTML = `<span>Confirm & Lock Slot</span> <i class="fa-solid fa-lock"></i>`;
+        btnNext.classList.remove('bg-brand');
+        btnNext.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+      } else {
+        btnNext.innerHTML = `<span>Continue</span> <i class="fa-solid fa-arrow-right"></i>`;
+        btnNext.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+        btnNext.classList.add('bg-brand');
+      }
+
+      hideAlert();
+      if (currentStep === 3) {
+        renderTimeSlots();
+      }
+    }
+
+    // --- STEP VALIDATION ---
+    function validateStep(step) {
+      if (step === 1) {
+        if (!selectedService) {
+          showAlert('Please select a service to proceed.', 'error');
+          return false;
+        }
+      } else if (step === 2) {
+        const petName = document.getElementById('pet-name').value.trim();
+        const petType = document.getElementById('pet-type').value;
+        if (!petName || !petType) {
+          showAlert('Please enter your pet\'s name and select a pet type.', 'error');
+          return false;
+        }
+      } else if (step === 3) {
+        const dateVal = bookingDateInput.value;
+        if (!dateVal) {
+          showAlert('Please select an appointment date.', 'error');
+          return false;
+        }
+        if (!selectedSlot) {
+          showAlert('Please select an available time slot.', 'error');
+          return false;
+        }
+        // Double check if slot became booked
+        if (isSlotBooked(dateVal, selectedSlot)) {
+          showAlert('Selected slot was just reserved by another booking. Please choose another slot.', 'error');
+          renderTimeSlots();
+          return false;
+        }
+      } else if (step === 4) {
+        const ownerName = document.getElementById('owner-name').value.trim();
+        const ownerPhone = document.getElementById('owner-phone').value.trim();
+        const ownerEmail = document.getElementById('owner-email').value.trim();
+
+        if (!ownerName || !ownerPhone || !ownerEmail) {
+          showAlert('Please complete all required owner contact fields.', 'error');
+          return false;
+        }
+      }
+      hideAlert();
+      return true;
+    }
+
+    // --- LIVE SUMMARY UPDATE ---
+    function updateSummary() {
+      const petName = document.getElementById('pet-name')?.value.trim() || '';
+      const dateVal = bookingDateInput.value;
+
+      summaryService.innerText = selectedService ? selectedService : 'Not Selected';
+      summaryPet.innerText = petName ? petName : '-';
+      
+      if (dateVal) {
+        const d = new Date(dateVal + 'T00:00:00');
+        summaryDate.innerText = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      } else {
+        summaryDate.innerText = '-';
+      }
+
+      summarySlot.innerText = selectedSlot ? selectedSlot : '-';
+      summaryPrice.innerText = `$${selectedServicePrice.toFixed(2)}`;
+      summaryTotal.innerText = `$${selectedServicePrice.toFixed(2)}`;
+    }
+
+    // Dynamic field update for pet name in summary
+    document.getElementById('pet-name').addEventListener('input', updateSummary);
+
+    // --- ALERT BANNER UTILITY ---
+    function showAlert(msg, type = 'error') {
+      alertText.innerText = msg;
+      alertBanner.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'border-red-200', 'bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
+
+      if (type === 'error') {
+        alertBanner.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+        alertIcon.className = 'fa-solid fa-circle-exclamation text-red-500 text-lg mt-0.5';
+      } else {
+        alertBanner.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
+        alertIcon.className = 'fa-solid fa-circle-check text-emerald-500 text-lg mt-0.5';
+      }
+    }
+
+    function hideAlert() {
+      alertBanner.classList.add('hidden');
+    }
+
+    // --- SUBMISSION & MODAL ---
+    function processBookingSubmission() {
+      const petName = document.getElementById('pet-name').value.trim();
+      const ownerName = document.getElementById('owner-name').value.trim();
+      const dateVal = bookingDateInput.value;
+
+      // LOCK SLOT IN LOCALSTORAGE
+      saveBookedSlot(dateVal, selectedSlot, selectedService, petName);
+
+      // Generate Reference ID
+      const refId = 'ALPHA-' + Math.floor(100000 + Math.random() * 900000);
+
+      // Populate Modal
+      document.getElementById('modal-ref').innerText = `#${refId}`;
+      document.getElementById('modal-service').innerText = selectedService;
+      document.getElementById('modal-pet').innerText = petName;
+      
+      const d = new Date(dateVal + 'T00:00:00');
+      const formattedDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      document.getElementById('modal-slot').innerText = `${formattedDate} | ${selectedSlot}`;
+      document.getElementById('modal-owner').innerText = ownerName;
+
+      // Show Modal
+      document.getElementById('modal-success').classList.remove('hidden');
+    }
+
+    document.getElementById('btn-close-modal').addEventListener('click', () => {
+      document.getElementById('modal-success').classList.add('hidden');
+      
+      // Reset Form State
+      currentStep = 1;
+      selectedService = null;
+      selectedServicePrice = 0;
+      selectedSlot = null;
+
+      document.getElementById('booking-form').reset();
+      
+      // Reset service card styling
+      document.querySelectorAll('.service-card').forEach(c => {
+        c.classList.remove('border-brand', 'bg-teal-50/40', 'ring-2', 'ring-brand/30');
+        c.classList.add('border-slate-200');
+        const check = c.querySelector('.check-icon');
+        if (check) {
+          check.classList.remove('text-brand');
+          check.classList.add('text-slate-200');
+        }
+      });
+
+      updateStepUI();
+      updateSummary();
+    });
+
+    // --- DEMO / RESET CONTROLS ---
+    function setupDemoButtons() {
+      document.getElementById('btn-clear-locks').addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        selectedSlot = null;
+        renderTimeSlots();
+        updateSummary();
+        showAlert('All reserved slot locks have been cleared.', 'success');
+      });
+
+      document.getElementById('btn-seed-locks').addEventListener('click', () => {
+        seedSampleBookings();
+        selectedSlot = null;
+        renderTimeSlots();
+        updateSummary();
+        showAlert('Sample pre-booked slots added for testing!', 'success');
+      });
+    }
+  </script>
+</body>
+</html>
