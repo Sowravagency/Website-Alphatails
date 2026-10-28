@@ -973,3 +973,23 @@
   }
 
 })();
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const icon = document.getElementById('mobileMenuIcon');
+    
+    if (menu) {
+        menu.classList.toggle('hidden');
+        
+        // Optional: Toggle between hamburger bars and 'X' close icon
+        if (icon) {
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+    }
+}
+
