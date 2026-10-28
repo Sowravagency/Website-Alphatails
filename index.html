@@ -74,76 +74,86 @@
     </div>
 
     <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-teal-100 shadow-sm transition-all duration-200">
-        <div class="container mx-auto px-3 sm:px-4 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center space-x-3 group">
-                    <div class="w-8 h-8 bg-[#00796B] rounded-1xl flex items-center justify-center text-white shadow-md shadow-teal-700/20 group-hover:scale-95 transition-transform">
-                        <i class="fa-solid fa-paw text-2xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-black tracking-tight text-[#023047]">Alphatails<span class="text-[#00796B]">.</span></span>
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-[#00796B] -mt-1">Pet Care & Clinic</span>
-                    </div>
-                </a>
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-teal-100 shadow-sm transition-all duration-200">
+    <div class="container mx-auto px-3 sm:px-4 lg:px-8">
+        <!-- HEADER ALIGNMENT & HEIGHT: Adjust 'h-20' for height and 'justify-between' for horizontal alignment -->
+        <div class="flex items-center justify-between h-20">
+            
+            <!-- 1. Logo Section -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 bg-[#00796B] rounded-2xl flex items-center justify-center text-white shadow-md shadow-teal-700/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-paw text-2xl"></i>
+                </div>
+                <div class="flex flex-col text-left">
+                    <!-- LOGO TEXT SIZE: Adjust 'text-2xl' (e.g., text-xl, text-3xl) -->
+                    <span class="text-2xl font-black tracking-tight text-[#023047]">Alphatails<span class="text-[#00796B]">.</span></span>
+                    <!-- SUBTITLE TEXT SIZE: Adjust 'text-[10px]' (e.g., text-xs) -->
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#00796B] -mt-1">Pet Care & Clinic</span>
+                </div>
+            </a>
 
-                <!-- Nav Links: Home, Veterinarians, Shop, About Us, Blog -->
-                <nav class="hidden lg:flex items-center space-x-6 font-semibold text-sm">
-                    <a href="index.html" class="text-[#00796B] transition-colors hover:text-[#00796B]">Home</a>
-                    <a href="#vets" class="text-[#023047] hover:text-[#00796B] transition-colors">Veterinarian</a>
-                    <a href="Shop.html" class="text-[#023047] hover:text-[#00796B] transition-colors flex items-center">
-                        Shop 
-                        <span class="ml-1.5 px-1.5 py-0.5 text-[6px] font-bold bg-[#E0F7FA] text-[#00796B] rounded-full">New</span>
-                    </a>
-                    <a href="#about" class="text-[#023047] hover:text-[#00796B] transition-colors">About Us</a>
-                     <div class="flex items-center gap-3 sm:gap-3">
-                    <!-- Search Input Desktop -->
-                    <div class="relative hidden sm:block w-48 xl:w-64">
-                        <input type="text" id="navSearchInput" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-brand focus:bg-white transition-all">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                    </div>
-                <!-- Header Actions -->
+            <!-- 2. Desktop Nav Links -->
+            <!-- NAV TEXT SIZE & SPACING: Adjust 'text-sm' (e.g., text-base) and 'space-x-8' (e.g., space-x-6) -->
+            <nav class="hidden lg:flex items-center space-x-8 font-semibold text-sm">
+                <a href="index.html" class="text-[#00796B] transition-colors hover:text-[#00796B]">Home</a>
+                <a href="#vets" class="text-[#023047] hover:text-[#00796B] transition-colors">Veterinarian</a>
+                <a href="Shop.html" class="text-[#023047] hover:text-[#00796B] transition-colors flex items-center">
+                    Shop 
+                    <span class="ml-1.5 px-1.5 py-0.5 text-[10px] font-bold bg-[#E0F7FA] text-[#00796B] rounded-full">New</span>
+                </a>
+                <a href="#about" class="text-[#023047] hover:text-[#00796B] transition-colors">About Us</a>
+            </nav> <!-- FIXED: Added missing closing </nav> tag here! -->
+
+            <!-- 3. Right Side: Search, Desktop Actions & Mobile Trigger -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                
+                <!-- Search Input Desktop -->
+                <div class="relative hidden sm:block w-48 xl:w-64">
+                    <input type="text" id="navSearchInput" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-[#00796B] focus:bg-white transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                </div>
+
+                <!-- Header Actions (Desktop) -->
                 <div class="hidden sm:flex items-center space-x-4">
                     <button onclick="openCartModal()" class="relative p-2.5 text-[#023047] hover:text-[#00796B] hover:bg-[#E0F7FA] rounded-xl transition-all">
                         <i class="fa-solid fa-bag-shopping text-xl"></i>
-                        <span id="cartBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full items-center justify-center border-2 border-white">0</span>
+                        <span id="cartBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
                     </button>
                     <a href="Booking.html" class="bg-[#00796B] hover:bg-[#005b50] text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md shadow-teal-700/20 hover:shadow-lg transition-all transform active:scale-95 flex items-center space-x-2">
-    <i class="fa-solid fa-calendar-check"></i>
-    <span>Book Appointment</span>
-</a>
-                    
-<!-- Search & Actions -->
-                <!-- Mobile Navigation Trigger -->
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Book Appointment</span>
+                    </a>
+                </div> <!-- FIXED: Added missing closing </div> tag here! -->
+
+                <!-- Mobile Navigation Trigger (Visible on screens smaller than 'lg') -->
                 <div class="flex items-center space-x-2 lg:hidden">
                     <button onclick="openCartModal()" class="relative p-2 text-[#023047]">
                         <i class="fa-solid fa-bag-shopping text-xl"></i>
-                        <span id="cartBadgeMobile" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full items-center justify-center">0</span>
+                        <span id="cartBadgeMobile" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                     </button>
-                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2.5 text-[#023047] rounded-xl hover:bg-[#E0F7FA] transition-colors focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="p-2.5 text-[#023047] rounded-xl hover:bg-[#E0F7FA] transition-colors focus:outline-none">
+                        <i id="mobileMenuIcon" class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
 
             </div>
         </div>
+    </div>
 
-        <!-- Mobile Drawer -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-teal-100 px-4 pt-2 pb-6 space-y-3 shadow-xl">
-            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-[#00796B] bg-[#E0F7FA]">Home</a>
-            <a href="#vets" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Veterinarians</a>
-            <a href="#shop" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Shop & Supplies</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">About Us</a>
-           <a href="#blog" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Blog</a>
-            <div class="pt-3 border-t border-gray-100 flex flex-col space-y-2">
-                <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full bg-[#00796B] text-white py-3 rounded-xl font-bold text-center shadow-md">
-                    Book Appointment Booking.html
-                </button>
-            </div>
+    <!-- Mobile Drawer -->
+    <!-- MOBILE MENU TEXT SIZE: Adjust 'text-sm' or 'text-base' on the links below -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-teal-100 px-4 pt-2 pb-6 space-y-2 shadow-xl text-sm">
+        <a href="#home" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#00796B] bg-[#E0F7FA]">Home</a>
+        <a href="#vets" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Veterinarian</a>
+        <a href="Shop.html" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Shop & Supplies</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100 flex flex-col space-y-2">
+            <a href="Booking.html" class="w-full bg-[#00796B] text-white py-3 rounded-xl font-bold text-center shadow-md block">
+                Book Appointment
+            </a>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Custom Image Grid & Bento Showcase Section -->
     <section id="home" class="py-8 lg:py-12 bg-slate-50/50 border-b border-teal-50 relative overflow-hidden">
