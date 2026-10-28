@@ -1,1081 +1,1520 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" href="style.css">
-</head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphatails - Pet Care & Clinic Tirupati</title>
+    <title>Alphatails | Your Neighborhood's Favorite Pet Hospital & Grooming Spa</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+                    },
                     colors: {
-                        brand: {
-                            primary: '#00796B',
-                            darkPrimary: '#005b50',
-                            lightBg: '#E0F7FA',
-                            textDark: '#023047',
-                            pastelPink: '#FFE5EC',
-                            pastelPurple: '#F3E8FF',
-                            pastelPeach: '#FFECE0',
-                            pastelGreen: '#E8F5E9',
-                            roseAccent: '#E85D75'
+                        alpha: {
+                            teal: '#00796B',
+                            tealDark: '#005b4f',
+                            cyanLight: '#E0F7FA',
+                            cyanSoft: '#F2FBFB',
+                            navy: '#023047',
+                            pastelPink: '#FCE4EC',
+                            pastelMint: '#E8F5E9',
+                            pastelPeach: '#FFF3E0',
+                            pastelLavender: '#EDE7F6',
+                            pastelYellow: '#FFF8E1',
+                            pastelBlue: '#E3F2FD',
+                            pastelCoral: '#FFEBEE'
                         }
                     },
-                    fontFamily: {
-                        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+                    boxShadow: {
+                        'card': '0 10px 35px -5px rgba(2, 48, 71, 0.06), 0 4px 15px -3px rgba(2, 48, 71, 0.03)',
+                        'service': '0 4px 12px rgba(0, 121, 107, 0.05)',
+                        'service-hover': '0 12px 24px -4px rgba(0, 121, 107, 0.14)',
                     }
                 }
             }
         }
     </script>
+
     <style>
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        body {
+            color: #023047;
+            background-color: #FFFFFF;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #F1F1F1;
-            border-radius: 8px;
+        /* Smooth image zoom inside bento cards */
+        .bento-card:hover .bento-img {
+            transform: scale(1.05);
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
             background: #00796B;
-            border-radius: 8px;
+            border-radius: 9999px;
         }
-        .bg-pattern {
-            background-image: radial-gradient(#00796B 0.5px, transparent 0.5px);
-            background-size: 18px 18px;
-            opacity: 0.07;
-        }
-        .service-card-hover {
+        .service-tile {
+            background-color: #F7FBFC;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .service-card-hover:hover {
+        .service-tile:hover {
+            background-color: #FFFFFF;
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(0, 121, 107, 0.12);
+            box-shadow: 0 12px 24px -6px rgba(0, 121, 107, 0.15);
+            border-color: #B2DFDB;
         }
     </style>
 </head>
-<body class="bg-white text-[#023047] font-sans antialiased selection:bg-[#00796B] selection:text-white flex flex-col min-h-screen">
+<body class="antialiased selection:bg-[#00796B] selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-[#00796B] text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center max-w-full">
-        <div class="container mx-auto flex justify-between items-center">
-            <span class="truncate"><i class="fa-solid fa-sparkles mr-2 text-yellow-300"></i> Get 50% OFF on First Vet Consultation! Code: <strong class="bg-white/20 px-2 py-0.5 rounded text-white">FIRST50</strong></span>
-            <div class="hidden md:flex items-center space-x-6 text-xs">
-                <span><i class=" mr-1"></i>  Contact: <strong>+91 86392 15804</strong></span>
-                <span><i class="fa-solid fa-location-dot mr-1"></i> Tirupat </span>
+    <div class="bg-[#023047] text-white text-xs sm:text-sm py-2.5 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#00796B] text-white">24/7 EMERGENCY</span>
+                <span class="font-medium text-slate-200">Flat 50% OFF on your pet's first clinic consultation at Alphatails!</span>
             </div>
-        </div>
-    </div>
-
-    <!-- Main Navigation Header -->
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-teal-100 shadow-sm transition-all duration-200">
-    <div class="container mx-auto px-3 sm:px-4 lg:px-8">
-        <!-- HEADER ALIGNMENT & HEIGHT: Adjust 'h-20' for height and 'justify-between' for horizontal alignment -->
-        <div class="flex items-center justify-between h-20">
-            
-            <!-- 1. Logo Section -->
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-11 h-11 bg-[#00796B] rounded-2xl flex items-center justify-center text-white shadow-md shadow-teal-700/20 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-paw text-2xl"></i>
-                </div>
-                <div class="flex flex-col text-left">
-                    <!-- LOGO TEXT SIZE: Adjust 'text-2xl' (e.g., text-xl, text-3xl) -->
-                    <span class="text-2xl font-black tracking-tight text-[#023047]">Alphatails<span class="text-[#00796B]">.</span></span>
-                    <!-- SUBTITLE TEXT SIZE: Adjust 'text-[10px]' (e.g., text-xs) -->
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#00796B] -mt-1">Pet Care & Clinic</span>
-                </div>
-            </a>
-
-            <!-- 2. Desktop Nav Links -->
-            <!-- NAV TEXT SIZE & SPACING: Adjust 'text-sm' (e.g., text-base) and 'space-x-8' (e.g., space-x-6) -->
-            <nav class="hidden lg:flex items-center space-x-6 y-6 font-semibold text-sm">
-                <a href="index.html" class="text-[#00796B] transition-colors hover:text-[#00796B]">Home</a>
-                <a href="#vets" class="text-[#023047] hover:text-[#00796B] transition-colors">Veterinarian</a>
-                <a href="Shop.html" class="text-[#023047] hover:text-[#00796B] transition-colors flex items-center">
-                    Shop 
-                    <span class="ml-1.5 px-1.5 py-0.5 text-[10px] font-bold bg-[#E0F7FA] text-[#00796B] rounded-full">New</span>
+            <div class="hidden md:flex items-center gap-6 text-slate-200 font-medium">
+                <a href="tel:1800-257-8245" class="hover:text-[#E0F7FA] flex items-center gap-1.5 transition">
+                    <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    Helpline: 1800-ALPHATAILS
                 </a>
-                <a href="#about" class="text-[#023047] hover:text-[#00796B] transition-colors">About Us</a>
-            </nav> <!-- FIXED: Added missing closing </nav> tag here! -->
-
-            <!-- 3. Right Side: Search, Desktop Actions & Mobile Trigger -->
-            <div class="flex items-center gap-3 sm:gap-4">
-                
-                <!-- Search Input Desktop -->
-                <div class="relative hidden sm:block w-48 xl:w-64">
-                    <input type="text" id="navSearchInput" oninput="handleSearch(this.value)" placeholder="Search food, toys, meds..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-[#00796B] focus:bg-white transition-all">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                </div>
-
-                <!-- Header Actions (Desktop) -->
-                <div class="hidden sm:flex items-center space-x-4">
-                    <button onclick="openCartModal()" class="relative p-2.5 text-[#023047] hover:text-[#00796B] hover:bg-[#E0F7FA] rounded-xl transition-all">
-                        <i class="fa-solid fa-bag-shopping text-xl"></i>
-                        <span id="cartBadge" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
-                    </button>
-                    <a href="Booking.html" class="bg-[#00796B] hover:bg-[#005b50] text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md shadow-teal-700/20 hover:shadow-lg transition-all transform active:scale-95 flex items-center space-x-2 space-Y-10">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        <span>Book Appointment</span>
-                    </a>
-                </div> <!-- FIXED: Added missing closing </div> tag here! -->
-
-                <!-- Mobile Navigation Trigger (Visible on screens smaller than 'lg') -->
-                <div class="flex items-center space-x-2 lg:hidden">
-                    <button onclick="openCartModal()" class="relative p-2 text-[#023047]">
-                        <i class="fa-solid fa-bag-shopping text-xl"></i>
-                        <span id="cartBadgeMobile" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
-                    </button>
-                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="p-2.5 text-[#023047] rounded-xl hover:bg-[#E0F7FA] transition-colors focus:outline-none">
-                        <i id="mobileMenuIcon" class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-
+                <button onclick="openClinicModal()" class="hover:text-[#E0F7FA] flex items-center gap-1 transition">
+                    <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Locate Nearest Clinic
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Mobile Drawer -->
-    <!-- MOBILE MENU TEXT SIZE: Adjust 'text-sm' or 'text-base' on the links below -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-teal-100 px-4 pt-2 pb-6 space-y-2 shadow-xl text-sm">
-        <a href="#home" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#00796B] bg-[#E0F7FA]">Home</a>
-        <a href="#vets" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Veterinarian</a>
-        <a href="Shop.html" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">Shop & Supplies</a>
-        <a href="#about" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-lg font-semibold text-[#023047] hover:bg-gray-50">About Us</a>
-        <div class="pt-3 border-t border-gray-100 flex flex-col space-y-2">
-            <a href="Booking.html" class="w-full bg-[#00796B] text-white py-3 rounded-xl font-bold text-center shadow-md block">
-                Book Appointment
+    <!-- Main Sticky Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-11 h-11 rounded-2xl bg-[#00796B] flex items-center justify-center text-white shadow-md shadow-[#00796B]/25 group-hover:scale-105 transition-transform">
+                    <!-- Custom Paw + Medical Cross SVG -->
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 10c-2.21 0-4 1.79-4 4 0 2.66 2.33 4.11 3.38 4.65.39.2.85.2 1.24 0C13.67 18.11 16 16.66 16 14c0-2.21-1.79-4-4-4zm1.5 4.75h-1v1a.5.5 0 01-1 0v-1h-1a.5.5 0 010-1h1v-1a.5.5 0 011 0v1h1a.5.5 0 010 1z"/>
+                        <circle cx="6.5" cy="8.5" r="2"/>
+                        <circle cx="17.5" cy="8.5" r="2"/>
+                        <circle cx="9.5" cy="5.5" r="2"/>
+                        <circle cx="14.5" cy="5.5" r="2"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight text-[#00796B]">Alpha<span class="text-[#023047]">tails</span></span>
+                    <span class="block text-[10px] font-semibold uppercase tracking-widest text-slate-400 -mt-1">Pet Clinic & Care</span>
+                </div>
             </a>
-        </div>
-    </div>
-</header>
 
-    <!-- Custom Image Grid & Bento Showcase Section -->
-    <section id="home" class="py-8 lg:py-12 bg-slate-50/50 border-b border-teal-50 relative overflow-hidden">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Desktop Navigation Links: Home, Veterinarians, Shop, About Us, Blog -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#home" class="text-[15px] font-semibold text-[#00796B] hover:text-[#00796B] transition py-2">Home</a>
+                <a href="#grooming-boarding" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2 flex items-center gap-1">
+                    Grooming & Boarding
+                    <span class="px-1.5 py-0.5 text-[10px] font-bold bg-[#FCE4EC] text-[#AD1457] rounded-full">Spa</span>
+                </a>
+                <a href="#veterinarians" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Veterinarians</a>
+                <a href="#shop" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Shop</a>
+                <a href="#about" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">About Us</a>
+                <a href="#blog" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Blog</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <!-- Cart Drawer Button -->
+                <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-[#E0F7FA] text-[#00796B] hover:bg-[#00796B] hover:text-white transition" aria-label="Shopping Cart">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#023047] text-white text-[11px] font-bold flex items-center justify-center">2</span>
+                </button>
+
+                <!-- Book Appointment CTA -->
+                <button onclick="openBookingModal('Consultation')" class="hidden sm:inline-flex items-center gap-2 bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold text-sm px-5 py-3 rounded-xl shadow-md shadow-[#00796B]/20 transition transform active:scale-95">
+                    <span>Book Appointment</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl border border-slate-200 text-[#023047] hover:bg-slate-50">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#00796B] bg-[#E0F7FA]/60">Home</a>
+            <a href="#grooming-boarding" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Grooming & Boarding</a>
+            <a href="#veterinarians" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Veterinarians</a>
+            <a href="#shop" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Shop</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">About Us</a>
+            <a href="#blog" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Blog</a>
+            <div class="pt-2">
+                <button onclick="toggleMobileMenu(); openBookingModal('Consultation')" class="w-full py-3 rounded-xl bg-[#00796B] text-white font-semibold shadow-md">
+                    Book Appointment Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         HERO SECTION (EXACT REPLICA OF ATTACHED IMAGE LAYOUT)
+    =========================================== -->
+    <section id="home" class="py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-stretch">
             
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Left Side: 3x3 Service Cards Container + Stats -->
-                <div class="lg:col-span-6 flex flex-col justify-between h-full">
+            <!-- LEFT COLUMN: 3x3 Service Card Container (Matches left side of image) -->
+            <div class="lg:col-span-5 bg-white rounded-[28px] p-4 sm:p-6 border border-slate-100 shadow-card flex flex-col justify-between">
+                <div class="grid grid-cols-3 gap-3 sm:gap-4 h-full">
                     
-                    <!-- White Bordered Rounded Container for 3x3 Services -->
-                    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm mb-8">
-                        <div class="grid grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Card 1: Consultation (50% Off) -->
+                    <button onclick="openBookingModal('Consultation (50% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D1F2EB] text-[#00796B] tracking-tight">
+                            50% Off
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#D1F2EB]/90 flex items-center justify-center text-[#00796B] group-hover:scale-110 transition-transform">
+                            <!-- Vet Doctor Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="6" r="3.5"/>
+                                <path d="M12 11c-4.42 0-8 2.46-8 5.5V19h16v-2.5c0-3.04-3.58-5.5-8-5.5zm-2.5 5.5h-1v-1h-1v-1h1v-1h1v1h1v1h-1v1zm6.5-.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Consultation</span>
+                    </button>
 
-                            <!-- Tile 1: Consultation -->
-                            <a href="Booking.html" class="service-card-hover bg-[#F8FAFC] hover:bg-[#FFC4C4]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">50% Off</span>
-    <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-        <div class="w-12 h-12 bg-teal-100 text-[#00796B] rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-user-doctor"></i>
-        </div>
-    </div>
-    <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Consultation</span>
-</a>
-                            <!-- Tile 2: Grooming -->
-                            <button onclick="openBookingModal('Grooming')" class="service-card-hover bg-[#F8FAFC] hover:bg-[#C4FFEF]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold  rounded-full mb-2"></span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-scissors"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Grooming</span>
-                            </button>
+                    <!-- Card 2: Grooming (No top badge, aligned spacer) -->
+                    <button onclick="openBookingModal('Hygienic Pet Grooming')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold opacity-0 select-none">
+                            Spacer
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#FCE4EC] flex items-center justify-center text-[#C2185B] group-hover:scale-110 transition-transform">
+                            <!-- Scissors Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="6" cy="6" r="3"></circle>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                                <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                                <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Grooming</span>
+                    </button>
 
-                            <!-- Tile 3: Vaccination -->
-                            <button onclick="openBookingModal('Vaccination')" class="service-card-hover bg-[#F8FAFC] hover:bg-[#FFC4C4]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">10% Off</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-syringe"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Vaccination</span>
-                            </button>
+                    <!-- Card 3: Vaccination (10% Off) -->
+                    <button onclick="openBookingModal('Pet Vaccination (10% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
+                            10% Off
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#D4EFDF] flex items-center justify-center text-[#1E8449] group-hover:scale-110 transition-transform">
+                            <!-- Syringe Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 2 4 4"></path>
+                                <path d="m17 7 3-3"></path>
+                                <path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path>
+                                <path d="m9 11 4 4"></path>
+                                <path d="m5 19-3 3"></path>
+                                <path d="m14 4 6 6"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Vaccination</span>
+                    </button>
 
-                            <!-- Tile 4: Vet at Home -->
-                            <button onclick="openBookingModal('Vet Consult at Home')" class="service-card-hover bg-[#F8FAFC] hover:bg-[#C4FFEF]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">₹399</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-house-chimney-medical"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Vet at Home</span>
-                            </button>
+                    <!-- Card 4: Vet at Home (₹399) -->
+                    <button onclick="openBookingModal('Vet at Home Visit (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
+                            ₹399
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#FFF3CD] flex items-center justify-center text-[#D97706] group-hover:scale-110 transition-transform">
+                            <!-- House with Medical Cross Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 3L3 10.5h2.25V20h13.5v-9.5H21L12 3zm2.5 11h-1.75v1.75h-1.5V14H9.5v-1.5h1.75v-1.75h1.5v1.75h1.75V14z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Vet at<br>Home</span>
+                    </button>
 
-                            <!-- Tile 5: Deworming & Tick -->
-                            <button onclick="openBookingModal('Deworming & Tick')" class="service-card-hover bg-[#F8FAFC] hover:bg-[#FFC4C4]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">10% Off</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-prescription-bottle-medical"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Deworming & Tick</span>
-                            </button>
+                    <!-- Card 5: Deworming & Tick (10% Off) -->
+                    <button onclick="scrollToShopCategory('deworming')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
+                            10% Off
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#EDE7F6] flex items-center justify-center text-[#5E35B1] group-hover:scale-110 transition-transform">
+                            <!-- Medicine Bottle Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="8" y="3" width="8" height="3" rx="1"/>
+                                <path d="M7 8a2 2 0 012-2h6a2 2 0 012 2v11a2 2 0 01-2 2H9a2 2 0 01-2-2V8zm6.5 5h-1v-1a.5.5 0 00-1 0v1h-1a.5.5 0 000 1h1v1a.5.5 0 001 0v-1h1a.5.5 0 000-1z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Deworming<br>& Tick</span>
+                    </button>
 
-                            <!-- Tile 6: Dog Food -->
-                            <a href="#shop" class="service-card-hover bg-[#F8FAFC] hover:bg-[#C4FFEF]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">15% Off</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-bone"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Dog Food</span>
-                            </a>
+                    <!-- Card 6: Dog Food (15% Off) -->
+                    <button onclick="scrollToShopCategory('dogfood')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
+                            15% Off
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#FFEAD5] flex items-center justify-center text-[#D84315] group-hover:scale-110 transition-transform">
+                            <!-- Dog Bone Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.5 7A2.5 2.5 0 0015 9.5c0 .19.03.37.07.55l-5.02 2.9c-.16-.03-.33-.05-.55-.05a2.5 2.5 0 10-1.45 4.54A2.5 2.5 0 1011.5 19.5c0-.19-.03-.37-.07-.55l5.02-2.9c.16.03.33.05.55.05a2.5 2.5 0 101.45-4.54A2.5 2.5 0 0017.5 7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Dog Food</span>
+                    </button>
 
-                            <!-- Tile 7: Diagnostics At Home -->
-                            <button onclick="openBookingModal('Diagnostics & Lab Tests')" class="service-card-hover bg-[#F8FAFC] hover:bg-[#C4FFEF]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2 flex items-center"><i class="fa-solid fa-sparkles text-[8px] mr-1"></i> NEW</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-vials"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Diagnostics At Home</span>
-                            </button>
+                    <!-- Card 7: Diagnostics At Home (NEW) -->
+                    <button onclick="openBookingModal('Diagnostics & Blood Test At Home')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-[#B45309] tracking-tight">
+                            NEW
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#E3F2FD] flex items-center justify-center text-[#1976D2] group-hover:scale-110 transition-transform">
+                            <!-- Two Test Tubes Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 3h4v2h-.5v11.5a2 2 0 11-4 0V5H6V3h1zm1.5 2v6h1V5h-1zm5.5-2h4v2h-.5v11.5a2 2 0 11-4 0V5H13V3h1zm1.5 2v6h1V5h-1z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Diagnostics<br>At Home</span>
+                    </button>
 
-                            <!-- Tile 8: Vaccine at Home -->
-                            <button onclick="openBookingModal('Vaccination at Home')" class="service-card-hover bg-[#F8FAFC] hover:bg-[#C4FFEF]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">₹399</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-house-medical-flag"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Vaccine at Home</span>
-                            </button>
+                    <!-- Card 8: Vaccine at Home (₹399) -->
+                    <button onclick="openBookingModal('Vaccine at Home (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
+                            ₹399
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#FFEBEE] flex items-center justify-center text-[#D32F2F] group-hover:scale-110 transition-transform">
+                            <!-- House + Syringe/Flag Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 4L3 10h2v8h10v-8h2L10 4zm1 9H9v2H8v-2H6v-1h2v-2h1v2h2v1zm8-7h-2v12h2V6zm-1-2a1 1 0 110 2 1 1 0 010-2z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Vaccine at<br>Home</span>
+                    </button>
 
-                            <!-- Tile 9: Accessories -->
-                            <a href="#shop" class="service-card-hover bg-[#F8FAFC] hover:bg-[#FFC4C4]/40 rounded-2xl p-3 sm:p-4 text-center border border-slate-100 flex flex-col items-center justify-between group">
-                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">10% Off</span>
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center">
-                                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                                        <i class="fa-solid fa-shield-cat"></i>
-                                    </div>
-                                </div>
-                                <span class="text-xs sm:text-sm font-bold text-[#023047] group-hover:text-[#00796B]">Accessories</span>
-                            </a>
+                    <!-- Card 9: Accessories (10% Off) -->
+                    <button onclick="scrollToShopCategory('accessories')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
+                            10% Off
+                        </span>
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#F3E5F5] flex items-center justify-center text-[#8E24AA] group-hover:scale-110 transition-transform">
+                            <!-- Pet Shield Collar Tag Icon -->
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Accessories</span>
+                    </button>
 
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Bento Image Showcase Grid (Matches right side of image) -->
+            <div class="lg:col-span-7 flex flex-col gap-5 sm:gap-6 justify-between">
+                
+                <!-- Top Row: 2 Equal Image Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                    
+                    <!-- Top-Left Card: From Everyday Care to Expert Care -->
+                    <div onclick="scrollToShopCategory('all')" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
+                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=900&q=80" 
+                             onerror="this.src='https://placehold.co/600x450/023047/E0F7FA?text=Everyday+Pet+Care'"
+                             alt="Dog and Pet Nutrition" 
+                             class="bento-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-5 sm:p-6 text-white">
+                            <h3 class="text-xl sm:text-[22px] font-extrabold leading-snug mb-1.5">
+                                From Everyday Care to Expert Care
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                A good fit if you offer both pet products and veterinary services
+                            </p>
                         </div>
                     </div>
-                   <section hidden>
-                    <!-- Bottom Trust Stats Bar (Matching image layout) -->
-                    <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center pt-2">
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 text-pink-500 mb-1 flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-clover"></i>
-                            </div>
-                            <div class="font-bold text-[#023047] text-xs sm:text-sm">5 Lakhs+ Pet</div>
-                            <div class="text-[11px] text-slate-500 font-medium">Appointments</div>
-                        </div>
 
-                        <div class="flex flex-col items-center border-x border-slate-200 px-2">
-                            <div class="w-10 h-10 text-pink-500 mb-1 flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-user-nurse"></i>
-                            </div>
-                            <div class="font-bold text-[#023047] text-xs sm:text-sm">Multi-Speciality</div>
-                            <div class="text-[11px] text-slate-500 font-medium">Veterinarians</div>
-                        </div>
-
-                        <div class="flex flex-col items-center">
-                            <div class="w-10 h-10 text-pink-500 mb-1 flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-heart-pulse"></i>
-                            </div>
-                            <div class="font-bold text-[#023047] text-xs sm:text-sm">Holistic Pet</div>
-                            <div class="text-[11px] text-slate-500 font-medium">Healthcare</div>
+                    <!-- Top-Right Card: Hygienic Grooming -->
+                    <div onclick="openBookingModal('Hygienic Grooming & Styling')" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=900&q=80" 
+                             onerror="this.src='https://placehold.co/600x450/00796B/FFFFFF?text=Hygienic+Grooming'"
+                             alt="Hygienic Dog Grooming" 
+                             class="bento-img w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 inset-x-0 p-5 sm:p-6 text-white">
+                            <h3 class="text-xl sm:text-[22px] font-extrabold leading-snug mb-1">
+                                Hygienic Grooming
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-200">
+                                Stress-free bath & styling
+                            </p>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Right Side: Bento Grid Gallery (Matching Image Layout) -->
-                <div class="lg:col-span-6 space-y-4">
+                <!-- Bottom Row: Large Clinic Hero Banner ("ALPHATAILS VETERINARY CLINIC") -->
+                <div class="bento-card relative min-h-[300px] sm:min-h-[330px] flex-1 rounded-[28px] overflow-hidden shadow-card group">
+                    <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=1400&q=80" 
+                         onerror="this.src='https://placehold.co/1000x550/023047/E0F7FA?text=ALPHATAILS+VETERINARY+CLINIC'"
+                         alt="Alphatails Veterinary Clinic Doctor Examining Golden Retriever" 
+                         class="bento-img w-full h-full object-cover transition-transform duration-700">
                     
-                    <!-- Top Row (2 Images Side-by-Side) -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        
-                        <!-- Top Left: Surgical OR Room -->
-                        <div class="relative rounded-3xl overflow-hidden h-48 sm:h-52 bg-slate-200 border border-slate-100 shadow-sm group">
-                            <img src="https://res.cloudinary.com/koa1q8pv/image/upload/f_auto,q_auto/Gemini_Generated_Image_2ielie2ielie2iel" alt="Surgical Operating Suit	e" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/00796B/ffffff?text=Operation+Theater'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                            <div class="absolute bottom-3 left-4 -translate-x-2 text-white bg-black/50 px3 py2 pl-4 rounded-lg">
-                                <div class="text-XL font-bold">From Everyday Care to Expert Care</div>
-                                <div class="text-[10px] text-slate-200">A good fit if you offer both pet products and veterinary services</div>
-                            </div>
-                        </div>
-
-                        <!-- Top Right: Grooming Station -->
-                        <div class="relative rounded-3xl overflow-hidden h-48 sm:h-52 bg-slate-200 border border-slate-100 shadow-sm group">
-                            <img src="https://res.cloudinary.com/koa1q8pv/image/upload/v1791926859/IMG_2010.png" alt="Pet Grooming Bath Station" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/E0F7FA/00796B?text=Grooming+Bath'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                            <div class="absolute bottom-3 left-6 -translate-x-2 text-white bg-black/50 px4 py2 pl-3 pr-4 rounded-lg">
-                                <div class="text-l font-bold">Hygienic Grooming</div>
-                                <div class="text-[10px] text-slate-200">Stress-free bath & styling</div>
-                            </div>
-                        </div>
-
+                    <!-- Clinic Signboard Pill at Top Center-Right (Reflecting ALPHATAILS VETERINARY CLINIC) -->
+                    <div class="absolute top-4 right-4 sm:top-5 sm:right-6 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl shadow-md border border-[#E0F7FA] flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#00796B] animate-pulse"></span>
+                        <span class="text-[11px] sm:text-xs font-extrabold tracking-wider text-[#023047]">ALPHATAILS VETERINARY CLINIC</span>
                     </div>
 
-                    <!-- Bottom Large Image: Smiling Doctor on Examination Table with Dog & Cat -->
-                    <div class="relative rounded-3xl overflow-hidden h-72 sm:h-80 bg-slate-200 border border-slate-100 shadow-md group">
-                        <img src="https://res.cloudinary.com/koa1q8pv/image/upload/v1791932551/IMG_2011.png" alt="Veterinarian with Dog and Cat on table" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/1000x600/00796B/ffffff?text=Vet+Examination+Table'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        
-                        <div class="absolute bottom-4 left-5 right-5 text-white flex justify-between items-end">
-                            <div>
-                                <span class="bg-[#00796B] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md mb-1.5 inline-block">24/7 Expert Doctors</span>
-                                <h3 class="text-lg font-bold">Your Neighborhood's Favorite Pet Hospital</h3>
-                                <p class="text-xs text-slate-200">Proudly serving local pets and their families with dedicated, affordable healthcare.</p>
-                            </div>
-                            <a href="Booking.html" class="w-full py-2.5 bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white rounded-xl font-bold text-xs transition-colors block text-center">
-    Book Appointment</a>
-                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    <!-- Rich Dark Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10"></div>
+
+                    <!-- Content Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 p-6 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+                        <div class="max-w-md">
+                            <!-- 24/7 Expert Doctors Badge -->
+                            <span class="inline-block px-3.5 py-1.5 rounded-lg bg-[#00796B] text-white text-xs font-extrabold tracking-wider uppercase mb-3 shadow-sm">
+                                24/7 EXPERT DOCTORS
+                            </span>
+                            <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-extrabold text-white leading-tight mb-2">
+                                Your Neighborhood's Favorite Pet Hospital
+                            </h1>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                Proudly serving local pets and their families with dedicated, affordable healthcare.
+                            </p>
+                        </div>
+
+                        <!-- Light Cyan Pill CTA Button + Arrow -->
+                        <div class="flex items-center gap-2 self-start sm:self-end shrink-0">
+                            <button onclick="openBookingModal('24/7 Expert Consultation')" 
+                                    class="bg-[#E0F7FA] hover:bg-white text-[#00796B] font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95 flex items-center gap-2">
+                                <span>Book Appointment</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
                             </button>
                         </div>
                     </div>
-
                 </div>
 
             </div>
+        </div>
 
+        <!-- Quick Trust Bar Underneath Hero -->
+        <div class="mt-8 bg-[#E0F7FA] rounded-2xl p-4 sm:p-5 border border-[#00796B]/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <div>
+                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">50,000+ Happy Pets</div>
+                    <div class="text-xs text-slate-600">Trusted across neighborhoods</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">60-Min Home Vet</div>
+                    <div class="text-xs text-slate-600">Doorstep care starting ₹399</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <div>
+                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">In-House Diagnostics</div>
+                    <div class="text-xs text-slate-600">Digital X-Ray, Blood & USG</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </div>
+                <div>
+                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">Fear-Free Clinics</div>
+                    <div class="text-xs text-slate-600">Separate Dog & Cat zones</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Meet Our Vets Section -->
-    <section id="vets" class="py-16 sm:py-24 bg-white relative">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+    <!-- ==========================================
+         GROOMING & BOARDING SECTION (PASTEL ACCENTS)
+    =========================================== -->
+    <section id="grooming-boarding" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-[#FCE4EC] text-[#AD1457] mb-3">
+                    ✨ SPA & STAYCATION AT ALPHATAILS
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] tracking-tight">
+                    Hygienic Grooming & Cozy Boarding
+                </h2>
+                <p class="text-slate-600 mt-2 max-w-2xl">
+                    Designed with calming pastel suites, organic sulphate-free shampoos, and 24/7 veterinary supervision so your pet feels pampered and safe.
+                </p>
+            </div>
+            <!-- Toggle Pills: Grooming vs Boarding -->
+            <div class="inline-flex p-1.5 rounded-2xl bg-[#E0F7FA] self-start">
+                <button id="tabGroomingBtn" onclick="switchSpaTab('grooming')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition">
+                    ✂️ Grooming Packages
+                </button>
+                <button id="tabBoardingBtn" onclick="switchSpaTab('boarding')" class="px-5 py-2.5 rounded-xl text-sm font-bold text-[#023047] hover:text-[#00796B] transition">
+                    🏡 Luxury Boarding
+                </button>
+            </div>
+        </div>
+
+        <!-- Grooming Packages Grid (Pastel Accents) -->
+        <div id="groomingPanel" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Pastel Pink Card: Essential Hygiene Bath -->
+            <div class="rounded-3xl p-6 sm:p-7 bg-[#FCE4EC]/55 border border-[#F8BBD0] flex flex-col justify-between hover:shadow-lg transition">
                 <div>
-                    <span class="text-[#00796B] text-xs font-extrabold uppercase tracking-widest bg-[#E0F7FA] border border-teal-200 px-3 py-1 rounded-full">Veternerian</span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-[#023047] mt-3"> Veterinarian & Specialist</h2>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#C2185B] shadow-sm">Most Popular</span>
+                        <span class="text-xs font-bold text-[#023047]/70">60 Mins Session</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Essential Spa Bath</h3>
+                    <p class="text-sm text-slate-600 mb-5">Ideal for regular hygiene, shiny coat & odor control.</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-3xl font-extrabold text-[#023047]">₹799</span>
+                        <span class="text-sm text-slate-400 line-through">₹1,199</span>
+                        <span class="text-xs font-bold text-[#00796B] bg-white px-2 py-0.5 rounded-md">Save 33%</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Warm Aroma Bath & Blow Dry</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Nail Clipping & Paw Pad Trim</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Ear & Eye Gentle Cleaning</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Sanitary Trim & Pet Cologne</li>
+                    </ul>
                 </div>
-                <p class="text-slate-600 text-sm sm:text-base max-w-md mt-2 md:mt-0">Doctor with combined experience across surgical, dermatological, and internal medicine disciplines.</p>
+                <button onclick="openBookingModal('Essential Spa Bath (₹799)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Book Spa Bath
+                </button>
+            </div>
+
+            <!-- Pastel Mint Card: Full Breed Styling -->
+            <div class="rounded-3xl p-6 sm:p-7 bg-[#E8F5E9]/80 border border-[#C8E6C9] flex flex-col justify-between hover:shadow-lg transition relative">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#00796B] text-white shadow-sm">Complete Makeover</span>
+                        <span class="text-xs font-bold text-[#023047]/70">90–120 Mins</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Full Styling & Haircut</h3>
+                    <p class="text-sm text-slate-600 mb-5">Full-body breed-specific haircut by certified stylists.</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-3xl font-extrabold text-[#023047]">₹1,399</span>
+                        <span class="text-sm text-slate-400 line-through">₹1,999</span>
+                        <span class="text-xs font-bold text-[#00796B] bg-white px-2 py-0.5 rounded-md">Free Vet Check</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Everything in Essential Spa Bath</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Full Body Scissor / Clipper Styling</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Undercoat De-shedding Treatment</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Complimentary Dental Spray & Bow</li>
+                    </ul>
+                </div>
+                <button onclick="openBookingModal('Full Styling & Haircut (₹1,399)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Book Full Styling
+                </button>
+            </div>
+
+            <!-- Pastel Lavender Card: Medicated Tick & Skin Bath -->
+            <div class="rounded-3xl p-6 sm:p-7 bg-[#EDE7F6]/75 border border-[#D1C4E9] flex flex-col justify-between hover:shadow-lg transition">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#5E35B1] shadow-sm">Vet Recommended</span>
+                        <span class="text-xs font-bold text-[#023047]/70">75 Mins Session</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Medicated Tick & Skin Spa</h3>
+                    <p class="text-sm text-slate-600 mb-5">Therapeutic relief for itchy skin, dandruff, ticks & fleas.</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-3xl font-extrabold text-[#023047]">₹1,099</span>
+                        <span class="text-sm text-slate-400 line-through">₹1,499</span>
+                        <span class="text-xs font-bold text-[#5E35B1] bg-white px-2 py-0.5 rounded-md">Skin Care</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Vet-Prescribed Medicated Soak</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Manual Tick & Flea Combing</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Paw Butter Massage & Nail Trim</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Post-Grooming Dermatologist Check</li>
+                    </ul>
+                </div>
+                <button onclick="openBookingModal('Medicated Tick & Skin Spa (₹1,099)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Book Medicated Spa
+                </button>
+            </div>
+        </div>
+
+        <!-- Boarding Packages Grid (Pastel Accents - Hidden initially) -->
+        <div id="boardingPanel" class="hidden grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Pastel Peach Card: Daycare Playland -->
+            <div class="rounded-3xl p-6 sm:p-7 bg-[#FFF3E0]/80 border border-[#FFE0B2] flex flex-col justify-between hover:shadow-lg transition">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#E65100] shadow-sm">Daytime Fun</span>
+                        <span class="text-xs font-bold text-[#023047]/70">Up to 8 Hours</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Supervised Daycare</h3>
+                    <p class="text-sm text-slate-600 mb-5">Social play, agility games, and afternoon nap suites while you're at work.</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-3xl font-extrabold text-[#023047]">₹499</span>
+                        <span class="text-sm text-slate-500">/ day</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#E65100] flex items-center justify-center text-xs font-bold">✓</span> AC Indoor Play Zone & Toys</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#E65100] flex items-center justify-center text-xs font-bold">✓</span> Live WhatsApp Video Updates</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#E65100] flex items-center justify-center text-xs font-bold">✓</span> Fresh Meals & Hydration Tracking</li>
+                    </ul>
+                </div>
+                <button onclick="openBookingModal('Supervised Pet Daycare (₹499)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Reserve Daycare Slot
+                </button>
+            </div>
+
+            <!-- Pastel Yellow Card: Overnight Cozy Suite -->
+            <div class="rounded-3xl p-6 sm:p-7 bg-[#FFF8E1] border border-[#FFECB3] flex flex-col justify-between hover:shadow-lg transition">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#00796B] text-white shadow-sm">24/7 Vet On-Site</span>
+                        <span class="text-xs font-bold text-[#023047]/70">Per Night Stay</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Overnight Luxury Suite</h3>
+                    <p class="text-sm text-slate-600 mb-5">Cage-free private pastel cabins with orthopedic bedding & 3 daily walks.</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-3xl font-extrabold text-[#023047]">₹999</span>
+                        <span class="text-sm text-slate-500">/ night</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Cage-Free Private Pastel Cabin</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Twice Daily Vet Health Check</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Custom Home-Cooked / Kibble Meals</li>
+                    </ul>
+                </div>
+                <button onclick="openBookingModal('Overnight Luxury Boarding Suite (₹999)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Book Overnight Suite
+                </button>
+            </div>
+
+            <!-- Pastel Pink Card: Feline Exclusive Cattery -->
+            <div class="rounded-3xl p-6 sm:p-7 bg-[#FCE4EC]/60 border border-[#F8BBD0] flex flex-col justify-between hover:shadow-lg transition">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#AD1457] shadow-sm">100% Soundproof</span>
+                        <span class="text-xs font-bold text-[#023047]/70">Cats Only Zone</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Serene Cat Boarding</h3>
+                    <p class="text-sm text-slate-600 mb-5">Multi-level cat condos, climbing trees, and pheromone-diffused calm air.</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-3xl font-extrabold text-[#023047]">₹799</span>
+                        <span class="text-sm text-slate-500">/ night</span>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#AD1457] flex items-center justify-center text-xs font-bold">✓</span> Zero Dog Contact / Quiet Zone</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#AD1457] flex items-center justify-center text-xs font-bold">✓</span> Scratching Posts & Window Perches</li>
+                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#AD1457] flex items-center justify-center text-xs font-bold">✓</span> Sanitized Litter Box & Cuddle Time</li>
+                    </ul>
+                </div>
+                <button onclick="openBookingModal('Serene Cat Boarding (₹799)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Book Cat Condo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         VETERINARIANS SECTION (#E0F7FA BACKGROUND)
+    =========================================== -->
+    <section id="veterinarians" class="py-16 bg-[#E0F7FA]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#00796B] text-white uppercase tracking-wider mb-3">
+                        ALPHATAILS MEDICAL BOARD
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] tracking-tight">
+                        Meet Our Senior Veterinarians
+                    </h2>
+                    <p class="text-slate-600 mt-2 max-w-2xl">
+                        Compassionate MVSc specialists trained in small animal internal medicine, soft-tissue surgery, dermatology, and preventive wellness.
+                    </p>
+                </div>
+                <button onclick="openBookingModal('Priority Senior Vet Consultation')" class="self-start md:self-end bg-white hover:bg-[#023047] text-[#023047] hover:text-white font-bold text-sm px-6 py-3 rounded-xl shadow-sm transition">
+                    Schedule Video or Clinic Consult →
+                </button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- Vet Card 1 -->
-                <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center flex flex-col justify-between">
+                <!-- Vet 1 -->
+                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
                     <div>
-                        <div class="relative mb-4 rounded-2xl overflow-hidden h-52 bg-slate-100">
-                            <img src="https://res.cloudinary.com/koa1q8pv/image/upload/v1792399788/WhatsApp_Image_2026-10-19_at_7.47.33_AM_2.jpg" alt="Dr.Anudeep" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/00796B/ffffff?text=Dr.+Ananya'">
-                            <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Available Today</span>
+                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" 
+                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Arjun+Nair'"
+                                 alt="Dr. Arjun Nair" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                12+ Yrs Exp
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
+                                ★ 4.9
+                            </span>
                         </div>
-                        <h3 class="text-lg font-bold text-[#023047]">Dr. Anudeep</h3>
-                        <p class="text-xs text-[#00796B] font-semibold mb-2">General physician and surgeon</p>
-                        <p class="text-xs text-slate-500 mb-4">BVSc & AH, WVS <br>8+ Years Experience</p>
+                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Arjun Nair, MVSc</h3>
+                        <p class="text-xs font-bold text-[#00796B] mb-2">Chief Surgeon & Orthopedics</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            Specializes in minimally invasive surgery, fracture repair, and senior dog joint care.
+                        </p>
                     </div>
-                    <button onclick="openBookingModal('Consultation with Dr. Ananya')" class="w-full py-2.5 bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white rounded-xl font-bold text-xs transition-colors">
-                        Book Appointment
-                    </button>
-                </div>
-<section hidden>
-                <!-- Vet Card 2 -->
-                <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center flex flex-col justify-between">
-                    <div>
-                        <div class="relative mb-4 rounded-2xl overflow-hidden h-52 bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Dr. Vikramaditya Rao" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/00796B/ffffff?text=Dr.+Vikram'">
-                            <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Available Today</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#023047]">Dr. Vikramaditya Rao</h3>
-                        <p class="text-xs text-[#00796B] font-semibold mb-2">Canine Specialist & Dermatologist</p>
-                        <p class="text-xs text-slate-500 mb-4">BVSc & AH<br>9+ Years Experience</p>
-                    </div>
-                    <button onclick="openBookingModal('Consultation with Dr. Vikram')" class="w-full py-2.5 bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white rounded-xl font-bold text-xs transition-colors">
-                        Book Appointment
-                    </button>
-                </div>
-<section hidden>
-                <!-- Vet Card 3 -->
-                <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center flex flex-col justify-between">
-                    <div>
-                        <div class="relative mb-4 rounded-2xl overflow-hidden h-52 bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" alt="Dr. Meera Patel" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/00796B/ffffff?text=Dr.+Meera'">
-                            <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Available Tomorrow</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#023047]">Dr. Meera Patel</h3>
-                        <p class="text-xs text-[#00796B] font-semibold mb-2">Feline Medicine Specialist</p>
-                        <p class="text-xs text-slate-500 mb-4">MVSc (Internal Medicine)<br>8+ Years Experience</p>
-                    </div>
-                    <button onclick="openBookingModal('Consultation with Dr. Meera')" class="w-full py-2.5 bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white rounded-xl font-bold text-xs transition-colors">
-                        Book Appointment
-                    </button>
-                </div>
-<section hidden>
-                <!-- Vet Card 4 -->
-                <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center flex flex-col justify-between">
-                    <div>
-                        <div class="relative mb-4 rounded-2xl overflow-hidden h-52 bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" alt="Dr. Rohan Kapoor" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/00796B/ffffff?text=Dr.+Rohan'">
-                            <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Available Today</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-[#023047]">Dr. Rohan Kapoor</h3>
-                        <p class="text-xs text-[#00796B] font-semibold mb-2">Critical Care & Orthopaedics</p>
-                        <p class="text-xs text-slate-500 mb-4">BVSc & AH, PG Dip Vet Surgery<br>11+ Years Experience</p>
-                    </div>
-                    <button onclick="openBookingModal('Consultation with Dr. Rohan')" class="w-full py-2.5 bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white rounded-xl font-bold text-xs transition-colors">
-                        Book Appointment
+                    <button onclick="openBookingModal('Consult with Dr. Arjun Nair')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
+                        Book Dr. Arjun
                     </button>
                 </div>
 
+                <!-- Vet 2 -->
+                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80" 
+                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Meera+Krishnan'"
+                                 alt="Dr. Meera Krishnan" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                9+ Yrs Exp
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
+                                ★ 5.0
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Meera Krishnan</h3>
+                        <p class="text-xs font-bold text-[#00796B] mb-2">Pet Dermatology & Allergies</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            Expert in chronic coat issues, tick fever recovery, and feline internal medicine.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Consult with Dr. Meera Krishnan')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
+                        Book Dr. Meera
+                    </button>
+                </div>
+
+                <!-- Vet 3 -->
+                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" 
+                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Rohan+Deshmukh'"
+                                 alt="Dr. Rohan Deshmukh" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                8+ Yrs Exp
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
+                                ★ 4.9
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Rohan Deshmukh</h3>
+                        <p class="text-xs font-bold text-[#00796B] mb-2">Diagnostics & Cardiology</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            Leads Alphatails' in-house echocardiography, ultrasound, and geriatric care unit.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Consult with Dr. Rohan Deshmukh')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
+                        Book Dr. Rohan
+                    </button>
+                </div>
+
+                <!-- Vet 4 -->
+                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" 
+                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Ananya+Sen'"
+                                 alt="Dr. Ananya Sen" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                7+ Yrs Exp
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
+                                ★ 4.9
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Ananya Sen, BVSc</h3>
+                        <p class="text-xs font-bold text-[#00796B] mb-2">Preventive Care & Nutrition</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            Puppy/kitten vaccination schedules, custom diet plans, and fear-free home visits.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Consult with Dr. Ananya Sen')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
+                        Book Dr. Ananya
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Pet Shop Section -->
-    <section id="shop" class="py-16 sm:py-24 bg-[#E0F7FA]/30 relative border-y border-teal-100">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
-                <div>
-                    <span class="text-[#00796B] text-xs font-extrabold uppercase tracking-widest bg-white border border-teal-200 px-3 py-1 rounded-full">Curated Pet Store</span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-[#023047] mt-3">Vet-Approved Diets & Essentials</h2>
-                </div>
-                <!-- Category Filters -->
-                <div class="flex items-center space-x-2 mt-4 md:mt-0 overflow-x-auto pb-2 custom-scrollbar">
-                    <button onclick="filterShop('all')" class="shop-filter-btn bg-[#00796B] text-white px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all">All Items</button>
-                    <button onclick="filterShop('dog')" class="shop-filter-btn bg-white hover:bg-slate-100 text-slate-700 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border border-slate-200">Dog Essentials</button>
-                    <button onclick="filterShop('cat')" class="shop-filter-btn bg-white hover:bg-slate-100 text-slate-700 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border border-slate-200">Cat Essentials</button>
-                    <button onclick="filterShop('wellness')" class="shop-filter-btn bg-white hover:bg-slate-100 text-slate-700 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border border-slate-200">Supplements</button>
-                </div>
+    <!-- ==========================================
+         ALPHATAILS PET SHOP SECTION
+    =========================================== -->
+    <section id="shop" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#E0F7FA] text-[#00796B] uppercase tracking-wider mb-3">
+                    VET-APPROVED PHARMACY & STORE
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] tracking-tight">
+                    Alphatails Everyday Pet Shop
+                </h2>
+                <p class="text-slate-600 mt-1">
+                    Up to 15% Off on authentic Dog Food, Deworming & Tick treatments, and Accessories.
+                </p>
             </div>
 
-            <!-- Shop Grid -->
-            <div id="shopGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- Product 1 -->
-                <div class="shop-item dog bg-white rounded-2xl border border-slate-100 p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative bg-slate-50 rounded-xl p-4 mb-3 h-48 flex items-center justify-center">
-                            <span class="absolute top-2 left-2 bg-[#00796B] text-white text-[10px] font-bold px-2 py-0.5 rounded">Vet Best Seller</span>
-                            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=400&q=80" alt="Royal Canin Adult Food" class="h-full object-contain" onerror="this.src='https://placehold.co/300x300/E0F7FA/00796B?text=Dog+Food'">
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Nutrition</div>
-                        <h3 class="font-bold text-[#023047] text-sm mb-1">Royal Canin Breed Nutrition Dog Food 3kg</h3>
-                        <div class="flex items-center text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="text-slate-400 text-[10px] ml-1.5">(142)</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                        <div>
-                            <span class="text-base font-black text-[#023047]">₹1,850</span>
-                            <span class="text-xs text-slate-400 line-through ml-1">₹2,100</span>
-                        </div>
-                        <button onclick="addToCart('Royal Canin Breed Nutrition Dog Food', 1850)" class="bg-[#00796B] hover:bg-[#005b50] text-white p-2.5 rounded-xl transition-transform active:scale-90">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="shop-item cat bg-white rounded-2xl border border-slate-100 p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative bg-slate-50 rounded-xl p-4 mb-3 h-48 flex items-center justify-center">
-                            <span class="absolute top-2 left-2 bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">Popular Cat Food</span>
-                            <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=400&q=80" alt="Whiskas Ocean Fish" class="h-full object-contain" onerror="this.src='https://placehold.co/300x300/E0F7FA/00796B?text=Cat+Food'">
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Cat Nutrition</div>
-                        <h3 class="font-bold text-[#023047] text-sm mb-1">Whiskas Adult Ocean Fish Wet Pouch Pack of 12</h3>
-                        <div class="flex items-center text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                            <span class="text-slate-400 text-[10px] ml-1.5">(89)</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                        <div>
-                            <span class="text-base font-black text-[#023047]">₹620</span>
-                            <span class="text-xs text-slate-400 line-through ml-1">₹720</span>
-                        </div>
-                        <button onclick="addToCart('Whiskas Adult Ocean Fish Wet Pouch Pack', 620)" class="bg-[#00796B] hover:bg-[#005b50] text-white p-2.5 rounded-xl transition-transform active:scale-90">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="shop-item wellness bg-white rounded-2xl border border-slate-100 p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative bg-slate-50 rounded-xl p-4 mb-3 h-48 flex items-center justify-center">
-                            <span class="absolute top-2 left-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">Joint Support</span>
-                            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" alt="Vetic Omega-3 Syrup" class="h-full object-contain" onerror="this.src='https://placehold.co/300x300/E0F7FA/00796B?text=Supplement'">
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Health Supplement</div>
-                        <h3 class="font-bold text-[#023047] text-sm mb-1">Vetic Pure Omega-3 Salmon Oil & Hip Syrup 200ml</h3>
-                        <div class="flex items-center text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="text-slate-400 text-[10px] ml-1.5">(210)</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                        <div>
-                            <span class="text-base font-black text-[#023047]">₹890</span>
-                            <span class="text-xs text-slate-400 line-through ml-1">₹990</span>
-                        </div>
-                        <button onclick="addToCart('Vetic Pure Omega-3 Salmon Oil', 890)" class="bg-[#00796B] hover:bg-[#005b50] text-white p-2.5 rounded-xl transition-transform active:scale-90">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="shop-item dog bg-white rounded-2xl border border-slate-100 p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative bg-slate-50 rounded-xl p-4 mb-3 h-48 flex items-center justify-center">
-                            <span class="absolute top-2 left-2 bg-purple-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">Grooming</span>
-                            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=400&q=80" alt="Medicated Shampoo" class="h-full object-contain" onerror="this.src='https://placehold.co/300x300/E0F7FA/00796B?text=Shampoo'">
-                        </div>
-                        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Care & Spa</div>
-                        <h3 class="font-bold text-[#023047] text-sm mb-1">Vetic Herbal Anti-Tick & Soothing Dog Shampoo 500ml</h3>
-                        <div class="flex items-center text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="text-slate-400 text-[10px] ml-1.5">(95)</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                        <div>
-                            <span class="text-base font-black text-[#023047]">₹499</span>
-                            <span class="text-xs text-slate-400 line-through ml-1">₹599</span>
-                        </div>
-                        <button onclick="addToCart('Vetic Herbal Anti-Tick Dog Shampoo', 499)" class="bg-[#00796B] hover:bg-[#005b50] text-white p-2.5 rounded-xl transition-transform active:scale-90">
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </button>
-                    </div>
-                </div>
-
+            <!-- Filter Category Buttons -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterProducts('all')" data-cat="all" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#00796B] text-white transition">All Essentials</button>
+                <button onclick="filterProducts('dogfood')" data-cat="dogfood" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition">Dog Food (15% Off)</button>
+                <button onclick="filterProducts('deworming')" data-cat="deworming" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition">Deworming & Tick (10% Off)</button>
+                <button onclick="filterProducts('accessories')" data-cat="accessories" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition">Accessories (10% Off)</button>
             </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Populated dynamically via JS -->
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-16 sm:py-24 bg-white relative">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
-                <div>
-                    <span class="text-[#00796B] text-xs font-extrabold uppercase tracking-widest bg-[#E0F7FA] border border-teal-200 px-3 py-1 rounded-full">Why Alphatails</span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-[#023047] mt-3 mb-6">Setting New Standards in Indian Pet Healthcare</h2>
-                    <p class="text-slate-600 text-base leading-relaxed mb-8">
-Alphatails brings compassionate care and expert attention to your beloved pets through trusted veterinary services, professional grooming, and quality pet essentials — because every pet deserves the best care. 🐶🐱
+    <!-- ==========================================
+         ABOUT US & CLINIC EXCELLENCE SECTION
+    =========================================== -->
+    <section id="about" class="py-16 bg-[#E0F7FA]/70 border-y border-[#E0F7FA]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#00796B] text-white uppercase tracking-wider">
+                        ABOUT ALPHATAILS CLINICS
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] leading-tight">
+                        Redefining Pet Healthcare with Empathy, Technology & Transparency
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        At <strong>Alphatails Veterinary Clinic</strong>, we believe every tail wag and purr deserves hospital-grade medical care in a warm, stress-free neighborhood environment. Whether it's a routine vaccination at home for ₹399 or complex 24/7 emergency care, our clinics are built around your pet's comfort.
                     </p>
 
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-9 h-9 rounded-xl bg-[#E8F5E9] text-[#00796B] flex items-center justify-center font-bold mb-2">1</div>
+                            <h4 class="font-extrabold text-[#023047] text-sm">Digital Health Records</h4>
+                            <p class="text-xs text-slate-500 mt-1">Instant vaccination reminders, prescriptions & lab reports in one click.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-9 h-9 rounded-xl bg-[#FCE4EC] text-[#C2185B] flex items-center justify-center font-bold mb-2">2</div>
+                            <h4 class="font-extrabold text-[#023047] text-sm">Visible Glass Grooming</h4>
+                            <p class="text-xs text-slate-500 mt-1">Watch your furry companion get pampered in our transparent spa zones.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-9 h-9 rounded-xl bg-[#FFF3E0] text-[#E65100] flex items-center justify-center font-bold mb-2">3</div>
+                            <h4 class="font-extrabold text-[#023047] text-sm">At-Home Vet & Labs</h4>
+                            <p class="text-xs text-slate-500 mt-1">Blood collection, vaccinations & consultations right in your living room.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-9 h-9 rounded-xl bg-[#EDE7F6] text-[#5E35B1] flex items-center justify-center font-bold mb-2">4</div>
+                            <h4 class="font-extrabold text-[#023047] text-sm">Zero Hidden Charges</h4>
+                            <p class="text-xs text-slate-500 mt-1">Upfront package pricing before any procedure or diagnostic test begins.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Collage Card -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
                     <div class="space-y-4">
-                        <div class="flex items-start space-x-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <div class="w-10 h-10 bg-[#E0F7FA] text-[#00796B] rounded-xl flex items-center justify-center shrink-0 font-bold">
-                                <i class="fa-solid fa-shield-heart text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-[#023047]">100% Human-Grade Diagnostics</h4>
-                                <p class="text-xs text-slate-500 mt-0.5">High precision USG, blood analyzers, and anesthesia monitoring units used in human hospitals.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <div class="w-10 h-10 bg-[#FFE5EC] text-pink-600 rounded-xl flex items-center justify-center shrink-0 font-bold">
-                                <i class="fa-solid fa-cat text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-[#023047]">Fear-Free Separate Waiting Lounges</h4>
-                                <p class="text-xs text-slate-500 mt-0.5">Dedicated noise-controlled zones for cats and dogs to eliminate stress during clinic visits.</p>
-                            </div>
+                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=700&q=80" 
+                             onerror="this.src='https://placehold.co/500x400/00796B/FFFFFF?text=Happy+Pets'"
+                             alt="Golden Retriever Smile" class="rounded-3xl h-52 w-full object-cover shadow-md">
+                        <div class="bg-[#023047] text-white p-6 rounded-3xl shadow-md">
+                            <div class="text-3xl font-extrabold text-[#E0F7FA] mb-1">99.4%</div>
+                            <div class="text-sm font-bold">Pet Parent Satisfaction</div>
+                            <p class="text-xs text-slate-300 mt-2">Rated 4.9/5 across 12,000+ verified clinic & home visits.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="relative">
-                    <div class="bg-[#E0F7FA]/30 p-6 sm:p-8 rounded-3xl border border-teal-100 shadow-xl space-y-6">
-                        <div class="flex items-center space-x-4 border-b border-teal-100 pb-4">
-                            <div class="w-12 h-12 bg-[#00796B] text-white rounded-2xl flex items-center justify-center text-xl font-bold">
-                                <i class="fa-solid fa-quote-left"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-[#023047]">What Pet Parents Say</h4>
-                                <p class="text-xs text-slate-400">Verified Reviews across Google & App Store</p>
-                            </div>
+                    <div class="space-y-4 pt-6">
+                        <div class="bg-[#00796B] text-white p-6 rounded-3xl shadow-md">
+                            <div class="text-3xl font-extrabold mb-1">24 / 7</div>
+                            <div class="text-sm font-bold">Emergency & Critical Care</div>
+                            <p class="text-xs text-[#E0F7FA] mt-2">Oxygen therapy, ICU incubators & on-call surgeons day and night.</p>
                         </div>
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" 
+                             onerror="this.src='https://placehold.co/500x400/023047/E0F7FA?text=Feline+Care'"
+                             alt="Cat Care at Alphatails" class="rounded-3xl h-52 w-full object-cover shadow-md">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <p class="text-slate-600 text-sm italic leading-relaxed">
-                            "Miracle Recovery from 10% Survival Chance – Best Emergency Vet Care in Tirupati – Alphapetz Pet Clinic Saved My Labrador Puppy Zoya.
+    <!-- ==========================================
+         BLOG & PET PARENT GUIDES SECTION
+    =========================================== -->
+    <section id="blog" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#E0F7FA] text-[#00796B] uppercase tracking-wider mb-3">
+                    ALPHATAILS JOURNAL
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] tracking-tight">
+                    Expert Pet Care Guides & Blog
+                </h2>
+            </div>
+            <p class="text-sm text-slate-500">Written and peer-reviewed by Alphatails Veterinarians</p>
+        </div>
 
-I cannot thank Dr. Anudeep enough for saving my 36-day-old female Labrador puppy Zoya when every other vet I spoke to had almost given up hope."
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Blog 1 -->
+            <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
+                <div>
+                    <div class="h-48 overflow-hidden bg-slate-100 relative">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=700&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/E0F7FA/023047?text=Vaccination+Guide'"
+                             alt="Puppies Running" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5E9] text-[#1E8449]">Preventive Care</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-slate-400 font-semibold mb-2">5 Min Read • By Dr. Ananya Sen</div>
+                        <h3 class="text-lg font-extrabold text-[#023047] group-hover:text-[#00796B] transition mb-2">
+                            Complete Puppy & Kitten First-Year Vaccination Checklist
+                        </h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            Learn the exact timeline for core vaccines including Parvovirus, Distemper, Rabies, and Feline Tricat—plus when to book a home vaccine visit.
                         </p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button onclick="openArticleModal('Complete Puppy & Kitten First-Year Vaccination Checklist', 'Dr. Ananya Sen, BVSc', 'Core vaccines protect your pet from life-threatening viral illnesses. For puppies, start DHPPiL at 6–8 weeks followed by boosters every 3–4 weeks until 16 weeks, alongside Anti-Rabies at 12 weeks. At Alphatails, you can book doorstep cold-chain maintained vaccinations starting at just ₹399.')" class="text-sm font-extrabold text-[#00796B] hover:underline flex items-center gap-1">
+                        Read Full Article →
+                    </button>
+                </div>
+            </article>
 
-                        <div class="flex items-center space-x-3 pt-2">
-                            <img src="https://res.cloudinary.com/koa1q8pv/image/upload/v1792400819/user.png" alt="Reviewer" class="w-11 h-11 rounded-full object-cover">
-                            <div>
-                                <div class="font-bold text-[#023047] text-sm">Lohit Reddy</div>
-                                <div class="text-xs text-teal-700 font-medium">Tirupati</div>
-                            </div>
+            <!-- Blog 2 -->
+            <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
+                <div>
+                    <div class="h-48 overflow-hidden bg-slate-100 relative">
+                        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=700&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/FCE4EC/023047?text=Tick+Fever+Prevention'"
+                             alt="Happy Dog Outdoors" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-[#EDE7F6] text-[#5E35B1]">Parasite Control</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-slate-400 font-semibold mb-2">4 Min Read • By Dr. Meera Krishnan</div>
+                        <h3 class="text-lg font-extrabold text-[#023047] group-hover:text-[#00796B] transition mb-2">
+                            5 Early Signs of Tick Fever & Why Quarterly Deworming Matters
+                        </h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            Lethargy, pale gums, or loss of appetite? Discover how simple monthly spot-on treatments and at-home CBC diagnostics keep tick fever away.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button onclick="openArticleModal('5 Early Signs of Tick Fever & Quarterly Deworming', 'Dr. Meera Krishnan', 'Tick-borne diseases like Ehrlichia and Babesia are common year-round. Always check between your dog\'s paws and ears after walks. If you notice appetite drop or fever above 103°F, book our NEW Diagnostics At Home service for a rapid blood parasite panel.')" class="text-sm font-extrabold text-[#00796B] hover:underline flex items-center gap-1">
+                        Read Full Article →
+                    </button>
+                </div>
+            </article>
+
+            <!-- Blog 3 -->
+            <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
+                <div>
+                    <div class="h-48 overflow-hidden bg-slate-100 relative">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=700&q=80" 
+                             onerror="this.src='https://placehold.co/600x400/FFF3E0/023047?text=Grooming+Tips'"
+                             alt="Groomed Dog" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-[#FCE4EC] text-[#C2185B]">Hygienic Grooming</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-slate-400 font-semibold mb-2">6 Min Read • By Alphatails Spa Team</div>
+                        <h3 class="text-lg font-extrabold text-[#023047] group-hover:text-[#00796B] transition mb-2">
+                            How Stress-Free Grooming Prevents Ear Infections & Matting
+                        </h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            Professional grooming isn't just about looking cute—sanitary trims, ear canal drying, and paw pad care prevent painful skin infections.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button onclick="openArticleModal('How Stress-Free Grooming Prevents Ear Infections & Matting', 'Alphatails Grooming Experts', 'Moisture trapped in floppy ears or matted fur is the #1 cause of yeast and bacterial skin hotspots. Our Hygienic Grooming sessions use low-decibel dryers, warm water therapy, and vet-approved ear cleansers for a completely stress-free experience.')" class="text-sm font-extrabold text-[#00796B] hover:underline flex items-center gap-1">
+                        Read Full Article →
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+    <footer class="bg-[#023047] text-white pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-700/70">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00796B] flex items-center justify-center text-white font-bold">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 10c-2.21 0-4 1.79-4 4 0 2.66 2.33 4.11 3.38 4.65.39.2.85.2 1.24 0C13.67 18.11 16 16.66 16 14c0-2.21-1.79-4-4-4z"/>
+                                <circle cx="6.5" cy="8.5" r="2"/><circle cx="17.5" cy="8.5" r="2"/><circle cx="9.5" cy="5.5" r="2"/><circle cx="14.5" cy="5.5" r="2"/>
+                            </svg>
                         </div>
+                        <span class="text-2xl font-extrabold tracking-tight text-white">Alpha<span class="text-[#E0F7FA]">tails</span></span>
+                    </div>
+                    <p class="text-sm text-slate-300 max-w-sm leading-relaxed">
+                        Your neighborhood's favorite pet hospital, hygienic grooming studio, and everyday pet pharmacy. Dedicated to compassionate, affordable veterinary care 24/7.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <span class="px-3 py-1.5 rounded-xl bg-white/10 text-[#E0F7FA] text-xs font-semibold">📍 15+ Neighborhood Clinics</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white/10 text-[#E0F7FA] text-xs font-semibold">🚑 24/7 Emergency ICU</span>
                     </div>
                 </div>
 
+                <!-- Col 2: Quick Navigation -->
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#veterinarians" class="hover:text-white transition">Our Veterinarians</a></li>
+                        <li><a href="#grooming-boarding" class="hover:text-white transition">Grooming & Boarding</a></li>
+                        <li><a href="#shop" class="hover:text-white transition">Pet Shop & Pharmacy</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About Alphatails</a></li>
+                        <li><a href="#blog" class="hover:text-white transition">Pet Care Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Popular Services -->
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Top Services</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li><button onclick="openBookingModal('Consultation (50% Off)')" class="hover:text-white transition">Clinic Consultation (50% Off)</button></li>
+                        <li><button onclick="openBookingModal('Vet at Home (₹399)')" class="hover:text-white transition">Vet at Home (₹399)</button></li>
+                        <li><button onclick="openBookingModal('Vaccine at Home (₹399)')" class="hover:text-white transition">Vaccine at Home (₹399)</button></li>
+                        <li><button onclick="openBookingModal('Diagnostics At Home')" class="hover:text-white transition">Diagnostics At Home (NEW)</button></li>
+                        <li><button onclick="openBookingModal('Hygienic Grooming')" class="hover:text-white transition">Stress-Free Grooming</button></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact & Hours -->
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Clinic Helpline</h4>
+                    <p class="text-xs text-slate-300 mb-2">24/7 Emergency & Appointment Desk:</p>
+                    <a href="tel:18002578245" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-4">+91 1800-257-8245</a>
+                    <p class="text-xs text-slate-300 mb-3">care@alphatails.in</p>
+                    <button onclick="openBookingModal('Emergency / Instant Callback')" class="w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
+                        Request Instant Callback
+                    </button>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+                <p>© 2026 Alphatails Veterinary Clinic Pvt. Ltd. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#home" class="hover:text-white">Privacy Policy</a>
+                    <a href="#home" class="hover:text-white">Terms of Service</a>
+                    <a href="#home" class="hover:text-white">Veterinary Ethics Charter</a>
+                </div>
             </div>
         </div>
-    </section>
-    
+    </footer>
 
-    <!-- Blog Section --> 
-    <section id="blog" class="py-16 bg-slate-50 hidden">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-[#00796B] text-xs font-extrabold uppercase tracking-widest bg-white border border-teal-200 px-3 py-1 rounded-full">Pet Care Knowledge</span>
-                <h2 class="text-3xl font-black text-[#023047] mt-3">Latest Vet Articles & Advice</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Blog 1 -->
-                <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Dog care" class="w-full h-44 object-cover" onerror="this.src='https://placehold.co/600x400/E0F7FA/00796B?text=Dog+Care'">
-                    <div class="p-5">
-                        <span class="text-[10px] font-bold bg-[#E0F7FA] text-[#00796B] px-2 py-0.5 rounded">Nutrition</span>
-                        <h3 class="font-bold text-[#023047] text-base mt-2 mb-1 hover:text-[#00796B] cursor-pointer">5 Essential Summer Foods & Hydration Tips for Dogs</h3>
-                        <p class="text-xs text-slate-500 mb-3">Keep your furry friends cool and energetic with these vet-approved dietary adjustments.</p>
-                        <a href="#blog" class="text-xs font-bold text-[#00796B] flex items-center space-x-1"><span>Read More</span> <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                    </div>
-                </div>
-
-                <!-- Blog 2 -->
-                <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Cat care" class="w-full h-44 object-cover" onerror="this.src='https://placehold.co/600x400/FFE5EC/pink?text=Cat+Care'">
-                    <div class="p-5">
-                        <span class="text-[10px] font-bold bg-pink-100 text-pink-700 px-2 py-0.5 rounded">Feline Wellness</span>
-                        <h3 class="font-bold text-[#023047] text-base mt-2 mb-1 hover:text-[#00796B] cursor-pointer">Understanding Hidden Signs of Anxiety in Indoor Cats</h3>
-                        <p class="text-xs text-slate-500 mb-3">Learn to decode subtle feline stress indicators and create a calm living environment.</p>
-                        <a href="#blog" class="text-xs font-bold text-[#00796B] flex items-center space-x-1"><span>Read More</span> <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                    </div>
-                </div>
-
-                <!-- Blog 3 -->
-                <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=600&q=80" alt="Puppy vaccination" class="w-full h-44 object-cover" onerror="this.src='https://placehold.co/600x400/E8F5E9/emerald?text=Vaccine'">
-                    <div class="p-5">
-                        <span class="text-[10px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">Vaccination Guide</span>
-                        <h3 class="font-bold text-[#023047] text-base mt-2 mb-1 hover:text-[#00796B] cursor-pointer">Complete Puppy Vaccine Schedule Year 1</h3>
-                        <p class="text-xs text-slate-500 mb-3">Everything you need to know about rabies, DHPP, and booster timeline protection.</p>
-                        <a href="#blog" class="text-xs font-bold text-[#00796B] flex items-center space-x-1"><span>Read More</span> <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Appointment Booking Modal -->
-    <div id="bookingModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 custom-scrollbar max-h-[90vh] overflow-y-auto">
-            
-            <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
-                <i class="fa-solid fa-xmark"></i>
+    <!-- ==========================================
+         APPOINTMENT BOOKING MODAL
+    =========================================== -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#023047]/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E0F7FA] relative animate-fadeIn">
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">
+                ✕
             </button>
 
-            <div class="flex items-center space-x-3 mb-6">
-                <div class="w-10 h-10 bg-[#00796B] text-white rounded-xl flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-calendar-check"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-[#023047]">Book Pet Appointment</h3>
-                    <p class="text-xs text-slate-500">Fast, instant booking with senior vets</p>
-                </div>
+            <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-8 h-8 rounded-xl bg-[#00796B] text-white flex items-center justify-center text-sm font-bold">🐾</span>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-[#00796B]">ALPHATAILS INSTANT BOOKING</span>
             </div>
+            <h3 class="text-2xl font-extrabold text-[#023047] mb-1">Book Your Pet's Visit</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mb-5">Zero waiting time at our clinics & punctual 60-minute doorstep visits.</p>
 
-            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
-                
-                <!-- Pet Type Selection -->
+            <form id="bookingForm" onsubmit="submitBookingForm(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-[#023047] uppercase tracking-wider mb-2">1. Pet Type</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="border-2 border-teal-100 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-[#00796B] has-[:checked]:border-[#00796B] has-[:checked]:bg-[#E0F7FA]/40 transition-all">
-                            <input type="radio" name="petType" value="dog" checked class="accent-[#00796B]">
-                            <i class="fa-solid fa-dog text-[#00796B] text-xl"></i>
-                            <span class="font-bold text-sm text-[#023047]">Dog</span>
-                        </label>
-                        <label class="border-2 border-teal-100 rounded-xl p-3 flex items-center space-x-3 cursor-pointer hover:border-[#00796B] has-[:checked]:border-[#00796B] has-[:checked]:bg-[#E0F7FA]/40 transition-all">
-                            <input type="radio" name="petType" value="cat" class="accent-[#00796B]">
-                            <i class="fa-solid fa-cat text-[#00796B] text-xl"></i>
-                            <span class="font-bold text-sm text-[#023047]">Cat</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Select Service -->
-                <div>
-                    <label class="block text-xs font-bold text-[#023047] uppercase tracking-wider mb-1">2. Select Service</label>
-                    <select id="bookingServiceSelect" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-[#00796B] font-medium text-[#023047] bg-slate-50">
-                        <option value="Consultation">In-Clinic Vet Consultation (50% Off)</option>
-                        <option value="Grooming">Grooming & Spa Session (25% Off)</option>
-                        <option value="Vaccination">Vaccination & Deworming (10% Off)</option>
-                        <option value="Vet Consult at Home">Vet Consultation at Home (₹399)</option>
-                        <option value="Deworming & Tick">Deworming & Tick Treatment</option>
-                        <option value="Diagnostics & Lab Tests">Diagnostics & Lab Tests At Home</option>
-                        <option value="Vaccination at Home">Vaccination at Home (₹399)</option>
+                    <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Selected Service</label>
+                    <select id="bookingServiceInput" class="w-full px-4 py-3 rounded-xl bg-[#E0F7FA]/50 border border-[#00796B]/30 text-[#023047] font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                        <option value="Consultation (50% Off)">Consultation (50% Off)</option>
+                        <option value="Hygienic Pet Grooming">Hygienic Grooming (Bath & Styling)</option>
+                        <option value="Pet Vaccination (10% Off)">Vaccination (10% Off)</option>
+                        <option value="Vet at Home Visit (₹399)">Vet at Home (₹399)</option>
+                        <option value="Vaccine at Home (₹399)">Vaccine at Home (₹399)</option>
+                        <option value="Diagnostics & Blood Test At Home">Diagnostics At Home (NEW)</option>
+                        <option value="Overnight Luxury Boarding Suite (₹999)">Luxury Pet Boarding Suite</option>
+                        <option value="24/7 Expert Consultation">24/7 Expert Doctor Consultation</option>
                     </select>
                 </div>
 
-                <!-- Select Location -->
-                <div>
-                    <label class="block text-xs font-bold text-[#023047] uppercase tracking-wider mb-1">3. Clinic Location</label>
-                    <select class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-[#00796B] font-medium text-[#023047] bg-slate-50">
-                        <option value="gurugram-sec56">Gurugram - Sector 56 Clinic</option>
-                        <option value="delhi-saket">South Delhi - Saket Clinic</option>
-                        <option value="noida-sec18">Noida - Sector 18 Clinic</option>
-                        <option value="bengaluru-indiranagar">Bengaluru - Indiranagar</option>
-                        <option value="mumbai-bandra">Mumbai - Bandra West</option>
-                        <option value="home-visit">Vet / Diagnostic at Home Visit</option>
-                    </select>
-                </div>
-
-                <!-- Date & Time -->
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-[#023047] uppercase tracking-wider mb-1">Date</label>
-                        <input type="date" required class="w-full border border-slate-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#00796B] font-medium bg-slate-50">
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Visit Mode</label>
+                        <select id="visitModeInput" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-medium text-[#023047] focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                            <option value="Alphatails Clinic Visit">🏥 Clinic Visit</option>
+                            <option value="At-Home Doorstep Visit">🏠 Home Visit</option>
+                        </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-[#023047] uppercase tracking-wider mb-1">Time Slot</label>
-                        <select class="w-full border border-slate-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#00796B] font-medium bg-slate-50">
-                            <option>10:00 AM - 12:00 PM</option>
-                            <option>12:00 PM - 02:00 PM</option>
-                            <option>03:00 PM - 05:00 PM</option>
-                            <option>06:00 PM - 08:00 PM</option>
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Pet Species</label>
+                        <select id="petTypeInput" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-medium text-[#023047] focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                            <option value="Dog">🐶 Dog</option>
+                            <option value="Cat">🐱 Cat</option>
+                            <option value="Other Small Pet">🐰 Other Pet</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Details -->
-                <div class="space-y-3 pt-2">
-                    <input type="text" placeholder="Your Name" required class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-[#00796B]">
-                    <input type="tel" placeholder="Mobile Phone Number" required class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-[#00796B]">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Pet Parent Name</label>
+                        <input type="text" id="parentNameInput" required placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Mobile Number</label>
+                        <input type="tel" id="phoneInput" required placeholder="+91 98765 43210" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                    </div>
                 </div>
 
-                <button type="submit" class="w-full bg-[#00796B] hover:bg-[#005b50] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all mt-4">
-                    Confirm Appointment Booking
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Preferred Date</label>
+                        <input type="date" id="dateInput" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Time Slot</label>
+                        <select id="timeInput" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
+                            <option>10:00 AM - 12:00 PM</option>
+                            <option>12:00 PM - 03:00 PM</option>
+                            <option>04:00 PM - 07:00 PM</option>
+                            <option>07:00 PM - 09:30 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-extrabold text-sm shadow-lg shadow-[#00796B]/25 transition">
+                    Confirm Appointment at Alphatails
                 </button>
             </form>
-
-            <div id="bookingSuccessMessage" class="hidden text-center py-8 space-y-4">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <h4 class="text-2xl font-black text-[#023047]">Appointment Confirmed!</h4>
-                <p class="text-xs text-slate-600">Our care manager will send a confirmation SMS & WhatsApp reminder shortly.</p>
-                <button onclick="closeBookingModal()" class="bg-[#00796B] text-white px-6 py-2.5 rounded-xl font-bold text-xs">Close Window</button>
-            </div>
-
         </div>
     </div>
 
-    <!-- Shopping Cart Modal Drawer -->
-    <div id="cartModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex justify-end opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-white max-w-md w-full h-full shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300">
-            <div>
-                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
-                    <h3 class="text-lg font-bold text-[#023047] flex items-center">
-                        <i class="fa-solid fa-bag-shopping text-[#00796B] mr-2"></i> Your Pet Care Cart
-                    </h3>
-                    <button onclick="closeCartModal()" class="text-slate-400 hover:text-slate-600 text-xl">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
-                <div id="cartItemsList" class="space-y-3 overflow-y-auto max-h-[60vh] custom-scrollbar">
-                    <div class="text-center py-12 text-slate-400 text-sm">
-                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 block opacity-30"></i>
-                        Your shopping cart is currently empty.
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-100 pt-4 space-y-3">
-                <div class="flex justify-between font-bold text-[#023047] text-base">
-                    <span>Total Amount</span>
-                    <span id="cartTotal">₹0</span>
-                </div>
-                <button onclick="checkoutCart()" class="w-full bg-[#00796B] hover:bg-[#005b50] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all">
-                    Proceed to Checkout
-                </button>
-            </div>
+    <!-- ==========================================
+         ARTICLE READER / CLINIC FINDER MODAL
+    =========================================== -->
+    <div id="infoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#023047]/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-[#E0F7FA] relative">
+            <button onclick="closeInfoModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">✕</button>
+            <span id="infoModalTag" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#E0F7FA] text-[#00796B] mb-2">ALPHATAILS</span>
+            <h3 id="infoModalTitle" class="text-xl font-extrabold text-[#023047] mb-3">Title</h3>
+            <p id="infoModalBody" class="text-sm text-slate-600 leading-relaxed mb-6">Content</p>
+            <button onclick="closeInfoModal(); openBookingModal('Consultation (50% Off)')" class="w-full py-3 rounded-xl bg-[#00796B] text-white font-bold text-sm">
+                Book a Vet Consultation
+            </button>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-[#023047] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300">
-        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
-        <span id="toastMessage" class="text-xs font-semibold">Item added to cart</span>
-    </div>
-
- <!-- FOOTER -->
-    <footer class="bg-[#023047] text-white py-12 px-4 sm:px-6 lg:px-8 mt-16">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 rounded-xl bg-[#00796B] flex items-center justify-center text-white">
-                        <i class="fa-solid fa-paw text-xl"></i>
-                    </div>
-                    <span class="text-2xl font-black text-white">Alphatails<span class="text-[#00796B]">.</span></span>
-                </div>
-                <p class="text-gray-400 text-sm">From everyday essentials to expert pet care, Alphatails is here for every paw, every tail, and every little moment that matters🐾.</p>
-                 <div class="flex gap-3 text-slate-400 pt-2">
-                        <a href="https://www.instagram.com/alpha_tails__tirupathi?obrf=azRxcnB3cDdlcTRj" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:text-white hover:bg-brand transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:text-white hover:bg-brand transition-colors"><i class="fa-brands fa-facebook-f hidden"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:text-white hover:bg-brand transition-colors"><i class="fa-brands fa-linkedin-in hidden"></i></a>
-                    </div>
-                </div>
+    <!-- ==========================================
+         SLIDE-OVER SHOPPING CART DRAWER
+    =========================================== -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 z-50 hidden bg-[#023047]/50 backdrop-blur-xs"></div>
+    <aside id="cartDrawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-[#E0F7FA] text-[#00796B] flex items-center justify-center font-bold">🛍️</span>
                 <div>
-                <h4 class="text-base font-bold mb-4 text-[#E0F7FA]">Quick Links</h4>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li><a href="index.html" class="hover:text-white">Home</a></li>
-                    <li><a href="veterinarians.html" class="hover:text-white">Shop</a></li>
-                    <li><a href="shop.html" class="hover:text-white">Terms & Conditions</a></li>
-                     <li><a href="PrivacyPolicy.html" class="hover:text-white">Privacy Policy</a></li>
-                    <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                </ul>
+                    <h3 class="text-lg font-extrabold text-[#023047]">Alphatails Pet Pharmacy</h3>
+                    <p class="text-xs text-[#00796B] font-semibold">Express Same-Day Pet Delivery</p>
+                </div>
             </div>
-            <div>
-                <h4 class="text-base font-bold mb-4 text-[#E0F7FA]">Pet Care Services</h4>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li>Vet Consultations</li>
-                    <li>Grooming & Spa</li>
-                    <li>Deworming & Tick</li>
-                    <li>Home Vaccination</li>
-                     <li>Vet at Home</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-base font-bold mb-4 text-[#E0F7FA] hidden">Emergency Support</h4>
-                <p class="text-sm text-gray-300 mb-2 hidden">.</p>
-                <p class="text-lg font-bold text-[#E0F7FA] hidden">📞 Alphatails/p>
-            </div>
+            <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-full bg-slate-100 text-[#023047] font-bold">✕</button>
         </div>
-        <div class="max-w-7xl mx-auto pt-8 border-t border-white/10 text-center text-xs text-gray-400">
-            &copy; 2026 C-Ham Digital Solutions All rights reserved. Built with elegance for pet parents.
-        </div>
-    </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+        <div id="cartItemsList" class="p-6 flex-1 overflow-y-auto space-y-4">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="p-6 bg-[#E0F7FA]/60 border-t border-[#E0F7FA]">
+            <div class="flex items-center justify-between text-base font-extrabold text-[#023047] mb-4">
+                <span>Total Payable</span>
+                <span id="cartTotalPrice">₹0</span>
+            </div>
+            <button onclick="checkoutCart()" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-extrabold text-sm shadow-md transition">
+                Proceed to Instant Checkout →
+            </button>
+        </div>
+    </aside>
+
+    <!-- Toast Notification Banner -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-[#00796B] items-center gap-3 max-w-sm">
+        <span class="w-7 h-7 rounded-full bg-[#00796B] text-white flex items-center justify-center text-sm font-bold shrink-0">✓</span>
+        <p id="toastMessage" class="text-xs sm:text-sm font-semibold"></p>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+    =========================================== -->
     <script>
-        // Product Database
+        // Shop Catalog matching the exact cards in the hero image (Dog Food 15% Off, Deworming & Tick 10% Off, Accessories 10% Off)
         const products = [
-            { id: 1, name: "Royal Canin Maxi Adult Dry Dog Food", category: "Dog Food", price: 3499, originalPrice: 3999, rating: 4.9, reviews: 245, image: "https://images.unsplash.com/photo-1589927986082-a981fc07bc0f?auto=format&fit=crop&w=500&q=80", badge: "Best Seller", vetNote: "Recommended for large breeds" },
-            { id: 2, name: "Whiskas Adult Wet Cat Food (Chicken in Gravy)", category: "Cat Food", price: 450, originalPrice: 500, rating: 4.8, reviews: 180, image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80", badge: "10% Off", vetNote: "High moisture formula" },
-            { id: 3, name: "NexGard Spectra Tick & Flea Chewable Tablet", category: "Healthcare", price: 950, originalPrice: 1050, rating: 5.0, reviews: 512, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80", badge: "Vet Choice", vetNote: "Monthly parasite protection" },
-            { id: 4, name: "Vetic Herbal Anti-Tick Dog Shampoo (500ml)", category: "Grooming", price: 599, originalPrice: 799, rating: 4.7, reviews: 96, image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500&q=80", badge: "25% Off", vetNote: "Soothing organic neem & aloe" },
-            { id: 5, name: "Interactive Chew Bone Toy for Puppies", category: "Accessories", price: 399, originalPrice: 499, rating: 4.6, reviews: 140, image: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=500&q=80", badge: "New", vetNote: "Durable dental teething toy" },
-            { id: 6, name: "Pedigree Puppy Dry Dog Food (Chicken & Milk)", category: "Dog Food", price: 1299, originalPrice: 1499, rating: 4.8, reviews: 340, image: "https://images.unsplash.com/photo-1608474845026-9b552b7b5f2f?auto=format&fit=crop&w=500&q=80", badge: "Popular", vetNote: "Optimum growth formulation" },
-            { id: 7, name: "Me-O Adult Dry Cat Food (Seafood Flavor)", category: "Cat Food", price: 850, originalPrice: 950, rating: 4.7, reviews: 210, image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=500&q=80", badge: "Best Value", vetNote: "Rich in Omega 3 & 6" },
-            { id: 8, name: "Himalaya Himpyrin Pain Relief Drops for Pets", category: "Healthcare", price: 220, originalPrice: 250, rating: 4.9, reviews: 430, image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=500&q=80", badge: "Essential", vetNote: "Safe natural antipyretic" }
+            {
+                id: 1,
+                name: "Royal Canin Maxi Adult Dog Food (4 kg)",
+                category: "dogfood",
+                badge: "15% Off",
+                badgeBg: "bg-[#D4EFDF] text-[#1E8449]",
+                price: 2890,
+                oldPrice: 3400,
+                image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "Simparica Trio Chewable Tick & Flea Tablet",
+                category: "deworming",
+                badge: "10% Off",
+                badgeBg: "bg-[#EDE7F6] text-[#5E35B1]",
+                price: 945,
+                oldPrice: 1050,
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                name: "Alphatails Orthopedic Padded Dog Harness",
+                category: "accessories",
+                badge: "10% Off",
+                badgeBg: "bg-[#F3E5F5] text-[#8E24AA]",
+                price: 899,
+                oldPrice: 999,
+                image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                name: "Drontal Plus Broad-Spectrum Dewormer (Pack of 4)",
+                category: "deworming",
+                badge: "10% Off",
+                badgeBg: "bg-[#EDE7F6] text-[#5E35B1]",
+                price: 432,
+                oldPrice: 480,
+                image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                name: "Farmina N&D Ancestral Grain Puppy Chicken & Pomegranate",
+                category: "dogfood",
+                badge: "15% Off",
+                badgeBg: "bg-[#D4EFDF] text-[#1E8449]",
+                price: 2295,
+                oldPrice: 2700,
+                image: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                name: "Frontline Plus Spot-On Tick & Lice Drops (3 Pipettes)",
+                category: "deworming",
+                badge: "10% Off",
+                badgeBg: "bg-[#EDE7F6] text-[#5E35B1]",
+                price: 1170,
+                oldPrice: 1300,
+                image: "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                name: "Engraved QR Smart Pet Collar & ID Shield Tag",
+                category: "accessories",
+                badge: "10% Off",
+                badgeBg: "bg-[#F3E5F5] text-[#8E24AA]",
+                price: 539,
+                oldPrice: 599,
+                image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                name: "Alphatails Salmon Oil & Multivitamin Coat Chews",
+                category: "dogfood",
+                badge: "15% Off",
+                badgeBg: "bg-[#D4EFDF] text-[#1E8449]",
+                price: 679,
+                oldPrice: 799,
+                image: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80"
+            }
         ];
 
-        let cart = [];
-        let currentCategory = 'all';
-        let discountActive = false;
+        let cart = [
+            { id: 2, name: "Simparica Trio Chewable Tick & Flea Tablet", price: 945, qty: 1 },
+            { id: 7, name: "Engraved QR Smart Pet Collar & ID Shield Tag", price: 539, qty: 1 }
+        ];
 
-        // Render Product Catalog
-        function renderProducts(itemsToDisplay) {
-            const grid = document.getElementById('product-grid');
-            if (itemsToDisplay.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 font-medium">No products found matching your search.</div>`;
-                return;
-            }
-
-            grid.innerHTML = itemsToDisplay.map(p => `
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group">
-                    <div class="relative bg-gray-50 p-4 overflow-hidden">
-                        <span class="absolute top-3 left-3 bg-[#00796B] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-10">${p.badge}</span>
-                        <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover rounded-xl group-hover:scale-105 transition duration-500">
+        function renderProducts(category = 'all') {
+            const grid = document.getElementById('productGrid');
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            
+            grid.innerHTML = filtered.map(product => `
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 shadow-card flex flex-col justify-between group hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-44 rounded-2xl overflow-hidden bg-slate-50 mb-4">
+                            <img src="${product.image}" 
+                                 onerror="this.src='https://placehold.co/400x300/E0F7FA/023047?text=Alphatails+Shop'"
+                                 alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold ${product.badgeBg}">
+                                ${product.badge}
+                            </span>
+                        </div>
+                        <h3 class="text-sm font-extrabold text-[#023047] line-clamp-2 mb-2">${product.name}</h3>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="pt-2 flex items-center justify-between border-t border-slate-100">
                         <div>
-                            <div class="flex items-center text-xs text-amber-500 mb-1 space-x-1">
-                                <i class="fa-solid fa-star"></i>
-                                <span class="font-bold text-gray-700">${p.rating}</span>
-                                <span class="text-gray-400">(${p.reviews})</span>
-                            </div>
-                            <h3 class="font-bold text-[#023047] line-clamp-2 text-base leading-snug">${p.name}</h3>
-                            <p class="text-xs text-[#00796B] font-medium mt-1 flex items-center gap-1">
-                                <i class="fa-solid fa-stethoscope"></i> ${p.vetNote}
-                            </p>
+                            <span class="text-lg font-extrabold text-[#023047]">₹${product.price}</span>
+                            <span class="text-xs text-slate-400 line-through ml-1">₹${product.oldPrice}</span>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-gray-100">
-                            <div>
-                                <span class="text-lg font-black text-[#023047]">₹${p.price}</span>
-                                <span class="text-xs text-gray-400 line-through ml-1">₹${p.originalPrice}</span>
-                            </div>
-                            <button onclick="addToCart(${p.id})" class="px-4 py-2.5 rounded-xl bg-[#E0F7FA] text-[#00796B] font-semibold text-sm hover:bg-[#00796B] hover:text-white transition shadow-xs">
-                                <i class="fa-solid fa-cart-plus mr-1.5"></i> Add
-                            </button>
-                        </div>
+                        <button onclick="addToCart(${product.id})" class="px-3.5 py-2 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
+                            + Add
+                        </button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Filter Category
-        function filterCategory(category) {
-            currentCategory = category;
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('bg-[#00796B]', 'text-white');
-                btn.classList.add('bg-gray-100', 'text-[#023047]');
-                if (btn.textContent.toLowerCase().includes(category.toLowerCase()) || (category === 'all' && btn.textContent.includes('All'))) {
-                    btn.classList.remove('bg-gray-100', 'text-[#023047]');
-                    btn.classList.add('bg-[#00796B]', 'text-white');
+        function filterProducts(category) {
+            document.querySelectorAll('.shop-tab').forEach(btn => {
+                if (btn.dataset.cat === category) {
+                    btn.className = "shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#00796B] text-white transition";
+                } else {
+                    btn.className = "shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition";
                 }
             });
-            filterProducts();
+            renderProducts(category);
         }
 
-        // Search & Filter
-        function filterProducts() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = products.filter(p => {
-                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
-                const matchesSearch = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
-                return matchesCat && matchesSearch;
-            });
-            renderProducts(filtered);
-        }
-
-        // Cart Actions
-        function toggleCart() {
-            const drawer = document.getElementById('cart-drawer');
-            drawer.classList.toggle('hidden');
+        function scrollToShopCategory(category) {
+            filterProducts(category);
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
         }
 
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
+            if (!product) return;
             const existing = cart.find(item => item.id === productId);
             if (existing) {
-                existing.qty++;
+                existing.qty += 1;
             } else {
-                cart.push({ ...product, qty: 1 });
+                cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
             }
             updateCartUI();
-            toggleCart();
+            showToast(`Added "${product.name}" to your Alphatails cart!`);
         }
 
-        function updateQuantity(productId, change) {
-            const item = cart.find(i => i.id === productId);
-            if (item) {
-                item.qty += change;
-                if (item.qty <= 0) {
-                    cart = cart.filter(i => i.id !== productId);
-                }
-            }
-            updateCartUI();
-        }
-
-        function applyCoupon() {
-            const code = document.getElementById('coupon-input').value.trim().toUpperCase();
-            const msg = document.getElementById('coupon-message');
-            if (code === 'VETIC20') {
-                discountActive = true;
-                msg.textContent = "Promo code 'VETIC20' applied successfully! 20% off.";
-                msg.classList.remove('hidden');
-            } else {
-                discountActive = false;
-                msg.textContent = "Invalid promo code. Try 'VETIC20'.";
-                msg.classList.remove('hidden', 'text-emerald-600');
-                msg.classList.add('text-red-650');
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
             }
             updateCartUI();
         }
 
         function updateCartUI() {
-            const badge = document.getElementById('cart-badge');
-            const container = document.getElementById('cart-items-container');
-            const subtotalEl = document.getElementById('cart-subtotal');
-            const discountRow = document.getElementById('discount-row');
-            const discountEl = document.getElementById('cart-discount');
-            const deliveryEl = document.getElementById('cart-delivery');
-            const totalEl = document.getElementById('cart-total');
-            const progressBar = document.getElementById('delivery-progress-bar');
-            const progressText = document.getElementById('delivery-status-text');
-            const progressPct = document.getElementById('delivery-progress-pct');
+            const countBadge = document.getElementById('cartCountBadge');
+            const listEl = document.getElementById('cartItemsList');
+            const totalEl = document.getElementById('cartTotalPrice');
 
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            badge.textContent = totalItems;
+            const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+            countBadge.textContent = totalItems;
+            totalEl.textContent = `₹${totalPrice.toLocaleString('en-IN')}`;
 
             if (cart.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 text-gray-400"><i class="fa-solid fa-basket-shopping text-4xl mb-3"></i><p>Your cart is empty.</p></div>`;
-            } else {
-                container.innerHTML = cart.map(item => `
-                    <div class="py-4 flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl border border-gray-100">
-                            <div>
-                                <h4 class="font-bold text-sm text-[#023047] line-clamp-1">${item.name}</h4>
-                                <span class="text-xs text-gray-500">₹${item.price} each</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="updateQuantity(${item.id}, -1)" class="w-7 h-7 rounded-lg bg-gray-100 text-gray-700 font-bold hover:bg-gray-200 transition">-</button>
-                            <span class="text-sm font-bold w-5 text-center">${item.qty}</span>
-                            <button onclick="updateQuantity(${item.id}, 1)" class="w-7 h-7 rounded-lg bg-[#00796B] text-white font-bold hover:bg-[#023047] transition">+</button>
-                        </div>
+                listEl.innerHTML = `
+                    <div class="text-center py-12 text-slate-400">
+                        <p class="text-sm font-semibold">Your Alphatails cart is empty.</p>
+                        <p class="text-xs mt-1">Add Dog Food, Deworming tablets, or Accessories!</p>
                     </div>
-                `).join('');
+                `;
+                return;
             }
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            subtotalEl.textContent = `₹${subtotal}`;
+            listEl.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                    <div class="flex-1">
+                        <h4 class="text-xs font-extrabold text-[#023047]">${item.name}</h4>
+                        <p class="text-xs font-bold text-[#00796B] mt-0.5">₹${item.price} each</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 font-bold text-xs">-</button>
+                        <span class="text-xs font-extrabold w-4 text-center">${item.qty}</span>
+                        <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 font-bold text-xs">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-            let discount = discountActive ? subtotal * 0.20 : 0;
-            if (discountActive) {
-                discountRow.classList.remove('hidden');
-                discountEl.textContent = `-₹${Math.round(discount)}`;
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            const isHidden = drawer.classList.contains('translate-x-full');
+            if (isHidden) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
             } else {
-                discountRow.classList.add('hidden');
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('hidden');
             }
+        }
 
-            let delivery = subtotal >= 999 || subtotal === 0 ? 0 : 99;
-            deliveryEl.textContent = delivery === 0 ? 'FREE' : `₹${delivery}`;
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showToast("Please add at least one pet product first!");
+                return;
+            }
+            cart = [];
+            updateCartUI();
+            toggleCartDrawer();
+            showToast("Order confirmed! Your Alphatails pharmacy items will arrive in 90 mins.");
+        }
 
-            let total = subtotal - discount + delivery;
-            totalEl.textContent = `₹${Math.round(total)}`;
+        // Grooming & Boarding Tab Switcher
+        function switchSpaTab(tab) {
+            const groomingPanel = document.getElementById('groomingPanel');
+            const boardingPanel = document.getElementById('boardingPanel');
+            const groomingBtn = document.getElementById('tabGroomingBtn');
+            const boardingBtn = document.getElementById('tabBoardingBtn');
 
-            // Free Delivery progress calculations
-            const freeDeliveryGoal = 999;
-            const progress = Math.min(100, (subtotal / freeDeliveryGoal) * 100);
-            progressBar.style.width = `${progress}%`;
-            progressPct.textContent = `${Math.round(progress)}%`;
-
-            if (subtotal >= freeDeliveryGoal) {
-                progressText.innerHTML = `<span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check"></i> You unlocked FREE Delivery!</span>`;
+            if (tab === 'grooming') {
+                groomingPanel.classList.remove('hidden');
+                groomingPanel.classList.add('grid');
+                boardingPanel.classList.add('hidden');
+                boardingPanel.classList.remove('grid');
+                groomingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition";
+                boardingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold text-[#023047] hover:text-[#00796B] transition";
             } else {
-                const diff = freeDeliveryGoal - subtotal;
-                progressText.textContent = `Add ₹${diff} more for FREE delivery!`;
+                boardingPanel.classList.remove('hidden');
+                boardingPanel.classList.add('grid');
+                groomingPanel.classList.add('hidden');
+                groomingPanel.classList.remove('grid');
+                boardingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition";
+                groomingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold text-[#023047] hover:text-[#00796B] transition";
             }
+        }
+
+        // Booking Modal Controls
+        function openBookingModal(serviceName) {
+            const modal = document.getElementById('bookingModal');
+            const select = document.getElementById('bookingServiceInput');
+            const modeSelect = document.getElementById('visitModeInput');
+
+            // Match or add custom option
+            let found = false;
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === serviceName) {
+                    select.selectedIndex = i;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found && serviceName) {
+                const opt = document.createElement('option');
+                opt.value = serviceName;
+                opt.textContent = serviceName;
+                select.appendChild(opt);
+                select.value = serviceName;
+            }
+
+            if (serviceName && serviceName.toLowerCase().includes('home')) {
+                modeSelect.value = "At-Home Doorstep Visit";
+            } else {
+                modeSelect.value = "Alphatails Clinic Visit";
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function submitBookingForm(e) {
+            e.preventDefault();
+            const service = document.getElementById('bookingServiceInput').value;
+            const name = document.getElementById('parentNameInput').value;
+            const mode = document.getElementById('visitModeInput').value;
+            closeBookingModal();
+            showToast(`Thank you, ${name}! Your ${service} (${mode}) is booked with Alphatails.`);
+            e.target.reset();
+        }
+
+        // Article & Clinic Info Modal
+        function openArticleModal(title, author, content) {
+            document.getElementById('infoModalTag').textContent = `BY ${author.toUpperCase()}`;
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalBody').textContent = content;
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function openClinicModal() {
+            document.getElementById('infoModalTag').textContent = '15+ ALPHATAILS CLINICS OPEN 24/7';
+            document.getElementById('infoModalTitle').textContent = 'Find Your Nearest Alphatails Pet Hospital';
+            document.getElementById('infoModalBody').textContent = 'Our flagship 24/7 Veterinary Hospitals & Grooming Spas are equipped with digital X-ray, in-house pathology, and pastel cat/dog zones. Book online for 0-minute wait times or request a Vet at Home anywhere in the city for ₹399.';
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
+            const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
 
-        function checkout() {
-            if (cart.length === 0) {
-                alert("Your cart is empty. Please add items before checking out.");
-                return;
-            }
-            alert("Redirecting to secure payment gateway. Thank you for shopping with Vetic!");
-            cart = [];
-            updateCartUI();
-            toggleCart();
+        function showToast(message) {
+            const banner = document.getElementById('toastBanner');
+            const text = document.getElementById('toastMessage');
+            text.textContent = message;
+            banner.classList.remove('hidden');
+            banner.classList.add('flex');
+            setTimeout(() => {
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+            }, 4200);
         }
 
-        // Initialize Shop Catalog on load
-        window.onload = () => {
-            renderProducts(products);
+        // Set default date to today & initialize shop
+        window.onload = function () {
+            const dateInput = document.getElementById('dateInput');
+            if (dateInput) {
+                dateInput.valueAsDate = new Date();
+            }
+            renderProducts('all');
+            updateCartUI();
         };
     </script>
 </body>
