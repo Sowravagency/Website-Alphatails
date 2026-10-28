@@ -965,18 +965,14 @@ Contact : +91 86392 15804
     </section>
 
  <!-- ==========================================
-     FOOTER
-     - Background colour: bg-[#023047]
-     - Height control: py-8 (top/bottom padding) & min-h-[320px]
-     - Outer Width control: w-full (change to w-[95%] mx-auto if you want side margins)
+     FULL-WIDTH EDGE-TO-EDGE FOOTER
 =========================================== -->
-<footer class="bg-[#023047] text-white py-8 min-h-[320px] w-full px-4 sm:px-6 lg:px-12 mt-16">
+<footer class="w-screen relative left-1/2 -translate-x-1/2 bg-[#023047] text-white py-12 mt-16">
     
-    <!-- Inner Content Width control: max-w-7xl (change to max-w-5xl for narrower or max-w-[1440px] for wider) -->
-    <div class="max-w-20xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Inner container keeps the text neatly aligned with the rest of your website -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
         
-        <!-- Inner Height control: change pb-8 to adjust space above the bottom line -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-8 border-b border-slate-700/70">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b border-slate-700/70">
 
             <!-- Col 1: Brand Info -->
             <div class="lg:col-span-2 space-y-4">
@@ -1007,30 +1003,30 @@ Contact : +91 86392 15804
                 </ul>
             </div>
 
-            <!-- Col 3: Popular Services -->
+            <!-- Col 3: Popular Services (Added text-left so buttons don't center-align) -->
             <div>
                 <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Top Services</h4>
                 <ul class="space-y-2.5 text-sm text-slate-300">
-                    <li><button onclick="openBookingModal('Consultation (50% Off)')" class="hover:text-white transition">Clinic Consultation (50% Off)</button></li>
-                    <li><button onclick="openBookingModal('Vet at Home (₹399)')" class="hover:text-white transition">Vet at Home (₹399)</button></li>
-                    <li><button onclick="openBookingModal('Vaccine at Home (₹399)')" class="hover:text-white transition">Vaccine at Home (₹399)</button></li>
-                    <li><button onclick="openBookingModal('Diagnostics At Home')" class="hover:text-white transition">Diagnostics At Home (NEW)</button></li>
-                    <li><button onclick="openBookingModal('Hygienic Grooming')" class="hover:text-white transition">Stress-Free Grooming</button></li>
+                    <li><button onclick="openBookingModal('Consultation (50% Off)')" class="text-left hover:text-white transition">Clinic Consultation (50% Off)</button></li>
+                    <li><button onclick="openBookingModal('Vet at Home (₹399)')" class="text-left hover:text-white transition">Vet at Home (₹399)</button></li>
+                    <li><button onclick="openBookingModal('Vaccine at Home (₹399)')" class="text-left hover:text-white transition">Vaccine at Home (₹399)</button></li>
+                    <li><button onclick="openBookingModal('Diagnostics At Home')" class="text-left hover:text-white transition">Diagnostics At Home (NEW)</button></li>
+                    <li><button onclick="openBookingModal('Hygienic Grooming')" class="text-left hover:text-white transition">Stress-Free Grooming</button></li>
                 </ul>
             </div>
 
-            <!-- Col 4: Contact & Hours -->
+            <!-- Col 4: Contact & Hours (Added whitespace-nowrap so phone stays on 1 line) -->
             <div>
                 <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Clinic Helpline</h4>
-                <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-4">+91 86392 15804</a>
-                <p class="text-xs text-slate-300 mb-3">alphatails.clinic@gmail.com</p>
+                <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-4 whitespace-nowrap">+91 86392 15804</a>
+                <p class="text-xs text-slate-300 mb-4 break-all">alphatails.clinic@gmail.com</p>
                 <button onclick="openBookingModal('Emergency / Instant Callback')" class="w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
                     Request Instant Callback
                 </button>
             </div>
         </div>
 
-        <!-- Bottom Bar Height control: change pt-6 to adjust space above copyright -->
+        <!-- Bottom Copyright Bar -->
         <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
             <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
             <div class="flex gap-6">
