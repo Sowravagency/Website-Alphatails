@@ -170,7 +170,7 @@ function addToCart(productId) {
     if (existing) {
         existing.qty += 1;
     } else {
-        cart.push({ id: product.id, name: product.name, price: product.price, image: product.image qty: 1 });
+        cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
     }
     updateCartUI();
     showToast(`Added "${product.name}" to your Alphatails cart!`);
@@ -196,6 +196,7 @@ function updateCartUI() {
 
     countBadge.textContent = totalItems;
     
+    // Hide the badge when cart is empty, show it when items are added
     if (totalItems === 0) {
         countBadge.classList.add('hidden');
         countBadge.classList.remove('flex');
@@ -216,22 +217,6 @@ function updateCartUI() {
         return;
     }
 
-    // Added the image tag layout here
-    listEl.innerHTML = cart.map(item => `
-        <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
-            <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover shrink-0">
-            <div class="flex-1 min-w-0">
-                <h4 class="text-xs font-extrabold text-[#023047] truncate">${item.name}</h4>
-                <p class="text-xs font-bold text-[#00796B] mt-0.5">₹${item.price} each</p>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-                <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 font-bold text-xs">-</button>
-                <span class="text-xs font-extrabold w-4 text-center">${item.qty}</span>
-                <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 font-bold text-xs">+</button>
-            </div>
-        </div>
-    `).join('');
-}
     listEl.innerHTML = cart.map(item => `
         <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
             <div class="flex-1">
