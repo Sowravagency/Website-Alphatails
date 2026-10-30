@@ -385,5 +385,4 @@ window.onload = function () {
 const SUPABASE_URL = 'sb_publishable_8n4rTGUoDs3etTrkv6Kryg_9um_ZLDy';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmdXZkc2h4cnZmemR3aXJ2Z254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjMwNDksImV4cCI6MjEwODkzOTA0OX0.Wa5o87LrUVOnbSSuRsULyvbbfgZC-nB00xK8IK-0juY';
 
-const { createClient } = supabase;
-const _supabase = createClient(sb_publishable_8n4rTGUoDs3etTrkv6Kryg_9um_ZLDy , eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmdXZkc2h4cnZmemR3aXJ2Z254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjMwNDksImV4cCI6MjEwODkzOTA0OX0.Wa5o87LrUVOnbSSuRsULyvbbfgZC-nB00xK8IK-0juY);
+
