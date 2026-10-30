@@ -196,7 +196,6 @@ function updateCartUI() {
 
     countBadge.textContent = totalItems;
     
-    // Hide the badge when cart is empty, show it when items are added
     if (totalItems === 0) {
         countBadge.classList.add('hidden');
         countBadge.classList.remove('flex');
@@ -216,8 +215,8 @@ function updateCartUI() {
         `;
         return;
     }
-    
-// Added the image tag layout here
+
+    // Added the image tag layout here
     listEl.innerHTML = cart.map(item => `
         <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
             <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover shrink-0">
@@ -233,7 +232,6 @@ function updateCartUI() {
         </div>
     `).join('');
 }
-
     listEl.innerHTML = cart.map(item => `
         <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
             <div class="flex-1">
