@@ -1,0 +1,38 @@
+body {
+    color: #023047;
+    background-color: #FFFFFF;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Smooth image zoom inside bento cards */
+.bento-card:hover .bento-img {
+    transform: scale(1.05);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00796B;
+    border-radius: 9999px;
+}
+
+/* Service Tile Hover Effects */
+.service-tile {
+    background-color: #F7FBFC;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-tile:hover {
+    background-color: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(0, 121, 107, 0.15);
+    border-color: #B2DFDB;
+}
