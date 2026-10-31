@@ -1,0 +1,101 @@
+/* =========================================================
+   ALPHATAILS BOOKING PAGE STYLES
+   ========================================================= */
+:root {
+    --primary-teal: #00796B;
+    --primary-teal-dark: #005b4f;
+    --section-aqua: #E0F7FA;
+    --heading-navy: #023047;
+    --bg-white: #FFFFFF;
+}
+
+/* Booking Card Structure */
+.booking-card {
+    background-color: var(--bg-white);
+    border-radius: 1.5rem;
+    border: 1px solid #eef2f6;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(2, 48, 71, 0.05);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 121, 107, 0.12);
+}
+
+.card-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.card-body {
+    padding: 1.25rem 1.5rem;
+}
+
+/* Subcategory List Items */
+.sub-group {
+    margin-bottom: 0.75rem;
+}
+
+.sub-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--heading-navy);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.5px;
+}
+
+.sub-item {
+    display: flex;
+    align-items: center;
+    justify-content: between;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    background-color: #f8fafc;
+    border: 1px solid #f1f5f9;
+    margin-bottom: 0.35rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.sub-item:hover {
+    background-color: var(--section-aqua);
+    border-color: #b2ebf2;
+    transform: translateX(2px);
+}
+
+.sub-item span:first-child {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--heading-navy);
+}
+
+.price-tag {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--primary-teal);
+    background: #e0f2f1;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    margin-left: auto;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-teal);
+}
