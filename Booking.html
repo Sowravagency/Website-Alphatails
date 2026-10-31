@@ -182,7 +182,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <!-- 1. DEWORMING -->
-            <div class="booking-card lg:col-span-2 md:col-span-2">
+            <div class="booking-card lg:col-span-1.5 md:col-span-2">
                 <div class="card-header bg-[#E0F2F1] text-[#00796B]">
                     <i class="fa-solid fa-capsules text-2xl"></i>
                     <div>
@@ -190,8 +190,8 @@
                         <p class="text-xs text-slate-500">Targeted parasite control</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="sub-group">
+                <div class="card-body grid grid-cold-1 md:grid-cols-2 gap-3 max-h-(480px) overflow-y-auto custom-scrollbar">
+                    <!-- Dog -->
                         <h4 class="sub-title">🐶 Dog</h4>
                         <div class="sub-item mb-2" onclick="openBookingModal('Deworming - Dog : Puppy', 149)">
                             <span>Puppy</span><span class="price-tag">₹149/-</span>
@@ -200,6 +200,7 @@
                             <span>Adult</span><span class="price-tag">₹199/-</span>
                         </div>
                     </div>
+                    <!-- cat -->
                     <div class="sub-group mt-2">
                         <h4 class="sub-title">🐱 Cat</h4>
                         <div class="sub-item mb-2" onclick="openBookingModal('Deworming - Cat : Kitten', 149)">
@@ -213,7 +214,7 @@
             </div>
 
             <!-- 2. CONSULTING -->
-            <div class="booking-card lg:col-span-1 md:col-span-2">
+            <div class="booking-card lg:col-span-1.5 md:col-span-2">
                 <div class="card-header bg-[#E1F5FE] text-sky-700">
                     <i class="fa-solid fa-user-doctor text-2xl"></i>
                     <div>
