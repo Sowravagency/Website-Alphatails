@@ -15,8 +15,12 @@
     
     <!-- Custom External CSS -->
     <link rel="stylesheet" href="Style.css">
-        <!-- Supabase CDN Script -->
-    <script src="https://dqhhrqbtyffvhzochsod.supabase.co"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
 
 </head>
 <body class="antialiased selection:bg-[#00796B] selection:text-white">
