@@ -113,7 +113,7 @@
             <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">About Us</a>
             <a href="#blog" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Blog</a>
             <div class="pt-2">
-                <a href="Booking.html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md transition">
+                <a href=".html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md transition">
     Book Appointment Now
 </a>
             </div>
@@ -131,7 +131,7 @@
                 <div class="grid grid-cols-3 gap-3 sm:gap-4 h-full">
                     
                     <!-- Card 1: Consultation (50% Off) -->
-                    <button onclick="openBookingModal('Consultation (50% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <button onclick="openModal('Consultation (50% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D1F2EB] text-[#00796B] tracking-tight">
                             50% Off
                         </span>
@@ -145,7 +145,7 @@
                     </button>
 
                     <!-- Card 2: Grooming -->
-                    <button onclick="openBookingModal('Hygienic Pet Grooming')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <button onclick="openModal('Hygienic Pet Grooming')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold opacity-0 select-none">
                             Spacer
                         </span>
@@ -162,7 +162,7 @@
                     </button>
 
                     <!-- Card 3: Vaccination (10% Off) -->
-                    <button onclick="openBookingModal('Pet Vaccination (10% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <button onclick="openModal('Pet Vaccination (10% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             10% Off
                         </span>
@@ -180,7 +180,7 @@
                     </button>
 
                     <!-- Card 4: Vet at Home (₹399) -->
-                    <button onclick="openBookingModal('Vet at Home Visit (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <button onclick="openModal('Vet at Home Visit (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             ₹399
                         </span>
@@ -220,7 +220,7 @@
                     </button>
 
                     <!-- Card 7: Diagnostics At Home (NEW) -->
-                    <button onclick="openBookingModal('Diagnostics & Blood Test At Home')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <button onclick="openModal('Diagnostics & Blood Test At Home')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-[#B45309] tracking-tight">
                             NEW
                         </span>
@@ -233,7 +233,7 @@
                     </button>
 
                     <!-- Card 8: Vaccine at Home (₹399) -->
-                    <button onclick="openBookingModal('Vaccine at Home (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <button onclick="openModal('Vaccine at Home (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             ₹399
                         </span>
@@ -285,7 +285,7 @@
                     </div>
 
                     <!-- Top-Right Card -->
-                    <div onclick="openBookingModal('Hygienic Grooming & Styling')" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
+                    <div onclick="openModal('Hygienic Grooming & Styling')" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
                         <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=900&q=80" 
                              onerror="this.src='https://placehold.co/600x450/00796B/FFFFFF?text=Hygienic+Grooming'"
                              alt="Hygienic Dog Grooming" 
@@ -956,18 +956,18 @@
     =========================================== -->
     <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#023047]/60 backdrop-blur-sm p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E0F7FA] relative animate-fadeIn">
-            <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">
                 ✕
             </button>
 
             <div class="flex items-center gap-2.5 mb-2">
                 <span class="w-8 h-8 rounded-xl bg-[#00796B] text-white flex items-center justify-center text-sm font-bold">🐾</span>
-                <span class="text-xs font-extrabold uppercase tracking-wider text-[#00796B]">ALPHATAILS INSTANT BOOKING</span>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-[#00796B]">ALPHATAILS INSTANT </span>
             </div>
             <h3 class="text-2xl font-extrabold text-[#023047] mb-1">Book Your Pet's Visit</h3>
             <p class="text-xs sm:text-sm text-slate-500 mb-5">Zero waiting time at our clinics & punctual 60-minute doorstep visits.</p>
 
-            <form id="bookingForm" onsubmit="submitBookingForm(event)" class="space-y-4">
+            <form id="bookingForm" onsubmit="submitBookingForm(event)" ...> class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Selected Service</label>
                     <select id="bookingServiceInput" class="w-full px-4 py-3 rounded-xl bg-[#E0F7FA]/50 border border-[#00796B]/30 text-[#023047] font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
