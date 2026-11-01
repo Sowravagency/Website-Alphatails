@@ -111,13 +111,11 @@
 }
 /* Booking.css / Custom Styles */
 
-/* 1. General Joyful Background */
-body.joyful-theme {
-    background-color: #FFFBF6; /* A soft cream color instead of slate-50 */
-    background-image: 
-        radial-gradient(at 10% 10%, rgba(0, 121, 107, 0.05) 0px, transparent 50%),
-        radial-gradient(at 90% 90%, rgba(216, 27, 96, 0.05) 0px, transparent 50%);
-    /* Subtle background radial props */
+//* Universal 2-Column Grid Layout */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal side-by-side columns */
+    gap: 12px;                             /* Space between grid items */
 }
 
 /* 2. Softer Card Styling */
