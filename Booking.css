@@ -52,22 +52,25 @@
 
 .sub-item {
     display: flex;
-    align-items: center;
-    justify-content: between;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.75rem;
-    background-color: #f8fafc;
-    border: 1px solid #f1f5f9;
-    margin-bottom: 0.35rem;
+    flex-direction: column;         /* Stack content vertically inside each small card */
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #F8FAFC;
+    border-radius: 16px !important;
+    border: 2px solid #f1f5f9 !important;
+    transition: all 0.2s ease;
+    padding: 1rem !important;
+    margin-bottom: 0 !important;    /* Remove bottom margin since grid 'gap' handles spacing */
+    min-height: 90px;
     cursor: pointer;
-    transition: all 0.15s ease;
 }
 
 .sub-item:hover {
-    background-color: var(--section-aqua);
-    border-color: #b2ebf2;
-    transform: translateX(2px);
+    border-color: #00796B !important;
+    background-color: #E0F7FA;
+    transform: translateY(-2px);    /* Slight lift on hover */
 }
+
 
 .sub-item span:first-child {
     font-size: 0.85rem;
@@ -82,7 +85,8 @@
     background: #e0f2f1;
     padding: 0.15rem 0.5rem;
     border-radius: 6px;
-    margin-left: auto;
+    margin-left: auto;              /* Pushes price to the right */
+    margin-top: 8px;
 }
 
 /* Custom Scrollbar */
