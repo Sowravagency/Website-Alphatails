@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -15,13 +15,13 @@
     
     <!-- Custom External CSS -->
     <link rel="stylesheet" href="Style.css">
-     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
-  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-</script>
-
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
 </head>
 <body class="antialiased selection:bg-[#00796B] selection:text-white">
 
@@ -33,15 +33,16 @@
                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#00796B] text-white">FIRST50</span>
             </div>
             <div class="hidden md:flex items-center gap-6 text-slate-200 font-medium">
-                <a href="tel:1800-257-8245" class="hover:text-[#E0F7FA] flex items-center gap-1.5 transition">
+                <a href="tel:+918639215804" class="hover:text-[#E0F7FA] flex items-center gap-1.5 transition">
                     <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     Contact : +91 86392 15804
                 </a>
-                <section hidden>
-                <button onclick="openClinicModal()" class="hover:text-[#E0F7FA] flex items-center gap-1 transition">
-                    <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Locate Nearest Clinic
-                </button>
+                <div hidden>
+                    <button onclick="openClinicModal()" class="hover:text-[#E0F7FA] flex items-center gap-1 transition">
+                        <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Locate Nearest Clinic
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -73,11 +74,10 @@
                     Grooming & Consultation
                     <span class="px-1.5 py-0.5 text-[10px] font-bold bg-[#FCE4EC] text-[#AD1457] rounded-full">Spa</span>
                 </a>
-                <a href="#veterinarians" <section hidden> class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Veterinarians</a>
+                <a href="#veterinarians" hidden class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Veterinarians</a>
                 <a href="Shop.html" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Shop</a>
                 <a href="#about" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">About Us</a>
-                <section hidden>
-                <a href="#blog" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Blog</a>
+                <a href="#blog" hidden class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Blog</a>
             </nav>
 
             <!-- Action Buttons -->
@@ -91,11 +91,10 @@
                 </button>
 
                 <!-- Book Appointment CTA -->
-                <!-- Book Appointment CTA -->
-<a href="Booking.html" class="hidden sm:inline-flex items-center gap-2 bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold text-sm px-5 py-3 rounded-xl shadow-md shadow-[#00796B]/20 transition transform active:scale-95">
-    <span>Book Appointment</span>
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-</a>
+                <a href="Booking.html" class="hidden sm:inline-flex items-center gap-2 bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold text-sm px-5 py-3 rounded-xl shadow-md shadow-[#00796B]/20 transition transform active:scale-95">
+                    <span>Book Appointment</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
 
                 <!-- Mobile Menu Button -->
                 <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl border border-slate-200 text-[#023047] hover:bg-slate-50">
@@ -113,9 +112,9 @@
             <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">About Us</a>
             <a href="#blog" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Blog</a>
             <div class="pt-2">
-                <a href=".html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md transition">
-    Book Appointment Now
-</a>
+                <a href="Booking.html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md transition">
+                    Book Appointment Now
+                </a>
             </div>
         </div>
     </header>
@@ -344,9 +343,9 @@
 
             </div>
         </div>
-        <section hidden>
-        <!-- Quick Trust Bar Underneath Hero -->
-        <div class="mt-8 bg-[#E0F7FA] rounded-2xl p-4 sm:p-5 border border-[#00796B]/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+
+        <!-- Quick Trust Bar Underneath Hero (Properly closed hidden wrapper) -->
+        <div hidden class="mt-8 bg-[#E0F7FA] rounded-2xl p-4 sm:p-5 border border-[#00796B]/10 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
@@ -387,12 +386,11 @@
     </section>
 
     <!-- ==========================================
-         GROOMING & BOARDING SECTION
+         GROOMING & BOARDING SECTION (Properly closed)
     =========================================== -->
-    <section id="grooming-boarding" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="grooming-boarding" hidden class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
-                <section hidden>
                 <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-[#FCE4EC] text-[#AD1457] mb-3">
                     ✨ SPA & STAYCATION AT ALPHATAILS
                 </span>
@@ -403,7 +401,6 @@
                     Designed with calming pastel suites, organic sulphate-free shampoos, and 24/7 veterinary supervision so your pet feels pampered and safe.
                 </p>
             </div>
-            <section hidden>
             <div class="inline-flex p-1.5 rounded-2xl bg-[#E0F7FA] self-start">
                 <button id="tabGroomingBtn" onclick="switchSpaTab('grooming')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition">
                     ✂️ Grooming Packages
@@ -413,7 +410,7 @@
                 </button>
             </div>
         </div>
-        <section hidden>
+
         <div id="groomingPanel" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="rounded-3xl p-6 sm:p-7 bg-[#FCE4EC]/55 border border-[#F8BBD0] flex flex-col justify-between hover:shadow-lg transition">
                 <div>
@@ -608,9 +605,9 @@
                         Book Dr. Anudeep
                     </button>
                 </div>
-                <section hidden>
-                <!-- Vet 2 -->
-                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
+
+                <!-- Vet 2 (Properly closed hidden attribute) -->
+                <div hidden class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
                     <div>
                         <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
                             <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80" 
@@ -633,9 +630,9 @@
                         Book Dr. Meera
                     </button>
                 </div>
-                <section hidden>
-                <!-- Vet 3 -->
-                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
+
+                <!-- Vet 3 (Properly closed hidden attribute) -->
+                <div hidden class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
                     <div>
                         <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
                             <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" 
@@ -658,9 +655,9 @@
                         Book Dr. Rohan
                     </button>
                 </div>
-                <section hidden>
-                <!-- Vet 4 -->
-                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
+
+                <!-- Vet 4 (Properly closed hidden attribute) -->
+                <div hidden class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
                     <div>
                         <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
                             <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" 
@@ -713,7 +710,7 @@
             </div>
         </div>
 
-        <!-- Product Grid (Populated dynamically via script.js) -->
+        <!-- Product Grid (Populated dynamically via Script.js) -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
     </section>
 
@@ -724,7 +721,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div class="lg:col-span-6 space-y-6">
-                    <section hidden>
                     <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#00796B] text-white uppercase tracking-wider">
                         ABOUT ALPHATAILS CLINICS
                     </span>
@@ -734,7 +730,6 @@
                     <p class="text-slate-600 leading-relaxed">
                         At <strong>Alphatails Veterinary Clinic</strong>, we believe every tail wag and purr deserves hospital-grade medical care in a warm, stress-free neighborhood environment. Whether it's a routine vaccination at home for ₹399 or complex 24/7 emergency care, our clinics are built around your pet's comfort.
                     </p>
-                    <section hidden>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
                             <div class="w-9 h-9 rounded-xl bg-[#E8F5E9] text-[#00796B] flex items-center justify-center font-bold mb-2">1</div>
@@ -758,7 +753,6 @@
                         </div>
                     </div>
                 </div>
-                <section hidden>
                 <div class="lg:col-span-6 grid grid-cols-2 gap-4">
                     <div class="space-y-4">
                         <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=700&q=80" 
@@ -788,10 +782,9 @@
     <!-- ==========================================
          BLOG & PET PARENT GUIDES SECTION
     =========================================== -->
-    <section id="blog" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section hidden id="blog" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
-                <section hidden>
                 <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#E0F7FA] text-[#00796B] uppercase tracking-wider mb-3">
                     ALPHATAILS JOURNAL
                 </span>
@@ -799,11 +792,9 @@
                     Expert Pet Care Guides & Blog
                 </h2>
             </div>
-            <section hidden>
             <p class="text-sm text-slate-500">Written and peer-reviewed by Alphatails Veterinarians</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <section hidden>
             <!-- Blog 1 -->
             <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
                 <div>
@@ -829,7 +820,7 @@
                     </button>
                 </div>
             </article>
-            <section hidden>
+
             <!-- Blog 2 -->
             <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
                 <div>
@@ -855,7 +846,7 @@
                     </button>
                 </div>
             </article>
-            <section hidden>
+
             <!-- Blog 3 -->
             <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
                 <div>
@@ -887,7 +878,7 @@
     <!-- ==========================================
          FULL-WIDTH EDGE-TO-EDGE FOOTER
     =========================================== -->
-    <footer class="w-screen relative left-1/2 -translate-x-1/2 bg-[#023047] text-white py-12 -mt-14 -mb-[120px]">
+    <footer class="w-screen relative left-1/2 -translate-x-1/2 bg-[#023047] text-white py-12 mt-8">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b border-slate-700/70">
 
@@ -937,15 +928,16 @@
                     <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Clinic Helpline</h4>
                     <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-4 whitespace-nowrap">+91 86392 15804</a>
                     <a href="mailto:alphatails.clinic@gmail.com">alphatails.clinic@gmail.com</a>
-                    <section hidden>
-                    <button onclick="openBookingModal('Emergency / Instant Callback')" class="w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
-                        Request Instant Callback
-                    </button>
+                    <div hidden>
+                        <button onclick="openBookingModal('Emergency / Instant Callback')" class="w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
+                            Request Instant Callback
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <!-- Bottom Copyright Bar -->
-            <div class="pt-2 flex flex-col items-center justify-center text-center text-m text-slate-400 gap-2">
+            <div class="pt-6 flex flex-col items-center justify-center text-center text-sm text-slate-400 gap-2">
                 <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
             </div>
         </div>
@@ -967,7 +959,7 @@
             <h3 class="text-2xl font-extrabold text-[#023047] mb-1">Book Your Pet's Visit</h3>
             <p class="text-xs sm:text-sm text-slate-500 mb-5">Zero waiting time at our clinics & punctual 60-minute doorstep visits.</p>
 
-            <form id="bookingForm" onsubmit="submitBookingForm(event)" ...> class="space-y-4">
+            <form id="bookingForm" onsubmit="submitBookingForm(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Selected Service</label>
                     <select id="bookingServiceInput" class="w-full px-4 py-3 rounded-xl bg-[#E0F7FA]/50 border border-[#00796B]/30 text-[#023047] font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
@@ -1066,7 +1058,7 @@
         </div>
 
         <div id="cartItemsList" class="p-6 flex-1 overflow-y-auto space-y-4">
-            <!-- Populated by script.js -->
+            <!-- Populated by Script.js -->
         </div>
 
         <div class="p-6 bg-[#E0F7FA]/60 border-t border-[#E0F7FA]">
@@ -1088,5 +1080,6 @@
 
     <!-- External JavaScript -->
     <script src="Script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
