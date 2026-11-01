@@ -9,9 +9,9 @@
     --bg-white: #FFFFFF;
 }
 
-/* Category Filter Pills */
+/* Main Category Filter Pills */
 .cat-btn {
-    padding: 0.625rem 1.1rem;
+    padding: 0.625rem 1.15rem;
     border-radius: 9999px;
     font-size: 0.84rem;
     font-weight: 700;
@@ -31,6 +31,31 @@
     background-color: var(--primary-teal);
     color: var(--bg-white);
     box-shadow: 0 4px 12px rgba(0, 121, 107, 0.22);
+}
+
+/* Pet Stage Sub-Filter Pills */
+.sub-filter-btn {
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background-color: #ffffff;
+    color: var(--heading-navy);
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.sub-filter-btn:hover {
+    border-color: var(--primary-teal);
+    color: var(--primary-teal);
+}
+
+.sub-filter-btn.active {
+    background-color: var(--section-aqua);
+    color: var(--primary-teal);
+    border-color: var(--primary-teal);
+    font-weight: 800;
 }
 
 /* Product Card Styling */
