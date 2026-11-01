@@ -1,1 +1,71 @@
+/* =========================================================
+   ALPHATAILS SHOP & PHARMACY STYLES
+   ========================================================= */
+:root {
+    --primary-teal: #00796B;
+    --primary-teal-dark: #005b4f;
+    --section-aqua: #E0F7FA;
+    --heading-navy: #023047;
+    --bg-white: #FFFFFF;
+}
+
+/* Category Filter Pills */
+.cat-btn {
+    padding: 0.625rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background-color: #f1f5f9;
+    color: var(--heading-navy);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cat-btn:hover {
+    background-color: var(--section-aqua);
+}
+
+.cat-btn.active {
+    background-color: var(--primary-teal);
+    color: var(--bg-white);
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.2);
+}
+
+/* Product Card Hover & Transitions */
+.shop-product-card {
+    background-color: var(--bg-white);
+    border-radius: 1.5rem;
+    border: 1px solid #f1f5f9;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(2, 48, 71, 0.04);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.shop-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 121, 107, 0.12);
+    border-color: #b2ebf2;
+}
+
+/* Custom Scrollbar for Cart Drawer */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-teal);
+}
 
