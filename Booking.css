@@ -8,6 +8,12 @@
     --heading-navy: #023047;
     --bg-white: #FFFFFF;
 }
+/* Container for the grid layout */
+.vaccine-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal side-by-side columns */
+    gap: 12px;                             /* Space between grid items */
+}
 
 /* Booking Card Structure */
 .booking-card {
@@ -164,10 +170,4 @@ body.joyful-theme {
 .sub-item:hover {
     border-color: #00796B !important;
     background-color: #E0F7FA;
-}
-/* Container for the grid layout */
-.vaccine-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal side-by-side columns */
-    gap: 12px;                             /* Space between grid items */
 }
