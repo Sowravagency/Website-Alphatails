@@ -425,10 +425,60 @@
     </div>
 
     <!-- Full-Width Footer -->
-    <footer class="w-full bg-[#023047] text-white py-12 mt-12">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center text-xs text-slate-400 space-y-2">
-            <p>© 2026 Alphatails Veterinary Clinic & Spa. All rights reserved.</p>
-            <p class="text-slate-500">Designed for seamless pet care appointments.</p>
+    <footer class="w-full bg-[#023047] text-white py-12 mt-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b border-slate-700/70">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00796B] flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <span class="text-2xl font-extrabold tracking-tight text-white">Alpha<span class="text-[#E0F7FA]">tails</span></span>
+                    </div>
+                    <p class="text-sm text-slate-300 max-w-sm leading-relaxed">
+                        Your neighborhood's favorite pet hospital, hygienic grooming studio, and everyday pet pharmacy. Dedicated to compassionate, affordable veterinary care.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li><a href="index.html#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="index.html#veterinarians" class="hover:text-white transition">Our Veterinarians</a></li>
+                        <li><a href="index.html#grooming" class="hover:text-white transition">Grooming & Boarding</a></li>
+                        <li><a href="shop.html" class="hover:text-white transition">Pet Shop & Pharmacy</a></li>
+                        <li><a href="index.html#about" class="hover:text-white transition">About Alphatails</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Shop Categories</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-300">
+                        <li><button onclick="setCategory('food', document.querySelectorAll('.cat-btn')[1])" class="text-left hover:text-white transition">Dog & Cat Nutrition</button></li>
+                        <li><button onclick="setCategory('health', document.querySelectorAll('.cat-btn')[2])" class="text-left hover:text-white transition">Tick & Flea Care</button></li>
+                        <li><button onclick="setCategory('grooming', document.querySelectorAll('.cat-btn')[3])" class="text-left hover:text-white transition">Medicated Shampoos</button></li>
+                        <li><button onclick="setCategory('accessories', document.querySelectorAll('.cat-btn')[4])" class="text-left hover:text-white transition">Harnesses & Beds</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Clinic Helpline</h4>
+                    <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-3 whitespace-nowrap">+91 86392 15804</a>
+                    <p class="text-xs text-slate-300 mb-4 break-all">alphatails.clinic@gmail.com</p>
+                    <a href="index.html#home" class="block text-center w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
+                        Book Clinic Visit
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-center text-center text-xs text-slate-400 gap-6">
+                <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#privacy" class="hover:text-white">Privacy Policy</a>
+                    <a href="#terms" class="hover:text-white">Terms of Service</a>
+                    <a href="#ethics" class="hover:text-white">Veterinary Ethics Charter</a>
+                </div>
+            </div>
         </div>
     </footer>
 
