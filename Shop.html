@@ -54,9 +54,11 @@
 
             <!-- Right Actions: Cart & Appointment -->
             <div class="flex items-center gap-3">
-                <button onclick="toggleCartDrawer(true)" class="relative w-11 h-11 rounded-2xl bg-[#E0F7FA] hover:bg-[#b2ebf2] text-[#00796B] flex items-center justify-center transition">
-                    <i class="fa-solid fa-bag-shopping text-lg"></i>
-                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#023047] text-white text-[11px] font-extrabold flex items-center justify-center">0</span>
+                <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-[#E0F7FA] text-[#00796B] hover:bg-[#00796B] hover:text-white transition" aria-label="Shopping Cart">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cartCountBadge" class="hidden absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#023047] text-white text-[11px] font-bold items-center justify-center">0</span>
                 </button>
                 <a href="index.html#home" class="hidden sm:inline-flex items-center gap-2 bg-[#00796B] hover:bg-[#005b4f] text-white text-xs sm:text-sm font-bold px-5 py-3 rounded-full shadow-md transition">
                     <span>Book Appointment</span>
