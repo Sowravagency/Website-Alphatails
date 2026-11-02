@@ -174,5 +174,30 @@ document.getElementById("sortSelect").addEventListener("change", e => {
   renderProducts();
 });
 
+// Mobile Menu Toggle Logic
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const menuIconOpen = document.getElementById("menuIconOpen");
+const menuIconClose = document.getElementById("menuIconClose");
+
+if (mobileMenuBtn && mobileMenu) {
+  mobileMenuBtn.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    mobileMenuBtn.setAttribute("aria-expanded", isOpen);
+    menuIconOpen.classList.toggle("hidden", isOpen);
+    menuIconClose.classList.toggle("hidden", !isOpen);
+  });
+
+  // Close mobile menu automatically when a link is clicked
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      mobileMenuBtn.setAttribute("aria-expanded", "false");
+      menuIconOpen.classList.remove("hidden");
+      menuIconClose.classList.add("hidden");
+    });
+  });
+}
+
 // Initial Render
 renderProducts();
