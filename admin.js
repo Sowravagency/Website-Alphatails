@@ -61,7 +61,6 @@ function confirmPostpone() {
     
     if (activeTargetBookingRow) {
         const dateCell = activeTargetBookingRow.querySelector('td:nth-child(4)');
-        // Format date cleanly
         const formattedDate = new Date(newDateVal).toLocaleString('en-IN', { 
             day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' 
         });
@@ -106,7 +105,6 @@ function handleSubCategory1Change() {
     const sub1Val = document.getElementById('sub-category-1').value;
     const sub2Container = document.getElementById('sub-cat-container-2');
 
-    // If Dry food and Dog are selected, reveal the breed selector as requested
     if (mainCat === 'Dry food' && sub1Val === 'dog') {
         sub2Container.style.display = 'flex';
     } else {
@@ -130,7 +128,6 @@ function handleInventorySubmit(event) {
     const subCat2 = document.getElementById('sub-category-2').value;
     const image = document.getElementById('prod-image').value || '';
 
-    // Create item record object
     const newItem = {
         id: Date.now(),
         name,
@@ -141,15 +138,13 @@ function handleInventorySubmit(event) {
         price: parseFloat(price),
         mainCat,
         subCat1,
-        subCat2: (mainCat === 'Dry food' && subCat1 === 'dog') ? subCat2 : '',
+        subCat2: (mainCat === 'Dry food' && sub1Val === 'dog') ? subCat2 : '',
         image
     };
 
-    // Push into inventory array & update local storage for immediate shop sync
     inventoryList.unshift(newItem);
     localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
 
-    // Reset Form & Refresh Views
     document.getElementById('inventory-form').reset();
     document.getElementById('sub-cat-container-2').style.display = 'none';
     
@@ -189,7 +184,6 @@ function renderInventory() {
     });
 }
 
-// Delete Item Function
 function deleteInventoryItem(id) {
     if (confirm('Are you sure you want to remove this item from inventory and the shop?')) {
         inventoryList = inventoryList.filter(item => item.id !== id);
@@ -241,7 +235,6 @@ function filterShop(category, btnElement) {
     renderLiveShop(category);
 }
 
-// Dashboard statistics counter helper
 function updateDashboardStats() {
     document.getElementById('stat-inventory').innerText = inventoryList.length;
     const pendingCount = document.querySelectorAll('#bookings-table-body .badge.pending').length;
