@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clinic Admin Portal (Private)</title>
-  <link rel="stylesheet" href="Admin.css">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
@@ -131,9 +131,9 @@
             </div>
           </div>
 
-          <!-- Conditional Breed Selector (Dry Food -> Dog/Puppy) -->
+          <!-- Conditional Breed Size Dropdown (Only for Dry Food -> Dog) -->
           <div id="breed-container" class="input-group hidden">
-            <label>Breed Size (Dog Dry Food) *</label>
+            <label>Dog Breed Size *</label>
             <select id="p-breed">
               <option value="">-- Select Breed Size --</option>
               <option value="Small">Small</option>
@@ -152,6 +152,7 @@
                   <option value="g">g</option>
                   <option value="ml">ml</option>
                   <option value="liters">liters</option>
+                  <option value="units">units</option>
                 </select>
               </div>
             </div>
@@ -200,10 +201,8 @@
     </section>
 
   </main>
-  <!-- Add Supabase SDK before admin.js -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="admin.js"></script>
-</body>
-  <script src="Admin.js"></script>
 </body>
 </html>
