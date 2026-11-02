@@ -1,6 +1,5 @@
-// 1. INITIALIZE SUPABASE
-const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
+const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const CATEGORY_RULES = {
@@ -29,29 +28,16 @@ function switchAdminTab(tabName) {
   if (tabName === "inventory") buttons[1].classList.add("active");
 }
 
-/* ==========================================
-   SUPABASE REALTIME LISTENER (ADMIN)
-   ========================================== */
 function subscribeToRealtimeAdmin() {
   db.channel("admin-sync")
-    .on("postgres_changes", { event: "*", schema: "public", table: "clinic_bookings" }, () => {
-      fetchBookings();
-    })
-    .on("postgres_changes", { event: "*", schema: "public", table: "clinic_inventory" }, () => {
-      fetchInventory();
-    })
+    .on("postgres_changes", { event: "*", schema: "public", table: "clinic_bookings" }, () => fetchBookings())
+    .on("postgres_changes", { event: "*", schema: "public", table: "clinic_inventory" }, () => fetchInventory())
     .subscribe();
 }
 
-/* ==========================================
-   BOOKINGS (SUPABASE CRUD)
-   ========================================== */
+/* BOOKINGS CRUD */
 async function fetchBookings() {
-  const { data, error } = await db
-    .from("clinic_bookings")
-    .select("*")
-    .order("created_at", { ascending: false });
-
+  const { data, error } = await db.from("clinic_bookings").select("*").order("created_at", { ascending: false });
   if (!error && data) {
     bookings = data;
     renderBookings();
@@ -64,7 +50,6 @@ function toggleNewBookingForm() {
 
 async function addBooking(e) {
   e.preventDefault();
-
   const newBooking = {
     booking_code: "BK-" + Math.floor(100 + Math.random() * 900),
     owner: document.getElementById("b-owner").value.trim(),
@@ -76,22 +61,15 @@ async function addBooking(e) {
   };
 
   const { error } = await db.from("clinic_bookings").insert([newBooking]);
-  if (error) {
-    alert("Error saving booking: " + error.message);
-    return;
+  if (!error) {
+    e.target.reset();
+    toggleNewBookingForm();
+    fetchBookings();
   }
-
-  e.target.reset();
-  toggleNewBookingForm();
-  fetchBookings();
 }
 
 async function updateBookingStatus(id, newStatus) {
-  const { error } = await db
-    .from("clinic_bookings")
-    .update({ status: newStatus })
-    .eq("id", id);
-
+  const { error } = await db.from("clinic_bookings").update({ status: newStatus }).eq("id", id);
   if (!error) fetchBookings();
 }
 
@@ -106,22 +84,16 @@ async function confirmPostponeDate(id) {
     alert("Please select a new date.");
     return;
   }
-
-  const { error } = await db
-    .from("clinic_bookings")
-    .update({
-      appointment_date: dateInput.value,
-      status: "Postponed"
-    })
-    .eq("id", id);
-
+  const { error } = await db.from("clinic_bookings").update({
+    appointment_date: dateInput.value,
+    status: "Postponed"
+  }).eq("id", id);
   if (!error) fetchBookings();
 }
 
 function renderBookings() {
   const tbody = document.getElementById("bookings-list");
   tbody.innerHTML = "";
-
   bookings.forEach(b => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -152,21 +124,7 @@ function renderBookings() {
   });
 }
 
-/* ==========================================
-   INVENTORY (SUPABASE CRUD)
-   ========================================== */
-async function fetchInventory() {
-  const { data, error } = await db
-    .from("clinic_inventory")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  if (!error && data) {
-    inventory = data;
-    renderInventory();
-  }
-}
-
+/* INVENTORY CRUD & RULES */
 function updateSubCategories() {
   const mainCat = document.getElementById("p-category").value;
   const subCatSelect = document.getElementById("p-subcategory");
@@ -199,6 +157,14 @@ function checkBreedRequirement() {
   }
 }
 
+async function fetchInventory() {
+  const { data, error } = await db.from("clinic_inventory").select("*").order("created_at", { ascending: false });
+  if (!error && data) {
+    inventory = data;
+    renderInventory();
+  }
+}
+
 async function handleAddProduct(e) {
   e.preventDefault();
   const sizeVal = document.getElementById("p-size-val").value;
@@ -225,11 +191,9 @@ async function handleAddProduct(e) {
 
   e.target.reset();
   document.getElementById("breed-container").classList.add("hidden");
-
   const toast = document.getElementById("upload-toast");
   toast.classList.remove("hidden");
   setTimeout(() => toast.classList.add("hidden"), 3000);
-
   fetchInventory();
 }
 
@@ -266,4 +230,3 @@ function renderInventory() {
     tbody.appendChild(tr);
   });
 }
-9
