@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Pet Accessories | AlphaTails</title>
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body class="pet-pattern-bg">
+
+  <!-- HEADER (Match with AlphaTails Home Page) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🐾</div>
+        <div class="logo-text">
+          <span class="brand-title">ALPHATAILS</span>
+          <span class="brand-subtitle">Pet Care & Accessories</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services & Grooming</a>
+        <a href="shop.html" class="nav-link active">Shop</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="cartBtn" class="cart-btn" aria-label="Cart">
+          <svg class="cart-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+          <span id="cartCount" class="cart-badge">0</span>
+        </button>
+        <a href="contact.html" class="btn-primary header-cta">Book Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SHOP HERO & FILTER BAR -->
+  <section class="container shop-top-section">
+    <div class="shop-hero-banner">
+      <div class="hero-content">
+        <span class="hero-pill">AlphaTails Official Store</span>
+        <h1>Pet Accessories & Essentials</h1>
+        <p>Explore durable harnesses, grooming essentials, interactive toys, cozy beds, and everyday feeding bowls crafted for happy pets.</p>
+      </div>
+      <div class="hero-search">
+        <input type="text" id="searchInput" placeholder="Search harnesses, toys, bowls...">
+        <span class="search-icon">🔍</span>
+      </div>
+    </div>
+
+    <!-- Category Filter Pills & Sort -->
+    <div class="filter-bar">
+      <div class="category-pills" id="categoryFilters">
+        <button data-cat="all" class="filter-btn active">All Items</button>
+        <button data-cat="Accessories" class="filter-btn">Collars & Harnesses</button>
+        <button data-cat="Grooming" class="filter-btn">Grooming & Care</button>
+        <button data-cat="Toys" class="filter-btn">Interactive Toys</button>
+        <button data-cat="Bedding" class="filter-btn">Beds & Bowls</button>
+      </div>
+
+      <div class="sort-wrapper">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect">
+          <option value="featured">Featured</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <main class="container shop-main">
+    <div id="productGrid" class="product-grid">
+      <!-- Products injected dynamically via shop.js -->
+    </div>
+  </main>
+
+  <!-- FOOTER (Match with AlphaTails Home Page) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="logo-icon small">🐾</div>
+          <span>ALPHATAILS</span>
+        </div>
+        <p class="footer-desc">
+          Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services & Grooming</a></li>
+          <li><a href="shop.html" class="active-footer-link">AlphaTails Shop</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop Categories</h3>
+        <ul>
+          <li><a href="#productGrid">Tactical & Padded Harnesses</a></li>
+          <li><a href="#productGrid">Grooming & Tick Shampoos</a></li>
+          <li><a href="#productGrid">Stainless Steel Feeders</a></li>
+          <li><a href="#productGrid">Chew Toys & Cat Scratchers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Get In Touch</h3>
+        <p>📍 India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ support@alphatails.in</p>
+        <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 AlphaTails. All rights reserved.</p>
+      <p>Built for Happy Pets & Pet Parents</p>
+    </div>
+  </footer>
+
+  <script src="shop.js"></script>
+</body>
+</html>
