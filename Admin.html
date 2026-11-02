@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clinic Admin & Shop Panel</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Clinic Admin Portal (Private)</title>
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-  <!-- Top Navigation -->
   <header class="topbar">
     <div class="brand">
       <span class="brand-dot"></span>
-      <h1>Clinic & Pet Store Manager</h1>
+      <h1>Clinic Admin Portal</h1>
+      <span class="private-badge">PRIVATE URL</span>
     </div>
     <nav class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('bookings')">Bookings</button>
-      <button class="tab-btn" onclick="switchTab('inventory')">Inventory Manager</button>
-      <button class="tab-btn shop-tab" onclick="switchTab('shop')">Live Shop Page <span id="shop-count" class="badge">0</span></button>
+      <button class="tab-btn active" onclick="switchAdminTab('bookings')">Bookings</button>
+      <button class="tab-btn" onclick="switchAdminTab('inventory')">Inventory Manager</button>
+      <a href="shop.html" target="_blank" class="external-shop-link">Open Public Shop URL ↗</a>
     </nav>
   </header>
 
   <main class="container">
 
-    <!-- SECTION 1: BOOKINGS PANEL -->
+    <!-- BOOKINGS PANEL -->
     <section id="bookings-section" class="panel active">
       <div class="panel-header">
         <div>
           <h2>Appointment Bookings</h2>
-          <p>Confirm, reject, or reschedule customer appointments.</p>
+          <p>Confirm, reject, or postpone customer appointments.</p>
         </div>
-        <button class="btn-secondary" onclick="toggleNewBookingForm()">+ Add Walk-in / Demo Booking</button>
+        <button class="btn-secondary" onclick="toggleNewBookingForm()">+ Add Walk-in Booking</button>
       </div>
 
-      <!-- Quick Form to Add a Booking for Testing -->
       <form id="new-booking-form" class="card hidden" onsubmit="addBooking(event)">
         <h3>New Appointment</h3>
         <div class="form-grid">
@@ -63,9 +62,7 @@
             <input type="time" id="b-time" required>
           </div>
         </div>
-        <div class="form-actions">
-          <button type="submit" class="btn-primary">Save Booking</button>
-        </div>
+        <button type="submit" class="btn-primary">Save Booking</button>
       </form>
 
       <div class="table-card">
@@ -80,26 +77,23 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="bookings-list">
-            <!-- Populated by JS -->
-          </tbody>
+          <tbody id="bookings-list"></tbody>
         </table>
       </div>
     </section>
 
-    <!-- SECTION 2: INVENTORY PANEL -->
+    <!-- INVENTORY PANEL -->
     <section id="inventory-section" class="panel">
       <div class="panel-header">
         <div>
-          <h2>Add & Manage Inventory</h2>
-          <p>Items added here immediately publish to the Live Shop Page.</p>
+          <h2>Inventory Upload & Stock</h2>
+          <p>Uploading an item here immediately publishes it to <strong>shop.html</strong>.</p>
         </div>
       </div>
 
       <div class="inventory-layout">
-        <!-- Add Product Form -->
         <form id="inventory-form" class="card" onsubmit="handleAddProduct(event)">
-          <h3>Upload New Item</h3>
+          <h3>Upload Product to Shop</h3>
 
           <div class="input-group">
             <label>Product Name *</label>
@@ -112,8 +106,8 @@
               <input type="text" id="p-sku" required placeholder="e.g., RC-DOG-001">
             </div>
             <div class="input-group">
-              <label>Company / Brand Name *</label>
-              <input type="text" id="p-company" required placeholder="e.g., Royal Canin, Drools, Hatvet">
+              <label>Company Name *</label>
+              <input type="text" id="p-company" required placeholder="e.g., Royal Canin">
             </div>
           </div>
 
@@ -130,21 +124,21 @@
             </div>
 
             <div class="input-group">
-              <label>Sub Category (Pet Type) *</label>
+              <label>Sub Category *</label>
               <select id="p-subcategory" required onchange="checkBreedRequirement()">
                 <option value="">-- Select Category First --</option>
               </select>
             </div>
           </div>
 
-          <!-- Conditional Breed Size Dropdown (Only for Dry Food -> Dog/Puppy) -->
+          <!-- Conditional Breed Selector (Dry Food -> Dog/Puppy) -->
           <div id="breed-container" class="input-group hidden">
-            <label>Dog Breed Size *</label>
+            <label>Breed Size (Dog Dry Food) *</label>
             <select id="p-breed">
               <option value="">-- Select Breed Size --</option>
-              <option value="Small Breed">Small</option>
-              <option value="Medium Breed">Medium</option>
-              <option value="Large Breed">Large</option>
+              <option value="Small">Small</option>
+              <option value="Medium">Medium</option>
+              <option value="Large">Large</option>
             </select>
           </div>
 
@@ -152,13 +146,12 @@
             <div class="input-group">
               <label>Package Size *</label>
               <div class="combo-input">
-                <input type="number" id="p-size-val" step="0.01" min="0.01" required placeholder="e.g., 1.5">
+                <input type="number" id="p-size-val" step="0.01" min="0.01" required placeholder="1.5">
                 <select id="p-size-unit">
                   <option value="kg">kg</option>
                   <option value="g">g</option>
                   <option value="ml">ml</option>
-                  <option value="Liters">Liters</option>
-                  <option value="Pack">Pack / Units</option>
+                  <option value="liters">liters</option>
                 </select>
               </div>
             </div>
@@ -171,75 +164,43 @@
 
           <div class="form-row">
             <div class="input-group">
-              <label>MRP Price (₹) *</label>
-              <input type="number" id="p-price" min="1" required placeholder="e.g., 850">
+              <label>Price (₹) *</label>
+              <input type="number" id="p-price" min="1" required placeholder="850">
             </div>
             <div class="input-group">
-              <label>Stock Quantity *</label>
+              <label>Stock Qty *</label>
               <input type="number" id="p-stock" min="1" value="10" required>
             </div>
           </div>
 
-          <button type="submit" class="btn-primary full-width">Upload to Shop & Inventory</button>
+          <button type="submit" class="btn-primary full-width">Publish to Shop</button>
+          <p id="upload-toast" class="toast-msg hidden">✔ Product published to Shop Page!</p>
         </form>
 
-        <!-- Current Inventory Table -->
         <div class="table-card">
           <div class="card-subheader">
-            <h3>Current Stock List</h3>
+            <h3>Live Inventory (<span id="inv-count">0</span> items)</h3>
           </div>
           <table class="data-table">
             <thead>
               <tr>
                 <th>SKU</th>
-                <th>Product & Brand</th>
+                <th>Product & Company</th>
                 <th>Category</th>
-                <th>Pack Size</th>
+                <th>Size</th>
                 <th>Expiry</th>
                 <th>Price</th>
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody id="inventory-table-body">
-              <!-- Populated by JS -->
-            </tbody>
+            <tbody id="inventory-table-body"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: LIVE SHOP PAGE -->
-    <section id="shop-section" class="panel">
-      <div class="panel-header">
-        <div>
-          <h2>Customer Live Shop View</h2>
-          <p>Real-time storefront synced directly with your inventory uploads.</p>
-        </div>
-        <div class="shop-filters">
-          <select id="filter-category" onchange="renderShop()">
-            <option value="ALL">All Categories</option>
-            <option value="Dry Food">Dry Food</option>
-            <option value="Medicines">Medicines</option>
-            <option value="Gravy">Gravy</option>
-            <option value="Gravies">Gravies</option>
-          </select>
-          <select id="filter-pet" onchange="renderShop()">
-            <option value="ALL">All Pets</option>
-            <option value="Dog">Dog</option>
-            <option value="Cat">Cat</option>
-            <option value="Puppy">Puppy</option>
-            <option value="Kitten">Kitten</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="shop-grid" class="shop-grid">
-        <!-- Populated immediately by JS -->
-      </div>
-    </section>
-
   </main>
 
-  <script src="script.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>
