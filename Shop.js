@@ -382,8 +382,8 @@ window.onload = function () {
 
 // --- Paste this at the very bottom of your Script.js file ---
 
-const SUPABASE_URL = 'sb_publishable_8n4rTGUoDs3etTrkv6Kryg_9um_ZLDy';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmdXZkc2h4cnZmemR3aXJ2Z254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjMwNDksImV4cCI6MjEwODkzOTA0OX0.Wa5o87LrUVOnbSSuRsULyvbbfgZC-nB00xK8IK-0juY';
+const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
 
 const { createClient } = supabase;
 const _supabase = createClient(sb_publishable_8n4rTGUoDs3etTrkv6Kryg_9um_ZLDy , eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmdXZkc2h4cnZmemR3aXJ2Z254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjMwNDksImV4cCI6MjEwODkzOTA0OX0.Wa5o87LrUVOnbSSuRsULyvbbfgZC-nB00xK8IK-0juY);
