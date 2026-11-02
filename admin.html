@@ -1,208 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clinic Admin Portal (Private)</title>
-  <link rel="stylesheet" href="admin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Tails - Clinic Admin & Shop Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-dot"></span>
-      <h1>Clinic Admin Portal</h1>
-      <span class="private-badge">PRIVATE URL</span>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <div class="brand-box">
+            <h2><i class="fa-solid-paw fa-paw"></i> Alpha Tails</h2>
+            <p>Clinic & Shop Manager</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="switchTab('dashboard-tab', event)"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="#" onclick="switchTab('bookings-tab', event)"><i class="fa-solid fa-calendar-check"></i> Bookings</a></li>
+            <li><a href="#" onclick="switchTab('inventory-tab', event)"><i class="fa-solid fa-boxes-stacked"></i> Inventory & Items</a></li>
+            <li><a href="#" onclick="switchTab('shop-tab', event)"><i class="fa-solid fa-store"></i> Live Shop Preview</a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <h1 id="page-title">Dashboard Overview</h1>
+            <div class="owner-profile">
+                <span>Dr. Owner (Alpha Tails)</span>
+                <div class="avatar"><i class="fa-solid fa-user-doctor"></i></div>
+            </div>
+        </header>
+
+        <!-- TAB 1: DASHBOARD -->
+        <section id="dashboard-tab" class="tab-section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Pending Bookings</h3>
+                    <p id="stat-pending">2</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Inventory Items</h3>
+                    <p id="stat-inventory">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Categories</h3>
+                    <p>4 Core Types</p>
+                </div>
+            </div>
+            <div class="welcome-banner">
+                <h2>Welcome back to Alpha Tails Admin!</h2>
+                <p>Manage your appointments easily and upload stock items that instantly publish to the customer-facing shop front.</p>
+            </div>
+        </section>
+
+        <!-- TAB 2: BOOKINGS -->
+        <section id="bookings-tab" class="tab-section">
+            <div class="section-header">
+                <h2>Appointment & Consultation Bookings</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Pet Owner</th>
+                            <th>Service / Pet Type</th>
+                            <th>Date & Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-table-body">
+                        <!-- Dynamic Booking Rows -->
+                        <tr>
+                            <td>#BK-901</td>
+                            <td>Rahul Sharma</td>
+                            <td>Dog Dry Food Consultation / Puppy</td>
+                            <td>05 Nov 2026, 10:30 AM</td>
+                            <td><span class="badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn-confirm" onclick="updateBooking(this, 'Confirmed')">Confirm</button>
+                                <button class="btn-postpone" onclick="openPostponeModal(this)">Postpone</button>
+                                <button class="btn-reject" onclick="updateBooking(this, 'Rejected')">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BK-902</td>
+                            <td>Ananya Reddy</td>
+                            <td>Cat Medicine Checkup</td>
+                            <td>06 Nov 2026, 02:00 PM</td>
+                            <td><span class="badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn-confirm" onclick="updateBooking(this, 'Confirmed')">Confirm</button>
+                                <button class="btn-postpone" onclick="openPostponeModal(this)">Postpone</button>
+                                <button class="btn-reject" onclick="updateBooking(this, 'Rejected')">Reject</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB 3: INVENTORY & SHOP UPLOAD -->
+        <section id="inventory-tab" class="tab-section">
+            <div class="section-header">
+                <h2>Add Product & Manage Inventory</h2>
+                <p>Items added here will immediately reflect on the Live Shop page.</p>
+            </div>
+
+            <div class="form-card">
+                <form id="inventory-form" onsubmit="handleInventorySubmit(event)">
+                    <div class="form-grid">
+                        
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="prod-name" placeholder="e.g., Royal Canin Starter" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Product SKU</label>
+                            <input type="text" id="prod-sku" placeholder="e.g., SKU-DRY-001" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" id="prod-company" placeholder="e.g., Mars Petcare" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="date" id="prod-expiry" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Package Size Value & Unit</label>
+                            <div class="inline-inputs">
+                                <input type="number" id="prod-size-num" placeholder="e.g. 3" step="0.1" required>
+                                <select id="prod-size-unit" required>
+                                    <option value="kg">kg</option>
+                                    <option value="g">g</option>
+                                    <option value="ml">ml</option>
+                                    <option value="liters">liters</option>
+                                    <option value="pcs">pcs</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Price (₹)</label>
+                            <input type="number" id="prod-price" placeholder="e.g., 1200" required>
+                        </div>
+
+                        <!-- Main Category Selection -->
+                        <div class="form-group">
+                            <label>Main Category</label>
+                            <select id="main-category" onchange="handleMainCategoryChange()" required>
+                                <option value="">--Select Category--</option>
+                                <option value="Dry food">Dry food</option>
+                                <option value="medicines">Medicines</option>
+                                <option value="Gravy">Gravy</option>
+                                <option value="Gravies">Gravies</option>
+                            </select>
+                        </div>
+
+                        <!-- Dynamic Sub-Category Container -->
+                        <div class="form-group" id="sub-cat-container-1">
+                            <label>Sub Category</label>
+                            <select id="sub-category-1" onchange="handleSubCategory1Change()">
+                                <option value="">--Select Main Category First--</option>
+                            </select>
+                        </div>
+
+                        <!-- Secondary Dynamic Sub-Category (e.g. Breed for Dog Dry Food) -->
+                        <div class="form-group" id="sub-cat-container-2" style="display: none;">
+                            <label>Dog Breed Size</label>
+                            <select id="sub-category-2">
+                                <option value="">--Select Breed Size--</option>
+                                <option value="Small">Small Breed</option>
+                                <option value="Medium">Medium Breed</option>
+                                <option value="Large">Large Breed</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Product Image URL (Optional)</label>
+                        <input type="url" id="prod-image" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <button type="submit" class="btn-submit"><i class="fa-solid fa-cloud-arrow-up"></i> Save & Publish to Shop</button>
+                </form>
+            </div>
+
+            <!-- Current Stock Table -->
+            <div class="section-header" style="margin-top: 40px;">
+                <h2>Current Stock Inventory List</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Category</th>
+                            <th>Size</th>
+                            <th>Expiry</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-table-body">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TAB 4: LIVE SHOP PAGE -->
+        <section id="shop-tab" class="tab-section">
+            <div class="shop-hero">
+                <h2>Alpha Tails Pet Store</h2>
+                <p>Browse fresh items uploaded directly from the clinic inventory system.</p>
+            </div>
+
+            <div class="shop-filter-bar">
+                <button class="filter-btn active" onclick="filterShop('all', this)">All Items</button>
+                <button class="filter-btn" onclick="filterShop('Dry food', this)">Dry Food</button>
+                <button class="filter-btn" onclick="filterShop('medicines', this)">Medicines</button>
+                <button class="filter-btn" onclick="filterShop('Gravy', this)">Gravy</button>
+                <button class="filter-btn" onclick="filterShop('Gravies', this)">Gravies</button>
+            </div>
+
+            <div class="shop-grid" id="live-shop-grid">
+                <!-- Dynamically rendered products -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- POSTPONE CALENDAR MODAL -->
+    <div id="postpone-modal" class="modal">
+        <div class="modal-content">
+            <h3>Postpone Booking</h3>
+            <p>Select a new date and time for this appointment:</p>
+            <input type="datetime-local" id="new-postpone-date" class="modal-input">
+            <div class="modal-buttons">
+                <button class="btn-confirm" onclick="confirmPostpone()">Confirm New Date</button>
+                <button class="btn-reject" onclick="closePostponeModal()">Cancel</button>
+            </div>
+        </div>
     </div>
-    <nav class="nav-tabs">
-      <button class="tab-btn active" onclick="switchAdminTab('bookings')">Bookings</button>
-      <button class="tab-btn" onclick="switchAdminTab('inventory')">Inventory Manager</button>
-      <a href="shop.html" target="_blank" class="external-shop-link">Open Public Shop URL ↗</a>
-    </nav>
-  </header>
 
-  <main class="container">
-
-    <!-- BOOKINGS PANEL -->
-    <section id="bookings-section" class="panel active">
-      <div class="panel-header">
-        <div>
-          <h2>Appointment Bookings</h2>
-          <p>Confirm, reject, or postpone customer appointments.</p>
-        </div>
-        <button class="btn-secondary" onclick="toggleNewBookingForm()">+ Add Walk-in Booking</button>
-      </div>
-
-      <form id="new-booking-form" class="card hidden" onsubmit="addBooking(event)">
-        <h3>New Appointment</h3>
-        <div class="form-grid">
-          <div class="input-group">
-            <label>Pet Parent Name</label>
-            <input type="text" id="b-owner" required placeholder="e.g., Ramesh Kumar">
-          </div>
-          <div class="input-group">
-            <label>Pet Name & Type</label>
-            <input type="text" id="b-pet" required placeholder="e.g., Bruno (Dog)">
-          </div>
-          <div class="input-group">
-            <label>Service</label>
-            <select id="b-service" required>
-              <option value="General Consultation">General Consultation</option>
-              <option value="Full Grooming & Bath">Full Grooming & Bath</option>
-              <option value="Vaccination">Vaccination</option>
-              <option value="Tick & Flea Treatment">Tick & Flea Treatment</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label>Preferred Date</label>
-            <input type="date" id="b-date" required>
-          </div>
-          <div class="input-group">
-            <label>Time Slot</label>
-            <input type="time" id="b-time" required>
-          </div>
-        </div>
-        <button type="submit" class="btn-primary">Save Booking</button>
-      </form>
-
-      <div class="table-card">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Booking ID</th>
-              <th>Customer & Pet</th>
-              <th>Service</th>
-              <th>Scheduled Date & Time</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="bookings-list"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- INVENTORY PANEL -->
-    <section id="inventory-section" class="panel">
-      <div class="panel-header">
-        <div>
-          <h2>Inventory Upload & Stock</h2>
-          <p>Uploading an item here immediately publishes it to <strong>shop.html</strong>.</p>
-        </div>
-      </div>
-
-      <div class="inventory-layout">
-        <form id="inventory-form" class="card" onsubmit="handleAddProduct(event)">
-          <h3>Upload Product to Shop</h3>
-
-          <div class="input-group">
-            <label>Product Name *</label>
-            <input type="text" id="p-name" required placeholder="e.g., Royal Canin Maxi Adult">
-          </div>
-
-          <div class="form-row">
-            <div class="input-group">
-              <label>Product SKU *</label>
-              <input type="text" id="p-sku" required placeholder="e.g., RC-DOG-001">
-            </div>
-            <div class="input-group">
-              <label>Company Name *</label>
-              <input type="text" id="p-company" required placeholder="e.g., Royal Canin">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="input-group">
-              <label>Main Category *</label>
-              <select id="p-category" required onchange="updateSubCategories()">
-                <option value="">-- Select Category --</option>
-                <option value="Dry Food">Dry Food</option>
-                <option value="Medicines">Medicines</option>
-                <option value="Gravy">Gravy</option>
-                <option value="Gravies">Gravies</option>
-              </select>
-            </div>
-
-            <div class="input-group">
-              <label>Sub Category *</label>
-              <select id="p-subcategory" required onchange="checkBreedRequirement()">
-                <option value="">-- Select Category First --</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Conditional Breed Size Dropdown (Only for Dry Food -> Dog) -->
-          <div id="breed-container" class="input-group hidden">
-            <label>Dog Breed Size *</label>
-            <select id="p-breed">
-              <option value="">-- Select Breed Size --</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <div class="input-group">
-              <label>Package Size *</label>
-              <div class="combo-input">
-                <input type="number" id="p-size-val" step="0.01" min="0.01" required placeholder="1.5">
-                <select id="p-size-unit">
-                  <option value="kg">kg</option>
-                  <option value="g">g</option>
-                  <option value="ml">ml</option>
-                  <option value="liters">liters</option>
-                  <option value="units">units</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="input-group">
-              <label>Expiry Date *</label>
-              <input type="date" id="p-expiry" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="input-group">
-              <label>Price (₹) *</label>
-              <input type="number" id="p-price" min="1" required placeholder="850">
-            </div>
-            <div class="input-group">
-              <label>Stock Qty *</label>
-              <input type="number" id="p-stock" min="1" value="10" required>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary full-width">Publish to Shop</button>
-          <p id="upload-toast" class="toast-msg hidden">✔ Product published to Shop Page!</p>
-        </form>
-
-        <div class="table-card">
-          <div class="card-subheader">
-            <h3>Live Inventory (<span id="inv-count">0</span> items)</h3>
-          </div>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>SKU</th>
-                <th>Product & Company</th>
-                <th>Category</th>
-                <th>Size</th>
-                <th>Expiry</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="inventory-table-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script src="https://xukjlwsidurvtxqouqvd.supabase.co"></script>
-  <script src="admin.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
