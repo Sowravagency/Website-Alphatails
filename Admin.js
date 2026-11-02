@@ -1,3 +1,8 @@
+// 1. INITIALIZE SUPABASE
+const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 const CATEGORY_RULES = {
   "Dry Food": ["Cat", "Dog", "Puppy", "Kitten"],
   "Medicines": ["Cat", "Dog"],
@@ -5,51 +10,13 @@ const CATEGORY_RULES = {
   "Gravies": ["Cat", "Dog", "Puppy", "Kitten"]
 };
 
-let bookings = JSON.parse(localStorage.getItem("clinic_bookings")) || [
-  {
-    id: "BK-101",
-    owner: "Karthik Rao",
-    pet: "Max (Golden Retriever)",
-    service: "Full Grooming & Bath",
-    date: "2026-11-05",
-    time: "11:00",
-    status: "Pending"
-  },
-  {
-    id: "BK-102",
-    owner: "Ananya Sharma",
-    pet: "Milo (Persian Cat)",
-    service: "Vaccination",
-    date: "2026-11-06",
-    time: "16:30",
-    status: "Confirmed"
-  }
-];
-
-let inventory = JSON.parse(localStorage.getItem("clinic_inventory")) || [
-  {
-    id: 1,
-    sku: "DR-DOG-101",
-    name: "Adult Chicken & Egg Maintenance",
-    company: "Drools",
-    category: "Dry Food",
-    subCategory: "Dog",
-    breed: "Medium",
-    size: "3 kg",
-    expiry: "2027-08-15",
-    price: 750,
-    stock: 15
-  }
-];
-
-// Save initial defaults if empty
-if (!localStorage.getItem("clinic_inventory")) {
-  localStorage.setItem("clinic_inventory", JSON.stringify(inventory));
-}
+let bookings = [];
+let inventory = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderBookings();
-  renderInventory();
+  fetchBookings();
+  fetchInventory();
+  subscribeToRealtimeAdmin();
 });
 
 function switchAdminTab(tabName) {
@@ -62,33 +29,70 @@ function switchAdminTab(tabName) {
   if (tabName === "inventory") buttons[1].classList.add("active");
 }
 
-/* BOOKINGS MANAGEMENT */
+/* ==========================================
+   SUPABASE REALTIME LISTENER (ADMIN)
+   ========================================== */
+function subscribeToRealtimeAdmin() {
+  db.channel("admin-sync")
+    .on("postgres_changes", { event: "*", schema: "public", table: "clinic_bookings" }, () => {
+      fetchBookings();
+    })
+    .on("postgres_changes", { event: "*", schema: "public", table: "clinic_inventory" }, () => {
+      fetchInventory();
+    })
+    .subscribe();
+}
+
+/* ==========================================
+   BOOKINGS (SUPABASE CRUD)
+   ========================================== */
+async function fetchBookings() {
+  const { data, error } = await db
+    .from("clinic_bookings")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (!error && data) {
+    bookings = data;
+    renderBookings();
+  }
+}
+
 function toggleNewBookingForm() {
   document.getElementById("new-booking-form").classList.toggle("hidden");
 }
 
-function addBooking(e) {
+async function addBooking(e) {
   e.preventDefault();
-  bookings.unshift({
-    id: "BK-" + Math.floor(100 + Math.random() * 900),
-    owner: document.getElementById("b-owner").value,
-    pet: document.getElementById("b-pet").value,
+
+  const newBooking = {
+    booking_code: "BK-" + Math.floor(100 + Math.random() * 900),
+    owner: document.getElementById("b-owner").value.trim(),
+    pet: document.getElementById("b-pet").value.trim(),
     service: document.getElementById("b-service").value,
-    date: document.getElementById("b-date").value,
-    time: document.getElementById("b-time").value,
+    appointment_date: document.getElementById("b-date").value,
+    appointment_time: document.getElementById("b-time").value,
     status: "Pending"
-  });
-  saveBookings();
+  };
+
+  const { error } = await db.from("clinic_bookings").insert([newBooking]);
+  if (error) {
+    alert("Error saving booking: " + error.message);
+    return;
+  }
+
   e.target.reset();
   toggleNewBookingForm();
+  fetchBookings();
 }
 
-function updateBookingStatus(id, newStatus) {
-  const bk = bookings.find(b => b.id === id);
-  if (bk) {
-    bk.status = newStatus;
-    saveBookings();
-  }
+async function updateBookingStatus(id, newStatus) {
+  const { error } = await db
+    .from("clinic_bookings")
+    .update({ status: newStatus })
+    .eq("id", id);
+
+  if (!error) fetchBookings();
 }
 
 function openPostponeCalendar(id) {
@@ -96,51 +100,51 @@ function openPostponeCalendar(id) {
   if (box) box.classList.toggle("hidden");
 }
 
-function confirmPostponeDate(id) {
+async function confirmPostponeDate(id) {
   const dateInput = document.getElementById(`new-date-${id}`);
   if (!dateInput.value) {
     alert("Please select a new date.");
     return;
   }
-  const bk = bookings.find(b => b.id === id);
-  if (bk) {
-    bk.date = dateInput.value;
-    bk.status = "Postponed";
-    saveBookings();
-  }
-}
 
-function saveBookings() {
-  localStorage.setItem("clinic_bookings", JSON.stringify(bookings));
-  renderBookings();
+  const { error } = await db
+    .from("clinic_bookings")
+    .update({
+      appointment_date: dateInput.value,
+      status: "Postponed"
+    })
+    .eq("id", id);
+
+  if (!error) fetchBookings();
 }
 
 function renderBookings() {
   const tbody = document.getElementById("bookings-list");
   tbody.innerHTML = "";
+
   bookings.forEach(b => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><strong>${b.id}</strong></td>
+      <td><strong>${b.booking_code}</strong></td>
       <td>
         <div><strong>${b.owner}</strong></div>
         <div style="font-size:12px; color:#64748b;">${b.pet}</div>
       </td>
       <td>${b.service}</td>
       <td>
-        <div><strong>${b.date}</strong></div>
-        <div style="font-size:12px; color:#64748b;">${b.time}</div>
+        <div><strong>${b.appointment_date}</strong></div>
+        <div style="font-size:12px; color:#64748b;">${b.appointment_time}</div>
       </td>
       <td><span class="status-pill status-${b.status}">${b.status}</span></td>
       <td>
         <div class="action-group">
-          <button class="btn-sm btn-confirm" onclick="updateBookingStatus('${b.id}', 'Confirmed')">Confirm</button>
-          <button class="btn-sm btn-reject" onclick="updateBookingStatus('${b.id}', 'Rejected')">Reject</button>
-          <button class="btn-sm btn-postpone" onclick="openPostponeCalendar('${b.id}')">Postpone</button>
+          <button class="btn-sm btn-confirm" onclick="updateBookingStatus(${b.id}, 'Confirmed')">Confirm</button>
+          <button class="btn-sm btn-reject" onclick="updateBookingStatus(${b.id}, 'Rejected')">Reject</button>
+          <button class="btn-sm btn-postpone" onclick="openPostponeCalendar(${b.id})">Postpone</button>
         </div>
         <div id="postpone-box-${b.id}" class="postpone-box hidden">
-          <input type="date" id="new-date-${b.id}" value="${b.date}">
-          <button class="btn-sm btn-confirm" onclick="confirmPostponeDate('${b.id}')">Save Date</button>
+          <input type="date" id="new-date-${b.id}" value="${b.appointment_date}">
+          <button class="btn-sm btn-confirm" onclick="confirmPostponeDate(${b.id})">Save Date</button>
         </div>
       </td>
     `;
@@ -148,7 +152,21 @@ function renderBookings() {
   });
 }
 
-/* INVENTORY MANAGEMENT */
+/* ==========================================
+   INVENTORY (SUPABASE CRUD)
+   ========================================== */
+async function fetchInventory() {
+  const { data, error } = await db
+    .from("clinic_inventory")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (!error && data) {
+    inventory = data;
+    renderInventory();
+  }
+}
+
 function updateSubCategories() {
   const mainCat = document.getElementById("p-category").value;
   const subCatSelect = document.getElementById("p-subcategory");
@@ -181,18 +199,17 @@ function checkBreedRequirement() {
   }
 }
 
-function handleAddProduct(e) {
+async function handleAddProduct(e) {
   e.preventDefault();
   const sizeVal = document.getElementById("p-size-val").value;
   const sizeUnit = document.getElementById("p-size-unit").value;
 
   const newProduct = {
-    id: Date.now(),
     name: document.getElementById("p-name").value.trim(),
     sku: document.getElementById("p-sku").value.trim().toUpperCase(),
     company: document.getElementById("p-company").value.trim(),
     category: document.getElementById("p-category").value,
-    subCategory: document.getElementById("p-subcategory").value,
+    sub_category: document.getElementById("p-subcategory").value,
     breed: document.getElementById("p-breed").value || "",
     size: `${sizeVal} ${sizeUnit}`,
     expiry: document.getElementById("p-expiry").value,
@@ -200,9 +217,11 @@ function handleAddProduct(e) {
     stock: Number(document.getElementById("p-stock").value)
   };
 
-  inventory.unshift(newProduct);
-  localStorage.setItem("clinic_inventory", JSON.stringify(inventory));
-  renderInventory();
+  const { error } = await db.from("clinic_inventory").insert([newProduct]);
+  if (error) {
+    alert("Upload failed: " + error.message);
+    return;
+  }
 
   e.target.reset();
   document.getElementById("breed-container").classList.add("hidden");
@@ -210,12 +229,13 @@ function handleAddProduct(e) {
   const toast = document.getElementById("upload-toast");
   toast.classList.remove("hidden");
   setTimeout(() => toast.classList.add("hidden"), 3000);
+
+  fetchInventory();
 }
 
-function deleteProduct(id) {
-  inventory = inventory.filter(item => item.id !== id);
-  localStorage.setItem("clinic_inventory", JSON.stringify(inventory));
-  renderInventory();
+async function deleteProduct(id) {
+  const { error } = await db.from("clinic_inventory").delete().eq("id", id);
+  if (!error) fetchInventory();
 }
 
 function renderInventory() {
@@ -234,7 +254,7 @@ function renderInventory() {
       </td>
       <td>
         <span class="tag">${item.category}</span>
-        <div style="font-size:12px; margin-top:4px;">${item.subCategory}${breedInfo}</div>
+        <div style="font-size:12px; margin-top:4px;">${item.sub_category}${breedInfo}</div>
       </td>
       <td>${item.size}</td>
       <td>${item.expiry}</td>
@@ -246,3 +266,4 @@ function renderInventory() {
     tbody.appendChild(tr);
   });
 }
+9
