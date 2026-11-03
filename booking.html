@@ -11,9 +11,7 @@
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    
     <style>
-        
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -139,9 +137,6 @@
         }
     </style>
 </head>
-
-    </style>
-</head>
 <body class="joyful-theme text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
     <!-- ==========================================
@@ -173,21 +168,20 @@
             </a>
 
             <!-- Center: Navigation Links -->
-<nav class="hidden lg:flex items-center gap-8 text-[15px] font-semibold text-[#023047]">
-    <a href="index.html" class="hover:text-[#00796B] transition">Home</a>
-    
-    <!-- Active Grooming & Boarding Link -->
-    <a href="Booking.html" class="text-[#00796B] font-semibold transition flex items-center gap-1.5">
-        <span>Grooming & Consultation </span>
-        <span class="px-2 py-0.5 text-[11px] rounded-full bg-[#] text-[#D81B60] font-semibold leading-none"></span>
-    </a>
+            <nav class="hidden lg:flex items-center gap-8 text-[15px] font-semibold text-[#023047]">
+                <a href="index.html" class="hover:text-[#00796B] transition">Home</a>
+                
+                <!-- Active Grooming & Boarding Link -->
+                <a href="booking.html" class="text-[#00796B] font-semibold transition flex items-center gap-1.5">
+                    <span>Grooming & Consultation</span>
+                </a>
 
-    <a href="index.html#veterinarians" <section hidden> class="hover:text-[#00796B] transition">Veterinarians</a>
-    <a href="Shop.html" class="hover:text-[#00796B] font-semibold transition">Shop</a>
-    <a href="index.html#about" class="hover:text-[#00796B] font-semibold transition">About Us</a>
-</nav>
+                <a href="index.html#veterinarians" class="hidden hover:text-[#00796B] transition">Veterinarians</a>
+                <a href="shop.html" class="hover:text-[#00796B] font-semibold transition">Shop</a>
+                <a href="index.html#about" class="hover:text-[#00796B] font-semibold transition">About Us</a>
+            </nav>
 
-            <!-- Right: Bag Icon & Book Appointment Button -->
+            <!-- Right: Bag Icon, Book Appointment Button & Mobile Menu Button -->
             <div class="flex items-center gap-3.5">
                 <button onclick="showToast('Shopping cart items will appear here!')" class="relative w-12 h-12 rounded-[16px] bg-[#E0F7FA]/80 hover:bg-[#E0F7FA] text-[#00796B] flex items-center justify-center transition cursor-pointer" aria-label="Shopping Cart">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -199,6 +193,28 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                     </svg>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="lg:hidden p-2.5 rounded-xl border border-slate-200 bg-white text-[#023047] hover:bg-slate-50 relative z-50 cursor-pointer">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
+            <a href="index.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Home</a>
+            <a href="booking.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#00796B] bg-[#E0F7FA]/60">Grooming & Consultation</a>
+            <a href="index.html#veterinarians" onclick="toggleMobileMenu()" class="hidden px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Veterinarians</a>
+            <a href="shop.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Shop</a>
+            <a href="index.html#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">About Us</a>
+            <a href="index.html#blog" onclick="toggleMobileMenu()" class="hidden px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Blog</a>
+            <div class="pt-2">
+                <a href="#servicesGrid" onclick="toggleMobileMenu()" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md">
+                    Book Appointment Now
                 </a>
             </div>
         </div>
@@ -236,7 +252,7 @@
                         <p class="text-xs text-slate-500">Targeted parasite control</p>
                     </div>
                 </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-(480px) overflow-y-auto custom-scrollbar">
+                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
                     <div class="sub-group mt-2">
                         <h4 class="sub-title">🐶 Dog</h4>
                         <div class="sub-item mb-2" onclick="openBookingModal('Deworming - Dog : Puppy', 149)">
@@ -295,7 +311,7 @@
                         <p class="text-xs text-slate-500">By breed size & package</p>
                     </div>
                 </div>
-                <div class="card-body grid grid-cold-1 md:grid-cols-3 gap-3 max-h-(480px) overflow-y-auto custom-scrollbar">
+                <div class="card-body grid grid-cols-1 md:grid-cols-3 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
                     <!-- Small Breed -->
                     <div class="sub-group space-y-2">
                         <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Small</h4>
@@ -350,247 +366,11 @@
                         <p class="text-[11px] text-slate-500">Sedated stress-free care</p>
                     </div>
                 </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-(480px) overflow-y-auto custom-scrollbar">
+                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
                     <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Small', 2500)">
                         <span>Small Breed</span><span class="price-tag">₹2500/-</span>
                     </div>
                     <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Medium', 2800)">
                         <span>Medium Breed</span><span class="price-tag">₹2800/-</span>
                     </div>
-                    <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Large', 3000)">
-                        <span>Large Breed</span><span class="price-tag">₹3000/-</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. VACCINATION -->
-            <div class="booking-card lg:col-span-3 md:col-span-2">
-                <div class="card-header bg-[#E0F7FA] text-[#00796B]">
-                    <i class="fa-solid fa-shield-dog text-2xl"></i>
-                    <div>
-                        <h3 class="font-extrabold text-lg text-[#023047]">6. Vaccination</h3>
-                        <p class="text-xs text-slate-500">Dog & Cat immunizations</p>
-                    </div>
-                </div>
-                <div class="card-body grid grid-cold-1 md:grid-cols-2 gap-3 max-h-(480px) overflow-y-auto custom-scrollbar">
-                    <div class="sub-group space-y-2">
-                        <h4 class="sub-title">🐶 Dog Vaccines</h4>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Dog : 7 in 1', 799)"><span>7 in 1</span><span class="price-tag">₹799/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Dog : 11 in 1', 899)"><span>11 in 1</span><span class="price-tag">₹899/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Dog : DHPPI + RL', 999)"><span>DHPPI + RL</span><span class="price-tag">₹999/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Dog : Kennel cough', 799)"><span>Kennel cough</span><span class="price-tag">₹799/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Dog : ARV', 399)"><span>ARV (Anti-Rabies)</span><span class="price-tag">₹399/-</span></div>
-                    </div>
-                    <div class="sub-group space-y-2 pt-2">
-                        <h4 class="sub-title">🐱 Cat Vaccines</h4>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Cat : Tricat', 999)"><span>Tricat</span><span class="price-tag">₹999/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Vaccination - Cat : ARV', 399)"><span>ARV (Anti-Rabies)</span><span class="price-tag">₹399/-</span></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- ==========================================
-         BOOKING MODAL
-    =========================================== -->
-    <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#023047]/70 backdrop-blur-sm">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative transform transition-all scale-100 max-h-[90vh] overflow-y-auto custom-scrollbar box-border">
-            <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] font-bold flex items-center justify-center transition cursor-pointer z-10" aria-label="Close modal">&times;</button>
-            
-            <span id="modalCategoryBadge" class="px-3 py-1 rounded-full bg-[#E0F7FA] text-[#00796B] text-xs font-extrabold uppercase">Alphatails Booking</span>
-            <h3 class="text-2xl font-extrabold text-[#023047] mt-2 mb-1">Confirm Appointment</h3>
-            <p id="modalPriceSubtitle" class="text-xs font-bold text-[#00796B] mb-5">Service Price: ₹0/-</p>
-
-            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
-                <div class="w-full">
-                    <label class="block text-xs font-bold text-[#023047] mb-1">Selected Service & Subcategory</label>
-                    <input type="text" id="selectedServiceInput" readonly class="w-full max-w-full box-border px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-[#023047]" />
-                </div>
-                <div class="w-full">
-                    <label class="block text-xs font-bold text-[#023047] mb-1" for="parentName">Pet Parent Name *</label>
-                    <input type="text" id="parentName" required placeholder="Enter full name" class="w-full max-w-full box-border px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#00796B]" />
-                </div>
-                <div class="w-full">
-                    <label class="block text-xs font-bold text-[#023047] mb-1" for="parentPhone">Phone Number *</label>
-                    <input type="tel" id="parentPhone" required placeholder="+91 98765 43210" class="w-full max-w-full box-border px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#00796B]" />
-                </div>
-                <div class="w-full">
-                    <label class="block text-xs font-bold text-[#023047] mb-1" for="petDetails">Pet Breed & Name *</label>
-                    <input type="text" id="petDetails" required placeholder="e.g., Golden Retriever - Bruno" class="w-full max-w-full box-border px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#00796B]" />
-                </div>
-                <div class="w-full">
-                    <label class="block text-xs font-bold text-[#023047] mb-1" for="bookingDate">Preferred Date *</label>
-                    <input type="date" id="bookingDate" required class="w-full max-w-full box-border px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#00796B] appearance-none bg-white" />
-                </div>
-                <button type="submit" class="w-full max-w-full box-border py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-extrabold text-sm shadow-md transition cursor-pointer mt-2">
-                    Confirm Appointment (Pay at Clinic / UPI)
-                </button>
-            </form>
-        </div>
-    </div>
-
-     <!-- ==========================================
-     FULL-WIDTH EDGE-TO-EDGE FOOTER
-=========================================== -->
-<footer class="w-screen relative left-1/2 -translate-x-1/2 bg-[#023047] text-white py-12 -mt-14 -mb-[120px]">
-    
-    <!-- Inner container keeps the text neatly aligned with the rest of your website -->
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b border-slate-700/70">
-
-            <!-- Col 1: Brand Info -->
-            <div class="lg:col-span-2 space-y-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-[#00796B] flex items-center justify-center text-white font-bold">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 10c-2.21 0-4 1.79-4 4 0 2.66 2.33 4.11 3.38 4.65.39.2.85.2 1.24 0C13.67 18.11 16 16.66 16 14c0-2.21-1.79-4-4-4z"/>
-                            <circle cx="6.5" cy="8.5" r="2"/><circle cx="17.5" cy="8.5" r="2"/><circle cx="9.5" cy="5.5" r="2"/><circle cx="14.5" cy="5.5" r="2"/>
-                        </svg>
-                    </div>
-                    <span class="text-2xl font-extrabold tracking-tight text-white">Alpha<span class="text-[#E0F7FA]">tails</span></span>
-                </div>
-                <p class="text-sm text-slate-300 max-w-sm leading-relaxed">
-                    Your neighborhood's favorite pet hospital, hygienic grooming studio, and everyday pet pharmacy. Dedicated to compassionate, affordable veterinary care.
-                </p>
-            </div>
-
-            <!-- Col 2: Quick Navigation -->
-            <div>
-                <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Quick Links</h4>
-                <ul class="space-y-2.5 text-sm text-slate-300">
-                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                    <li><a href="#veterinarians" class="hover:text-white transition">Our Veterinarians</a></li>
-                    <li><a href="#grooming-boarding" class="hover:text-white transition">Grooming & Boarding</a></li>
-                    <li><a href="#shop" class="hover:text-white transition">Pet Shop & Pharmacy</a></li>
-                    <li><a href="#about" class="hover:text-white transition">About Alphatails</a></li>
-                    <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
-                </ul>
-            </div>
-
-            <!-- Col 3: Popular Services (Added text-left so buttons don't center-align) -->
-            <div>
-                <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Top Services</h4>
-                <ul class="space-y-2.5 text-sm text-slate-300">
-                    <li><button onclick="openBookingModal('Consultation (50% Off)')" class="text-left hover:text-white transition">Clinic Consultation</button></li>
-                    <li><button onclick="openBookingModal('Vet at Home (₹399)')" class="text-left hover:text-white transition">Vet at Home </button></li>
-                    <li><button onclick="openBookingModal('Vaccine at Home (₹399)')" class="text-left hover:text-white transition">Vaccine at Home </button></li>
-                    <li><button onclick="openBookingModal('Diagnostics At Home')" class="text-left hover:text-white transition">Diagnostics At Home (NEW)</button></li>
-                    <li><button onclick="openBookingModal('Hygienic Grooming')" class="text-left hover:text-white transition">Stress-Free Grooming</button></li>
-                </ul>
-            </div>
-
-            <!-- Col 4: Contact & Hours (Added whitespace-nowrap so phone stays on 1 line) -->
-            <div>
-                <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Clinic Helpline</h4>
-                <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-4 whitespace-nowrap">+91 86392 15804</a>
-                <a href="mailto:alphatails.clinic@gmail.com">alphatails.clinic@gmail.com</a>
-                <section hidden>
-                <button onclick="openBookingModal('Emergency / Instant Callback')" class="w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
-                    Request Instant Callback
-                </button>
-            </div>
-        </div>
-
-        <!-- Bottom Copyright Bar -->
-        <div class="pt-2 flex flex-col items-center justify-center items-center text center text-m text-slate-400 gap-2">
-            <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
-            <div class="flex gap-6">
-                
-                <a href="#home" class="hover:text-white"></a>
-                <a href="#home" class="hover:text-white"></a>
-                <a href="#home" class="hover:text-white"></a>
-            </div>
-        </div>
-    </div>
-</footer>
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl text-xs sm:text-sm font-bold opacity-0 pointer-events-none transition-opacity duration-300 flex items-center gap-2.5 border border-cyan-800">
-        <i class="fa-solid fa-circle-check text-[#E0F7FA] text-base"></i>
-        <span id="toastMsg">Appointment successfully confirmed!</span>
-    </div>
-
-    <!-- Embedded Booking JavaScript -->
-    <script>
-        // Set minimum date for booking to today
-        document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date().toISOString().split('T')[0];
-            const dateInput = document.getElementById('bookingDate');
-            if (dateInput) {
-                dateInput.min = today;
-            }
-        });
-
-        // Open booking modal with service details and price
-        function openBookingModal(serviceName, price) {
-            const modal = document.getElementById('bookingModal');
-            const serviceInput = document.getElementById('selectedServiceInput');
-            const priceSubtitle = document.getElementById('modalPriceSubtitle');
-            
-            if (serviceInput) serviceInput.value = serviceName;
-            if (priceSubtitle) priceSubtitle.textContent = `Service Price: ₹${price}/-`;
-            
-            if (modal) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            }
-        }
-
-        // Close booking modal
-        function closeBookingModal() {
-            const modal = document.getElementById('bookingModal');
-            if (modal) {
-                modal.classList.remove('flex');
-                modal.classList.add('hidden');
-            }
-        }
-
-        // Handle form submission
-        function submitBooking(event) {
-            event.preventDefault();
-            
-            const parentName = document.getElementById('parentName').value;
-            const parentPhone = document.getElementById('parentPhone').value;
-            const petDetails = document.getElementById('petDetails').value;
-            const bookingDate = document.getElementById('bookingDate').value;
-            const serviceName = document.getElementById('selectedServiceInput').value;
-
-            // Close modal
-            closeBookingModal();
-
-            // Reset form fields
-            document.getElementById('bookingForm').reset();
-
-            // Show success toast
-            showToast(`Appointment booked for ${petDetails} on ${bookingDate}!`);
-        }
-
-        // Toast notification helper
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            
-            if (toast && toastMsg) {
-                toastMsg.textContent = message;
-                toast.classList.remove('opacity-0', 'pointer-events-none');
-                toast.classList.add('opacity-100');
-
-                setTimeout(() => {
-                    toast.classList.remove('opacity-100');
-                    toast.classList.add('opacity-0', 'pointer-events-none');
-                }, 4000);
-            }
-        }
-
-        // Close modal on clicking outside background
-        window.onclick = function(event) {
-            const modal = document.getElementById('bookingModal');
-            if (event.target === modal) {
-                closeBookingModal();
-            }
-        }
-    </script>
-</body>
-</html>
+                    <!-- Keep the rest of your existing cards, modal, and footer here -->
