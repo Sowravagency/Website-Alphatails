@@ -13,7 +13,7 @@
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
         }
         /* Custom scrollbar for service category lists */
         .custom-scrollbar::-webkit-scrollbar {
@@ -30,73 +30,7 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
-        .booking-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .booking-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -3px rgba(0, 121, 107, 0.12), 0 4px 6px -2px rgba(0, 121, 107, 0.05);
-            border-color: #00796B;
-        }
-        .card-header {
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-        }
-        .card-body {
-            padding: 1.25rem 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .sub-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #f1f5f9;
-            border-radius: 0.85rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #023047;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .sub-item:hover {
-            background: #e0f7fa;
-            border-color: #00796B;
-            color: #00796B;
-            transform: translateX(2px);
-        }
-        .price-tag {
-            background: #ffffff;
-            color: #00796B;
-            padding: 0.25rem 0.6rem;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 800;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .sub-title {
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #64748b;
-            margin-bottom: 0.25rem;
-            margin-top: 0.25rem;
-        }
+
         /* Joyful Theme Extension */
         body.joyful-theme {
             background-color: #FFFBF6;
@@ -108,11 +42,13 @@
         /* Softer, Rounded Card Styling with Smooth Hover */
         .booking-card {
             background: #FFFFFF;
-            border: none !important;
-            border-radius: 24px !important;
+            border: none;
+            border-radius: 24px;
             box-shadow: 0 10px 25px -5px rgba(2, 48, 71, 0.06), 0 10px 10px -5px rgba(2, 48, 71, 0.04);
             transition: all 0.3s ease;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .booking-card:hover {
@@ -120,20 +56,64 @@
             box-shadow: 0 20px 30px -5px rgba(2, 48, 71, 0.1);
         }
 
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .card-body {
+            padding: 1.25rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
         /* Playful Sub-item Options Styling */
         .sub-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background-color: #F8FAFC;
-            border-radius: 16px !important;
-            border: 2px solid transparent !important;
+            border-radius: 16px;
+            border: 2px solid transparent;
             transition: all 0.2s ease;
-            padding: 0.75rem 1rem !important;
-            margin-bottom: 0.75rem !important;
-            font-weight: 700 !important;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #023047;
+            cursor: pointer;
         }
 
         .sub-item:hover {
-            border-color: #00796B !important;
+            border-color: #00796B;
             background-color: #E0F7FA;
+            color: #00796B;
+            transform: translateX(2px);
+        }
+
+        .price-tag {
+            background: #ffffff;
+            color: #00796B;
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .sub-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
@@ -148,7 +128,6 @@
             <!-- Left: Exact Logo & Two-Tone Name Pattern -->
             <a href="index.html" class="flex items-center gap-3.5 group">
                 <div class="w-12 h-12 rounded-[16px] bg-[#00796B] flex items-center justify-center text-white shadow-sm">
-                    <!-- Paw with Heart Center SVG -->
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 10c-2.21 0-4 1.79-4 4 0 2.66 2.33 4.11 3.38 4.65.39.2.85.2 1.24 0C13.67 18.11 16 16.66 16 14c0-2.21-1.79-4-4-4zm0 5.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
                         <circle cx="6.5" cy="8.5" r="2"/>
@@ -170,20 +149,16 @@
             <!-- Center: Navigation Links -->
             <nav class="hidden lg:flex items-center gap-8 text-[15px] font-semibold text-[#023047]">
                 <a href="index.html" class="hover:text-[#00796B] transition">Home</a>
-                
-                <!-- Active Grooming & Boarding Link -->
                 <a href="booking.html" class="text-[#00796B] font-semibold transition flex items-center gap-1.5">
                     <span>Grooming & Consultation</span>
                 </a>
-
-                <a href="index.html#veterinarians" class="hidden hover:text-[#00796B] transition">Veterinarians</a>
                 <a href="shop.html" class="hover:text-[#00796B] font-semibold transition">Shop</a>
                 <a href="index.html#about" class="hover:text-[#00796B] font-semibold transition">About Us</a>
             </nav>
 
             <!-- Right: Bag Icon, Book Appointment Button & Mobile Menu Button -->
             <div class="flex items-center gap-3.5">
-                <button onclick="showToast('Shopping cart items will appear here!')" class="relative w-12 h-12 rounded-[16px] bg-[#E0F7FA]/80 hover:bg-[#E0F7FA] text-[#00796B] flex items-center justify-center transition cursor-pointer" aria-label="Shopping Cart">
+                <button type="button" onclick="showToast('Shopping cart items will appear here!')" class="relative w-12 h-12 rounded-[16px] bg-[#E0F7FA]/80 hover:bg-[#E0F7FA] text-[#00796B] flex items-center justify-center transition cursor-pointer" aria-label="Shopping Cart">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                     </svg>
@@ -196,9 +171,9 @@
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button type="button" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="lg:hidden p-2.5 rounded-xl border border-slate-200 bg-white text-[#023047] hover:bg-slate-50 relative z-50 cursor-pointer">
+                <button type="button" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Menu" aria-expanded="false" class="lg:hidden p-2.5 rounded-xl border border-slate-200 bg-white text-[#023047] hover:bg-slate-50 relative z-50 cursor-pointer">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="menuIconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -208,10 +183,8 @@
         <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
             <a href="index.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Home</a>
             <a href="booking.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#00796B] bg-[#E0F7FA]/60">Grooming & Consultation</a>
-            <a href="index.html#veterinarians" onclick="toggleMobileMenu()" class="hidden px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Veterinarians</a>
             <a href="shop.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Shop</a>
             <a href="index.html#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">About Us</a>
-            <a href="index.html#blog" onclick="toggleMobileMenu()" class="hidden px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Blog</a>
             <div class="pt-2">
                 <a href="#servicesGrid" onclick="toggleMobileMenu()" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md">
                     Book Appointment Now
@@ -244,7 +217,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <!-- 1. DEWORMING -->
-            <div class="booking-card lg:col-span-1.5 md:col-span-2">
+            <div class="booking-card lg:col-span-2 md:col-span-2">
                 <div class="card-header bg-[#E0F2F1] text-[#00796B]">
                     <i class="fa-solid fa-capsules text-2xl"></i>
                     <div>
@@ -255,7 +228,7 @@
                 <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
                     <div class="sub-group mt-2">
                         <h4 class="sub-title">🐶 Dog</h4>
-                        <div class="sub-item mb-2" onclick="openBookingModal('Deworming - Dog : Puppy', 149)">
+                        <div class="sub-item" onclick="openBookingModal('Deworming - Dog : Puppy', 149)">
                             <span>Puppy</span><span class="price-tag">₹149/-</span>
                         </div>
                         <div class="sub-item" onclick="openBookingModal('Deworming - Dog : Adult', 199)">
@@ -264,7 +237,7 @@
                     </div>
                     <div class="sub-group mt-2">
                         <h4 class="sub-title">🐱 Cat</h4>
-                        <div class="sub-item mb-2" onclick="openBookingModal('Deworming - Cat : Kitten', 149)">
+                        <div class="sub-item" onclick="openBookingModal('Deworming - Cat : Kitten', 149)">
                             <span>Kitten</span><span class="price-tag">₹149/-</span>
                         </div>
                         <div class="sub-item" onclick="openBookingModal('Deworming - Cat : Adult', 199)">
@@ -283,7 +256,7 @@
                         <p class="text-xs text-slate-500">Expert veterinary care</p>
                     </div>
                 </div>
-                <div class="card-body space-y-2">
+                <div class="card-body space-y-1">
                     <div class="sub-item" onclick="openBookingModal('Consulting - General physician', 299)">
                         <span>General physician</span><span class="price-tag">₹299/-</span>
                     </div>
@@ -311,7 +284,7 @@
                         <p class="text-xs text-slate-500">By breed size & package</p>
                     </div>
                 </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-3 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
+                <div class="card-body grid grid-cols-1 md:grid-cols-3 gap-4 max-h-[480px] overflow-y-auto custom-scrollbar">
                     <!-- Small Breed -->
                     <div class="sub-group space-y-2">
                         <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Small</h4>
@@ -323,7 +296,7 @@
                         <div class="sub-item" onclick="openBookingModal('Grooming - Small : Teddy Bear haircut + Bathing', 2500)"><span>6. Teddy Bear haircut + Bathing</span><span class="price-tag">₹2500/-</span></div>
                     </div>
                     <!-- Medium Breed -->
-                    <div class="sub-group space-y-2 pt-2">
+                    <div class="sub-group space-y-2">
                         <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Medium</h4>
                         <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Zero cut + bathing', 2200)"><span>1. Zero cut + bathing</span><span class="price-tag">₹2200/-</span></div>
                         <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Only haircut', 1700)"><span>2. Only haircut</span><span class="price-tag">₹1700/-</span></div>
@@ -333,7 +306,7 @@
                         <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Teddy Bear haircut + Bathing', 2700)"><span>6. Teddy Bear haircut + Bathing</span><span class="price-tag">₹2700/-</span></div>
                     </div>
                     <!-- Large Breed -->
-                    <div class="sub-group space-y-2 pt-2">
+                    <div class="sub-group space-y-2">
                         <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Large</h4>
                         <div class="sub-item" onclick="openBookingModal('Grooming - Large : Zero cut + bathing', 2300)"><span>1. Zero cut + bathing</span><span class="price-tag">₹2300/-</span></div>
                         <div class="sub-item" onclick="openBookingModal('Grooming - Large : Only haircut', 1800)"><span>2. Only haircut</span><span class="price-tag">₹1800/-</span></div>
@@ -342,8 +315,8 @@
             </div>
 
             <!-- 4. ANAL GLAND EXPRESSION -->
-            <div class="booking-card flex flex-col justify-between" style="width: 100%; height: 180px;">
-                <div class="card-header bg-[#FFF3E0] text-amber-700 py-3 px-4">
+            <div class="booking-card lg:col-span-1">
+                <div class="card-header bg-[#FFF3E0] text-amber-700">
                     <i class="fa-solid fa-notes-medical text-xl"></i>
                     <div>
                         <h3 class="font-extrabold text-lg text-[#023047]">4. Anal Gland Expression</h3>
@@ -351,26 +324,141 @@
                     </div>
                 </div>
                 <div class="card-body justify-center">
-                    <div class="sub-item my-4" onclick="openBookingModal('Anal Gland Expression', 300)">
+                    <div class="sub-item" onclick="openBookingModal('Anal Gland Expression', 300)">
                         <span>Standard Session</span><span class="price-tag">₹300/-</span>
                     </div>
                 </div>
             </div>
     
             <!-- 5. ANAESTHESIA + GROOMING -->
-            <div class="booking-card lg:col-span-1.5 md:col-span-2">
+            <div class="booking-card lg:col-span-2 md:col-span-2">
                 <div class="card-header bg-[#EDE7F6] text-purple-700">
                     <i class="fa-solid fa-syringe text-xl"></i>
                     <div>
                         <h3 class="font-extrabold text-lg text-[#023047]">5. Anaesthesia + Grooming</h3>
-                        <p class="text-[11px] text-slate-500">Sedated stress-free care</p>
+                        <p class="text-xs text-slate-500">Sedated stress-free care</p>
                     </div>
                 </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
+                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Small', 2500)">
                         <span>Small Breed</span><span class="price-tag">₹2500/-</span>
                     </div>
                     <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Medium', 2800)">
                         <span>Medium Breed</span><span class="price-tag">₹2800/-</span>
                     </div>
-                    <!-- Keep the rest of your existing cards, modal, and footer here -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ==========================================
+         BOOKING MODAL
+    =========================================== -->
+    <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-5 relative">
+            <button type="button" onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-[#00796B]">Confirm Appointment</span>
+                <h3 class="text-2xl font-extrabold text-[#023047] mt-1">Book Your Slot</h3>
+            </div>
+            <div class="bg-[#E0F7FA]/60 p-4 rounded-2xl flex items-center justify-between border border-cyan-100">
+                <input type="text" id="selectedService" readonly class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none" />
+                <span id="selectedPrice" class="price-tag text-sm shrink-0 ml-2">₹0/-</span>
+            </div>
+            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Parent Name</label>
+                    <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#00796B] focus:outline-none text-sm" />
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
+                    <input type="tel" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#00796B] focus:outline-none text-sm" />
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Preferred Date</label>
+                    <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#00796B] focus:outline-none text-sm" />
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TOAST NOTIFICATION
+    =========================================== -->
+    <div id="toastNotification" class="hidden fixed bottom-6 right-6 z-50 bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-[#00796B] text-lg"></i>
+        <span id="toastMessage" class="text-sm font-semibold">Notification</span>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+    =========================================== -->
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuIcon = document.getElementById('menuIconPath');
+            
+            if (!mobileMenu) return;
+
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+                if (menuIcon) menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                mobileMenu.classList.add('hidden');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+                if (menuIcon) menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
+        }
+
+        function openBookingModal(serviceName, price) {
+            const modal = document.getElementById('bookingModal');
+            const serviceInput = document.getElementById('selectedService');
+            const priceDisplay = document.getElementById('selectedPrice');
+
+            if (serviceInput) serviceInput.value = serviceName;
+            if (priceDisplay) priceDisplay.textContent = '₹' + price + '/-';
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            closeBookingModal();
+            showToast('Appointment request submitted!');
+            e.target.reset();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            if (!toast || !toastMsg) return;
+
+            toastMsg.textContent = message;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
