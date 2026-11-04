@@ -1,305 +1,52 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop Pet Accessories | AlphaTails</title>
-  <link rel="stylesheet" href="shop.css">
-  <!-- Tailwind CDN (preflight disabled so it doesn't break shop.css) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      corePlugins: {
-        preflight: false,
-      }
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Tails - Pet Accessories & Shop</title>
+    <link rel="stylesheet" href="shop-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="pet-pattern-bg">
+<body>
 
-  <!-- HEADER (With Mobile Menu Drawer) -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-icon">🐾</div>
-        <div class="logo-text">
-          <span class="brand-title">ALPHATAILS</span>
-          <span class="brand-subtitle">Pet Care & Accessories</span>
+    <header class="shop-navbar">
+        <div class="shop-brand">
+            <h2>
+                <span class="brand-text-alpha">Alpha</span><span class="brand-text-tails">tails</span>
+            </h2>
         </div>
-      </a>
-      
-      <!-- Desktop Nav -->
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="services.html" class="nav-link">Services & Grooming</a>
-        <a href="shop.html" class="nav-link active">Shop</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
-
-      <div class="header-actions">
-        <button id="cartBtn" class="cart-btn" aria-label="Cart">
-          <svg class="cart-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-          </svg>
-          <span id="cartCount" class="cart-badge">0</span>
-        </button>
-
-        <a href="contact.html" class="btn-primary header-cta">Book Now</a>
-
-        <!-- Mobile Menu Button -->
-        <button type="button" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="lg:hidden p-2.5 rounded-xl border border-slate-200 bg-white text-[#023047] hover:bg-slate-50 relative z-50 cursor-pointer">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu Dropdown -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
-      <a href="index.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50 no-underline">Home</a>
-      <a href="services.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50 no-underline">Services & Grooming</a>
-      <a href="#veterinarians" onclick="toggleMobileMenu()" class="hidden px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50 no-underline">Veterinarians</a>
-      <a href="shop.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#00796B] bg-[#E0F7FA]/60 no-underline">Shop</a>
-      <a href="about.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50 no-underline">About Us</a>
-      <a href="contact.html" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50 no-underline">Contact</a>
-      <a href="#blog" onclick="toggleMobileMenu()" class="hidden px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50 no-underline">Blog</a>
-      <div class="pt-2">
-        <a href="booking.html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md no-underline">
-          Book Appointment Now
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- SHOP HERO & FILTER BAR -->
-  <section class="container shop-top-section">
-    <div class="shop-hero-banner">
-      <div class="hero-content">
-        <span class="hero-pill">AlphaTails Official Store</span>
-        <h1>Pet Accessories & Essentials</h1>
-        <p>Explore durable harnesses, grooming essentials, interactive toys, cozy beds, and everyday feeding bowls crafted for happy pets.</p>
-      </div>
-      <div class="hero-search">
-        <input type="text" id="searchInput" placeholder="Search products by name or SKU...">
-        <span class="search-icon">🔍</span>
-      </div>
-    </div>
-
-    <!-- Category Filter Pills & Sort -->
-    <div class="filter-bar">
-      <div class="category-pills" id="categoryFilters">
-        <button data-cat="all" class="filter-btn active">All Items</button>
-        <button data-cat="Dry food" class="filter-btn">Dry Food</button>
-        <button data-cat="medicines" class="filter-btn">Medicines</button>
-        <button data-cat="Gravy" class="filter-btn">Gravy</button>
-        <button data-cat="Gravies" class="filter-btn">Gravies</button>
-      </div>
-
-      <div class="sort-wrapper">
-        <label for="sortSelect">Sort by:</label>
-        <select id="sortSelect">
-          <option value="featured">Featured</option>
-          <option value="low-high">Price: Low to High</option>
-          <option value="high-low">Price: High to Low</option>
-        </select>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCT GRID -->
-  <main class="container shop-main">
-    <div id="productGrid" class="product-grid">
-      <!-- Products injected dynamically via shop script -->
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="footer-brand">
-          <div class="logo-icon small">🐾</div>
-          <span>ALPHATAILS</span>
+        <div class="shop-nav-links">
+            <a href="shop.html" class="active"><i class="fa-solid fa-store"></i> Pet Shop</a>
+            <a href="index.html" target="_blank"><i class="fa-solid fa-user-doctor"></i> Clinic Portal</a>
         </div>
-        <p class="footer-desc">
-          Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
-        </p>
-      </div>
+    </header>
 
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services & Grooming</a></li>
-          <li><a href="shop.html" class="active-footer-link">AlphaTails Shop</a></li>
-          <li><a href="about.html">About Us</a></li>
-        </ul>
-      </div>
+    <section class="pastel-hero-pattern">
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-paw"></i> Verified Clinic Quality</span>
+            <h1>Pet Food & Accessories Store</h1>
+            <p>Explore category-wise nutrition, wet gravies, medicines, and accessories for cats and dogs.</p>
+        </div>
+    </section>
 
-      <div class="footer-col">
-        <h3>Shop Categories</h3>
-        <ul>
-          <li><a href="#productGrid">Dry Food & Nutrition</a></li>
-          <li><a href="#productGrid">Medicines & Supplements</a></li>
-          <li><a href="#productGrid">Gravy & Wet Food</a></li>
-        </ul>
-      </div>
+    <main class="shop-container">
+        <div class="shop-filter-bar">
+            <button class="filter-btn active" onclick="filterShop('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
+            <button class="filter-btn" onclick="filterShop('Dry food', this)"><i class="fa-solid fa-bone"></i> Dry Food</button>
+            <button class="filter-btn" onclick="filterShop('medicines', this)"><i class="fa-solid fa-pills"></i> Medicines</button>
+            <button class="filter-btn" onclick="filterShop('Gravy', this)"><i class="fa-solid fa-bowl-food"></i> Gravy</button>
+            <button class="filter-btn" onclick="filterShop('Gravies', this)"><i class="fa-solid fa-bowl-rice"></i> Gravies</button>
+        </div>
 
-      <div class="footer-col">
-        <h3>Get In Touch</h3>
-        <p>📍 India</p>
-        <p>📞 +91 98765 43210</p>
-        <p>✉️ support@alphatails.in</p>
-        <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
-      </div>
-    </div>
+        <div class="shop-grid" id="customer-shop-grid">
+            <!-- Dynamically populated -->
+        </div>
+    </main>
 
-    <div class="container footer-bottom">
-      <p>© 2026 Sow-Ra-V Digital solutions. All rights reserved.</p>
-      <p></p>
-    </div>
-  </footer>
+    <footer class="shop-footer">
+        <p>&copy; 2026 Alpha Tails Clinic & Pet Store. All rights reserved.</p>
+    </footer>
 
-  <!-- DYNAMIC INVENTORY & SHOP SYNC SCRIPT -->
-  <script>
-    window.toggleMobileMenu = function() {
-      const menu = document.getElementById('mobileMenu');
-      if (menu) {
-        menu.classList.toggle('hidden');
-      }
-    };
-
-    // Default sample products if localStorage is completely empty
-    const defaultProducts = [
-      { id: 'SKU-DRY-001', name: 'Royal Canin Starter', company: 'Mars Petcare', category: 'Dry food', size: '3 kg', price: 1499, expiry: '2027-12-31', image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400' },
-      { id: 'SKU-MED-001', name: 'Multivitamin Syrup', company: 'Vivaldis', category: 'medicines', size: '200 ml', price: 450, expiry: '2027-06-30', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400' },
-      { id: 'SKU-GRV-001', name: 'Chicken Gravy Pouch', company: 'Pedigree', category: 'Gravy', size: '85 g', price: 45, expiry: '2027-01-15', image: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400' }
-    ];
-
-    let currentCategory = 'all';
-    let searchQuery = '';
-    let currentSort = 'featured';
-
-    function loadAndRenderShop() {
-      const grid = document.getElementById('productGrid');
-      if (!grid) return;
-
-      // Get inventory from localStorage (synced from admin.html)
-      let inventory = JSON.parse(localStorage.getItem('alphetails_inventory'));
-      if (!inventory || inventory.length === 0) {
-        inventory = defaultProducts;
-        localStorage.setItem('alphetails_inventory', JSON.stringify(defaultProducts));
-      }
-
-      // Filter by category
-      let filtered = inventory.filter(item => {
-        const matchesCategory = currentCategory === 'all' || (item.category && item.category.toLowerCase() === currentCategory.toLowerCase());
-        const matchesSearch = !searchQuery || 
-          (item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())) || 
-          (item.id && item.id.toLowerCase().includes(searchQuery.toLowerCase())) ||
-          (item.company && item.company.toLowerCase().includes(searchQuery.toLowerCase()));
-        return matchesCategory && matchesSearch;
-      });
-
-      // Sort products
-      if (currentSort === 'low-high') {
-        filtered.sort((a, b) => (parseFloat(a.price) || 0) - (parseFloat(b.price) || 0));
-      } else if (currentSort === 'high-low') {
-        filtered.sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0));
-      }
-
-      // Render cards
-      grid.innerHTML = '';
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #64748b;">No products found matching your search or category.</div>`;
-        return;
-      }
-
-      filtered.forEach(product => {
-        const name = product.name || 'Pet Essential';
-        const price = product.price || 0;
-        const size = product.size || '';
-        const category = product.category || 'General';
-        const company = product.company || 'AlphaTails';
-        const image = product.image || 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400';
-        const sku = product.id || 'SKU-000';
-
-        const card = document.createElement('div');
-        card.className = "bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col";
-        card.innerHTML = `
-          <div class="h-48 overflow-hidden bg-slate-50 relative">
-              <img src="${image}" alt="${name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-              <span class="absolute top-2 right-2 bg-[#00796B] text-white text-xs px-2.5 py-1 rounded-full font-medium">${category}</span>
-          </div>
-          <div class="p-4 flex flex-col flex-grow">
-              <div class="flex justify-between items-center text-xs text-slate-500 mb-1">
-                  <span>${company}</span>
-                  <span>${size}</span>
-              </div>
-              <h3 class="font-bold text-[#023047] text-base mb-2 line-clamp-1">${name}</h3>
-              <p class="text-xs text-slate-400 mb-3">SKU: ${sku}</p>
-              <div class="mt-auto flex items-center justify-between pt-2 border-t border-slate-100">
-                  <span class="text-lg font-bold text-[#00796B]">₹${price}</span>
-                  <button onclick="addToCart('${sku}', '${name.replace(/'/g, "\\'")}', ${price})" class="bg-[#023047] hover:bg-[#00796B] text-white text-sm px-4 py-2 rounded-lg transition-colors cursor-pointer">
-                      Add to Cart
-                  </button>
-              </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    // Cart stub helper
-    function addToCart(sku, name, price) {
-      let cartCountEl = document.getElementById('cartCount');
-      let currentCount = parseInt(cartCountEl.innerText) || 0;
-      cartCountEl.innerText = currentCount + 1;
-      alert(`Added "${name}" (₹${price}) to your cart!`);
-    }
-
-    // Event Listeners setup
-    document.addEventListener('DOMContentLoaded', () => {
-      loadAndRenderShop();
-
-      // Category filter buttons click handlers
-      const filterButtons = document.querySelectorAll('#categoryFilters .filter-btn');
-      filterButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          filterButtons.forEach(b => b.classList.remove('active'));
-          e.target.classList.add('active');
-          currentCategory = e.target.getAttribute('data-cat');
-          loadAndRenderShop();
-        });
-      });
-
-      // Search input handler
-      const searchInput = document.getElementById('searchInput');
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          searchQuery = e.target.value.trim();
-          loadAndRenderShop();
-        });
-      }
-
-      // Sort selector handler
-      const sortSelect = document.getElementById('sortSelect');
-      if (sortSelect) {
-        sortSelect.addEventListener('change', (e) => {
-          currentSort = e.target.value;
-          loadAndRenderShop();
-        });
-      }
-    });
-
-    // Listen to live updates from admin panel tab
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'alphetails_inventory' || !e.key) {
-        loadAndRenderShop();
-      }
-    });
-  </script>
+    <script src="shop-script.js"></script>
 </body>
 </html>
