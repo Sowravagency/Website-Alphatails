@@ -1,389 +1,298 @@
-// Tailwind Configuration
-tailwind.config = {
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-            },
-            colors: {
-                alpha: {
-                    teal: '#00796B',
-                    tealDark: '#005b4f',
-                    cyanLight: '#E0F7FA',
-                    cyanSoft: '#F2FBFB',
-                    navy: '#023047',
-                    pastelPink: '#FCE4EC',
-                    pastelMint: '#E8F5E9',
-                    pastelPeach: '#FFF3E0',
-                    pastelLavender: '#EDE7F6',
-                    pastelYellow: '#FFF8E1',
-                    pastelBlue: '#E3F2FD',
-                    pastelCoral: '#FFEBEE'
-                }
-            },
-            boxShadow: {
-                'card': '0 10px 35px -5px rgba(2, 48, 71, 0.06), 0 4px 15px -3px rgba(2, 48, 71, 0.03)',
-                'service': '0 4px 12px rgba(0, 121, 107, 0.05)',
-                'service-hover': '0 12px 24px -4px rgba(0, 121, 107, 0.14)',
+// Global inventory array loaded from local storage for Alpha Tails instant sync
+let inventoryList = JSON.parse(localStorage.getItem('alphatails_inventory')) || [];
+let activeTargetBookingRow = null;
+
+// Initialization on page load
+document.addEventListener('DOMContentLoaded', () => {
+    renderInventory();
+    renderLiveShop('all');
+    updateDashboardStats();
+});
+
+// Navigation Tab Switching Function
+function switchTab(tabId, event) {
+    if (event) event.preventDefault();
+    
+    document.querySelectorAll('.tab-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    document.getElementById(tabId).classList.add('active');
+    if (event) {
+        event.currentTarget.classList.add('active');
+        document.getElementById('page-title').innerText = event.currentTarget.innerText.trim();
+    }
+}
+
+// --- BOOKING MANAGEMENT LOGIC ---
+function updateBooking(button, statusText) {
+    const row = button.closest('tr');
+    const badgeCell = row.querySelector('td:nth-child(5)');
+    
+    let badgeClass = 'pending';
+    if (statusText === 'Confirmed') badgeClass = 'confirmed';
+    if (statusText === 'Rejected') badgeClass = 'rejected';
+    if (statusText === 'Postponed') badgeClass = 'postponed';
+
+    badgeCell.innerHTML = `<span class="badge ${badgeClass}">${statusText}</span>`;
+    updateDashboardStats();
+}
+
+// Postpone Modal Triggers
+function openPostponeModal(button) {
+    activeTargetBookingRow = button.closest('tr');
+    document.getElementById('postpone-modal').style.display = 'flex';
+}
+
+function closePostponeModal() {
+    document.getElementById('postpone-modal').style.display = 'none';
+    activeTargetBookingRow = null;
+}
+
+function confirmPostpone() {
+    const newDateVal = document.getElementById('new-postpone-date').value;
+    if (!newDateVal) {
+        alert('Please choose a valid postpone date and time.');
+        return;
+    }
+    
+    if (activeTargetBookingRow) {
+        const dateCell = activeTargetBookingRow.querySelector('td:nth-child(4)');
+        const formattedDate = new Date(newDateVal).toLocaleString('en-IN', { 
+            day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' 
+        });
+        dateCell.innerText = formattedDate;
+        updateBooking(activeTargetBookingRow.querySelector('.btn-confirm') || activeTargetBookingRow.querySelector('.btn-postpone'), 'Postponed');
+    }
+    closePostponeModal();
+}
+
+// --- DYNAMIC INVENTORY SUBCATEGORY LOGIC ---
+function handleMainCategoryChange() {
+    const mainCat = document.getElementById('main-category').value;
+    const sub1Container = document.getElementById('sub-cat-container-1');
+    const sub2Container = document.getElementById('sub-cat-container-2');
+    const sub1Select = document.getElementById('sub-category-1');
+    
+    sub1Select.innerHTML = '<option value="">--Select Sub Category--</option>';
+    sub2Container.style.display = 'none'; // Reset breed selector
+
+    if (mainCat === 'Dry food') {
+        sub1Container.style.display = 'flex';
+        ['cat', 'dog', 'puppy', 'kitten'].forEach(sub => {
+            sub1Select.innerHTML += `<option value="${sub}">${sub.charAt(0).toUpperCase() + sub.slice(1)}</option>`;
+        });
+    } else if (mainCat === 'medicines') {
+        sub1Container.style.display = 'flex';
+        ['cat', 'dog'].forEach(sub => {
+            sub1Select.innerHTML += `<option value="${sub}">${sub.charAt(0).toUpperCase() + sub.slice(1)}</option>`;
+        });
+    } else if (mainCat === 'Gravy' || mainCat === 'Gravies') {
+        sub1Container.style.display = 'flex';
+        ['cat', 'dog', 'puppy', 'kitten'].forEach(sub => {
+            sub1Select.innerHTML += `<option value="${sub}">${sub.charAt(0).toUpperCase() + sub.slice(1)}</option>`;
+        });
+    } else {
+        sub1Container.style.display = 'none';
+    }
+}
+
+function handleSubCategory1Change() {
+    const mainCat = document.getElementById('main-category').value;
+    const sub1Val = document.getElementById('sub-category-1').value;
+    const sub2Container = document.getElementById('sub-cat-container-2');
+
+    if (mainCat === 'Dry food' && sub1Val === 'dog') {
+        sub2Container.style.display = 'flex';
+    } else {
+        sub2Container.style.display = 'none';
+    }
+}
+
+// --- MANUAL INVENTORY SUBMISSION ---
+function handleInventorySubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('prod-name').value;
+    const sku = document.getElementById('prod-sku').value;
+    const company = document.getElementById('prod-company').value;
+    const expiry = document.getElementById('prod-expiry').value;
+    const sizeNum = document.getElementById('prod-size-num').value;
+    const sizeUnit = document.getElementById('prod-size-unit').value;
+    const quantity = parseInt(document.getElementById('prod-qty').value) || 0;
+    const price = parseFloat(document.getElementById('prod-price').value);
+    const mainCat = document.getElementById('main-category').value;
+    const subCat1 = document.getElementById('sub-category-1').value;
+    const subCat2 = document.getElementById('sub-category-2').value;
+    const image = document.getElementById('prod-image').value || '';
+
+    const newItem = {
+        id: Date.now(),
+        name,
+        sku,
+        company,
+        expiry,
+        size: `${sizeNum} ${sizeUnit}`,
+        quantity,
+        price,
+        mainCat,
+        subCat1,
+        subCat2: (mainCat === 'Dry food' && subCat1 === 'dog') ? subCat2 : '',
+        image
+    };
+
+    inventoryList.unshift(newItem);
+    localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
+
+    document.getElementById('inventory-form').reset();
+    document.getElementById('sub-cat-container-2').style.display = 'none';
+    
+    renderInventory();
+    renderLiveShop('all');
+    updateDashboardStats();
+
+    alert('Product successfully added and published to the shop!');
+}
+
+// --- CSV BULK UPLOAD HANDLER ---
+function handleCsvUpload() {
+    const fileInput = document.getElementById('csv-file-input');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a CSV file first.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const text = e.target.result;
+        const lines = text.split('\n');
+        let importedCount = 0;
+
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            const cols = line.split(',').map(val => val.trim());
+            // Expected CSV format: name, sku, company, expiry, sizeNum, sizeUnit, price, quantity, mainCat, subCat1, subCat2, image
+            if (cols.length >= 9) {
+                const newItem = {
+                    id: Date.now() + i,
+                    name: cols[0],
+                    sku: cols[1],
+                    company: cols[2],
+                    expiry: cols[3],
+                    size: `${cols[4]} ${cols[5]}`,
+                    price: parseFloat(cols[6]) || 0,
+                    quantity: parseInt(cols[7]) || 0,
+                    mainCat: cols[8],
+                    subCat1: cols[9] || '',
+                    subCat2: cols[10] || '',
+                    image: cols[11] || ''
+                };
+                inventoryList.unshift(newItem);
+                importedCount++;
             }
         }
-    }
-};
 
-// Shop Catalog
-const products = [
-    {
-        id: 1,
-        name: "Royal Canin Maxi Adult Dog Food (4 kg)",
-        category: "dogfood",
-        badge: "15% Off",
-        badgeBg: "bg-[#D4EFDF] text-[#1E8449]",
-        price: 2890,
-        oldPrice: 3400,
-        image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 2,
-        name: "Simparica Trio Chewable Tick & Flea Tablet",
-        category: "deworming",
-        badge: "10% Off",
-        badgeBg: "bg-[#EDE7F6] text-[#5E35B1]",
-        price: 945,
-        oldPrice: 1050,
-        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 3,
-        name: "Alphatails Orthopedic Padded Dog Harness",
-        category: "accessories",
-        badge: "10% Off",
-        badgeBg: "bg-[#F3E5F5] text-[#8E24AA]",
-        price: 899,
-        oldPrice: 999,
-        image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 4,
-        name: "Drontal Plus Broad-Spectrum Dewormer (Pack of 4)",
-        category: "deworming",
-        badge: "10% Off",
-        badgeBg: "bg-[#EDE7F6] text-[#5E35B1]",
-        price: 432,
-        oldPrice: 480,
-        image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 5,
-        name: "Farmina N&D Ancestral Grain Puppy Chicken & Pomegranate",
-        category: "dogfood",
-        badge: "15% Off",
-        badgeBg: "bg-[#D4EFDF] text-[#1E8449]",
-        price: 2295,
-        oldPrice: 2700,
-        image: "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 6,
-        name: "Frontline Plus Spot-On Tick & Lice Drops (3 Pipettes)",
-        category: "deworming",
-        badge: "10% Off",
-        badgeBg: "bg-[#EDE7F6] text-[#5E35B1]",
-        price: 1170,
-        oldPrice: 1300,
-        image: "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 7,
-        name: "Engraved QR Smart Pet Collar & ID Shield Tag",
-        category: "accessories",
-        badge: "10% Off",
-        badgeBg: "bg-[#F3E5F5] text-[#8E24AA]",
-        price: 539,
-        oldPrice: 599,
-        image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 8,
-        name: "Alphatails Salmon Oil & Multivitamin Coat Chews",
-        category: "dogfood",
-        badge: "15% Off",
-        badgeBg: "bg-[#D4EFDF] text-[#1E8449]",
-        price: 679,
-        oldPrice: 799,
-        image: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80"
-    }
-];
+        localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
+        fileInput.value = '';
+        renderInventory();
+        renderLiveShop('all');
+        updateDashboardStats();
 
-// FIXED: Initialized as an empty array so no products appear in cart by default
-let cart = [];
-
-function renderProducts(category = 'all') {
-    const grid = document.getElementById('productGrid');
-    const filtered = category === 'all' ? products : products.filter(p => p.category === category);
-    
-    grid.innerHTML = filtered.map(product => `
-        <div class="bg-white rounded-3xl p-4 border border-slate-100 shadow-card flex flex-col justify-between group hover:-translate-y-1 transition">
-            <div>
-                <div class="relative h-44 rounded-2xl overflow-hidden bg-slate-50 mb-4">
-                    <img src="${product.image}" 
-                         onerror="this.src='https://placehold.co/400x300/E0F7FA/023047?text=Alphatails+Shop'"
-                         alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold ${product.badgeBg}">
-                        ${product.badge}
-                    </span>
-                </div>
-                <h3 class="text-sm font-extrabold text-[#023047] line-clamp-2 mb-2">${product.name}</h3>
-            </div>
-            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
-                <div>
-                    <span class="text-lg font-extrabold text-[#023047]">₹${product.price}</span>
-                    <span class="text-xs text-slate-400 line-through ml-1">₹${product.oldPrice}</span>
-                </div>
-                <button onclick="addToCart(${product.id})" class="px-3.5 py-2 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
-                    + Add
-                </button>
-            </div>
-        </div>
-    `).join('');
+        alert(`Successfully imported ${importedCount} items from CSV into inventory and shop!`);
+    };
+    reader.readAsText(file);
 }
 
-function filterProducts(category) {
-    document.querySelectorAll('.shop-tab').forEach(btn => {
-        if (btn.dataset.cat === category) {
-            btn.className = "shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#00796B] text-white transition";
-        } else {
-            btn.className = "shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition";
-        }
+// Render Table in Admin Inventory Panel
+function renderInventory() {
+    const tbody = document.getElementById('inventory-table-body');
+    tbody.innerHTML = '';
+
+    if (inventoryList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--text-muted);">No inventory items uploaded yet.</td></tr>`;
+        return;
+    }
+
+    inventoryList.forEach(item => {
+        let categoryDisplay = `${item.mainCat} > ${item.subCat1}`;
+        if (item.subCat2) categoryDisplay += ` > ${item.subCat2}`;
+
+        tbody.innerHTML += `
+            <tr>
+                <td><code>${item.sku}</code></td>
+                <td><strong>${item.name}</strong></td>
+                <td>${item.company}</td>
+                <td><span class="badge confirmed">${categoryDisplay}</span></td>
+                <td>${item.size}</td>
+                <td><strong>${item.quantity}</strong></td>
+                <td>${item.expiry}</td>
+                <td>₹${item.price.toFixed(2)}</td>
+                <td><button class="btn-delete" onclick="deleteInventoryItem(${item.id})"><i class="fa-solid fa-trash"></i></button></td>
+            </tr>
+        `;
     });
-    renderProducts(category);
 }
 
-function scrollToShopCategory(category) {
-    filterProducts(category);
-    document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
-}
-
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    const existing = cart.find(item => item.id === productId);
-    if (existing) {
-        existing.qty += 1;
-    } else {
-        cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+function deleteInventoryItem(id) {
+    if (confirm('Are you sure you want to remove this item?')) {
+        inventoryList = inventoryList.filter(item => item.id !== id);
+        localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
+        renderInventory();
+        renderLiveShop('all');
+        updateDashboardStats();
     }
-    updateCartUI();
-    showToast(`Added "${product.name}" to your Alphatails cart!`);
 }
 
-function changeQty(id, delta) {
-    const item = cart.find(i => i.id === id);
-    if (!item) return;
-    item.qty += delta;
-    if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== id);
-    }
-    updateCartUI();
-}
+// --- LIVE SHOP PREVIEW RENDERING & FILTERING IN ADMIN ---
+function renderLiveShop(filterCategory) {
+    const shopGrid = document.getElementById('live-shop-grid');
+    shopGrid.innerHTML = '';
 
-function updateCartUI() {
-    const countBadge = document.getElementById('cartCountBadge');
-    const listEl = document.getElementById('cartItemsList');
-    const totalEl = document.getElementById('cartTotalPrice');
+    const filteredItems = filterCategory === 'all' 
+        ? inventoryList 
+        : inventoryList.filter(item => item.mainCat === filterCategory);
 
-    const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-    const totalPrice = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-
-    countBadge.textContent = totalItems;
-    
-    // Hide the badge when cart is empty, show it when items are added
-    if (totalItems === 0) {
-        countBadge.classList.add('hidden');
-        countBadge.classList.remove('flex');
-    } else {
-        countBadge.classList.remove('hidden');
-        countBadge.classList.add('flex');
+    if (filteredItems.length === 0) {
+        shopGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No shop items available under this selection right now.</p>`;
+        return;
     }
 
-    totalEl.textContent = `₹${totalPrice.toLocaleString('en-IN')}`;
+    filteredItems.forEach(item => {
+        let badgeSubText = `${item.subCat1 ? item.subCat1.toUpperCase() : ''}`;
+        if (item.subCat2) badgeSubText += ` (${item.subCat2})`;
 
-    if (cart.length === 0) {
-        listEl.innerHTML = `
-            <div class="text-center py-12 text-slate-400">
-                <p class="text-sm font-semibold">Your Alphatails cart is empty.</p>
-                <p class="text-xs mt-1">Add Dog Food, Deworming tablets, or Accessories!</p>
+        shopGrid.innerHTML += `
+            <div class="product-card">
+                <div class="product-thumb">
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}">` : '<i class="fa-solid fa-box-open"></i>'}
+                </div>
+                <div class="product-body">
+                    <span class="product-category-tag">${item.mainCat} ${badgeSubText ? '• ' + badgeSubText : ''}</span>
+                    <h3 class="product-title">${item.name}</h3>
+                    <p class="product-meta">By: ${item.company} | Size: ${item.size}</p>
+                    <p class="product-meta" style="color: #059669; font-weight: 600;">Stock: ${item.quantity} units available</p>
+                    <div class="product-price">₹${item.price.toFixed(2)}</div>
+                </div>
             </div>
         `;
-        return;
-    }
-
-    listEl.innerHTML = cart.map(item => `
-        <div class="flex items-center justify-between gap-3 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
-            <div class="flex-1">
-                <h4 class="text-xs font-extrabold text-[#023047]">${item.name}</h4>
-                <p class="text-xs font-bold text-[#00796B] mt-0.5">₹${item.price} each</p>
-            </div>
-            <div class="flex items-center gap-2">
-                <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 font-bold text-xs">-</button>
-                <span class="text-xs font-extrabold w-4 text-center">${item.qty}</span>
-                <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 font-bold text-xs">+</button>
-            </div>
-        </div>
-    `).join('');
+    });
 }
 
-function toggleCartDrawer() {
-    const drawer = document.getElementById('cartDrawer');
-    const backdrop = document.getElementById('cartDrawerBackdrop');
-    const isHidden = drawer.classList.contains('translate-x-full');
-    if (isHidden) {
-        drawer.classList.remove('translate-x-full');
-        backdrop.classList.remove('hidden');
-    } else {
-        drawer.classList.add('translate-x-full');
-        backdrop.classList.add('hidden');
-    }
+function filterShop(category, btnElement) {
+    document.querySelectorAll('.shop-filter-bar .filter-btn').forEach(b => b.classList.remove('active'));
+    btnElement.classList.add('active');
+    renderLiveShop(category);
 }
 
-function checkoutCart() {
-    if (cart.length === 0) {
-        showToast("Please add at least one pet product first!");
-        return;
-    }
-    cart = [];
-    updateCartUI();
-    toggleCartDrawer();
-    showToast("Order confirmed! Your Alphatails pharmacy items will arrive in 90 mins.");
+function updateDashboardStats() {
+    document.getElementById('stat-inventory').innerText = inventoryList.length;
+    const pendingCount = document.querySelectorAll('#bookings-table-body .badge.pending').length;
+    document.getElementById('stat-pending').innerText = pendingCount;
 }
-
-// Grooming & Boarding Tab Switcher
-function switchSpaTab(tab) {
-    const groomingPanel = document.getElementById('groomingPanel');
-    const boardingPanel = document.getElementById('boardingPanel');
-    const groomingBtn = document.getElementById('tabGroomingBtn');
-    const boardingBtn = document.getElementById('tabBoardingBtn');
-
-    if (tab === 'grooming') {
-        groomingPanel.classList.remove('hidden');
-        groomingPanel.classList.add('grid');
-        boardingPanel.classList.add('hidden');
-        boardingPanel.classList.remove('grid');
-        groomingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition";
-        boardingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold text-[#023047] hover:text-[#00796B] transition";
-    } else {
-        boardingPanel.classList.remove('hidden');
-        boardingPanel.classList.add('grid');
-        groomingPanel.classList.add('hidden');
-        groomingPanel.classList.remove('grid');
-        boardingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition";
-        groomingBtn.className = "px-5 py-2.5 rounded-xl text-sm font-bold text-[#023047] hover:text-[#00796B] transition";
-    }
-}
-
-// Booking Modal Controls
-function openBookingModal(serviceName) {
-    const modal = document.getElementById('bookingModal');
-    const select = document.getElementById('bookingServiceInput');
-    const modeSelect = document.getElementById('visitModeInput');
-
-    let found = false;
-    for (let i = 0; i < select.options.length; i++) {
-        if (select.options[i].value === serviceName) {
-            select.selectedIndex = i;
-            found = true;
-            break;
-        }
-    }
-    if (!found && serviceName) {
-        const opt = document.createElement('option');
-        opt.value = serviceName;
-        opt.textContent = serviceName;
-        select.appendChild(opt);
-        select.value = serviceName;
-    }
-
-    if (serviceName && serviceName.toLowerCase().includes('home')) {
-        modeSelect.value = "At-Home Doorstep Visit";
-    } else {
-        modeSelect.value = "Alphatails Clinic Visit";
-    }
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-
-function closeBookingModal() {
-    const modal = document.getElementById('bookingModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-
-function submitBookingForm(e) {
-    e.preventDefault();
-    const service = document.getElementById('bookingServiceInput').value;
-    const name = document.getElementById('parentNameInput').value;
-    const mode = document.getElementById('visitModeInput').value;
-    closeBookingModal();
-    showToast(`Thank you, ${name}! Your ${service} (${mode}) is booked with Alphatails.`);
-    e.target.reset();
-}
-
-// Article & Clinic Info Modal
-function openArticleModal(title, author, content) {
-    document.getElementById('infoModalTag').textContent = `BY ${author.toUpperCase()}`;
-    document.getElementById('infoModalTitle').textContent = title;
-    document.getElementById('infoModalBody').textContent = content;
-    const modal = document.getElementById('infoModal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-
-function openClinicModal() {
-    document.getElementById('infoModalTag').textContent = '15+ ALPHATAILS CLINICS OPEN 24/7';
-    document.getElementById('infoModalTitle').textContent = 'Find Your Nearest Alphatails Pet Hospital';
-    document.getElementById('infoModalBody').textContent = 'Our flagship 24/7 Veterinary Hospitals & Grooming Spas are equipped with digital X-ray, in-house pathology, and pastel cat/dog zones. Book online for 0-minute wait times or request a Vet at Home anywhere in the city for ₹399.';
-    const modal = document.getElementById('infoModal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-
-function closeInfoModal() {
-    const modal = document.getElementById('infoModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('hidden');
-}
-
-function showToast(message) {
-    const banner = document.getElementById('toastBanner');
-    const text = document.getElementById('toastMessage');
-    text.textContent = message;
-    banner.classList.remove('hidden');
-    banner.classList.add('flex');
-    setTimeout(() => {
-        banner.classList.add('hidden');
-        banner.classList.remove('flex');
-    }, 4200);
-}
-
-// Set default date to today & initialize shop
-window.onload = function () {
-    const dateInput = document.getElementById('dateInput');
-    if (dateInput) {
-        dateInput.valueAsDate = new Date();
-    }
-    renderProducts('all');
-    updateCartUI();
-};
-
-// --- FIXED SUPABASE CONNECTION ---
-
-const SUPABASE_URL = 'https://dqhhrqbtyffvhzochsod.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxaGhycWJ0eWZmdmh6b2Noc29kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODgxMjIsImV4cCI6MjEwODk2NDEyMn0.n6ztBCo4r2tsoJ6au2R1O5xBcg8KmxbAJEMuUcUzqMc';
-
-const { createClient } = supabase;
-const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
