@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Tails - Clinic Admin & Shop Portal</title>
-    <link rel="stylesheet" href="admin.css">
-    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -56,7 +55,7 @@
             </div>
             <div class="welcome-banner">
                 <h2>Welcome back to Alpha Tails Admin!</h2>
-                <p>Manage your appointments easily and upload stock items individually or in bulk via CSV.</p>
+                <p>Manage appointments and inventory with instant synchronization to the live shop front.</p>
             </div>
         </section>
 
@@ -99,15 +98,14 @@
         <section id="inventory-tab" class="tab-section">
             <div class="section-header">
                 <h2>Inventory Management & Bulk Upload</h2>
-                <p>Add products manually below or upload a CSV file to update multiple stock items at once.</p>
+                <p>Add products manually with stock quantities or upload a CSV file.</p>
             </div>
 
             <!-- BULK CSV UPLOAD CARD -->
             <div class="form-card csv-upload-card" style="margin-bottom: 24px; border: 2px dashed var(--primary); background: #f4fbfb;">
                 <h3><i class="fa-solid fa-file-csv" style="color: var(--primary);"></i> Bulk Upload via CSV File</h3>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin: 6px 0 14px 0;">
-                    Upload a CSV file containing headers: <br>
-                    <code>name, sku, company, expiry, sizeNum, sizeUnit, price, mainCat, subCat1, subCat2, image</code>
+                    CSV Format Headers: <code>name, sku, company, expiry, sizeNum, sizeUnit, price, quantity, mainCat, subCat1, subCat2, image</code>
                 </p>
                 <div class="inline-inputs">
                     <input type="file" id="csv-file-input" accept=".csv" class="modal-input" style="background: white;">
@@ -137,7 +135,7 @@
                             <input type="date" id="prod-expiry" required>
                         </div>
                         <div class="form-group">
-                            <label>Package Size Value & Unit</label>
+                            <label>Package Size & Unit</label>
                             <div class="inline-inputs">
                                 <input type="number" id="prod-size-num" placeholder="e.g. 3" step="0.1" required>
                                 <select id="prod-size-unit" required>
@@ -150,8 +148,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label>Stock Quantity</label>
+                            <input type="number" id="prod-qty" placeholder="e.g., 25" min="0" required>
+                        </div>
+                        <div class="form-group">
                             <label>Price (₹)</label>
-                            <input type="number" id="prod-price" placeholder="e.g., 1200" required>
+                            <input type="number" id="prod-price" placeholder="e.g., 1200" step="0.01" required>
                         </div>
                         <div class="form-group">
                             <label>Main Category</label>
@@ -200,6 +202,7 @@
                             <th>Company</th>
                             <th>Category</th>
                             <th>Size</th>
+                            <th>Qty</th>
                             <th>Expiry</th>
                             <th>Price</th>
                             <th>Action</th>
@@ -212,7 +215,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: LIVE SHOP PAGE -->
+        <!-- TAB 4: LIVE SHOP PREVIEW -->
         <section id="shop-tab" class="tab-section">
             <div class="shop-hero">
                 <h2>Alpha Tails Pet Store</h2>
@@ -232,58 +235,19 @@
 
     </main>
 
-    <!-- POSTPONE CALENDAR MODAL -->
+    <!-- POSTPONE MODAL -->
     <div id="postpone-modal" class="modal">
         <div class="modal-content">
             <h3>Postpone Booking</h3>
-            <p>Select a new date and time for this appointment:</p>
+            <p>Select a new date and time:</p>
             <input type="datetime-local" id="new-postpone-date" class="modal-input">
             <div class="modal-buttons">
-                <button class="btn-confirm" onclick="confirmPostpone()">Confirm New Date</button>
+                <button class="btn-confirm" onclick="confirmPostpone()">Confirm</button>
                 <button class="btn-reject" onclick="closePostponeModal()">Cancel</button>
             </div>
         </div>
     </div>
 
-    <!-- Inline Sync Handler for Form Submission -->
-    <script>
-    function handleInventorySubmit(event) {
-        event.preventDefault();
-
-        // 1. Gather all form inputs accurately matching your form element IDs
-        const productData = {
-            id: document.getElementById('prod-sku').value,
-            name: document.getElementById('prod-name').value,
-            company: document.getElementById('prod-company').value,
-            expiry: document.getElementById('prod-expiry').value,
-            size: document.getElementById('prod-size-num').value + ' ' + document.getElementById('prod-size-unit').value,
-            price: parseFloat(document.getElementById('prod-price').value) || 0,
-            category: document.getElementById('main-category').value,
-            subCategory1: document.getElementById('sub-category-1').value,
-            subCategory2: document.getElementById('sub-category-2').value,
-            image: document.getElementById('prod-image').value.trim() || 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400'
-        };
-
-        // 2. Fetch existing inventory array from localStorage or initialize empty
-        let inventory = JSON.parse(localStorage.getItem('alphetails_inventory')) || [];
-        
-        // 3. Check if SKU already exists, update or push new item
-        const existingIndex = inventory.findIndex(item => item.id === productData.id);
-        if (existingIndex >= 0) {
-            inventory[existingIndex] = productData;
-        } else {
-            inventory.push(productData);
-        }
-
-        // 4. Save back to localStorage and trigger storage sync event for shop page
-        localStorage.setItem('alphetails_inventory', JSON.stringify(inventory));
-        window.dispatchEvent(new Event('storage'));
-
-        alert('Product successfully added and published to Shop!');
-        document.getElementById('inventory-form').reset();
-    }
-    </script>
-
-    <script src="admin.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
