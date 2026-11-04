@@ -1,25 +1,16 @@
-// Global inventory array loaded from local storage for Alpha Tails instant sync
 let inventoryList = JSON.parse(localStorage.getItem('alphatails_inventory')) || [];
 let activeTargetBookingRow = null;
 
-// Initialization on page load
 document.addEventListener('DOMContentLoaded', () => {
     renderInventory();
     renderLiveShop('all');
     updateDashboardStats();
 });
 
-// Navigation Tab Switching Function
 function switchTab(tabId, event) {
     if (event) event.preventDefault();
-    
-    document.querySelectorAll('.tab-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
-        link.classList.remove('active');
-    });
-
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.sidebar .nav-links a').forEach(l => l.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
     if (event) {
         event.currentTarget.classList.add('active');
@@ -27,16 +18,13 @@ function switchTab(tabId, event) {
     }
 }
 
-// --- BOOKING MANAGEMENT LOGIC ---
 function updateBooking(button, statusText) {
     const row = button.closest('tr');
     const badgeCell = row.querySelector('td:nth-child(5)');
-    
     let badgeClass = 'pending';
     if (statusText === 'Confirmed') badgeClass = 'confirmed';
     if (statusText === 'Rejected') badgeClass = 'rejected';
     if (statusText === 'Postponed') badgeClass = 'postponed';
-
     badgeCell.innerHTML = `<span class="badge ${badgeClass}">${statusText}</span>`;
     updateDashboardStats();
 }
@@ -53,45 +41,28 @@ function closePostponeModal() {
 
 function confirmPostpone() {
     const newDateVal = document.getElementById('new-postpone-date').value;
-    if (!newDateVal) {
-        alert('Please choose a valid postpone date and time.');
-        return;
-    }
-    
+    if (!newDateVal) { alert('Please choose a valid date.'); return; }
     if (activeTargetBookingRow) {
         const dateCell = activeTargetBookingRow.querySelector('td:nth-child(4)');
-        const formattedDate = new Date(newDateVal).toLocaleString('en-IN', { 
-            day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' 
-        });
+        const formattedDate = new Date(newDateVal).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
         dateCell.innerText = formattedDate;
         updateBooking(activeTargetBookingRow.querySelector('.btn-confirm') || activeTargetBookingRow.querySelector('.btn-postpone'), 'Postponed');
     }
     closePostponeModal();
 }
 
-// --- DYNAMIC INVENTORY SUBCATEGORY LOGIC ---
 function handleMainCategoryChange() {
     const mainCat = document.getElementById('main-category').value;
     const sub1Container = document.getElementById('sub-cat-container-1');
     const sub2Container = document.getElementById('sub-cat-container-2');
     const sub1Select = document.getElementById('sub-category-1');
-    
     sub1Select.innerHTML = '<option value="">--Select Sub Category--</option>';
     sub2Container.style.display = 'none';
 
-    if (mainCat === 'Dry food') {
+    if (mainCat) {
         sub1Container.style.display = 'flex';
-        ['cat', 'dog', 'puppy', 'kitten'].forEach(sub => {
-            sub1Select.innerHTML += `<option value="${sub}">${sub.charAt(0).toUpperCase() + sub.slice(1)}</option>`;
-        });
-    } else if (mainCat === 'medicines') {
-        sub1Container.style.display = 'flex';
-        ['cat', 'dog'].forEach(sub => {
-            sub1Select.innerHTML += `<option value="${sub}">${sub.charAt(0).toUpperCase() + sub.slice(1)}</option>`;
-        });
-    } else if (mainCat === 'Gravy' || mainCat === 'Gravies') {
-        sub1Container.style.display = 'flex';
-        ['cat', 'dog', 'puppy', 'kitten'].forEach(sub => {
+        const options = (mainCat === 'medicines') ? ['cat', 'dog'] : ['cat', 'dog', 'puppy', 'kitten'];
+        options.forEach(sub => {
             sub1Select.innerHTML += `<option value="${sub}">${sub.charAt(0).toUpperCase() + sub.slice(1)}</option>`;
         });
     } else {
@@ -103,7 +74,6 @@ function handleSubCategory1Change() {
     const mainCat = document.getElementById('main-category').value;
     const sub1Val = document.getElementById('sub-category-1').value;
     const sub2Container = document.getElementById('sub-cat-container-2');
-
     if (mainCat === 'Dry food' && sub1Val === 'dog') {
         sub2Container.style.display = 'flex';
     } else {
@@ -111,10 +81,8 @@ function handleSubCategory1Change() {
     }
 }
 
-// --- MANUAL INVENTORY SUBMISSION ---
 function handleInventorySubmit(event) {
     event.preventDefault();
-
     const newItem = {
         id: Date.now(),
         name: document.getElementById('prod-name').value,
@@ -122,6 +90,7 @@ function handleInventorySubmit(event) {
         company: document.getElementById('prod-company').value,
         expiry: document.getElementById('prod-expiry').value,
         size: `${document.getElementById('prod-size-num').value} ${document.getElementById('prod-size-unit').value}`,
+        quantity: parseInt(document.getElementById('prod-qty').value) || 0,
         price: parseFloat(document.getElementById('prod-price').value),
         mainCat: document.getElementById('main-category').value,
         subCat1: document.getElementById('sub-category-1').value,
@@ -131,42 +100,29 @@ function handleInventorySubmit(event) {
 
     inventoryList.unshift(newItem);
     localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
-
     document.getElementById('inventory-form').reset();
     document.getElementById('sub-cat-container-2').style.display = 'none';
-    
     renderInventory();
     renderLiveShop('all');
     updateDashboardStats();
-
     alert('Product successfully added and published to the shop!');
 }
 
-// --- CSV BULK UPLOAD HANDLER ---
 function handleCsvUpload() {
     const fileInput = document.getElementById('csv-file-input');
     const file = fileInput.files[0];
-
-    if (!file) {
-        alert('Please select a CSV file first.');
-        return;
-    }
+    if (!file) { alert('Please select a CSV file.'); return; }
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        const text = e.target.result;
-        const lines = text.split('\n');
-        let importedCount = 0;
-
-        // Skip header row (index 0), iterate through data rows
+        const lines = e.target.result.split('\n');
+        let count = 0;
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
-
-            const cols = line.split(',').map(val => val.trim());
-            // Expected CSV format: name, sku, company, expiry, sizeNum, sizeUnit, price, mainCat, subCat1, subCat2, image
-            if (cols.length >= 8) {
-                const newItem = {
+            const cols = line.split(',').map(v => v.trim());
+            if (cols.length >= 9) {
+                inventoryList.unshift({
                     id: Date.now() + i,
                     name: cols[0],
                     sku: cols[1],
@@ -174,48 +130,43 @@ function handleCsvUpload() {
                     expiry: cols[3],
                     size: `${cols[4]} ${cols[5]}`,
                     price: parseFloat(cols[6]) || 0,
-                    mainCat: cols[7],
-                    subCat1: cols[8] || '',
-                    subCat2: cols[9] || '',
-                    image: cols[10] || ''
-                };
-                inventoryList.unshift(newItem);
-                importedCount++;
+                    quantity: parseInt(cols[7]) || 0,
+                    mainCat: cols[8],
+                    subCat1: cols[9] || '',
+                    subCat2: cols[10] || '',
+                    image: cols[11] || ''
+                });
+                count++;
             }
         }
-
         localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
         fileInput.value = '';
         renderInventory();
         renderLiveShop('all');
         updateDashboardStats();
-
-        alert(`Successfully imported ${importedCount} items from CSV into inventory and shop!`);
+        alert(`Successfully imported ${count} items from CSV!`);
     };
     reader.readAsText(file);
 }
 
-// Render Table in Admin Inventory Panel
 function renderInventory() {
     const tbody = document.getElementById('inventory-table-body');
     tbody.innerHTML = '';
-
     if (inventoryList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted);">No inventory items uploaded yet.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--text-muted);">No inventory items uploaded yet.</td></tr>`;
         return;
     }
-
     inventoryList.forEach(item => {
-        let categoryDisplay = `${item.mainCat} > ${item.subCat1}`;
-        if (item.subCat2) categoryDisplay += ` > ${item.subCat2}`;
-
+        let cat = `${item.mainCat} > ${item.subCat1}`;
+        if (item.subCat2) cat += ` > ${item.subCat2}`;
         tbody.innerHTML += `
             <tr>
                 <td><code>${item.sku}</code></td>
                 <td><strong>${item.name}</strong></td>
                 <td>${item.company}</td>
-                <td><span class="badge confirmed">${categoryDisplay}</span></td>
+                <td><span class="badge confirmed">${cat}</span></td>
                 <td>${item.size}</td>
+                <td><strong>${item.quantity}</strong></td>
                 <td>${item.expiry}</td>
                 <td>₹${item.price.toFixed(2)}</td>
                 <td><button class="btn-delete" onclick="deleteInventoryItem(${item.id})"><i class="fa-solid fa-trash"></i></button></td>
@@ -225,8 +176,8 @@ function renderInventory() {
 }
 
 function deleteInventoryItem(id) {
-    if (confirm('Are you sure you want to remove this item?')) {
-        inventoryList = inventoryList.filter(item => item.id !== id);
+    if (confirm('Delete this item?')) {
+        inventoryList = inventoryList.filter(i => i.id !== id);
         localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
         renderInventory();
         renderLiveShop('all');
@@ -234,34 +185,27 @@ function deleteInventoryItem(id) {
     }
 }
 
-// --- LIVE SHOP RENDERING & FILTERING ---
 function renderLiveShop(filterCategory) {
     const shopGrid = document.getElementById('live-shop-grid');
     shopGrid.innerHTML = '';
+    const items = filterCategory === 'all' ? inventoryList : inventoryList.filter(i => i.mainCat === filterCategory);
 
-    const filteredItems = filterCategory === 'all' 
-        ? inventoryList 
-        : inventoryList.filter(item => item.mainCat === filterCategory);
-
-    if (filteredItems.length === 0) {
-        shopGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No shop items available under this selection right now.</p>`;
+    if (items.length === 0) {
+        shopGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No items available right now.</p>`;
         return;
     }
 
-    filteredItems.forEach(item => {
-        let badgeSubText = `${item.subCat1 ? item.subCat1.toUpperCase() : ''}`;
-        if (item.subCat2) badgeSubText += ` (${item.subCat2})`;
-
+    items.forEach(item => {
         shopGrid.innerHTML += `
             <div class="product-card">
                 <div class="product-thumb">
                     ${item.image ? `<img src="${item.image}" alt="${item.name}">` : '<i class="fa-solid fa-box-open"></i>'}
                 </div>
                 <div class="product-body">
-                    <span class="product-category-tag">${item.mainCat} ${badgeSubText ? '• ' + badgeSubText : ''}</span>
+                    <span class="product-category-tag">${item.mainCat}</span>
                     <h3 class="product-title">${item.name}</h3>
                     <p class="product-meta">By: ${item.company} | Size: ${item.size}</p>
-                    <p class="product-meta">Exp: ${item.expiry}</p>
+                    <p class="product-meta">Stock: <strong>${item.quantity} units available</strong></p>
                     <div class="product-price">₹${item.price.toFixed(2)}</div>
                 </div>
             </div>
@@ -269,14 +213,13 @@ function renderLiveShop(filterCategory) {
     });
 }
 
-function filterShop(category, btnElement) {
+function filterShop(category, btn) {
     document.querySelectorAll('.shop-filter-bar .filter-btn').forEach(b => b.classList.remove('active'));
-    btnElement.classList.add('active');
+    btn.classList.add('active');
     renderLiveShop(category);
 }
 
 function updateDashboardStats() {
     document.getElementById('stat-inventory').innerText = inventoryList.length;
-    const pendingCount = document.querySelectorAll('#bookings-table-body .badge.pending').length;
-    document.getElementById('stat-pending').innerText = pendingCount;
+    document.getElementById('stat-pending').innerText = document.querySelectorAll('#bookings-table-body .badge.pending').length;
 }
