@@ -25,7 +25,7 @@ body {
 /* Seamless SVG Pet Accessories Pattern Background */
 .pet-pattern-bg {
   background-color: #f8fafc;
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f766e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.12'%3E%3Ccircle cx='30' cy='35' r='6' fill='%230f766e'/%3E%3Ccircle cx='20' cy='24' r='3' fill='%230f766e'/%3E%3Ccircle cx='27' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='34' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%230f766e'/%3E%3Cpath d='M80 25 c-3-3 -7-1 -7 3 c-3 0 -5 4 -2 7 l14 14 c3 3 7 1 7 -3 c3 0 5 -4 2 -7 Z'/%3E%3Cpath d='M20 95 L45 95 L40 82 L25 82 Z'/%3E%3Cellipse cx='32.5' cy='82' rx='7.5' ry='2.5'/%3E%3Ccircle cx='85' cy='85' r='10' stroke-dasharray='4 2'/%3E%3Ccircle cx='85' cy='98' r='3.5' fill='%230f766e'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f766e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.12'%3E%3C!-- Paw Print --%3E%3Ccircle cx='30' cy='35' r='6' fill='%230f766e'/%3E%3Ccircle cx='20' cy='24' r='3' fill='%230f766e'/%3E%3Ccircle cx='27' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='34' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%230f766e'/%3E%3C!-- Bone --%3E%3Cpath d='M80 25 c-3-3 -7-1 -7 3 c-3 0 -5 4 -2 7 l14 14 c3 3 7 1 7 -3 c3 0 5 -4 2 -7 Z'/%3E%3C!-- Pet Bowl --%3E%3Cpath d='M20 95 L45 95 L40 82 L25 82 Z'/%3E%3Cellipse cx='32.5' cy='82' rx='7.5' ry='2.5'/%3E%3C!-- Collar / Tag --%3E%3Ccircle cx='85' cy='85' r='10' stroke-dasharray='4 2'/%3E%3Ccircle cx='85' cy='98' r='3.5' fill='%230f766e'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .container {
@@ -176,62 +176,6 @@ body {
 
 .btn-primary:hover {
   background-color: var(--brand-primary-dark);
-}
-
-/* Mobile Menu Button & Drawer */
-.mobile-menu-btn {
-  display: none;
-  padding: 10px;
-  border-radius: 12px;
-  background-color: var(--brand-light);
-  color: var(--brand-primary);
-  border: 1px solid var(--brand-border);
-  cursor: pointer;
-}
-
-.menu-icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.mobile-nav {
-  display: none;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-bottom: 1px solid var(--brand-border);
-  padding: 16px 20px 24px;
-  gap: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
-}
-
-.mobile-nav.open {
-  display: flex;
-}
-
-.mobile-nav-link {
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  color: #374151;
-  padding: 10px 12px;
-  border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.mobile-nav-link:hover,
-.mobile-nav-link.active {
-  background-color: var(--brand-light);
-  color: var(--brand-primary);
-}
-
-.mobile-cta {
-  text-align: center;
-  margin-top: 8px;
 }
 
 /* Hero & Filter Section */
@@ -586,19 +530,11 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .main-nav,
   .header-cta {
     display: none;
   }
-  .mobile-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
   .product-grid,
   .footer-grid {
     grid-template-columns: 1fr;
