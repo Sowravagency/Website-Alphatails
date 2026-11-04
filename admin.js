@@ -41,7 +41,6 @@ function updateBooking(button, statusText) {
     updateDashboardStats();
 }
 
-// Postpone Modal Triggers
 function openPostponeModal(button) {
     activeTargetBookingRow = button.closest('tr');
     document.getElementById('postpone-modal').style.display = 'flex';
@@ -78,7 +77,7 @@ function handleMainCategoryChange() {
     const sub1Select = document.getElementById('sub-category-1');
     
     sub1Select.innerHTML = '<option value="">--Select Sub Category--</option>';
-    sub2Container.style.display = 'none'; // Reset breed selector
+    sub2Container.style.display = 'none';
 
     if (mainCat === 'Dry food') {
         sub1Container.style.display = 'flex';
@@ -112,34 +111,22 @@ function handleSubCategory1Change() {
     }
 }
 
-// --- INVENTORY SUBMISSION & STORAGE SYNC ---
+// --- MANUAL INVENTORY SUBMISSION ---
 function handleInventorySubmit(event) {
     event.preventDefault();
 
-    const name = document.getElementById('prod-name').value;
-    const sku = document.getElementById('prod-sku').value;
-    const company = document.getElementById('prod-company').value;
-    const expiry = document.getElementById('prod-expiry').value;
-    const sizeNum = document.getElementById('prod-size-num').value;
-    const sizeUnit = document.getElementById('prod-size-unit').value;
-    const price = document.getElementById('prod-price').value;
-    const mainCat = document.getElementById('main-category').value;
-    const subCat1 = document.getElementById('sub-category-1').value;
-    const subCat2 = document.getElementById('sub-category-2').value;
-    const image = document.getElementById('prod-image').value || '';
-
     const newItem = {
         id: Date.now(),
-        name,
-        sku,
-        company,
-        expiry,
-        size: `${sizeNum} ${sizeUnit}`,
-        price: parseFloat(price),
-        mainCat,
-        subCat1,
-        subCat2: (mainCat === 'Dry food' && sub1Val === 'dog') ? subCat2 : '',
-        image
+        name: document.getElementById('prod-name').value,
+        sku: document.getElementById('prod-sku').value,
+        company: document.getElementById('prod-company').value,
+        expiry: document.getElementById('prod-expiry').value,
+        size: `${document.getElementById('prod-size-num').value} ${document.getElementById('prod-size-unit').value}`,
+        price: parseFloat(document.getElementById('prod-price').value),
+        mainCat: document.getElementById('main-category').value,
+        subCat1: document.getElementById('sub-category-1').value,
+        subCat2: document.getElementById('sub-category-2').value,
+        image: document.getElementById('prod-image').value || ''
     };
 
     inventoryList.unshift(newItem);
@@ -152,7 +139,60 @@ function handleInventorySubmit(event) {
     renderLiveShop('all');
     updateDashboardStats();
 
-    alert('Product successfully added and instantly published to the Alpha Tails shop!');
+    alert('Product successfully added and published to the shop!');
+}
+
+// --- CSV BULK UPLOAD HANDLER ---
+function handleCsvUpload() {
+    const fileInput = document.getElementById('csv-file-input');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a CSV file first.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const text = e.target.result;
+        const lines = text.split('\n');
+        let importedCount = 0;
+
+        // Skip header row (index 0), iterate through data rows
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            const cols = line.split(',').map(val => val.trim());
+            // Expected CSV format: name, sku, company, expiry, sizeNum, sizeUnit, price, mainCat, subCat1, subCat2, image
+            if (cols.length >= 8) {
+                const newItem = {
+                    id: Date.now() + i,
+                    name: cols[0],
+                    sku: cols[1],
+                    company: cols[2],
+                    expiry: cols[3],
+                    size: `${cols[4]} ${cols[5]}`,
+                    price: parseFloat(cols[6]) || 0,
+                    mainCat: cols[7],
+                    subCat1: cols[8] || '',
+                    subCat2: cols[9] || '',
+                    image: cols[10] || ''
+                };
+                inventoryList.unshift(newItem);
+                importedCount++;
+            }
+        }
+
+        localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
+        fileInput.value = '';
+        renderInventory();
+        renderLiveShop('all');
+        updateDashboardStats();
+
+        alert(`Successfully imported ${importedCount} items from CSV into inventory and shop!`);
+    };
+    reader.readAsText(file);
 }
 
 // Render Table in Admin Inventory Panel
@@ -185,7 +225,7 @@ function renderInventory() {
 }
 
 function deleteInventoryItem(id) {
-    if (confirm('Are you sure you want to remove this item from inventory and the shop?')) {
+    if (confirm('Are you sure you want to remove this item?')) {
         inventoryList = inventoryList.filter(item => item.id !== id);
         localStorage.setItem('alphatails_inventory', JSON.stringify(inventoryList));
         renderInventory();
@@ -209,7 +249,7 @@ function renderLiveShop(filterCategory) {
     }
 
     filteredItems.forEach(item => {
-        let badgeSubText = `${item.subCat1.toUpperCase()}`;
+        let badgeSubText = `${item.subCat1 ? item.subCat1.toUpperCase() : ''}`;
         if (item.subCat2) badgeSubText += ` (${item.subCat2})`;
 
         shopGrid.innerHTML += `
@@ -218,7 +258,7 @@ function renderLiveShop(filterCategory) {
                     ${item.image ? `<img src="${item.image}" alt="${item.name}">` : '<i class="fa-solid fa-box-open"></i>'}
                 </div>
                 <div class="product-body">
-                    <span class="product-category-tag">${item.mainCat} • ${badgeSubText}</span>
+                    <span class="product-category-tag">${item.mainCat} ${badgeSubText ? '• ' + badgeSubText : ''}</span>
                     <h3 class="product-title">${item.name}</h3>
                     <p class="product-meta">By: ${item.company} | Size: ${item.size}</p>
                     <p class="product-meta">Exp: ${item.expiry}</p>
