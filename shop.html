@@ -82,7 +82,7 @@
         <p>Explore durable harnesses, grooming essentials, interactive toys, cozy beds, and everyday feeding bowls crafted for happy pets.</p>
       </div>
       <div class="hero-search">
-        <input type="text" id="searchInput" placeholder="Search harnesses, toys, bowls...">
+        <input type="text" id="searchInput" placeholder="Search products by name or SKU...">
         <span class="search-icon">🔍</span>
       </div>
     </div>
@@ -91,10 +91,10 @@
     <div class="filter-bar">
       <div class="category-pills" id="categoryFilters">
         <button data-cat="all" class="filter-btn active">All Items</button>
-        <button data-cat="Accessories" class="filter-btn">Collars & Harnesses</button>
-        <button data-cat="Grooming" class="filter-btn">Grooming & Care</button>
-        <button data-cat="Toys" class="filter-btn">Interactive Toys</button>
-        <button data-cat="Bedding" class="filter-btn">Beds & Bowls</button>
+        <button data-cat="Dry food" class="filter-btn">Dry Food</button>
+        <button data-cat="medicines" class="filter-btn">Medicines</button>
+        <button data-cat="Gravy" class="filter-btn">Gravy</button>
+        <button data-cat="Gravies" class="filter-btn">Gravies</button>
       </div>
 
       <div class="sort-wrapper">
@@ -111,7 +111,7 @@
   <!-- PRODUCT GRID -->
   <main class="container shop-main">
     <div id="productGrid" class="product-grid">
-      <!-- Products injected dynamically via shop.js -->
+      <!-- Products injected dynamically via shop script -->
     </div>
   </main>
 
@@ -141,10 +141,9 @@
       <div class="footer-col">
         <h3>Shop Categories</h3>
         <ul>
-          <li><a href="#productGrid">Tactical & Padded Harnesses</a></li>
-          <li><a href="#productGrid">Grooming & Tick Shampoos</a></li>
-          <li><a href="#productGrid">Stainless Steel Feeders</a></li>
-          <li><a href="#productGrid">Chew Toys & Cat Scratchers</a></li>
+          <li><a href="#productGrid">Dry Food & Nutrition</a></li>
+          <li><a href="#productGrid">Medicines & Supplements</a></li>
+          <li><a href="#productGrid">Gravy & Wet Food</a></li>
         </ul>
       </div>
 
@@ -163,6 +162,7 @@
     </div>
   </footer>
 
+  <!-- DYNAMIC INVENTORY & SHOP SYNC SCRIPT -->
   <script>
     window.toggleMobileMenu = function() {
       const menu = document.getElementById('mobileMenu');
@@ -170,7 +170,136 @@
         menu.classList.toggle('hidden');
       }
     };
+
+    // Default sample products if localStorage is completely empty
+    const defaultProducts = [
+      { id: 'SKU-DRY-001', name: 'Royal Canin Starter', company: 'Mars Petcare', category: 'Dry food', size: '3 kg', price: 1499, expiry: '2027-12-31', image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400' },
+      { id: 'SKU-MED-001', name: 'Multivitamin Syrup', company: 'Vivaldis', category: 'medicines', size: '200 ml', price: 450, expiry: '2027-06-30', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400' },
+      { id: 'SKU-GRV-001', name: 'Chicken Gravy Pouch', company: 'Pedigree', category: 'Gravy', size: '85 g', price: 45, expiry: '2027-01-15', image: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400' }
+    ];
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let currentSort = 'featured';
+
+    function loadAndRenderShop() {
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+
+      // Get inventory from localStorage (synced from admin.html)
+      let inventory = JSON.parse(localStorage.getItem('alphetails_inventory'));
+      if (!inventory || inventory.length === 0) {
+        inventory = defaultProducts;
+        localStorage.setItem('alphetails_inventory', JSON.stringify(defaultProducts));
+      }
+
+      // Filter by category
+      let filtered = inventory.filter(item => {
+        const matchesCategory = currentCategory === 'all' || (item.category && item.category.toLowerCase() === currentCategory.toLowerCase());
+        const matchesSearch = !searchQuery || 
+          (item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())) || 
+          (item.id && item.id.toLowerCase().includes(searchQuery.toLowerCase())) ||
+          (item.company && item.company.toLowerCase().includes(searchQuery.toLowerCase()));
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sort products
+      if (currentSort === 'low-high') {
+        filtered.sort((a, b) => (parseFloat(a.price) || 0) - (parseFloat(b.price) || 0));
+      } else if (currentSort === 'high-low') {
+        filtered.sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0));
+      }
+
+      // Render cards
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #64748b;">No products found matching your search or category.</div>`;
+        return;
+      }
+
+      filtered.forEach(product => {
+        const name = product.name || 'Pet Essential';
+        const price = product.price || 0;
+        const size = product.size || '';
+        const category = product.category || 'General';
+        const company = product.company || 'AlphaTails';
+        const image = product.image || 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400';
+        const sku = product.id || 'SKU-000';
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col";
+        card.innerHTML = `
+          <div class="h-48 overflow-hidden bg-slate-50 relative">
+              <img src="${image}" alt="${name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+              <span class="absolute top-2 right-2 bg-[#00796B] text-white text-xs px-2.5 py-1 rounded-full font-medium">${category}</span>
+          </div>
+          <div class="p-4 flex flex-col flex-grow">
+              <div class="flex justify-between items-center text-xs text-slate-500 mb-1">
+                  <span>${company}</span>
+                  <span>${size}</span>
+              </div>
+              <h3 class="font-bold text-[#023047] text-base mb-2 line-clamp-1">${name}</h3>
+              <p class="text-xs text-slate-400 mb-3">SKU: ${sku}</p>
+              <div class="mt-auto flex items-center justify-between pt-2 border-t border-slate-100">
+                  <span class="text-lg font-bold text-[#00796B]">₹${price}</span>
+                  <button onclick="addToCart('${sku}', '${name.replace(/'/g, "\\'")}', ${price})" class="bg-[#023047] hover:bg-[#00796B] text-white text-sm px-4 py-2 rounded-lg transition-colors cursor-pointer">
+                      Add to Cart
+                  </button>
+              </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Cart stub helper
+    function addToCart(sku, name, price) {
+      let cartCountEl = document.getElementById('cartCount');
+      let currentCount = parseInt(cartCountEl.innerText) || 0;
+      cartCountEl.innerText = currentCount + 1;
+      alert(`Added "${name}" (₹${price}) to your cart!`);
+    }
+
+    // Event Listeners setup
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAndRenderShop();
+
+      // Category filter buttons click handlers
+      const filterButtons = document.querySelectorAll('#categoryFilters .filter-btn');
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          filterButtons.forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          currentCategory = e.target.getAttribute('data-cat');
+          loadAndRenderShop();
+        });
+      });
+
+      // Search input handler
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim();
+          loadAndRenderShop();
+        });
+      }
+
+      // Sort selector handler
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          currentSort = e.target.value;
+          loadAndRenderShop();
+        });
+      }
+    });
+
+    // Listen to live updates from admin panel tab
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'alphetails_inventory' || !e.key) {
+        loadAndRenderShop();
+      }
+    });
   </script>
-  <script src="shop.js"></script>
 </body>
 </html>
