@@ -22,8 +22,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* SIDEBAR & BRAND MATCHING */
@@ -34,6 +34,10 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    flex-shrink: 0;
 }
 
 .brand-box {
@@ -61,7 +65,7 @@ body {
 
 .brand-box p {
     font-size: 0.8rem;
-    color: #023047; /* Set to match navy or change to #00796B for teal */
+    color: #023047;
     font-weight: 500;
     margin-top: 4px;
 }
@@ -88,12 +92,13 @@ body {
     border-left: 4px solid #00796B;
 }
 
-/* MAIN CONTENT */
+/* MAIN CONTENT - FIXED FOR FULL SCROLLING */
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    min-width: 0;
+    padding-bottom: 60px;
 }
 
 .top-header {
@@ -195,6 +200,7 @@ body {
     border: 1px solid var(--border);
     overflow-x: auto;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
 }
 
 table {
