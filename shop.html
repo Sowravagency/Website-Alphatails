@@ -1,52 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Tails - Pet Accessories & Shop</title>
-    <link rel="stylesheet" href="shop-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Pet Accessories | Orange Pet Clinic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Seamless SVG Pet Accessories Pattern Background */
+    .pet-pattern-bg {
+      background-color: #fffaf5;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f97316' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.14'%3E%3C!-- Paw Print --%3E%3Ccircle cx='30' cy='35' r='6' fill='%23f97316'/%3E%3Ccircle cx='20' cy='24' r='3' fill='%23f97316'/%3E%3Ccircle cx='27' cy='20' r='3' fill='%23f97316'/%3E%3Ccircle cx='34' cy='20' r='3' fill='%23f97316'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%23f97316'/%3E%3C!-- Bone --%3E%3Cpath d='M80 25 c-3-3 -7-1 -7 3 c-3 0 -5 4 -2 7 l14 14 c3 3 7 1 7 -3 c3 0 5 -4 2 -7 Z'/%3E%3C!-- Pet Bowl --%3E%3Cpath d='M20 95 L45 95 L40 82 L25 82 Z'/%3E%3Cellipse cx='32.5' cy='82' rx='7.5' ry='2.5'/%3E%3C!-- Collar / Tag --%3E%3Ccircle cx='85' cy='85' r='10' stroke-dasharray='4 2'/%3E%3Ccircle cx='85' cy='98' r='3.5' fill='%23f97316'/%3E%3C/g%3E%3C/svg%3E");
+    }
+  </style>
 </head>
-<body>
+<body class="pet-pattern-bg text-gray-800 flex flex-col min-h-screen">
 
-    <header class="shop-navbar">
-        <div class="shop-brand">
-            <h2>
-                <span class="brand-text-alpha">Alpha</span><span class="brand-text-tails">tails</span>
-            </h2>
+  <!-- HEADER (Same as Home Page) -->
+  <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-orange-500 flex items-center justify-center text-white font-bold text-xl shadow-sm">
+          🐾
         </div>
-        <div class="shop-nav-links">
-            <a href="shop.html" class="active"><i class="fa-solid fa-store"></i> Pet Shop</a>
-            <a href="index.html" target="_blank"><i class="fa-solid fa-user-doctor"></i> Clinic Portal</a>
+        <div>
+          <span class="text-xl font-bold text-gray-900 tracking-tight block leading-none">ORANGE</span>
+          <span class="text-xs font-semibold text-orange-600 tracking-widest uppercase">Pet Clinic & Shop</span>
         </div>
-    </header>
+      </a>
 
-    <section class="pastel-hero-pattern">
-        <div class="hero-content">
-            <span class="hero-badge"><i class="fa-solid fa-paw"></i> Verified Clinic Quality</span>
-            <h1>Pet Food & Accessories Store</h1>
-            <p>Explore category-wise nutrition, wet gravies, medicines, and accessories for cats and dogs.</p>
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-orange-500 transition">Home</a>
+        <a href="services.html" class="text-gray-600 hover:text-orange-500 transition">Services & Grooming</a>
+        <a href="shop.html" class="text-orange-600 font-bold border-b-2 border-orange-500 pb-1">Shop</a>
+        <a href="about.html" class="text-gray-600 hover:text-orange-500 transition">About Us</a>
+        <a href="contact.html" class="text-gray-600 hover:text-orange-500 transition">Contact</a>
+      </nav>
+
+      <!-- Search, Cart & CTA -->
+      <div class="flex items-center gap-3">
+        <button id="cartBtn" class="relative p-2.5 rounded-xl bg-orange-50 text-orange-600 hover:bg-orange-100 transition" aria-label="Cart">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+          <span id="cartCount" class="absolute -top-1 -right-1 bg-gray-900 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </button>
+        <a href="appointment.html" class="hidden sm:inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-sm transition">
+          Book Vet Visit
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SHOP HERO & FILTER BAR -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6 w-full">
+    <div class="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-6 sm:p-8 text-white shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="bg-white/20 text-white text-xs font-bold uppercase px-3 py-1 rounded-full tracking-wider">Clinic Approved Essentials</span>
+        <h1 class="text-2xl sm:text-4xl font-bold mt-2">Pet Accessories & Care Store</h1>
+        <p class="text-orange-50 text-sm sm:text-base mt-1 max-w-xl">Vet-recommended grooming supplies, durable harnesses, orthopedic beds, and daily nutrition delivered straight to your doorstep.</p>
+      </div>
+      <div class="w-full md:w-72">
+        <div class="relative">
+          <input type="text" id="searchInput" placeholder="Search accessories, toys..." class="w-full px-4 py-3 rounded-xl text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 shadow-inner">
+          <span class="absolute right-3.5 top-3 text-gray-400">🔍</span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <main class="shop-container">
-        <div class="shop-filter-bar">
-            <button class="filter-btn active" onclick="filterShop('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
-            <button class="filter-btn" onclick="filterShop('Dry food', this)"><i class="fa-solid fa-bone"></i> Dry Food</button>
-            <button class="filter-btn" onclick="filterShop('medicines', this)"><i class="fa-solid fa-pills"></i> Medicines</button>
-            <button class="filter-btn" onclick="filterShop('Gravy', this)"><i class="fa-solid fa-bowl-food"></i> Gravy</button>
-            <button class="filter-btn" onclick="filterShop('Gravies', this)"><i class="fa-solid fa-bowl-rice"></i> Gravies</button>
+    <!-- Category Filter Pills & Sort -->
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-4 bg-white/90 backdrop-blur p-4 rounded-xl shadow-sm border border-orange-100">
+      <div class="flex flex-wrap items-center gap-2" id="categoryFilters">
+        <button data-cat="all" class="filter-btn active bg-orange-500 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-lg transition">All Items</button>
+        <button data-cat="Accessories" class="filter-btn bg-orange-50 hover:bg-orange-100 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg transition">Collars & Leashes</button>
+        <button data-cat="Grooming" class="filter-btn bg-orange-50 hover:bg-orange-100 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg transition">Grooming & Tick Care</button>
+        <button data-cat="Toys" class="filter-btn bg-orange-50 hover:bg-orange-100 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg transition">Interactive Toys</button>
+        <button data-cat="Bedding" class="filter-btn bg-orange-50 hover:bg-orange-100 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg transition">Beds & Feeding</button>
+      </div>
+
+      <div class="flex items-center gap-2 text-sm">
+        <label for="sortSelect" class="text-gray-500 font-medium">Sort by:</label>
+        <select id="sortSelect" class="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-gray-800 font-medium focus:outline-none focus:border-orange-500">
+          <option value="featured">Featured</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow w-full">
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Rendered via JavaScript -->
+    </div>
+  </main>
+
+  <!-- FOOTER (Same as Home Page) -->
+  <footer class="bg-gray-900 text-gray-300 pt-12 pb-8 border-t-4 border-orange-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Clinic Info -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center text-white font-bold">🐾</div>
+          <span class="text-lg font-bold text-white tracking-tight">ORANGE PET CLINIC</span>
         </div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Complete veterinary diagnostics, surgical care, professional pet grooming, and quality pet accessories in Vijayawada.
+        </p>
+      </div>
 
-        <div class="shop-grid" id="customer-shop-grid">
-            <!-- Dynamically populated -->
-        </div>
-    </main>
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-orange-400 transition">Home</a></li>
+          <li><a href="services.html" class="hover:text-orange-400 transition">Vet Consultation & Grooming</a></li>
+          <li><a href="shop.html" class="text-orange-400 font-semibold">Pet Accessories Shop</a></li>
+          <li><a href="appointment.html" class="hover:text-orange-400 transition">Book an Appointment</a></li>
+        </ul>
+      </div>
 
-    <footer class="shop-footer">
-        <p>&copy; 2026 Alpha Tails Clinic & Pet Store. All rights reserved.</p>
-    </footer>
+      <!-- Categories -->
+      <div>
+        <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Top Categories</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#productGrid" class="hover:text-orange-400 transition">Reflective Harnesses & Leashes</a></li>
+          <li><a href="#productGrid" class="hover:text-orange-400 transition">Tick & Flea Shampoos</a></li>
+          <li><a href="#productGrid" class="hover:text-orange-400 transition">Stainless Steel Feeders</a></li>
+          <li><a href="#productGrid" class="hover:text-orange-400 transition">Chew Toys & Cat Scratchers</a></li>
+        </ul>
+      </div>
 
-    <script src="shop.js"></script>
+      <!-- Contact & Hours -->
+      <div>
+        <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Visit Us</h3>
+        <p class="text-sm text-gray-400 mb-2">📍 Vijayawada, Andhra Pradesh</p>
+        <p class="text-sm text-gray-400 mb-2">📞 +91 98765 43210</p>
+        <p class="text-sm text-gray-400">🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-gray-800 text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center">
+      <p>© 2026 Orange Pet Clinic. All rights reserved.</p>
+      <p class="mt-2 sm:mt-0">Designed for Happy Pets & Pet Parents</p>
+    </div>
+  </footer>
+
+  <!-- DEFAULT PRODUCTS & SHOP INTERACTIVITY SCRIPT -->
+  <script>
+    const defaultProducts = [
+      {
+        id: 1,
+        name: "Padded Reflective Dog Harness & Leash Set",
+        category: "Accessories",
+        petType: "Dogs",
+        price: 649,
+        mrp: 899,
+        badge: "Bestseller",
+        image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 2,
+        name: "Anti-Tick & Flea Herbal Grooming Shampoo (500ml)",
+        category: "Grooming",
+        petType: "Dogs & Cats",
+        price: 380,
+        mrp: 450,
+        badge: "Vet Approved",
+        image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 3,
+        name: "Non-Skid Double Stainless Steel Pet Feeder Bowl",
+        category: "Bedding",
+        petType: "All Pets",
+        price: 499,
+        mrp: 650,
+        badge: "Durable",
+        image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 4,
+        name: "Interactive Feather Wand & Bell Cat Toy",
+        category: "Toys",
+        petType: "Cats",
+        price: 249,
+        mrp: 350,
+        badge: "Popular",
+        image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 5,
+        name: "Self-Cleaning Slicker Deshedding Grooming Brush",
+        category: "Grooming",
+        petType: "Dogs & Cats",
+        price: 349,
+        mrp: 499,
+        badge: "Essential",
+        image: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 6,
+        name: "Heavy-Duty Natural Rubber Dental Chew Bone",
+        category: "Toys",
+        petType: "Dogs",
+        price: 299,
+        mrp: 399,
+        badge: "Tough Chew",
+        image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 7,
+        name: "Orthopedic Washable Bolster Pet Lounger Bed",
+        category: "Bedding",
+        petType: "Dogs & Cats",
+        price: 1499,
+        mrp: 1999,
+        badge: "Comfort+",
+        image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: 8,
+        name: "Breakaway Velvet Cat Collar with Safety Bell",
+        category: "Accessories",
+        petType: "Cats",
+        price: 199,
+        mrp: 299,
+        badge: "New",
+        image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    let activeCategory = "all";
+    let searchQuery = "";
+    let sortMode = "featured";
+    let cartTotalItems = 0;
+
+    const grid = document.getElementById("productGrid");
+    const cartCountEl = document.getElementById("cartCount");
+
+    function renderProducts() {
+      let filtered = defaultProducts.filter(product => {
+        const matchesCategory = activeCategory === "all" || product.category === activeCategory;
+        const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              product.petType.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (sortMode === "low-high") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortMode === "high-low") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white p-12 rounded-2xl text-center border border-orange-100">
+            <p class="text-lg font-bold text-gray-700">No matching pet accessories found.</p>
+            <p class="text-sm text-gray-500 mt-1">Try clearing your search filter or switching categories.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const discount = Math.round(((item.mrp - item.price) / item.mrp) * 100);
+        return `
+          <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition border border-orange-100 overflow-hidden flex flex-col justify-between group">
+            <div>
+              <div class="relative h-52 bg-gray-100 overflow-hidden">
+                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                <span class="absolute top-3 left-3 bg-gray-900/85 text-white text-xs font-bold px-2.5 py-1 rounded-md">
+                  ${item.badge}
+                </span>
+                <span class="absolute top-3 right-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                  ${discount}% OFF
+                </span>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                  <span class="font-semibold text-orange-600 uppercase">${item.category}</span>
+                  <span>For ${item.petType}</span>
+                </div>
+                <h2 class="font-bold text-gray-900 text-base leading-snug line-clamp-2">${item.name}</h2>
+              </div>
+            </div>
+
+            <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-gray-100">
+              <div>
+                <span class="text-lg font-bold text-gray-900">₹${item.price}</span>
+                <span class="text-xs text-gray-400 line-through ml-1">₹${item.mrp}</span>
+              </div>
+              <button onclick="addToCart('${item.name.replace(/'/g, "\\'")}')" class="bg-orange-500 hover:bg-orange-600 active:scale-95 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm">
+                + Add to Cart
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function addToCart(productName) {
+      cartTotalItems++;
+      cartCountEl.textContent = cartTotalItems;
+    }
+
+    // Category filter click listeners
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => {
+          b.classList.remove("bg-orange-500", "text-white");
+          b.classList.add("bg-orange-50", "text-gray-700");
+        });
+        btn.classList.remove("bg-orange-50", "text-gray-700");
+        btn.classList.add("bg-orange-500", "text-white");
+        activeCategory = btn.getAttribute("data-cat");
+        renderProducts();
+      });
+    });
+
+    // Search & Sort listeners
+    document.getElementById("searchInput").addEventListener("input", e => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    document.getElementById("sortSelect").addEventListener("change", e => {
+      sortMode = e.target.value;
+      renderProducts();
+    });
+
+    // Initial load
+    renderProducts();
+  </script>
 </body>
 </html>
