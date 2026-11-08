@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -13,16 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Custom External CSS -->
-    <link rel="stylesheet" href="style.css">
-     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
-  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-</script>
+    <link rel="stylesheet" href="Style.css">
 
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1a2psd3NpZHVydnR4cW91cXZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzODg2MjMsImV4cCI6MjEwODk2NDYyM30.QQXkTVzouEci79c5DRNTLIREfReSmCDhiVQCl8et-us";
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
 </head>
-<body class="antialiased selection:bg-[#00796B] selection:text-white">
+<body class="antialiased selection:bg-[#00796B] selection:text-white bg-white text-[#023047]">
 
     <!-- Top Announcement Bar -->
     <div class="bg-[#023047] text-white text-xs sm:text-sm py-2.5 px-4">
@@ -32,24 +34,22 @@
                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#00796B] text-white">FIRST50</span>
             </div>
             <div class="hidden md:flex items-center gap-6 text-slate-200 font-medium">
-                <a href="tel:1800-257-8245" class="hover:text-[#E0F7FA] flex items-center gap-1.5 transition">
-                    <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                <a href="tel:+918639215804" class="hover:text-[#E0F7FA] flex items-center gap-1.5 transition">
+                    <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
                     Contact : +91 86392 15804
                 </a>
-                <section hidden>
-                <button onclick="openClinicModal()" class="hover:text-[#E0F7FA] flex items-center gap-1 transition">
-                    <svg class="w-4 h-4 text-[#E0F7FA]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Locate Nearest Clinic
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- Main Sticky Header -->
+    <!-- Main Sticky Header (Universal Alphatails Header) -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
-        <div class="max-w-9xl mx-auto px-4 sm:px-8 lg:px-10 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
             <!-- Brand Logo -->
-            <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+            <a href="index.html" class="flex items-center gap-3 group focus:outline-none">
                 <div class="w-11 h-11 rounded-2xl bg-[#00796B] flex items-center justify-center text-white shadow-md shadow-[#00796B]/25 group-hover:scale-105 transition-transform">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 10c-2.21 0-4 1.79-4 4 0 2.66 2.33 4.11 3.38 4.65.39.2.85.2 1.24 0C13.67 18.11 16 16.66 16 14c0-2.21-1.79-4-4-4zm1.5 4.75h-1v1a.5.5 0 01-1 0v-1h-1a.5.5 0 010-1h1v-1a.5.5 0 011 0v1h1a.5.5 0 010 1z"/>
@@ -68,20 +68,18 @@
             <!-- Desktop Navigation Links -->
             <nav class="hidden lg:flex items-center gap-8">
                 <a href="#home" class="text-[15px] font-semibold text-[#00796B] hover:text-[#00796B] transition py-2">Home</a>
-                <a href="Booking.html" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2 flex items-center gap-1">
-                    Grooming & Consultation
+                <a href="booking.html" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2 flex items-center gap-1">
+                    Grooming & Boarding
                     <span class="px-1.5 py-0.5 text-[10px] font-bold bg-[#FCE4EC] text-[#AD1457] rounded-full">Spa</span>
                 </a>
-                <a href="#veterinarians" <section hidden> class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Veterinarians</a>
-                <a href="Shop.html" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Shop</a>
-                <a href="#about" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">About Us</a>
-                <section hidden>
-                <a href="#blog" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Blog</a>
+                <a href="#veterinarians" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Veterinarians</a>
+                <a href="shop.html" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Shop</a>
+                <a href="booking.html" class="text-[15px] font-semibold text-[#023047] hover:text-[#00796B] transition py-2">Bookings</a>
             </nav>
 
             <!-- Action Buttons -->
             <div class="flex items-center gap-3">
-                <!-- Cart Drawer Button (Default set to 0 and hidden until product is added) -->
+                <!-- Cart Drawer Button -->
                 <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-[#E0F7FA] text-[#00796B] hover:bg-[#00796B] hover:text-white transition" aria-label="Shopping Cart">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
@@ -89,16 +87,19 @@
                     <span id="cartCountBadge" class="hidden absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#023047] text-white text-[11px] font-bold items-center justify-center">0</span>
                 </button>
 
-                <!-- Book Appointment CTA -->
-                <!-- Book Appointment CTA -->
-<a href="Booking.html" class="hidden sm:inline-flex items-center gap-2 bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold text-sm px-5 py-3 rounded-xl shadow-md shadow-[#00796B]/20 transition transform active:scale-95">
-    <span>Book Appointment</span>
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-</a>
+                <!-- Desktop Book Appointment CTA (Linked to booking.html) -->
+                <a href="booking.html" class="hidden sm:inline-flex items-center gap-2 bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold text-sm px-5 py-3 rounded-xl shadow-md shadow-[#00796B]/20 transition transform active:scale-95">
+                    <span>Book Appointment</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
 
                 <!-- Mobile Menu Button -->
                 <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl border border-slate-200 text-[#023047] hover:bg-slate-50">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -106,15 +107,15 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 space-y-2 shadow-xl">
             <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#00796B] bg-[#E0F7FA]/60">Home</a>
-            <a href="#grooming-boarding" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Grooming & Boarding</a>
+            <a href="booking.html" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Grooming & Boarding</a>
             <a href="#veterinarians" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Veterinarians</a>
-            <a href="#shop" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Shop</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">About Us</a>
-            <a href="#blog" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Blog</a>
+            <a href="shop.html" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Shop</a>
+            <a href="booking.html" class="block px-4 py-2.5 rounded-xl font-semibold text-[#023047] hover:bg-slate-50">Bookings</a>
             <div class="pt-2">
-                <a href=".html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md transition">
-    Book Appointment Now
-</a>
+                <!-- Mobile Book Appointment CTA (Linked to booking.html) -->
+                <a href="booking.html" class="block w-full text-center py-3 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white font-semibold shadow-md transition">
+                    Book Appointment Now
+                </a>
             </div>
         </div>
     </header>
@@ -130,7 +131,7 @@
                 <div class="grid grid-cols-3 gap-3 sm:gap-4 h-full">
                     
                     <!-- Card 1: Consultation (50% Off) -->
-                    <button onclick="openModal('Consultation (50% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D1F2EB] text-[#00796B] tracking-tight">
                             50% Off
                         </span>
@@ -141,10 +142,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Consultation</span>
-                    </button>
+                    </a>
 
                     <!-- Card 2: Grooming -->
-                    <button onclick="openModal('Hygienic Pet Grooming')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold opacity-0 select-none">
                             Spacer
                         </span>
@@ -158,10 +159,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Grooming</span>
-                    </button>
+                    </a>
 
                     <!-- Card 3: Vaccination (10% Off) -->
-                    <button onclick="openModal('Pet Vaccination (10% Off)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             10% Off
                         </span>
@@ -176,10 +177,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Vaccination</span>
-                    </button>
+                    </a>
 
                     <!-- Card 4: Vet at Home (₹399) -->
-                    <button onclick="openModal('Vet at Home Visit (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             ₹399
                         </span>
@@ -189,12 +190,12 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Vet at<br>Home</span>
-                    </button>
+                    </a>
 
                     <!-- Card 5: Deworming & Tick (10% Off) -->
-                    <button onclick="scrollToShopCategory('deworming')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
-                            10% Off
+                            ₹149
                         </span>
                         <div class="w-13 h-13 sm:w-14 sm:h-14 my-3 rounded-2xl bg-[#EDE7F6] flex items-center justify-center text-[#5E35B1] group-hover:scale-110 transition-transform">
                             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
@@ -203,10 +204,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Deworming<br>& Tick</span>
-                    </button>
+                    </a>
 
                     <!-- Card 6: Dog Food (15% Off) -->
-                    <button onclick="scrollToShopCategory('dogfood')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="shop.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             15% Off
                         </span>
@@ -216,10 +217,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Dog Food</span>
-                    </button>
+                    </a>
 
                     <!-- Card 7: Diagnostics At Home (NEW) -->
-                    <button onclick="openModal('Diagnostics & Blood Test At Home')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-[#B45309] tracking-tight">
                             NEW
                         </span>
@@ -229,10 +230,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Diagnostics<br>At Home</span>
-                    </button>
+                    </a>
 
                     <!-- Card 8: Vaccine at Home (₹399) -->
-                    <button onclick="openModal('Vaccine at Home (₹399)')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="booking.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             ₹399
                         </span>
@@ -242,10 +243,10 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Vaccine at<br>Home</span>
-                    </button>
+                    </a>
 
                     <!-- Card 9: Accessories (10% Off) -->
-                    <button onclick="scrollToShopCategory('accessories')" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
+                    <a href="shop.html" class="service-tile rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between text-center border border-transparent cursor-pointer group">
                         <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4EFDF] text-[#1E8449] tracking-tight">
                             10% Off
                         </span>
@@ -255,7 +256,7 @@
                             </svg>
                         </div>
                         <span class="text-xs sm:text-[14px] font-bold text-[#023047] leading-tight">Accessories</span>
-                    </button>
+                    </a>
 
                 </div>
             </div>
@@ -267,7 +268,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                     
                     <!-- Top-Left Card -->
-                    <div onclick="scrollToShopCategory('all')" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
+                    <div onclick="window.location.href='shop.html'" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
                         <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=900&q=80" 
                              onerror="this.src='https://placehold.co/600x450/023047/E0F7FA?text=Everyday+Pet+Care'"
                              alt="Dog and Pet Nutrition" 
@@ -278,13 +279,13 @@
                                 From Everyday Care to Expert Care
                             </h3>
                             <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                                A good fit if you offer both pet products and veterinary services
+                                Authentic pet food, medicines, and veterinary care under one roof
                             </p>
                         </div>
                     </div>
 
                     <!-- Top-Right Card -->
-                    <div onclick="openModal('Hygienic Grooming & Styling')" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
+                    <div onclick="window.location.href='booking.html'" class="bento-card relative h-60 sm:h-64 rounded-[26px] overflow-hidden shadow-card cursor-pointer group">
                         <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=900&q=80" 
                              onerror="this.src='https://placehold.co/600x450/00796B/FFFFFF?text=Hygienic+Grooming'"
                              alt="Hygienic Dog Grooming" 
@@ -295,7 +296,7 @@
                                 Hygienic Grooming
                             </h3>
                             <p class="text-xs sm:text-sm text-slate-200">
-                                Stress-free bath & styling
+                                Stress-free bath & styling packages
                             </p>
                         </div>
                     </div>
@@ -330,234 +331,16 @@
                         </div>
 
                         <div class="flex items-center gap-2 self-start sm:self-end shrink-0">
-                            <button onclick="openBookingModal('24/7 Expert Consultation')" 
-                                    class="bg-[#E0F7FA] hover:bg-white text-[#00796B] font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95 flex items-center gap-2">
+                            <a href="booking.html" class="bg-[#E0F7FA] hover:bg-white text-[#00796B] font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 active:scale-95 flex items-center gap-2">
                                 <span>Book Appointment</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                 </svg>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-        <section hidden>
-        <!-- Quick Trust Bar Underneath Hero -->
-        <div class="mt-8 bg-[#E0F7FA] rounded-2xl p-4 sm:p-5 border border-[#00796B]/10 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <div>
-                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">50,000+ Happy Pets</div>
-                    <div class="text-xs text-slate-600">Trusted across neighborhoods</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <div>
-                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">60-Min Home Vet</div>
-                    <div class="text-xs text-slate-600">Doorstep care starting ₹399</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                </div>
-                <div>
-                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">In-House Diagnostics</div>
-                    <div class="text-xs text-slate-600">Digital X-Ray, Blood & USG</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-white text-[#00796B] flex items-center justify-center font-bold shadow-sm shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                </div>
-                <div>
-                    <div class="text-sm sm:text-base font-extrabold text-[#023047]">Fear-Free Clinics</div>
-                    <div class="text-xs text-slate-600">Separate Dog & Cat zones</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         GROOMING & BOARDING SECTION
-    =========================================== -->
-    <section id="grooming-boarding" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-            <div>
-                <section hidden>
-                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-[#FCE4EC] text-[#AD1457] mb-3">
-                    ✨ SPA & STAYCATION AT ALPHATAILS
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] tracking-tight">
-                    Hygienic Grooming & Cozy Boarding
-                </h2>
-                <p class="text-slate-600 mt-2 max-w-2xl">
-                    Designed with calming pastel suites, organic sulphate-free shampoos, and 24/7 veterinary supervision so your pet feels pampered and safe.
-                </p>
-            </div>
-            <section hidden>
-            <div class="inline-flex p-1.5 rounded-2xl bg-[#E0F7FA] self-start">
-                <button id="tabGroomingBtn" onclick="switchSpaTab('grooming')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-[#00796B] text-white shadow-sm transition">
-                    ✂️ Grooming Packages
-                </button>
-                <button id="tabBoardingBtn" onclick="switchSpaTab('boarding')" class="px-5 py-2.5 rounded-xl text-sm font-bold text-[#023047] hover:text-[#00796B] transition">
-                    🏡 Luxury Boarding
-                </button>
-            </div>
-        </div>
-        <section hidden>
-        <div id="groomingPanel" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="rounded-3xl p-6 sm:p-7 bg-[#FCE4EC]/55 border border-[#F8BBD0] flex flex-col justify-between hover:shadow-lg transition">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#C2185B] shadow-sm">Most Popular</span>
-                        <span class="text-xs font-bold text-[#023047]/70">60 Mins Session</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Essential Spa Bath</h3>
-                    <p class="text-sm text-slate-600 mb-5">Ideal for regular hygiene, shiny coat & odor control.</p>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-3xl font-extrabold text-[#023047]">₹799</span>
-                        <span class="text-sm text-slate-400 line-through">₹1,199</span>
-                        <span class="text-xs font-bold text-[#00796B] bg-white px-2 py-0.5 rounded-md">Save 33%</span>
-                    </div>
-                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Warm Aroma Bath & Blow Dry</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Nail Clipping & Paw Pad Trim</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Ear & Eye Gentle Cleaning</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#C2185B] flex items-center justify-center text-xs font-bold">✓</span> Sanitary Trim & Pet Cologne</li>
-                    </ul>
-                </div>
-                <button onclick="openBookingModal('Essential Spa Bath (₹799)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
-                    Book Spa Bath
-                </button>
-            </div>
-
-            <div class="rounded-3xl p-6 sm:p-7 bg-[#E8F5E9]/80 border border-[#C8E6C9] flex flex-col justify-between hover:shadow-lg transition relative">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#00796B] text-white shadow-sm">Complete Makeover</span>
-                        <span class="text-xs font-bold text-[#023047]/70">90–120 Mins</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Full Styling & Haircut</h3>
-                    <p class="text-sm text-slate-600 mb-5">Full-body breed-specific haircut by certified stylists.</p>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-3xl font-extrabold text-[#023047]">₹1,399</span>
-                        <span class="text-sm text-slate-400 line-through">₹1,999</span>
-                        <span class="text-xs font-bold text-[#00796B] bg-white px-2 py-0.5 rounded-md">Free Vet Check</span>
-                    </div>
-                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Everything in Essential Spa Bath</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Full Body Scissor / Clipper Styling</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Undercoat De-shedding Treatment</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Complimentary Dental Spray & Bow</li>
-                    </ul>
-                </div>
-                <button onclick="openBookingModal('Full Styling & Haircut (₹1,399)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
-                    Book Full Styling
-                </button>
-            </div>
-
-            <div class="rounded-3xl p-6 sm:p-7 bg-[#EDE7F6]/75 border border-[#D1C4E9] flex flex-col justify-between hover:shadow-lg transition">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#5E35B1] shadow-sm">Vet Recommended</span>
-                        <span class="text-xs font-bold text-[#023047]/70">75 Mins Session</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Medicated Tick & Skin Spa</h3>
-                    <p class="text-sm text-slate-600 mb-5">Therapeutic relief for itchy skin, dandruff, ticks & fleas.</p>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-3xl font-extrabold text-[#023047]">₹1,099</span>
-                        <span class="text-sm text-slate-400 line-through">₹1,499</span>
-                        <span class="text-xs font-bold text-[#5E35B1] bg-white px-2 py-0.5 rounded-md">Skin Care</span>
-                    </div>
-                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Vet-Prescribed Medicated Soak</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Manual Tick & Flea Combing</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Paw Butter Massage & Nail Trim</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#5E35B1] flex items-center justify-center text-xs font-bold">✓</span> Post-Grooming Dermatologist Check</li>
-                    </ul>
-                </div>
-                <button onclick="openBookingModal('Medicated Tick & Skin Spa (₹1,099)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
-                    Book Medicated Spa
-                </button>
-            </div>
-        </div>
-
-        <div id="boardingPanel" class="hidden grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="rounded-3xl p-6 sm:p-7 bg-[#FFF3E0]/80 border border-[#FFE0B2] flex flex-col justify-between hover:shadow-lg transition">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#E65100] shadow-sm">Daytime Fun</span>
-                        <span class="text-xs font-bold text-[#023047]/70">Up to 8 Hours</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Supervised Daycare</h3>
-                    <p class="text-sm text-slate-600 mb-5">Social play, agility games, and afternoon nap suites while you're at work.</p>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-3xl font-extrabold text-[#023047]">₹499</span>
-                        <span class="text-sm text-slate-500">/ day</span>
-                    </div>
-                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#E65100] flex items-center justify-center text-xs font-bold">✓</span> AC Indoor Play Zone & Toys</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#E65100] flex items-center justify-center text-xs font-bold">✓</span> Live WhatsApp Video Updates</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#E65100] flex items-center justify-center text-xs font-bold">✓</span> Fresh Meals & Hydration Tracking</li>
-                    </ul>
-                </div>
-                <button onclick="openBookingModal('Supervised Pet Daycare (₹499)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
-                    Reserve Daycare Slot
-                </button>
-            </div>
-
-            <div class="rounded-3xl p-6 sm:p-7 bg-[#FFF8E1] border border-[#FFECB3] flex flex-col justify-between hover:shadow-lg transition">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#00796B] text-white shadow-sm">24/7 Vet On-Site</span>
-                        <span class="text-xs font-bold text-[#023047]/70">Per Night Stay</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Overnight Luxury Suite</h3>
-                    <p class="text-sm text-slate-600 mb-5">Cage-free private pastel cabins with orthopedic bedding & 3 daily walks.</p>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-3xl font-extrabold text-[#023047]">₹999</span>
-                        <span class="text-sm text-slate-500">/ night</span>
-                    </div>
-                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Cage-Free Private Pastel Cabin</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Twice Daily Vet Health Check</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#00796B] flex items-center justify-center text-xs font-bold">✓</span> Custom Home-Cooked / Kibble Meals</li>
-                    </ul>
-                </div>
-                <button onclick="openBookingModal('Overnight Luxury Boarding Suite (₹999)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
-                    Book Overnight Suite
-                </button>
-            </div>
-
-            <div class="rounded-3xl p-6 sm:p-7 bg-[#FCE4EC]/60 border border-[#F8BBD0] flex flex-col justify-between hover:shadow-lg transition">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#AD1457] shadow-sm">100% Soundproof</span>
-                        <span class="text-xs font-bold text-[#023047]/70">Cats Only Zone</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-[#023047] mb-1">Serene Cat Boarding</h3>
-                    <p class="text-sm text-slate-600 mb-5">Multi-level cat condos, climbing trees, and pheromone-diffused calm air.</p>
-                    <div class="flex items-baseline gap-2 mb-6">
-                        <span class="text-3xl font-extrabold text-[#023047]">₹799</span>
-                        <span class="text-sm text-slate-500">/ night</span>
-                    </div>
-                    <ul class="space-y-2.5 text-sm text-[#023047] mb-7">
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#AD1457] flex items-center justify-center text-xs font-bold">✓</span> Zero Dog Contact / Quiet Zone</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#AD1457] flex items-center justify-center text-xs font-bold">✓</span> Scratching Posts & Window Perches</li>
-                        <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-white text-[#AD1457] flex items-center justify-center text-xs font-bold">✓</span> Sanitized Litter Box & Cuddle Time</li>
-                    </ul>
-                </div>
-                <button onclick="openBookingModal('Serene Cat Boarding (₹799)')" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-bold text-sm shadow-md transition">
-                    Book Cat Condo
-                </button>
             </div>
         </div>
     </section>
@@ -576,22 +359,22 @@
                         Meet Our Senior Veterinarians
                     </h2>
                     <p class="text-slate-600 mt-2 max-w-2xl">
-                        Compassionate MVSc specialists trained in small animal internal medicine, soft-tissue surgery, dermatology, and preventive wellness.
+                        Compassionate specialists trained in small animal internal medicine, soft-tissue surgery, dermatology, and preventive wellness.
                     </p>
                 </div>
-                <button onclick="openBookingModal('Priority Senior Vet Consultation')" class="self-start md:self-end bg-white hover:bg-[#023047] text-[#023047] hover:text-white font-bold text-sm px-6 py-3 rounded-xl shadow-sm transition">
-                    Schedule Video or Clinic Consult →
-                </button>
+                <a href="booking.html" class="self-start md:self-end bg-white hover:bg-[#023047] text-[#023047] hover:text-white font-bold text-sm px-6 py-3 rounded-xl shadow-sm transition">
+                    Schedule Clinic Consult →
+                </a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Vet 1 -->
+                <!-- Vet 1: Dr. Anudeep -->
                 <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
                     <div>
                         <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
                             <img src="https://res.cloudinary.com/koa1q8pv/image/upload/v1792399788/WhatsApp_Image_2026-10-19_at_7.47.33_AM_2.jpg" 
                                  onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Anudeep'"
-                                 alt="Dr.Anudeep" class="w-full h-full object-cover">
+                                 alt="Dr. Anudeep" class="w-full h-full object-cover">
                             <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
                                 8+ Yrs Exp
                             </span>
@@ -599,95 +382,19 @@
                                 ★ 4.9
                             </span>
                         </div>
-                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Anudeep, BVSc & AH,WVS</h3>
-                        <p class="text-xs font-bold text-[#00796B] mb-2">Generel Physician and Surgeon</p>
-                        <p class="text-xs text-slate-500 leading-relaxed mb-4"></p>
+                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Anudeep, BVSc & AH, WVS</h3>
+                        <p class="text-xs font-bold text-[#00796B] mb-4">General Physician and Surgeon</p>
                     </div>
-                    <button onclick="openBookingModal('Consult with Dr. Anudeep')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
+                    <a href="booking.html" class="block text-center w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
                         Book Dr. Anudeep
-                    </button>
-                </div>
-                <section hidden>
-                <!-- Vet 2 -->
-                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
-                    <div>
-                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80" 
-                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Meera+Krishnan'"
-                                 alt="Dr. Meera Krishnan" class="w-full h-full object-cover">
-                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
-                                9+ Yrs Exp
-                            </span>
-                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
-                                ★ 5.0
-                            </span>
-                        </div>
-                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Meera Krishnan</h3>
-                        <p class="text-xs font-bold text-[#00796B] mb-2">Pet Dermatology & Allergies</p>
-                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                            Expert in chronic coat issues, tick fever recovery, and feline internal medicine.
-                        </p>
-                    </div>
-                    <button onclick="openBookingModal('Consult with Dr. Meera Krishnan')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
-                        Book Dr. Meera
-                    </button>
-                </div>
-                <section hidden>
-                <!-- Vet 3 -->
-                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
-                    <div>
-                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" 
-                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Rohan+Deshmukh'"
-                                 alt="Dr. Rohan Deshmukh" class="w-full h-full object-cover">
-                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
-                                8+ Yrs Exp
-                            </span>
-                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
-                                ★ 4.9
-                            </span>
-                        </div>
-                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Rohan Deshmukh</h3>
-                        <p class="text-xs font-bold text-[#00796B] mb-2">Diagnostics & Cardiology</p>
-                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                            Leads Alphatails' in-house echocardiography, ultrasound, and geriatric care unit.
-                        </p>
-                    </div>
-                    <button onclick="openBookingModal('Consult with Dr. Rohan Deshmukh')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
-                        Book Dr. Rohan
-                    </button>
-                </div>
-                <section hidden>
-                <!-- Vet 4 -->
-                <div class="bg-white rounded-3xl p-5 shadow-card flex flex-col justify-between hover:-translate-y-1 transition">
-                    <div>
-                        <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" 
-                                 onerror="this.src='https://placehold.co/400x400/00796B/FFFFFF?text=Dr.+Ananya+Sen'"
-                                 alt="Dr. Ananya Sen" class="w-full h-full object-cover">
-                            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
-                                7+ Yrs Exp
-                            </span>
-                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#00796B] text-xs font-extrabold shadow-sm">
-                                ★ 4.9
-                            </span>
-                        </div>
-                        <h3 class="text-lg font-extrabold text-[#023047]">Dr. Ananya Sen, BVSc</h3>
-                        <p class="text-xs font-bold text-[#00796B] mb-2">Preventive Care & Nutrition</p>
-                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
-                            Puppy/kitten vaccination schedules, custom diet plans, and fear-free home visits.
-                        </p>
-                    </div>
-                    <button onclick="openBookingModal('Consult with Dr. Ananya Sen')" class="w-full py-2.5 rounded-xl bg-[#E0F7FA] hover:bg-[#00796B] text-[#00796B] hover:text-white font-bold text-xs transition">
-                        Book Dr. Ananya
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ==========================================
-         ALPHATAILS PET SHOP SECTION
+         ALPHATAILS PET SHOP SECTION PREVIEW
     =========================================== -->
     <section id="shop" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
@@ -699,194 +406,26 @@
                     Alphatails Everyday Pet Shop
                 </h2>
                 <p class="text-slate-600 mt-1">
-                    Up to 15% Off on authentic Dog Food, Deworming & Tick treatments, and Accessories.
+                    Up to 15% Off on authentic Dog Food, Deworming & Tick treatments, and Gravies.
                 </p>
             </div>
 
-            <!-- Filter Category Buttons -->
             <div class="flex flex-wrap gap-2">
                 <button onclick="filterProducts('all')" data-cat="all" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#00796B] text-white transition">All Essentials</button>
                 <button onclick="filterProducts('dogfood')" data-cat="dogfood" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition">Dog Food (15% Off)</button>
                 <button onclick="filterProducts('deworming')" data-cat="deworming" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition">Deworming & Tick (10% Off)</button>
-                <button onclick="filterProducts('accessories')" data-cat="accessories" class="shop-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#E0F7FA] text-[#023047] hover:bg-[#00796B]/10 transition">Accessories (10% Off)</button>
+                <a href="shop.html" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#023047] text-white hover:bg-[#00796B] transition">Open Full Store →</a>
             </div>
         </div>
 
-        <!-- Product Grid (Populated dynamically via script.js) -->
+        <!-- Product Grid (Populated dynamically via Script.js) -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
-    </section>
-
-    <!-- ==========================================
-         ABOUT US & CLINIC EXCELLENCE SECTION
-    =========================================== -->
-    <section hidden id="about" class="py-16 bg-[#E0F7FA]/70 border-y border-[#E0F7FA]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-6 space-y-6">
-                    <section hidden>
-                    <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#00796B] text-white uppercase tracking-wider">
-                        ABOUT ALPHATAILS CLINICS
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] leading-tight">
-                        Redefining Pet Healthcare with Empathy, Technology & Transparency
-                    </h2>
-                    <p class="text-slate-600 leading-relaxed">
-                        At <strong>Alphatails Veterinary Clinic</strong>, we believe every tail wag and purr deserves hospital-grade medical care in a warm, stress-free neighborhood environment. Whether it's a routine vaccination at home for ₹399 or complex 24/7 emergency care, our clinics are built around your pet's comfort.
-                    </p>
-                    <section hidden>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                            <div class="w-9 h-9 rounded-xl bg-[#E8F5E9] text-[#00796B] flex items-center justify-center font-bold mb-2">1</div>
-                            <h4 class="font-extrabold text-[#023047] text-sm">Digital Health Records</h4>
-                            <p class="text-xs text-slate-500 mt-1">Instant vaccination reminders, prescriptions & lab reports in one click.</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                            <div class="w-9 h-9 rounded-xl bg-[#FCE4EC] text-[#C2185B] flex items-center justify-center font-bold mb-2">2</div>
-                            <h4 class="font-extrabold text-[#023047] text-sm">Visible Glass Grooming</h4>
-                            <p class="text-xs text-slate-500 mt-1">Watch your furry companion get pampered in our transparent spa zones.</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                            <div class="w-9 h-9 rounded-xl bg-[#FFF3E0] text-[#E65100] flex items-center justify-center font-bold mb-2">3</div>
-                            <h4 class="font-extrabold text-[#023047] text-sm">At-Home Vet & Labs</h4>
-                            <p class="text-xs text-slate-500 mt-1">Blood collection, vaccinations & consultations right in your living room.</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                            <div class="w-9 h-9 rounded-xl bg-[#EDE7F6] text-[#5E35B1] flex items-center justify-center font-bold mb-2">4</div>
-                            <h4 class="font-extrabold text-[#023047] text-sm">Zero Hidden Charges</h4>
-                            <p class="text-xs text-slate-500 mt-1">Upfront package pricing before any procedure or diagnostic test begins.</p>
-                        </div>
-                    </div>
-                </div>
-                <section hidden>
-                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-                    <div class="space-y-4">
-                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=700&q=80" 
-                             onerror="this.src='https://placehold.co/500x400/00796B/FFFFFF?text=Happy+Pets'"
-                             alt="Golden Retriever Smile" class="rounded-3xl h-52 w-full object-cover shadow-md">
-                        <div class="bg-[#023047] text-white p-6 rounded-3xl shadow-md">
-                            <div class="text-3xl font-extrabold text-[#E0F7FA] mb-1">99.4%</div>
-                            <div class="text-sm font-bold">Pet Parent Satisfaction</div>
-                            <p class="text-xs text-slate-300 mt-2">Rated 4.9/5 across 12,000+ verified clinic & home visits.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4 pt-6">
-                        <div class="bg-[#00796B] text-white p-6 rounded-3xl shadow-md">
-                            <div class="text-3xl font-extrabold mb-1">24 / 7</div>
-                            <div class="text-sm font-bold">Emergency & Critical Care</div>
-                            <p class="text-xs text-[#E0F7FA] mt-2">Oxygen therapy, ICU incubators & on-call surgeons day and night.</p>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" 
-                             onerror="this.src='https://placehold.co/500x400/023047/E0F7FA?text=Feline+Care'"
-                             alt="Cat Care at Alphatails" class="rounded-3xl h-52 w-full object-cover shadow-md">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         BLOG & PET PARENT GUIDES SECTION
-    =========================================== -->
-    <section id="blog" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-            <div>
-                <section hidden>
-                <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#E0F7FA] text-[#00796B] uppercase tracking-wider mb-3">
-                    ALPHATAILS JOURNAL
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#023047] tracking-tight">
-                    Expert Pet Care Guides & Blog
-                </h2>
-            </div>
-            <section hidden>
-            <p class="text-sm text-slate-500">Written and peer-reviewed by Alphatails Veterinarians</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <section hidden>
-            <!-- Blog 1 -->
-            <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
-                <div>
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=700&q=80" 
-                             onerror="this.src='https://placehold.co/600x400/E0F7FA/023047?text=Vaccination+Guide'"
-                             alt="Puppies Running" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5E9] text-[#1E8449]">Preventive Care</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-xs text-slate-400 font-semibold mb-2">5 Min Read • By Dr. Ananya Sen</div>
-                        <h3 class="text-lg font-extrabold text-[#023047] group-hover:text-[#00796B] transition mb-2">
-                            Complete Puppy & Kitten First-Year Vaccination Checklist
-                        </h3>
-                        <p class="text-sm text-slate-600 line-clamp-3">
-                            Learn the exact timeline for core vaccines including Parvovirus, Distemper, Rabies, and Feline Tricat—plus when to book a home vaccine visit.
-                        </p>
-                    </div>
-                </div>
-                <div class="px-6 pb-6">
-                    <button onclick="openArticleModal('Complete Puppy & Kitten First-Year Vaccination Checklist', 'Dr. Ananya Sen, BVSc', 'Core vaccines protect your pet from life-threatening viral illnesses. For puppies, start DHPPiL at 6–8 weeks followed by boosters every 3–4 weeks until 16 weeks, alongside Anti-Rabies at 12 weeks. At Alphatails, you can book doorstep cold-chain maintained vaccinations starting at just ₹399.')" class="text-sm font-extrabold text-[#00796B] hover:underline flex items-center gap-1">
-                        Read Full Article →
-                    </button>
-                </div>
-            </article>
-            <section hidden>
-            <!-- Blog 2 -->
-            <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
-                <div>
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=700&q=80" 
-                             onerror="this.src='https://placehold.co/600x400/FCE4EC/023047?text=Tick+Fever+Prevention'"
-                             alt="Happy Dog Outdoors" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-[#EDE7F6] text-[#5E35B1]">Parasite Control</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-xs text-slate-400 font-semibold mb-2">4 Min Read • By Dr. Meera Krishnan</div>
-                        <h3 class="text-lg font-extrabold text-[#023047] group-hover:text-[#00796B] transition mb-2">
-                            5 Early Signs of Tick Fever & Why Quarterly Deworming Matters
-                        </h3>
-                        <p class="text-sm text-slate-600 line-clamp-3">
-                            Lethargy, pale gums, or loss of appetite? Discover how simple monthly spot-on treatments and at-home CBC diagnostics keep tick fever away.
-                        </p>
-                    </div>
-                </div>
-                <div class="px-6 pb-6">
-                    <button onclick="openArticleModal('5 Early Signs of Tick Fever & Quarterly Deworming', 'Dr. Meera Krishnan', 'Tick-borne diseases like Ehrlichia and Babesia are common year-round. Always check between your dog\'s paws and ears after walks. If you notice appetite drop or fever above 103°F, book our NEW Diagnostics At Home service for a rapid blood parasite panel.')" class="text-sm font-extrabold text-[#00796B] hover:underline flex items-center gap-1">
-                        Read Full Article →
-                    </button>
-                </div>
-            </article>
-            <section hidden>
-            <!-- Blog 3 -->
-            <article class="bg-white rounded-3xl border border-slate-100 shadow-card overflow-hidden flex flex-col justify-between group">
-                <div>
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=700&q=80" 
-                             onerror="this.src='https://placehold.co/600x400/FFF3E0/023047?text=Grooming+Tips'"
-                             alt="Groomed Dog" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-[#FCE4EC] text-[#C2185B]">Hygienic Grooming</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-xs text-slate-400 font-semibold mb-2">6 Min Read • By Alphatails Spa Team</div>
-                        <h3 class="text-lg font-extrabold text-[#023047] group-hover:text-[#00796B] transition mb-2">
-                            How Stress-Free Grooming Prevents Ear Infections & Matting
-                        </h3>
-                        <p class="text-sm text-slate-600 line-clamp-3">
-                            Professional grooming isn't just about looking cute—sanitary trims, ear canal drying, and paw pad care prevent painful skin infections.
-                        </p>
-                    </div>
-                </div>
-                <div class="px-6 pb-6">
-                    <button onclick="openArticleModal('How Stress-Free Grooming Prevents Ear Infections & Matting', 'Alphatails Grooming Experts', 'Moisture trapped in floppy ears or matted fur is the #1 cause of yeast and bacterial skin hotspots. Our Hygienic Grooming sessions use low-decibel dryers, warm water therapy, and vet-approved ear cleansers for a completely stress-free experience.')" class="text-sm font-extrabold text-[#00796B] hover:underline flex items-center gap-1">
-                        Read Full Article →
-                    </button>
-                </div>
-            </article>
-        </div>
     </section>
 
     <!-- ==========================================
          FULL-WIDTH EDGE-TO-EDGE FOOTER
     =========================================== -->
-    <footer class="w-screen relative left-1/2 -translate-x-1/2 bg-[#023047] text-white py-12 -mt-14 -mb-[120px]">
+    <footer class="w-full bg-[#023047] text-white py-12 mt-4">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b border-slate-700/70">
 
@@ -912,10 +451,8 @@
                     <ul class="space-y-2.5 text-sm text-slate-300">
                         <li><a href="#home" class="hover:text-white transition">Home</a></li>
                         <li><a href="#veterinarians" class="hover:text-white transition">Our Veterinarians</a></li>
-                        <li><a href="#grooming-boarding" class="hover:text-white transition">Grooming & Boarding</a></li>
-                        <li><a href="#shop" class="hover:text-white transition">Pet Shop & Pharmacy</a></li>
-                        <li><a href="#about" class="hover:text-white transition">About Alphatails</a></li>
-                        <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="booking.html" class="hover:text-white transition">Grooming & Spa Bookings</a></li>
+                        <li><a href="shop.html" class="hover:text-white transition">Pet Shop & Pharmacy</a></li>
                     </ul>
                 </div>
 
@@ -923,82 +460,49 @@
                 <div>
                     <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Top Services</h4>
                     <ul class="space-y-2.5 text-sm text-slate-300">
-                        <li><button onclick="openBookingModal('Consultation (50% Off)')" class="text-left hover:text-white transition">Clinic Consultation</button></li>
-                        <li><button onclick="openBookingModal('Vet at Home (₹399)')" class="text-left hover:text-white transition">Vet at Home</button></li>
-                        <li><button onclick="openBookingModal('Vaccine at Home (₹399)')" class="text-left hover:text-white transition">Vaccine at Home</button></li>
-                        <li><button onclick="openBookingModal('Diagnostics At Home')" class="text-left hover:text-white transition">Diagnostics At Home (NEW)</button></li>
-                        <li><button onclick="openBookingModal('Hygienic Grooming')" class="text-left hover:text-white transition">Stress-Free Grooming</button></li>
+                        <li><a href="booking.html" class="hover:text-white transition">Clinic Consultation</a></li>
+                        <li><a href="booking.html" class="hover:text-white transition">Deworming (Dog & Cat)</a></li>
+                        <li><a href="booking.html" class="hover:text-white transition">Vaccinations</a></li>
+                        <li><a href="booking.html" class="hover:text-white transition">Stress-Free Grooming</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 4: Contact & Hours -->
                 <div>
                     <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#E0F7FA] mb-4">Clinic Helpline</h4>
-                    <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-4 whitespace-nowrap">+91 86392 15804</a>
-                    <a href="mailto:alphatails.clinic@gmail.com">alphatails.clinic@gmail.com</a>
-                    <section hidden>
-                    <button onclick="openBookingModal('Emergency / Instant Callback')" class="w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
-                        Request Instant Callback
-                    </button>
+                    <a href="tel:+918639215804" class="block text-lg font-extrabold text-[#E0F7FA] hover:underline mb-3 whitespace-nowrap">+91 86392 15804</a>
+                    <a href="mailto:alphatails.clinic@gmail.com" class="block text-xs text-slate-300 hover:text-white mb-4 break-all">alphatails.clinic@gmail.com</a>
+                    <a href="booking.html" class="block text-center w-full py-2.5 px-4 rounded-xl bg-[#00796B] hover:bg-[#005b4f] text-white text-xs font-bold transition">
+                        Book Appointment
+                    </a>
                 </div>
             </div>
 
             <!-- Bottom Copyright Bar -->
-            <div class="pt-2 flex flex-col items-center justify-center text-center text-m text-slate-400 gap-2">
+            <div class="pt-6 flex flex-col items-center justify-center text-center text-xs text-slate-400 gap-2">
                 <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>
-        
+
     <!-- ==========================================
-         APPOINTMENT BOOKING MODAL
+         APPOINTMENT BOOKING MODAL (Fallback if triggered by JS)
     =========================================== -->
     <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#023047]/60 backdrop-blur-sm p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E0F7FA] relative animate-fadeIn">
-            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">
-                ✕
-            </button>
-
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E0F7FA] relative">
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">✕</button>
             <div class="flex items-center gap-2.5 mb-2">
                 <span class="w-8 h-8 rounded-xl bg-[#00796B] text-white flex items-center justify-center text-sm font-bold">🐾</span>
-                <span class="text-xs font-extrabold uppercase tracking-wider text-[#00796B]">ALPHATAILS INSTANT </span>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-[#00796B]">ALPHATAILS INSTANT BOOKING</span>
             </div>
             <h3 class="text-2xl font-extrabold text-[#023047] mb-1">Book Your Pet's Visit</h3>
             <p class="text-xs sm:text-sm text-slate-500 mb-5">Zero waiting time at our clinics & punctual 60-minute doorstep visits.</p>
 
-            <form id="bookingForm" onsubmit="submitBookingForm(event)" ...> class="space-y-4">
+            <form id="bookingForm" onsubmit="submitBookingForm(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Selected Service</label>
-                    <select id="bookingServiceInput" class="w-full px-4 py-3 rounded-xl bg-[#E0F7FA]/50 border border-[#00796B]/30 text-[#023047] font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
-                        <option value="Consultation (50% Off)">Consultation (50% Off)</option>
-                        <option value="Hygienic Pet Grooming">Hygienic Grooming (Bath & Styling)</option>
-                        <option value="Pet Vaccination (10% Off)">Vaccination (10% Off)</option>
-                        <option value="Vet at Home Visit (₹399)">Vet at Home (₹399)</option>
-                        <option value="Vaccine at Home (₹399)">Vaccine at Home (₹399)</option>
-                        <option value="Diagnostics & Blood Test At Home">Diagnostics & Blood Test At Home</option>
-                        <option value="Overnight Luxury Boarding Suite (₹999)">Pet Boarding</option>
-                        <option value="24/7 Expert Consultation">24/7 Expert Consultation</option>
-                    </select>
+                    <input type="text" id="bookingServiceInput" value="Consultation (50% Off)" class="w-full px-4 py-3 rounded-xl bg-[#E0F7FA]/50 border border-[#00796B]/30 text-[#023047] font-semibold text-sm focus:outline-none" />
                 </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Visit Mode</label>
-                        <select id="visitModeInput" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-medium text-[#023047] focus:outline-none focus:ring-2 focus:ring-[#00796B]">
-                            <option value="Alphatails Clinic Visit">🏥 Clinic Visit</option>
-                            <option value="At-Home Doorstep Visit">🏠 Home Visit</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Pet Species</label>
-                        <select id="petTypeInput" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-medium text-[#023047] focus:outline-none focus:ring-2 focus:ring-[#00796B]">
-                            <option value="Dog">🐶 Dog</option>
-                            <option value="Cat">🐱 Cat</option>
-                            <option value="Other Small Pet">🐰 Other Pet</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Pet Parent Name</label>
@@ -1009,42 +513,20 @@
                         <input type="tel" id="phoneInput" required placeholder="+91 98765 43210" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
                     </div>
                 </div>
-
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Preferred Date</label>
                         <input type="date" id="dateInput" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Time Slot</label>
-                        <select id="timeInput" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
-                            <option>10:00 AM - 12:00 PM</option>
-                            <option>12:00 PM - 03:00 PM</option>
-                            <option>04:00 PM - 07:00 PM</option>
-                            <option>07:00 PM - 09:30 PM</option>
-                        </select>
+                        <label class="block text-xs font-bold text-[#023047] uppercase mb-1">Pet Details</label>
+                        <input type="text" id="petTypeInput" required placeholder="Dog / Cat Breed" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#00796B]">
                     </div>
                 </div>
-
-                <button type="submit" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-extrabold text-sm shadow-lg shadow-[#00796B]/25 transition">
+                <button type="submit" class="w-full py-3.5 rounded-2xl bg-[#00796B] hover:bg-[#005b4f] text-white font-extrabold text-sm shadow-lg transition">
                     Confirm Appointment at Alphatails
                 </button>
             </form>
-        </div>
-    </div>
-
-    <!-- ==========================================
-         ARTICLE READER / CLINIC FINDER MODAL
-    =========================================== -->
-    <div id="infoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#023047]/60 backdrop-blur-sm p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-[#E0F7FA] relative">
-            <button onclick="closeInfoModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-[#023047] flex items-center justify-center font-bold">✕</button>
-            <span id="infoModalTag" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#E0F7FA] text-[#00796B] mb-2">ALPHATAILS</span>
-            <h3 id="infoModalTitle" class="text-xl font-extrabold text-[#023047] mb-3">Title</h3>
-            <p id="infoModalBody" class="text-sm text-slate-600 leading-relaxed mb-6">Content</p>
-            <button onclick="closeInfoModal(); openBookingModal('Consultation (50% Off)')" class="w-full py-3 rounded-xl bg-[#00796B] text-white font-bold text-sm">
-                Book a Vet Consultation
-            </button>
         </div>
     </div>
 
@@ -1064,9 +546,7 @@
             <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-full bg-slate-100 text-[#023047] font-bold">✕</button>
         </div>
 
-        <div id="cartItemsList" class="p-6 flex-1 overflow-y-auto space-y-4">
-            <!-- Populated by script.js -->
-        </div>
+        <div id="cartItemsList" class="p-6 flex-1 overflow-y-auto space-y-4"></div>
 
         <div class="p-6 bg-[#E0F7FA]/60 border-t border-[#E0F7FA]">
             <div class="flex items-center justify-between text-base font-extrabold text-[#023047] mb-4">
@@ -1086,6 +566,6 @@
     </div>
 
     <!-- External JavaScript -->
-    <script src="script.js"></script>
+    <script src="Script.js"></script>
 </body>
 </html>
