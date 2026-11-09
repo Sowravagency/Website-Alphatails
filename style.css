@@ -15,17 +15,18 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   color: var(--text-dark);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Seamless SVG Pet Accessories Pattern Background */
+/* Designer Pet Accessories Seamless SVG Pattern Background */
 .pet-pattern-bg {
   background-color: #f8fafc;
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f766e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.12'%3E%3Ccircle cx='30' cy='35' r='6' fill='%230f766e'/%3E%3Ccircle cx='20' cy='24' r='3' fill='%230f766e'/%3E%3Ccircle cx='27' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='34' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%230f766e'/%3E%3Cpath d='M80 25 c-3-3 -7-1 -7 3 c-3 0 -5 4 -2 7 l14 14 c3 3 7 1 7 -3 c3 0 5 -4 2 -7 Z'/%3E%3Cpath d='M20 95 L45 95 L40 82 L25 82 Z'/%3E%3Cellipse cx='32.5' cy='82' rx='7.5' ry='2.5'/%3E%3Ccircle cx='85' cy='85' r='10' stroke-dasharray='4 2'/%3E%3Ccircle cx='85' cy='98' r='3.5' fill='%230f766e'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f766e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.13'%3E%3Ccircle cx='30' cy='35' r='6' fill='%230f766e'/%3E%3Ccircle cx='20' cy='24' r='3' fill='%230f766e'/%3E%3Ccircle cx='27' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='34' cy='20' r='3' fill='%230f766e'/%3E%3Ccircle cx='40' cy='24' r='3' fill='%230f766e'/%3E%3Cpath d='M80 25 c-3-3 -7-1 -7 3 c-3 0 -5 4 -2 7 l14 14 c3 3 7 1 7 -3 c3 0 5 -4 2 -7 Z'/%3E%3Cpath d='M20 95 L45 95 L40 82 L25 82 Z'/%3E%3Cellipse cx='32.5' cy='82' rx='7.5' ry='2.5'/%3E%3Ccircle cx='85' cy='85' r='10' stroke-dasharray='4 2'/%3E%3Ccircle cx='85' cy='98' r='3.5' fill='%230f766e'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
 }
 
 .container {
@@ -35,19 +36,21 @@ body {
   width: 100%;
 }
 
-/* Header Styles */
+/* ==========================================
+   HEADER STYLES (Matches Image 1)
+=========================================== */
 .site-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--brand-border);
   position: sticky;
   top: 0;
-  z-index: 50;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  z-index: 40;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .header-inner {
-  height: 80px;
+  height: 82px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,8 +64,8 @@ body {
 }
 
 .logo-icon {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 12px;
   background-color: var(--brand-primary);
   display: flex;
@@ -70,33 +73,38 @@ body {
   justify-content: center;
   font-size: 20px;
   color: #ffffff;
+  flex-shrink: 0;
 }
 
 .logo-icon.small {
   width: 36px;
   height: 36px;
   font-size: 16px;
+  border-radius: 10px;
 }
 
 .brand-title {
   display: block;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 21px;
+  font-weight: 800;
   color: var(--text-dark);
   letter-spacing: 0.5px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .brand-subtitle {
+  display: block;
   font-size: 11px;
   font-weight: 700;
   color: var(--brand-primary);
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-top: 2px;
 }
 
 .main-nav {
   display: flex;
+  align-items: center;
   gap: 32px;
 }
 
@@ -106,6 +114,7 @@ body {
   font-weight: 600;
   color: #4b5563;
   transition: color 0.2s;
+  padding: 4px 0;
 }
 
 .nav-link:hover,
@@ -115,23 +124,26 @@ body {
 
 .nav-link.active {
   border-bottom: 2px solid var(--brand-primary);
-  padding-bottom: 4px;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .cart-btn {
   position: relative;
-  padding: 10px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   background-color: var(--brand-light);
   color: var(--brand-primary);
   border: 1px solid var(--brand-border);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s;
 }
 
@@ -140,15 +152,15 @@ body {
 }
 
 .cart-icon {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   display: block;
 }
 
 .cart-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -6px;
+  right: -6px;
   background-color: var(--text-dark);
   color: #ffffff;
   font-size: 11px;
@@ -166,12 +178,15 @@ body {
   color: #ffffff;
   font-size: 14px;
   font-weight: 700;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 12px;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary:hover {
@@ -234,143 +249,31 @@ body {
   margin-top: 8px;
 }
 
-/* Hero & Filter Section */
-.shop-top-section {
-  padding-top: 32px;
-  padding-bottom: 24px;
+/* ==========================================
+   HOMEPAGE SERVICE TILES & BENTO CARDS
+=========================================== */
+.shadow-card {
+  box-shadow: 0 10px 30px -5px rgba(2, 48, 71, 0.07);
 }
 
-.shop-hero-banner {
-  background: linear-gradient(135deg, #0f766e 0%, #1e293b 100%);
-  border-radius: 16px;
-  padding: 32px;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.16);
+.service-tile {
+  background-color: #f8fafc;
+  transition: all 0.25s ease;
 }
 
-.hero-pill {
-  background: rgba(255, 255, 255, 0.18);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 999px;
-  letter-spacing: 0.8px;
-}
-
-.hero-content h1 {
-  font-size: 32px;
-  margin-top: 10px;
-  margin-bottom: 6px;
-}
-
-.hero-content p {
-  font-size: 15px;
-  color: #e2e8f0;
-  max-width: 580px;
-  line-height: 1.5;
-}
-
-.hero-search {
-  position: relative;
-  width: 290px;
-}
-
-.hero-search input {
-  width: 100%;
-  padding: 12px 38px 12px 16px;
-  border-radius: 12px;
-  border: none;
-  font-size: 14px;
-  color: var(--text-dark);
-  outline: none;
-}
-
-.search-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Filter Bar */
-.filter-bar {
-  margin-top: 24px;
-  background: rgba(255, 255, 255, 0.94);
-  padding: 16px;
-  border-radius: 14px;
-  border: 1px solid var(--brand-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.category-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filter-btn {
+.service-tile:hover {
   background-color: var(--brand-light);
-  color: #374151;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--brand-border);
-  cursor: pointer;
-  transition: all 0.2s;
+  border-color: var(--brand-border);
+  transform: translateY(-2px);
 }
 
-.filter-btn:hover {
-  background-color: var(--brand-border);
+.bento-card:hover .bento-img {
+  transform: scale(1.05);
 }
 
-.filter-btn.active {
-  background-color: var(--brand-primary);
-  color: #ffffff;
-  border-color: var(--brand-primary);
-}
-
-.sort-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
-.sort-wrapper select {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-dark);
-  outline: none;
-}
-
-/* Product Grid */
-.shop-main {
-  padding-bottom: 64px;
-  flex-grow: 1;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
+/* ==========================================
+   PRODUCT CARDS (Homepage & Shop)
+=========================================== */
 .product-card {
   background-color: #ffffff;
   border-radius: 16px;
@@ -389,7 +292,7 @@ body {
 
 .product-image-wrap {
   position: relative;
-  height: 210px;
+  height: 200px;
   background-color: #f1f5f9;
   overflow: hidden;
 }
@@ -491,20 +394,13 @@ body {
   background-color: var(--brand-primary-dark);
 }
 
-.empty-state {
-  grid-column: 1 / -1;
-  background: #ffffff;
-  padding: 48px;
-  border-radius: 16px;
-  text-align: center;
-  border: 1px solid var(--brand-border);
-}
-
-/* Footer Styles */
+/* ==========================================
+   FOOTER STYLES (Matches Image 2)
+=========================================== */
 .site-footer {
-  background-color: #0f172a;
+  background-color: #0b1120;
   color: #cbd5e1;
-  padding-top: 48px;
+  padding-top: 52px;
   padding-bottom: 32px;
   border-top: 4px solid var(--brand-primary);
   margin-top: auto;
@@ -513,31 +409,33 @@ body {
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: 36px;
 }
 
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 700;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 16px;
   color: #ffffff;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   letter-spacing: 0.5px;
 }
 
 .footer-desc {
   font-size: 14px;
   color: #94a3b8;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .footer-col h3 {
   color: #ffffff;
   font-size: 13px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .footer-col ul {
@@ -545,7 +443,7 @@ body {
 }
 
 .footer-col ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-col a {
@@ -563,11 +461,11 @@ body {
 .footer-col p {
   font-size: 14px;
   color: #94a3b8;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .footer-bottom {
-  margin-top: 40px;
+  margin-top: 44px;
   padding-top: 24px;
   border-top: 1px solid #1e293b;
   display: flex;
@@ -578,9 +476,6 @@ body {
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -599,12 +494,8 @@ body {
 }
 
 @media (max-width: 640px) {
-  .product-grid,
   .footer-grid {
     grid-template-columns: 1fr;
-  }
-  .hero-search {
-    width: 100%;
   }
   .footer-bottom {
     flex-direction: column;
