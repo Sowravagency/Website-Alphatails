@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Alphatails Pet Clinic & Care</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom External CSS -->
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
+
+    <!-- ==========================================
+         UNIVERSAL HEADER
+    =========================================== -->
+    <header class="site-header">
+        <div class="layout-container header-inner">
+            <!-- Brand Logo & Name -->
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">🐾</div>
+                <div>
+                    <span class="brand-title">ALPHATAILS</span>
+                    <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="booking.html" class="nav-link">Grooming & Consultation</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </nav>
+
+            <!-- Right Action Buttons -->
+            <div class="header-actions">
+                <!-- Shopping Cart Button -->
+                <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
+                    <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cartCount" class="cart-badge">0</span>
+                </button>
+
+                <!-- Book Now Button -->
+                <a href="booking.html" class="btn-primary header-cta">Book Now</a>
+
+                <!-- Mobile Hamburger Button -->
+                <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+                    <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="closeIcon" class="menu-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <nav id="mobileNav" class="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="booking.html" class="mobile-nav-link">Grooming & Consultation</a>
+            <a href="shop.html" class="mobile-nav-link">Shop</a>
+            <a href="about.html" class="mobile-nav-link">About Us</a>
+            <a href="contact.html" class="mobile-nav-link active">Contact</a>
+            <a href="booking.html" class="btn-primary mobile-cta">Book Now</a>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         CONTACT HERO BANNER
+    =========================================== -->
+    <section class="bg-[#E0F7FA]/80 backdrop-blur-[2px] py-14 sm:py-20 border-b border-[#ccfbf1] text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white text-[#0f766e] text-xs font-extrabold uppercase shadow-sm border border-[#ccfbf1]">
+                <i class="fa-solid fa-headset"></i> We're Here For You & Your Pets
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-[#023047] leading-tight">
+                Get In Touch With Alphatails
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Have questions regarding veterinary appointments, pet pharmacy deliveries, or grooming packages? Reach out to our team instantly.
+            </p>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         MAIN CONTENT AREA
+    =========================================== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- LEFT COLUMN: Contact Info & Emergency Card -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white p-8 rounded-3xl border border-[#ccfbf1] shadow-card space-y-6">
+                    <div>
+                        <span class="px-3 py-1 rounded-lg bg-[#f0fdfa] text-[#0f766e] font-extrabold text-xs uppercase tracking-wider border border-[#ccfbf1]">
+                            DIRECT CONTACT
+                        </span>
+                        <h2 class="text-2xl font-extrabold text-[#023047] mt-3">Alphatails Headquarters</h2>
+                        <p class="text-slate-600 text-sm mt-1">Our clinic and support desk are active six days a week.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0f766e] flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase text-slate-400">Location</h3>
+                                <p class="text-sm font-semibold text-[#023047] mt-0.5">India (Serving Regional Neighborhoods)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0f766e] flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase text-slate-400">Phone Support</h3>
+                                <a href="tel:+918639215804" class="text-sm font-semibold text-[#0f766e] hover:underline mt-0.5 block">+91 86392 15804 / +91 98765 43210</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0f766e] flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase text-slate-400">Email Address</h3>
+                                <a href="mailto:support@alphatails.in" class="text-sm font-semibold text-[#0f766e] hover:underline mt-0.5 block">support@alphatails.in</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#f0fdfa] text-[#0f766e] flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase text-slate-400">Working Hours</h3>
+                                <p class="text-sm font-semibold text-[#023047] mt-0.5">Monday – Saturday: 9:00 AM – 8:30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Banner -->
+                <div class="bg-[#023047] text-white p-6 rounded-3xl space-y-3 shadow-lg border border-[#0f766e]">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-[#0f766e] text-white flex items-center justify-center font-bold">🚨</span>
+                        <h3 class="text-lg font-extrabold">Emergency Pet Care</h3>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        For critical medical emergencies outside working hours, please call our emergency hotline directly or visit our partner veterinary clinic.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Inquiry Form -->
+            <div class="lg:col-span-7">
+                <div class="bg-white p-8 sm:p-10 rounded-3xl border border-[#ccfbf1] shadow-card">
+                    <h3 class="text-2xl font-extrabold text-[#023047] mb-1">Send Us a Message</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 mb-6">Fill out the form below and our care team will respond within 2 hours.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Your Full Name</label>
+                                <input type="text" id="contactName" required placeholder="e.g. Priya Sharma" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
+                                <input type="tel" id="contactPhone" required placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Email Address</label>
+                            <input type="email" id="contactEmail" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Subject / Inquiry Type</label>
+                            <select id="contactSubject" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm bg-white font-medium text-slate-700">
+                                <option>Veterinary Consultation Inquiry</option>
+                                <option>Grooming & Spa Booking Question</option>
+                                <option>Pharmacy & Order Support</option>
+                                <option>Feedback / General Query</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Your Message</label>
+                            <textarea id="contactMessage" rows="4" required placeholder="Tell us how we can help your pet..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ==========================================
+         UNIVERSAL FOOTER
+    =========================================== -->
+    <footer id="footerContact" class="site-footer">
+        <div class="layout-container footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <div class="logo-icon small">🐾</div>
+                    <span>ALPHATAILS</span>
+                </div>
+                <p class="footer-desc">
+                    Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="booking.html">Services & Grooming</a></li>
+                    <li><a href="shop.html">AlphaTails Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Shop Categories</h3>
+                <ul>
+                    <li><a href="shop.html">Tactical & Padded Harnesses</a></li>
+                    <li><a href="shop.html">Grooming & Tick Shampoos</a></li>
+                    <li><a href="shop.html">Stainless Steel Feeders</a></li>
+                    <li><a href="shop.html">Chew Toys & Cat Scratchers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Get In Touch</h3>
+                <p>📍 India</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ support@alphatails.in</p>
+                <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
+            </div>
+        </div>
+
+        <div class="layout-container footer-bottom">
+            <p>© 2026 AlphaTails. All rights reserved.</p>
+            <p>Built for Happy Pets & Pet Parents</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Banner -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-[#0f766e] items-center gap-3 max-w-sm">
+        <span class="w-7 h-7 rounded-full bg-[#0f766e] text-white flex items-center justify-center text-sm font-bold shrink-0">✓</span>
+        <p id="toastMessage" class="text-xs sm:text-sm font-semibold"></p>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="contact.js"></script>
+</body>
+</html>
