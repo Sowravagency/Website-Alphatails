@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Consulting | Alphatails Pet Clinic & Care</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom External CSS -->
+    <link rel="stylesheet" href="doctor-consulting.css">
+</head>
+<body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
+
+    <!-- ==========================================
+         UNIVERSAL HEADER (Desktop & Mobile Responsive)
+    =========================================== -->
+    <header class="site-header">
+        <div class="layout-container header-inner">
+            <!-- Brand Logo & Name -->
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">🐾</div>
+                <div>
+                    <span class="brand-title">ALPHATAILS</span>
+                    <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="booking.html" class="nav-link">Grooming & Consultation</a>
+                <a href="doctor-consulting.html" class="nav-link active">Doctors</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+
+            <!-- Right Action Buttons -->
+            <div class="header-actions">
+                <!-- Shopping Cart Button -->
+                <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
+                    <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cartCount" class="cart-badge">0</span>
+                </button>
+
+                <!-- Book Now Button (Desktop) -->
+                <a href="booking.html" class="btn-primary header-cta">Book Now</a>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+                    <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="closeIcon" class="menu-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown Menu -->
+        <nav id="mobileNav" class="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="booking.html" class="mobile-nav-link">Grooming & Consultation</a>
+            <a href="doctor-consulting.html" class="mobile-nav-link active">Doctors</a>
+            <a href="shop.html" class="mobile-nav-link">Shop</a>
+            <a href="about.html" class="mobile-nav-link">About Us</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="booking.html" class="btn-primary mobile-cta">Book Now</a>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         DOCTOR CONSULTING HERO BANNER
+    =========================================== -->
+    <section class="bg-[#E0F7FA]/80 backdrop-blur-[2px] py-14 sm:py-20 border-b border-[#ccfbf1] text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white text-[#0f766e] text-xs font-extrabold uppercase shadow-sm border border-[#ccfbf1]">
+                <i class="fa-solid fa-user-doctor"></i> Alphatails Medical Board
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-[#023047] leading-tight">
+                Expert Veterinary Consultation & Specialists
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Book appointments with our experienced senior veterinarians specialized in small animal internal medicine, dermatology, soft-tissue surgery, and wellness exams.
+            </p>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         MAIN CONTENT AREA
+    =========================================== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full space-y-16">
+        
+        <!-- Senior Veterinarians Showcase -->
+        <div>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="px-3 py-1 rounded-lg bg-[#f0fdfa] text-[#0f766e] font-extrabold text-xs uppercase tracking-wider border border-[#ccfbf1]">
+                        SENIOR VETERINARIANS
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-[#023047] tracking-tight mt-2">
+                        Meet Our Lead Doctors
+                    </h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Vet 1 -->
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex flex-col justify-between hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-64 rounded-2xl overflow-hidden mb-5 bg-slate-100">
+                            <img src="https://res.cloudinary.com/koa1q8pv/image/upload/v1792399788/WhatsApp_Image_2026-10-19_at_7.47.33_AM_2.jpg" 
+                                 onerror="this.src='https://placehold.co/400x400/0f766e/FFFFFF?text=Dr.+Anudeep'"
+                                 alt="Dr. Anudeep" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-3 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                8+ Yrs Experience
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#0f766e] text-xs font-extrabold shadow-sm">
+                                ★ 4.9
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-[#023047]">Dr. Anudeep, BVSc & AH, WVS</h3>
+                        <p class="text-xs font-bold text-[#0f766e] mb-3">General Physician & Surgeon</p>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Specialized in small animal critical care, preventive vaccination schedules, and soft-tissue surgeries.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Consulting - Dr. Anudeep (General Physician)', 299)" class="w-full py-3 rounded-xl bg-[#f0fdfa] hover:bg-[#0f766e] text-[#0f766e] hover:text-white font-bold text-xs border border-[#ccfbf1] transition">
+                        Book Consultation (₹299)
+                    </button>
+                </div>
+
+                <!-- Vet 2 -->
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex flex-col justify-between hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-64 rounded-2xl overflow-hidden mb-5 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" 
+                                 onerror="this.src='https://placehold.co/400x400/0f766e/FFFFFF?text=Dr.+Specialist'"
+                                 alt="Dr. Swathi Reddy" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-3 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                6+ Yrs Experience
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#0f766e] text-xs font-extrabold shadow-sm">
+                                ★ 4.8
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-[#023047]">Dr. Swathi Reddy, MVSc</h3>
+                        <p class="text-xs font-bold text-[#0f766e] mb-3">Veterinary Dermatologist</p>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Expert in diagnosing chronic skin allergies, tick-borne infections, coat disorders, and dietary elimination protocols.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Consulting - Dr. Swathi Reddy (Dermatology)', 499)" class="w-full py-3 rounded-xl bg-[#f0fdfa] hover:bg-[#0f766e] text-[#0f766e] hover:text-white font-bold text-xs border border-[#ccfbf1] transition">
+                        Book Dermatologist (₹499)
+                    </button>
+                </div>
+
+                <!-- Vet 3 -->
+                <div class="bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex flex-col justify-between hover:-translate-y-1 transition">
+                    <div>
+                        <div class="relative h-64 rounded-2xl overflow-hidden mb-5 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1594824813572-46e300dbbc80?auto=format&fit=crop&w=600&q=80" 
+                                 onerror="this.src='https://placehold.co/400x400/0f766e/FFFFFF?text=Dr.+Surgeon'"
+                                 alt="Dr. Rajesh Kumar" class="w-full h-full object-cover">
+                            <span class="absolute bottom-3 left-3 px-3 py-1 rounded-lg bg-[#023047]/90 backdrop-blur-sm text-white text-xs font-bold">
+                                10+ Yrs Experience
+                            </span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-white/95 text-[#0f766e] text-xs font-extrabold shadow-sm">
+                                ★ 5.0
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-[#023047]">Dr. Rajesh Kumar, MS, Surgery</h3>
+                        <p class="text-xs font-bold text-[#0f766e] mb-3">Senior Veterinary Surgeon</p>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Specialized in complex orthopedics, soft-tissue procedures, emergency trauma management, and geriatric pet care.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Consulting - Dr. Rajesh Kumar (Surgery Consultation)', 799)" class="w-full py-3 rounded-xl bg-[#f0fdfa] hover:bg-[#0f766e] text-[#0f766e] hover:text-white font-bold text-xs border border-[#ccfbf1] transition">
+                        Book Surgeon (₹799)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consultation Packages Grid -->
+        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-[#ccfbf1] shadow-card">
+            <div class="mb-8">
+                <span class="px-3 py-1 rounded-lg bg-[#f0fdfa] text-[#0f766e] font-extrabold text-xs uppercase tracking-wider border border-[#ccfbf1]">
+                    ALL CLINIC SERVICES
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-[#023047] tracking-tight mt-2">
+                    Select Consultation Type & Book Online
+                </h2>
+                <p class="text-slate-600 text-sm mt-1">Zero waiting time at our neighborhood clinic with instant digital prescriptions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="sub-item" onclick="openBookingModal('Consulting - General Physician', 299)">
+                    <div>
+                        <h4 class="font-extrabold text-[#023047] text-sm">General Physician Consultation</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Routine checkups, fever, deworming, diet.</p>
+                    </div>
+                    <span class="price-tag">₹299/-</span>
+                </div>
+
+                <div class="sub-item" onclick="openBookingModal('Consulting - Dermatology Consultation', 499)">
+                    <div>
+                        <h4 class="font-extrabold text-[#023047] text-sm">Dermatology Consultation</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Skin rashes, itching, hair fall, fungal issues.</p>
+                    </div>
+                    <span class="price-tag">₹499/-</span>
+                </div>
+
+                <div class="sub-item" onclick="openBookingModal('Consulting - Surgery Consultation', 799)">
+                    <div>
+                        <h4 class="font-extrabold text-[#023047] text-sm">Surgery Consultation</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Pre/Post operative assessment & orthopedic eval.</p>
+                    </div>
+                    <span class="price-tag">₹799/-</span>
+                </div>
+
+                <div class="sub-item" onclick="openBookingModal('Consulting - Gynaecology Consultation', 799)">
+                    <div>
+                        <h4 class="font-extrabold text-[#023047] text-sm">Gynaecology Consultation</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Mating, pregnancy care, and reproductive health.</p>
+                    </div>
+                    <span class="price-tag">₹799/-</span>
+                </div>
+
+                <div class="sub-item" onclick="openBookingModal('Consulting - Fitness Certificate', 799)">
+                    <div>
+                        <h4 class="font-extrabold text-[#023047] text-sm">Pet Travel Fitness Certificate</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Official health certification for air/train travel.</p>
+                    </div>
+                    <span class="price-tag">₹799/-</span>
+                </div>
+
+                <div class="sub-item" onclick="openBookingModal('Consulting - Vet At Home Visit', 399)">
+                    <div>
+                        <h4 class="font-extrabold text-[#023047] text-sm">Vet at Home Visit</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Doctor visits your doorstep within 60 mins.</p>
+                    </div>
+                    <span class="price-tag">₹399/-</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ==========================================
+         UNIVERSAL FOOTER (Centered & Aligned)
+    =========================================== -->
+    <footer id="footerContact" class="site-footer">
+        <div class="layout-container footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <div class="logo-icon small">🐾</div>
+                    <span>ALPHATAILS</span>
+                </div>
+                <p class="footer-desc">
+                    Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="booking.html">Services & Grooming</a></li>
+                    <li><a href="doctor-consulting.html" class="active-footer-link">Doctors</a></li>
+                    <li><a href="shop.html">AlphaTails Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Shop Categories</h3>
+                <ul>
+                    <li><a href="shop.html">Tactical & Padded Harnesses</a></li>
+                    <li><a href="shop.html">Grooming & Tick Shampoos</a></li>
+                    <li><a href="shop.html">Stainless Steel Feeders</a></li>
+                    <li><a href="shop.html">Chew Toys & Cat Scratchers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Get In Touch</h3>
+                <p>📍 India</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ support@alphatails.in</p>
+                <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
+            </div>
+        </div>
+
+        <div class="layout-container footer-bottom">
+            <p>© 2026 AlphaTails. All rights reserved.</p>
+            <p>Built for Happy Pets & Pet Parents</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         BOOKING MODAL
+    =========================================== -->
+    <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-5 relative border border-[#ccfbf1]">
+            <button type="button" onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-[#0f766e]">Confirm Doctor Visit</span>
+                <h3 class="text-2xl font-extrabold text-[#023047] mt-1">Book Consultation Slot</h3>
+            </div>
+            <div class="bg-[#f0fdfa] p-4 rounded-2xl flex items-center justify-between border border-[#ccfbf1]">
+                <input type="text" id="selectedService" readonly class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none" />
+                <span id="selectedPrice" class="price-tag text-sm shrink-0 ml-2">₹0/-</span>
+            </div>
+            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Parent Name</label>
+                    <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
+                    <input type="tel" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Preferred Date</label>
+                    <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
+                    Confirm Consultation Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Banner -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-[#0f766e] items-center gap-3 max-w-sm">
+        <span class="w-7 h-7 rounded-full bg-[#0f766e] text-white flex items-center justify-center text-sm font-bold shrink-0">✓</span>
+        <p id="toastMessage" class="text-xs sm:text-sm font-semibold"></p>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="doctor-consulting.js"></script>
+</body>
+</html>
