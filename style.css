@@ -505,7 +505,9 @@ body {
 }
 /* Mobile Logo Paw Colour */
 @media (max-width: 768px) {
-    .logo-icon svg path {
-        fill: #000000 !important;
-    }
+  .logo .paw-shape, 
+  .site-header .paw-icon {
+    fill: black; /* Use 'color: black;' if it's text/icon font instead of an SVG */
+  }
 }
+
