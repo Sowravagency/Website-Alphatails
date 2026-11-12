@@ -102,19 +102,23 @@ body {
   margin-top: 2px;
 }
 
+/* Desktop Navigation Alignment */
 .main-nav {
-  display: flex;
-  align-items: center;
-  gap: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px; /* Space between navigation items */
+    white-space: nowrap;
 }
 
+/* Navigation Text */
 .nav-link {
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4b5563;
-  transition: color 0.2s;
-  padding: 4px 0;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 0;
+    transition: color 0.3s ease;
 }
 
 .nav-link:hover,
