@@ -59,7 +59,7 @@ body {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
 }
 
@@ -77,9 +77,9 @@ body {
 }
 
 .logo-icon.small {
-  width: 36px;
-  height: 36px;
-  font-size: 16px;
+  width: 38px;
+  height: 38px;
+  font-size: 17px;
   border-radius: 10px;
 }
 
@@ -101,6 +101,7 @@ body {
   letter-spacing: 1px;
   margin-top: 2px;
 }
+
 
 /* Desktop Navigation Alignment */
 .main-nav {
