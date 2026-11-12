@@ -506,6 +506,6 @@ body {
 /* Mobile Logo Paw Colour */
 @media (max-width: 768px) {
     .logo-icon svg path {
-        fill: #ffffff !important;
+        fill: #000000 !important;
     }
 }
