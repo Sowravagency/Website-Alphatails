@@ -56,53 +56,41 @@ body {
   justify-content: space-between;
 }
 
+/* Brand Logo Alignment */
 .brand-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between paw icon and brand text */
+    text-decoration: none;
 }
 
-.logo-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background-color: var(--brand-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: #ffffff;
-  flex-shrink: 0;
+/* Brand Text Container */
+.brand-logo > div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px; /* Space between brand name and subtitle */
 }
 
-.logo-icon.small {
-  width: 38px;
-  height: 38px;
-  font-size: 17px;
-  border-radius: 10px;
-}
-
+/* Brand Name */
 .brand-title {
-  display: block;
-  font-size: 21px;
-  font-weight: 800;
-  color: var(--text-dark);
-  letter-spacing: 0.5px;
-  line-height: 1.1;
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    text-align: left;
 }
 
+/* Brand Subtitle */
 .brand-subtitle {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--brand-primary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 2px;
+    display: block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+    text-align: left;
 }
-
-
 /* Desktop Navigation Alignment */
 .main-nav {
     display: flex;
