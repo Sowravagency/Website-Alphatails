@@ -463,19 +463,3 @@ body {
     justify-content: center;
   }
 }
-
-@media (max-width: 640px) {
-  .container,
-  .layout-container {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-  }
-}
