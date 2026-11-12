@@ -115,7 +115,7 @@ body {
 .nav-link {
     display: inline-flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 600;
     padding: 10px 0;
     transition: color 0.3s ease;
