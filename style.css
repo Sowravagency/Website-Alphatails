@@ -98,12 +98,13 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
 /* Desktop Navigation Alignment */
 .main-nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 22px; /* Space between navigation items */
+    gap: 22px; 
     white-space: nowrap;
 }
 
@@ -503,11 +504,15 @@ body {
     text-align: center;
   }
 }
-/* Mobile Logo Paw Colour */
+
+/* ==========================================
+   FIXED: Mobile Logo & Paw Shape Color Fix
+=========================================== */
 @media (max-width: 768px) {
-  .logo .paw-shape, 
+  .brand-logo .logo-icon,
+  .brand-logo .paw-shape, 
   .site-header .paw-icon {
-    fill: black; /* Use 'color: black;' if it's text/icon font instead of an SVG */
+    fill: #000000 !important;
+    color: #000000 !important;
   }
 }
-
