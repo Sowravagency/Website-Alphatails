@@ -1,3 +1,5 @@
+let toastTimeout;
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Hamburger Menu Toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -8,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileMenuBtn && mobileNav) {
     mobileMenuBtn.addEventListener('click', () => {
       const isOpen = mobileNav.classList.toggle('open');
-      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
       if (hamburgerIcon) hamburgerIcon.classList.toggle('hidden', isOpen);
       if (closeIcon) closeIcon.classList.toggle('hidden', !isOpen);
     });
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Sync Cart Count Badge from LocalStorage
   const cartCountBadge = document.getElementById('cartCount');
   const savedCartCount = localStorage.getItem('alphatails_cart_count');
-  if (cartCountBadge && savedCartCount) {
+  if (cartCountBadge && savedCartCount !== null) {
     cartCountBadge.textContent = savedCartCount;
   }
 });
@@ -75,7 +77,8 @@ function showToast(message) {
   toastMsg.textContent = message;
   toast.classList.remove('hidden');
 
-  setTimeout(() => {
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
     toast.classList.add('hidden');
   }, 3000);
 }
