@@ -12,13 +12,14 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand-logo">
-        <div class="logo-icon">🐾</div>
+        <div class="logo-icon">·ᴥ·</div>
         <div class="logo-text">
           <span class="brand-title">ALPHATAILS</span>
           <span class="brand-subtitle">Pet Care & Accessories</span>
         </div>
       </a>
 
+      <!-- Desktop Navigation -->
       <nav class="main-nav">
         <a href="index.html" class="nav-link">Home</a>
         <a href="services.html" class="nav-link">Grooming & Consultation</a>
@@ -35,6 +36,28 @@
           <span id="cartCount" class="cart-badge">0</span>
         </button>
         <a href="contact.html" class="btn-primary header-cta">Book Now</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Navigation" aria-expanded="false">
+          <svg id="menuIconOpen" class="menu-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menuIconClose" class="menu-icon hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="mobile-menu-drawer">
+      <div class="mobile-menu-content">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="services.html" class="mobile-nav-link">Grooming & Consultation</a>
+        <a href="shop.html" class="mobile-nav-link active">Shop</a>
+        <a href="about.html" class="mobile-nav-link">About Us</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <a href="contact.html" class="btn-primary mobile-cta">Book Now</a>
       </div>
     </div>
   </header>
@@ -81,7 +104,7 @@
     </div>
   </main>
 
-  <!-- FOOTER (Match with AlphaTails Home Page) -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-col">
