@@ -1,5 +1,3 @@
-let toastTimeout;
-
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Hamburger Menu Toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -10,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileMenuBtn && mobileNav) {
     mobileMenuBtn.addEventListener('click', () => {
       const isOpen = mobileNav.classList.toggle('open');
-      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
       if (hamburgerIcon) hamburgerIcon.classList.toggle('hidden', isOpen);
       if (closeIcon) closeIcon.classList.toggle('hidden', !isOpen);
     });
