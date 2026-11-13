@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Close mobile menu when clicking any navigation link inside it
+  // Close mobile menu when clicking a link inside it
   const mobileLinks = document.querySelectorAll('#mobileNav a');
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Sync Cart Count Badge from LocalStorage
   const cartCountBadge = document.getElementById('cartCount');
   const savedCartCount = localStorage.getItem('alphatails_cart_count');
-  if (cartCountBadge && savedCartCount) {
+  if (cartCountBadge && savedCartCount !== null) {
     cartCountBadge.textContent = savedCartCount;
   }
 });
 
-// Open Booking Modal
+// Open Appointment Booking Modal
 function openBookingModal(serviceName, price) {
   const modal = document.getElementById('bookingModal');
   const serviceInput = document.getElementById('selectedService');
@@ -49,7 +49,7 @@ function openBookingModal(serviceName, price) {
   }
 }
 
-// Close Booking Modal
+// Close Appointment Booking Modal
 function closeBookingModal() {
   const modal = document.getElementById('bookingModal');
   if (modal) {
@@ -62,22 +62,21 @@ function closeBookingModal() {
 function handleBookingSubmit(e) {
   e.preventDefault();
   closeBookingModal();
-  showToast('Consultation appointment request submitted successfully!');
+  showToast('Appointment request submitted!');
   e.target.reset();
 }
 
 // Toast Notification Helper
 function showToast(message) {
-  const banner = document.getElementById('toastBanner');
-  const text = document.getElementById('toastMessage');
-  if (!banner || !text) return;
+  const toast = document.getElementById('toastNotification');
+  const toastMsg = document.getElementById('toastMessage');
+  if (!toast || !toastMsg) return;
 
-  text.textContent = message;
-  banner.classList.remove('hidden');
-  banner.classList.add('flex');
+  toastMsg.textContent = message;
+  toast.classList.remove('hidden');
 
-  setTimeout(() => {
-    banner.classList.add('hidden');
-    banner.classList.remove('flex');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.add('hidden');
   }, 3000);
 }
