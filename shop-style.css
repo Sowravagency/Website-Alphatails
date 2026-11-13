@@ -178,6 +178,69 @@ body {
   background-color: var(--brand-primary-dark);
 }
 
+/* Mobile Hamburger Menu Button & Drawer */
+.mobile-menu-btn {
+  display: none;
+  background: var(--brand-light);
+  border: 1px solid var(--brand-border);
+  color: var(--brand-primary);
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.mobile-menu-drawer {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid var(--brand-border);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.mobile-menu-drawer.open {
+  max-height: 350px;
+}
+
+.mobile-menu-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-nav-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--brand-primary);
+}
+
+.mobile-cta {
+  text-align: center;
+  margin-top: 4px;
+}
+
 /* Hero & Filter Section */
 .shop-top-section {
   padding-top: 32px;
@@ -534,6 +597,9 @@ body {
   .main-nav,
   .header-cta {
     display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
   }
   .product-grid,
   .footer-grid {
