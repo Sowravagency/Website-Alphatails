@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ALPHATAILS | Veterinary & Grooming Appointments</title>
+    <title>ALPHATAILS | Simple & Organized Pet Care Booking</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,27 +22,26 @@
 <body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
 
     <!-- ==========================================
-         UNIVERSAL HEADER (Matches Homepage & Image 1)
+         UNIVERSAL HEADER
     =========================================== -->
     <header class="site-header">
         <div class="layout-container header-inner">
             <!-- Brand Logo & Name -->
             <a href="index.html" class="brand-logo">
-    <div class="logo-icon">
-        <!-- Proper Pet Paw SVG Icon -->
-        <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
-            <path d="M12,3C10.9,3 10,3.9 10,5C10,6.1 10.9,7 12,7C13.1,7 14,6.1 14,5C14,3.9 13.1,3 12,3M6,5C4.9,5 4,5.9 4,7C4,8.1 4.9,9 6,9C7.1,9 8,8.1 8,7C8,5.9 7.1,5 6,5M18,5C16.9,5 16,5.9 16,7C16,8.1 16.9,9 18,9C19.1,9 20,8.1 20,7C20,5.9 19.1,5 18,5M3.5,10.5C2.7,10.5 2,11.2 2,12C2,12.8 2.7,13.5 3.5,13.5C4.3,13.5 5,12.8 5,12C5,11.2 4.3,10.5 3.5,10.5M20.5,10.5C19.7,10.5 19,11.2 19,12C19,12.8 19.7,13.5 20.5,13.5C21.3,13.5 22,12.8 22,12C22,11.2 21.3,10.5 20.5,10.5M12,9C9.2,9 6.8,10.6 5.6,13C4.4,15.4 4.8,18.4 6.6,20.2C8.4,22 10.4,22.5 12,22.5C13.6,22.5 15.6,22 17.4,20.2C19.2,18.4 19.6,15.4 18.4,13C17.2,10.6 14.8,9 12,9Z"/>
-        </svg>
-    </div>
-    <div>
-        <span class="brand-title">ALPHATAILS</span>
-        <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
-    </div>
-</a>
+                <div class="logo-icon">
+                    <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
+                        <path d="M12,3C10.9,3 10,3.9 10,5C10,6.1 10.9,7 12,7C13.1,7 14,6.1 14,5C14,3.9 13.1,3 12,3M6,5C4.9,5 4,5.9 4,7C4,8.1 4.9,9 6,9C7.1,9 8,8.1 8,7C8,5.9 7.1,5 6,5M18,5C16.9,5 16,5.9 16,7C16,8.1 16.9,9 18,9C19.1,9 20,8.1 20,7C20,5.9 19.1,5 18,5M3.5,10.5C2.7,10.5 2,11.2 2,12C2,12.8 2.7,13.5 3.5,13.5C4.3,13.5 5,12.8 5,12C5,11.2 4.3,10.5 3.5,10.5M20.5,10.5C19.7,10.5 19,11.2 19,12C19,12.8 19.7,13.5 20.5,13.5C21.3,13.5 22,12.8 22,12C22,11.2 21.3,10.5 20.5,10.5M12,9C9.2,9 6.8,10.6 5.6,13C4.4,15.4 4.8,18.4 6.6,20.2C8.4,22 10.4,22.5 12,22.5C13.6,22.5 15.6,22 17.4,20.2C19.2,18.4 19.6,15.4 18.4,13C17.2,10.6 14.8,9 12,9Z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="brand-title">ALPHATAILS</span>
+                    <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
+                </div>
+            </a>
             <!-- Desktop Navigation -->
             <nav class="main-nav">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="booking.html" class="nav-link active ">Grooming & Boarding</a>
+                <a href="booking.html" class="nav-link active">Grooming & Boarding</a>
                 <a href="booking.html" class="nav-link">Vaccination</a>
                 <a href="shop.html" class="nav-link">Shop</a>
                 <a href="index.html#veterinarians" class="nav-link">About Us</a>
@@ -51,214 +50,139 @@
 
             <!-- Right Action Buttons -->
             <div class="header-actions">
-                <!-- Shopping Cart Button -->
                 <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
                     <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                     <span id="cartCount" class="cart-badge">0</span>
                 </button>
-
-                <!-- Book Now Button -->
-                <a href="#servicesGrid" class="btn-primary header-cta">Book Now</a>
-
-                <!-- Mobile Hamburger Button -->
-                <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
-                    <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                    <svg id="closeIcon" class="menu-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
+                <a href="#bookingFlow" class="btn-primary header-cta">Book Now</a>
             </div>
         </div>
-
-        <!-- Mobile Navigation Drawer -->
-        <nav id="mobileNav" class="mobile-nav">
-            <a href="index.html" class="mobile-nav-link">Home</a>
-            <a href="booking.html" class="mobile-nav-link active">Grooming & Boarding</a>
-            <a href="booking.html" class="mobile-nav-link">Vaccination</a>
-            <a href="shop.html" class="mobile-nav-link">Shop</a>
-            <a href="about.html" class="mobile-nav-link">About Us</a>
-            <a href="contact.html" class="mobile-nav-link">Contact</a>
-            <a href="booking.html" class="btn-primary mobile-cta">Book Now</a>
-        </nav>
     </header>
 
     <!-- ==========================================
-         BOOKING HERO BANNER
+         HERO SECTION
     =========================================== -->
-    <section id="home" class="bg-[#E0F7FA]/80 backdrop-blur-[2px] py-12 sm:py-16 border-b border-[#ccfbf1] text-center">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+    <section class="bg-[#E0F7FA]/80 backdrop-blur-[2px] py-10 sm:py-14 border-b border-[#ccfbf1] text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
             <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white text-[#0f766e] text-xs font-extrabold uppercase shadow-sm border border-[#ccfbf1]">
-                <i class="fa-solid fa-calendar-check"></i> Alphatails Clinical & Spa Bookings
+                <i class="fa-solid fa-bolt text-amber-500"></i> Fast & Easy 3-Step Booking
             </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-[#023047] leading-tight">
-                Select Your Pet Care Service & Package
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#023047]">
+                Book Care & Grooming in Seconds
             </h1>
-            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
-                Transparent INR pricing for deworming, protective vaccinations, luxury grooming styles, and wellness care. Click any package below to instantly book your session.
+            <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
+                Pick a category, choose your preferred package, and lock in your schedule instantly with clear Indian Rupee pricing.
             </p>
         </div>
     </section>
 
     <!-- ==========================================
-         SERVICES & PRICING GRID
+         STREAMLINED INTERACTIVE BOOKING WIDGET
     =========================================== -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow w-full" id="servicesGrid">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- 1. DEWORMING -->
-            <div class="booking-card lg:col-span-2 md:col-span-2">
-                <div class="card-header bg-[#E0F2F1] text-[#00796B]">
-                    <i class="fa-solid fa-capsules text-2xl"></i>
-                    <div>
-                        <h3 class="font-extrabold text-lg text-[#023047]">1. Deworming</h3>
-                        <p class="text-xs text-slate-500">Targeted parasite control</p>
-                    </div>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full" id="bookingFlow">
+        <div class="bg-white rounded-3xl shadow-xl border border-[#ccfbf1] p-6 sm:p-8 space-y-8">
+            
+            <!-- STEP INDICATORS -->
+            <div class="grid grid-cols-3 gap-2 border-b border-slate-100 pb-6 text-center">
+                <div class="space-y-1">
+                    <span class="w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm">1</span>
+                    <p class="text-xs font-bold text-[#023047] uppercase tracking-wider">Select Service</p>
                 </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[480px] overflow-y-auto custom-scrollbar">
-                    <div class="sub-group mt-2">
-                        <h4 class="sub-title">🐶 Dog</h4>
-                        <div class="sub-item" onclick="openBookingModal('Deworming - Dog : Puppy', 149)">
-                            <span>Puppy</span><span class="price-tag">₹149/-</span>
-                        </div>
-                        <div class="sub-item" onclick="openBookingModal('Deworming - Dog : Adult', 199)">
-                            <span>Adult</span><span class="price-tag">₹199/-</span>
-                        </div>
-                    </div>
-                    <div class="sub-group mt-2">
-                        <h4 class="sub-title">🐱 Cat</h4>
-                        <div class="sub-item" onclick="openBookingModal('Deworming - Cat : Kitten', 149)">
-                            <span>Kitten</span><span class="price-tag">₹149/-</span>
-                        </div>
-                        <div class="sub-item" onclick="openBookingModal('Deworming - Cat : Adult', 199)">
-                            <span>Adult</span><span class="price-tag">₹199/-</span>
-                        </div>
-                    </div>
+                <div class="space-y-1">
+                    <span class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm" id="step2Badge">2</span>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider" id="step2Text">Choose Package</p>
+                </div>
+                <div class="space-y-1">
+                    <span class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm" id="step3Badge">3</span>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider" id="step3Text">Confirm Details</p>
                 </div>
             </div>
 
-            <!-- 2. VACCINATION (Replaced Consulting) -->
-            <div class="booking-card lg:col-span-1 md:col-span-1">
-                <div class="card-header bg-[#E1F5FE] text-sky-700">
-                    <i class="fa-solid fa-shield-dog text-2xl"></i>
-                    <div>
-                        <h3 class="font-extrabold text-lg text-[#023047]">2. Vaccination</h3>
-                        <p class="text-xs text-slate-500">Essential immunizations</p>
-                    </div>
-                </div>
-                <div class="card-body space-y-1">
-                    <div class="sub-item" onclick="openBookingModal('Vaccination - Anti-Rabies (ARV)', 499)">
-                        <span>Anti-Rabies (ARV)</span><span class="price-tag">₹499/-</span>
-                    </div>
-                    <div class="sub-item" onclick="openBookingModal('Vaccination - 7-in-1 (Dog Essential)', 1299)">
-                        <span>7-in-1 (Dog Essential)</span><span class="price-tag">₹1299/-</span>
-                    </div>
-                    <div class="sub-item" onclick="openBookingModal('Vaccination - 9-in-1 (Advanced Dog)', 1499)">
-                        <span>9-in-1 (Advanced Dog)</span><span class="price-tag">₹1499/-</span>
-                    </div>
-                    <div class="sub-item" onclick="openBookingModal('Vaccination - Tricat / FVRCP (Cat)', 1199)">
-                        <span>Tricat / FVRCP (Cat)</span><span class="price-tag">₹1199/-</span>
-                    </div>
-                    <div class="sub-item" onclick="openBookingModal('Vaccination - Kennel Cough', 899)">
-                        <span>Kennel Cough</span><span class="price-tag">₹899/-</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. GROOMING -->
-            <div class="booking-card lg:col-span-3 md:col-span-2">
-                <div class="card-header bg-[#FCE4EC] text-[#D81B60]">
-                    <i class="fa-solid fa-scissors text-2xl"></i>
-                    <div>
-                        <h3 class="font-extrabold text-lg text-[#023047]">3. Grooming & Styling</h3>
-                        <p class="text-xs text-slate-500">By breed size & package</p>
-                    </div>
-                </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-3 gap-4 max-h-[480px] overflow-y-auto custom-scrollbar">
-                    <!-- Small Breed -->
-                    <div class="sub-group space-y-2">
-                        <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Small</h4>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Small : Zero cut + bathing', 2000)"><span>1. Zero cut + bathing</span><span class="price-tag">₹2000/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Small : Only haircut', 1500)"><span>2. Only haircut</span><span class="price-tag">₹1500/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Small : Premium cut & Bathing', 2500)"><span>3. Premium cut & Bathing</span><span class="price-tag">₹2500/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Small : Puppy haircut (4MM) + Bathing', 1500)"><span>4. Puppy haircut (4MM) + Bathing</span><span class="price-tag">₹1500/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Small : Summer haircut + Bathing', 2000)"><span>5. Summer haircut + Bathing</span><span class="price-tag">₹2000/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Small : Teddy Bear haircut + Bathing', 2500)"><span>6. Teddy Bear haircut + Bathing</span><span class="price-tag">₹2500/-</span></div>
-                    </div>
-                    <!-- Medium Breed -->
-                    <div class="sub-group space-y-2">
-                        <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Medium</h4>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Zero cut + bathing', 2200)"><span>1. Zero cut + bathing</span><span class="price-tag">₹2200/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Only haircut', 1700)"><span>2. Only haircut</span><span class="price-tag">₹1700/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Premium cut & Bathing', 2700)"><span>3. Premium cut & Bathing</span><span class="price-tag">₹2700/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Puppy haircut (4MM) + Bathing', 1700)"><span>4. Puppy haircut (4MM) + Bathing</span><span class="price-tag">₹1700/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Summer haircut + Bathing', 2200)"><span>5. Summer haircut + Bathing</span><span class="price-tag">₹2200/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Medium : Teddy Bear haircut + Bathing', 2700)"><span>6. Teddy Bear haircut + Bathing</span><span class="price-tag">₹2700/-</span></div>
-                    </div>
-                    <!-- Large Breed -->
-                    <div class="sub-group space-y-2">
-                        <h4 class="sub-title bg-pink-50 text-pink-700 px-2.5 py-1 rounded font-extrabold">Breed Size = Large</h4>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Large : Zero cut + bathing', 2300)"><span>1. Zero cut + bathing</span><span class="price-tag">₹2300/-</span></div>
-                        <div class="sub-item" onclick="openBookingModal('Grooming - Large : Only haircut', 1800)"><span>2. Only haircut</span><span class="price-tag">₹1800/-</span></div>
-                    </div>
+            <!-- CATEGORY SELECTION CARDS -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Step 1: Choose Service Category</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <button type="button" onclick="selectCategory('Deworming')" class="category-btn p-4 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-capsules text-2xl text-[#00796B] mb-2 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-sm text-[#023047]">Deworming</h4>
+                        <span class="text-[11px] text-slate-500">From ₹149/-</span>
+                    </button>
+                    <button type="button" onclick="selectCategory('Vaccination')" class="category-btn p-4 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-shield-dog text-2xl text-sky-600 mb-2 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-sm text-[#023047]">Vaccination</h4>
+                        <span class="text-[11px] text-slate-500">From ₹499/-</span>
+                    </button>
+                    <button type="button" onclick="selectCategory('Grooming')" class="category-btn p-4 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-scissors text-2xl text-[#D81B60] mb-2 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-sm text-[#023047]">Grooming</h4>
+                        <span class="text-[11px] text-slate-500">From ₹1500/-</span>
+                    </button>
+                    <button type="button" onclick="selectCategory('Hygiene')" class="category-btn p-4 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-notes-medical text-2xl text-amber-600 mb-2 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-sm text-[#023047]">Anal Gland</h4>
+                        <span class="text-[11px] text-slate-500">Fixed ₹300/-</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- 4. ANAL GLAND EXPRESSION -->
-            <div class="booking-card lg:col-span-1">
-                <div class="card-header bg-[#FFF3E0] text-amber-700">
-                    <i class="fa-solid fa-notes-medical text-xl"></i>
-                    <div>
-                        <h3 class="font-extrabold text-lg text-[#023047]">4. Anal Gland Expression</h3>
-                        <p class="text-xs text-slate-500">Essential hygiene care</p>
-                    </div>
-                </div>
-                <div class="card-body justify-center">
-                    <div class="sub-item" onclick="openBookingModal('Anal Gland Expression', 300)">
-                        <span>Standard Session</span><span class="price-tag">₹300/-</span>
-                    </div>
+            <!-- DYNAMIC PACKAGE OPTIONS CONTAINER -->
+            <div id="packageContainer" class="hidden space-y-4 pt-2 border-t border-slate-100">
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500" id="packageHeaderTitle">Step 2: Select Specific Package</h3>
+                <div id="packageListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Dynamic Items loaded via JS -->
                 </div>
             </div>
-    
-            <!-- 5. ANAESTHESIA + GROOMING -->
-            <div class="booking-card lg:col-span-2 md:col-span-2">
-                <div class="card-header bg-[#EDE7F6] text-purple-700">
-                    <i class="fa-solid fa-syringe text-xl"></i>
+
+            <!-- FINAL APPOINTMENT FORM -->
+            <div id="appointmentFormSection" class="hidden space-y-4 pt-2 border-t border-slate-100">
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Step 3: Appointment Details</h3>
+                <div class="bg-[#f0fdfa] p-4 rounded-2xl flex items-center justify-between border border-[#ccfbf1]">
                     <div>
-                        <h3 class="font-extrabold text-lg text-[#023047]">5. Anaesthesia + Grooming</h3>
-                        <p class="text-xs text-slate-500">Sedated stress-free care</p>
+                        <span class="text-[10px] uppercase font-bold text-[#0f766e]">Selected Service</span>
+                        <input type="text" id="finalSelectedService" readonly class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none" />
                     </div>
+                    <span id="finalSelectedPrice" class="price-tag text-sm shrink-0 ml-2">₹0/-</span>
                 </div>
-                <div class="card-body grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Small', 2500)">
-                        <span>Small Breed</span><span class="price-tag">₹2500/-</span>
+                <form onsubmit="handleFinalBooking(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Parent Name</label>
+                            <input type="text" required placeholder="Enter your full name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
+                            <input type="tel" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
+                        </div>
                     </div>
-                    <div class="sub-item" onclick="openBookingModal('Anaesthesia + Grooming - Medium', 2800)">
-                        <span>Medium Breed</span><span class="price-tag">₹2800/-</span>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Preferred Appointment Date</label>
+                        <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
                     </div>
-                </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
+                        Confirm & Book Appointment Now
+                    </button>
+                </form>
             </div>
 
         </div>
     </main>
 
     <!-- ==========================================
-         UNIVERSAL FOOTER (Matches Homepage & Image 2)
+         UNIVERSAL FOOTER
     =========================================== -->
     <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <div class="footer-brand">
-          <div class="logo-icon small">·ᴥ·</div>
-          <span>ALPHATAILS</span>
-        </div>
-        <p class="footer-desc">
-          Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
-        </p>
-      </div>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <div class="logo-icon small">·ᴥ·</div>
+                    <span>ALPHATAILS</span>
+                </div>
+                <p class="footer-desc">
+                    Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
+                </p>
+            </div>
 
             <div class="footer-col">
                 <h3>Quick Links</h3>
@@ -295,52 +219,143 @@
         </div>
     </footer>
 
-    <!-- ==========================================
-         BOOKING MODAL
-    =========================================== -->
-    <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-5 relative border border-[#ccfbf1]">
-            <button type="button" onclick="closeBookingModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div>
-                <span class="text-xs font-extrabold uppercase tracking-wider text-[#0f766e]">Confirm Appointment</span>
-                <h3 class="text-2xl font-extrabold text-[#023047] mt-1">Book Your Slot</h3>
-            </div>
-            <div class="bg-[#f0fdfa] p-4 rounded-2xl flex items-center justify-between border border-[#ccfbf1]">
-                <input type="text" id="selectedService" readonly class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none" />
-                <span id="selectedPrice" class="price-tag text-sm shrink-0 ml-2">₹0/-</span>
-            </div>
-            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Parent Name</label>
-                    <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
-                    <input type="tel" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Preferred Date</label>
-                    <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
-                </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
-                    Confirm Booking
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ==========================================
-         TOAST NOTIFICATION
-    =========================================== -->
+    <!-- TOAST NOTIFICATION -->
     <div id="toastNotification" class="hidden fixed bottom-6 right-6 z-50 bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-[#0f766e]">
         <i class="fa-solid fa-circle-check text-[#2dd4bf] text-lg"></i>
         <span id="toastMessage" class="text-sm font-semibold">Notification</span>
     </div>
 
-    <!-- External JavaScript -->
-    <script src="booking.js"></script>
+    <!-- Complete Corrected JavaScript Interaction Script -->
+    <script>
+        const packageData = {
+            'Deworming': [
+                { name: 'Dog - Puppy Deworming', price: 149 },
+                { name: 'Dog - Adult Deworming', price: 199 },
+                { name: 'Cat - Kitten Deworming', price: 149 },
+                { name: 'Cat - Adult Deworming', price: 199 }
+            ],
+            'Vaccination': [
+                { name: 'Anti-Rabies (ARV)', price: 499 },
+                { name: '7-in-1 (Dog Essential)', price: 1299 },
+                { name: '9-in-1 (Advanced Dog)', price: 1499 },
+                { name: 'Tricat / FVRCP (Cat)', price: 1199 },
+                { name: 'Kennel Cough Vaccine', price: 899 }
+            ],
+            'Grooming': {
+                hasBreedSizes: true,
+                sizes: {
+                    'Small Breed': [
+                        { name: 'Zero cut + bathing', price: 2000 },
+                        { name: 'Only haircut', price: 1500 },
+                        { name: 'Premium cut & Bathing', price: 2500 },
+                        { name: 'Puppy haircut (4MM) + Bathing', price: 1500 },
+                        { name: 'Summer haircut + Bathing', price: 2000 },
+                        { name: 'Teddy Bear haircut + Bathing', price: 2500 }
+                    ],
+                    'Medium Breed': [
+                        { name: 'Zero cut + bathing', price: 2200 },
+                        { name: 'Only haircut', price: 1700 },
+                        { name: 'Premium cut & Bathing', price: 2700 },
+                        { name: 'Puppy haircut (4MM) + Bathing', price: 1700 },
+                        { name: 'Summer haircut + Bathing', price: 2200 },
+                        { name: 'Teddy Bear haircut + Bathing', price: 2700 }
+                    ],
+                    'Large Breed': [
+                        { name: 'Zero cut + bathing', price: 2300 },
+                        { name: 'Only haircut', price: 1800 }
+                    ]
+                }
+            },
+            'Hygiene': [
+                { name: 'Anal Gland Expression (Standard)', price: 300 }
+            ]
+        };
+
+        let selectedCategoryName = '';
+
+        function selectCategory(category) {
+            selectedCategoryName = category;
+            const container = document.getElementById('packageContainer');
+            const grid = document.getElementById('packageListGrid');
+            const header = document.getElementById('packageHeaderTitle');
+            
+            grid.innerHTML = '';
+            container.classList.remove('hidden');
+            document.getElementById('appointmentFormSection').classList.add('hidden');
+
+            // Update step badges
+            document.getElementById('step2Badge').className = "w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm";
+            document.getElementById('step2Text').className = "text-xs font-bold text-[#023047] uppercase tracking-wider";
+
+            // If Grooming is selected, prompt for Breed Size first
+            if (category === 'Grooming') {
+                header.innerText = `Step 2: Select Breed Size for Grooming`;
+                const sizes = Object.keys(packageData['Grooming'].sizes);
+                
+                sizes.forEach(size => {
+                    const btn = document.createElement('div');
+                    btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition bg-pink-50/40";
+                    btn.innerHTML = `<span class="font-extrabold text-sm text-[#D81B60]"><i class="fa-solid fa-paw mr-2"></i>${size}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
+                    btn.onclick = () => showGroomingPackages(size);
+                    grid.appendChild(btn);
+                });
+            } else {
+                header.innerText = `Step 2: Select ${category} Package`;
+                packageData[category].forEach(item => {
+                    const btn = document.createElement('div');
+                    btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
+                    btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
+                    btn.onclick = () => selectPackage(item.name, item.price);
+                    grid.appendChild(btn);
+                });
+            }
+        }
+
+        function showGroomingPackages(breedSize) {
+            const grid = document.getElementById('packageListGrid');
+            const header = document.getElementById('packageHeaderTitle');
+            
+            grid.innerHTML = '';
+            header.innerText = `Step 2: Grooming Packages (${breedSize})`;
+
+            // Add a back button to switch breed size
+            const backBtn = document.createElement('div');
+            backBtn.className = "col-span-full mb-1 text-xs font-bold text-[#0f766e] cursor-pointer hover:underline flex items-center gap-1";
+            backBtn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Change Breed Size`;
+            backBtn.onclick = () => selectCategory('Grooming');
+            grid.appendChild(backBtn);
+
+            packageData['Grooming'].sizes[breedSize].forEach(item => {
+                const btn = document.createElement('div');
+                btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
+                btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${breedSize} - ${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
+                btn.onclick = () => selectPackage(`${breedSize} - ${item.name}`, item.price);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectPackage(serviceName, price) {
+            document.getElementById('finalSelectedService').value = serviceName;
+            document.getElementById('finalSelectedPrice').innerText = `₹${price}/-`;
+            document.getElementById('appointmentFormSection').classList.remove('hidden');
+
+            document.getElementById('step3Badge').className = "w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm";
+            document.getElementById('step3Text').className = "text-xs font-bold text-[#023047] uppercase tracking-wider";
+
+            document.getElementById('appointmentFormSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleFinalBooking(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toastNotification');
+            const message = document.getElementById('toastMessage');
+            message.innerText = "Appointment booked successfully! We'll call you shortly.";
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                location.reload();
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
-
