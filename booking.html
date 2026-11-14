@@ -231,13 +231,12 @@
         <span id="toastMessage" class="text-sm font-semibold">Notification</span>
     </div>
 
-    <!-- Complete Corrected JavaScript Interaction Script -->
+       <!-- Complete Corrected JavaScript Interaction Script with Animal Icons -->
     <script>
         const packageData = {
             'Deworming': [
                 { name: 'Dog - Puppy Deworming', price: 149 },
                 { name: 'Dog - Adult Deworming', price: 199 },
-                <i class="fa-solid fa-shield-dog fa-shield-cat text-2xl text-sky-600 mb-2 group-hover:scale-110 transition"></i>
                 { name: 'Cat - Kitten Deworming', price: 149 },
                 { name: 'Cat - Adult Deworming', price: 199 }
             ],
@@ -294,15 +293,22 @@
             document.getElementById('step2Badge').className = "w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm";
             document.getElementById('step2Text').className = "text-xs font-bold text-[#023047] uppercase tracking-wider";
 
-            // If Grooming is selected, prompt for Breed Size first
+            // If Grooming is selected, prompt for Breed Size first with specific animal icons
             if (category === 'Grooming') {
                 header.innerText = `Step 2: Select Breed Size for Grooming`;
                 const sizes = Object.keys(packageData['Grooming'].sizes);
                 
+                // Map specific icons to each breed size
+                const breedIcons = {
+                    'Small Breed': 'fa-dog text-pink-500',
+                    'Medium Breed': 'fa-shield-dog text-pink-600',
+                    'Large Breed': 'fa-paw text-pink-700'
+                };
+                
                 sizes.forEach(size => {
                     const btn = document.createElement('div');
                     btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition bg-pink-50/40";
-                    btn.innerHTML = `<span class="font-extrabold text-sm text-[#D81B60]"><i class="fa-solid fa-paw mr-2"></i>${size}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
+                    btn.innerHTML = `<span class="font-extrabold text-sm text-[#D81B60]"><i class="fa-solid ${breedIcons[size] || 'fa-paw'} mr-2 text-base"></i>${size}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
                     btn.onclick = () => showGroomingPackages(size);
                     grid.appendChild(btn);
                 });
@@ -335,7 +341,7 @@
             packageData['Grooming'].sizes[breedSize].forEach(item => {
                 const btn = document.createElement('div');
                 btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
-                btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${breedSize} - ${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
+                btn.innerHTML = `<span class="font-semibold text-sm text-slate-700"><i class="fa-solid fa-scissors text-[#D81B60] mr-2"></i>${breedSize} - ${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
                 btn.onclick = () => selectPackage(`${breedSize} - ${item.name}`, item.price);
                 grid.appendChild(btn);
             });
@@ -364,5 +370,6 @@
             }, 3000);
         }
     </script>
+
 </body>
 </html>
