@@ -233,97 +233,143 @@
 
        <!-- Complete Corrected JavaScript Interaction Script with Animal Icons -->
     <script>
-        const packageData = {
-            'Deworming': [
-                { name: 'Dog - Puppy Deworming', price: 149 },
-                { name: 'Dog - Adult Deworming', price: 199 },
-                { name: 'Cat },
-                { name: 'Cat - Kitten Deworming', price: 149 },
-                { name: 'Cat - Adult Deworming', price: 199 }
+      const packageData = {
+    'Deworming': {
+        hasSubCats: true,
+        subCategories: {
+            'Dog Deworming': [
+                { name: 'Puppy Deworming', price: 149 },
+                { name: 'Adult Dog Deworming', price: 199 }
             ],
-            'Vaccination': [
+            'Cat Deworming': [
+                { name: 'Kitten Deworming', price: 149 },
+                { name: 'Adult Cat Deworming', price: 199 }
+            ]
+        }
+    },
+    'Vaccination': {
+        hasSubCats: true,
+        subCategories: {
+            'Dog Vaccination': [
                 { name: 'Anti-Rabies (ARV)', price: 499 },
                 { name: '7-in-1 (Dog Essential)', price: 1299 },
                 { name: '9-in-1 (Advanced Dog)', price: 1499 },
-                { name: 'Tricat / FVRCP (Cat)', price: 1199 },
                 { name: 'Kennel Cough Vaccine', price: 899 }
             ],
-            'Grooming': {
-                hasBreedSizes: true,
-                sizes: {
-                    'Small Breed': [
-                        { name: 'Zero cut + bathing', price: 2000 },
-                        { name: 'Only haircut', price: 1500 },
-                        { name: 'Premium cut & Bathing', price: 2500 },
-                        { name: 'Puppy haircut (4MM) + Bathing', price: 1500 },
-                        { name: 'Summer haircut + Bathing', price: 2000 },
-                        { name: 'Teddy Bear haircut + Bathing', price: 2500 }
-                    ],
-                    'Medium Breed': [
-                        { name: 'Zero cut + bathing', price: 2200 },
-                        { name: 'Only haircut', price: 1700 },
-                        { name: 'Premium cut & Bathing', price: 2700 },
-                        { name: 'Puppy haircut (4MM) + Bathing', price: 1700 },
-                        { name: 'Summer haircut + Bathing', price: 2200 },
-                        { name: 'Teddy Bear haircut + Bathing', price: 2700 }
-                    ],
-                    'Large Breed': [
-                        { name: 'Zero cut + bathing', price: 2300 },
-                        { name: 'Only haircut', price: 1800 }
-                    ]
-                }
-            },
-            'Hygiene': [
-                { name: 'Anal Gland Expression (Standard)', price: 300 }
+            'Cat Vaccination': [
+                { name: 'Anti-Rabies (ARV)', price: 499 },
+                { name: 'Tricat / FVRCP (Cat)', price: 1199 }
             ]
-        };
+        }
+    },
+    'Grooming': {
+        hasBreedSizes: true,
+        sizes: {
+            'Small Breed': [
+                { name: 'Zero cut + bathing', price: 2000 },
+                { name: 'Only haircut', price: 1500 },
+                { name: 'Premium cut & Bathing', price: 2500 },
+                { name: 'Puppy haircut (4MM) + Bathing', price: 1500 },
+                { name: 'Summer haircut + Bathing', price: 2000 },
+                { name: 'Teddy Bear haircut + Bathing', price: 2500 }
+            ],
+            'Medium Breed': [
+                { name: 'Zero cut + bathing', price: 2200 },
+                { name: 'Only haircut', price: 1700 },
+                { name: 'Premium cut & Bathing', price: 2700 },
+                { name: 'Puppy haircut (4MM) + Bathing', price: 1700 },
+                { name: 'Summer haircut + Bathing', price: 2200 },
+                { name: 'Teddy Bear haircut + Bathing', price: 2700 }
+            ],
+            'Large Breed': [
+                { name: 'Zero cut + bathing', price: 2300 },
+                { name: 'Only haircut', price: 1800 }
+            ]
+        }
+    },
+    'Hygiene': [
+        { name: 'Anal Gland Expression (Standard)', price: 300 }
+    ]
+};
 
         let selectedCategoryName = '';
 
         function selectCategory(category) {
-            selectedCategoryName = category;
-            const container = document.getElementById('packageContainer');
-            const grid = document.getElementById('packageListGrid');
-            const header = document.getElementById('packageHeaderTitle');
-            
-            grid.innerHTML = '';
-            container.classList.remove('hidden');
-            document.getElementById('appointmentFormSection').classList.add('hidden');
+    selectedCategoryName = category;
+    const container = document.getElementById('packageContainer');
+    const grid = document.getElementById('packageListGrid');
+    const header = document.getElementById('packageHeaderTitle');
+    
+    grid.innerHTML = '';
+    container.classList.remove('hidden');
+    document.getElementById('appointmentFormSection').classList.add('hidden');
 
-            // Update step badges
-            document.getElementById('step2Badge').className = "w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm";
-            document.getElementById('step2Text').className = "text-xs font-bold text-[#023047] uppercase tracking-wider";
+    document.getElementById('step2Badge').className = "w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm";
+    document.getElementById('step2Text').className = "text-xs font-bold text-[#023047] uppercase tracking-wider";
 
-            // If Grooming is selected, prompt for Breed Size first with specific animal icons
-            if (category === 'Grooming') {
-                header.innerText = `Step 2: Select Breed Size for Grooming`;
-                const sizes = Object.keys(packageData['Grooming'].sizes);
-                
-                // Map specific icons to each breed size
-                const breedIcons = {
-                    'Small Breed': 'fa-dog text-pink-500',
-                    'Medium Breed': 'fa-shield-dog text-pink-600',
-                    'Large Breed': 'fa-paw text-pink-700'
-                };
-                
-                sizes.forEach(size => {
-                    const btn = document.createElement('div');
-                    btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition bg-pink-50/40";
-                    btn.innerHTML = `<span class="font-extrabold text-sm text-[#D81B60]"><i class="fa-solid ${breedIcons[size] || 'fa-paw'} mr-2 text-base"></i>${size}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
-                    btn.onclick = () => showGroomingPackages(size);
-                    grid.appendChild(btn);
-                });
-            } else {
-                header.innerText = `Step 2: Select ${category} Package`;
-                packageData[category].forEach(item => {
-                    const btn = document.createElement('div');
-                    btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
-                    btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
-                    btn.onclick = () => selectPackage(item.name, item.price);
-                    grid.appendChild(btn);
-                });
-            }
-        }
+    // Handle Grooming, Deworming, or Vaccination sub-options
+    if (category === 'Grooming') {
+        header.innerText = `Step 2: Select Breed Size for Grooming`;
+        const sizes = Object.keys(packageData['Grooming'].sizes);
+        const breedIcons = { 'Small Breed': 'fa-dog text-pink-500', 'Medium Breed': 'fa-shield-dog text-pink-600', 'Large Breed': 'fa-paw text-pink-700' };
+        
+        sizes.forEach(size => {
+            const btn = document.createElement('div');
+            btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition bg-pink-50/40";
+            btn.innerHTML = `<span class="font-extrabold text-sm text-[#D81B60]"><i class="fa-solid ${breedIcons[size] || 'fa-paw'} mr-2 text-base"></i>${size}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
+            btn.onclick = () => showGroomingPackages(size);
+            grid.appendChild(btn);
+        });
+    } else if (packageData[category].hasSubCats) {
+        header.innerText = `Step 2: Select Pet Type for ${category}`;
+        const subCats = Object.keys(packageData[category].subCategories);
+        const petIcons = { 
+            'Dog Deworming': 'fa-dog text-teal-600', 
+            'Cat Deworming': 'fa-cat text-teal-600',
+            'Dog Vaccination': 'fa-dog text-sky-600',
+            'Cat Vaccination': 'fa-cat text-sky-600'
+        };
+
+        subCats.forEach(subCat => {
+            const btn = document.createElement('div');
+            btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition bg-teal-50/30";
+            btn.innerHTML = `<span class="font-extrabold text-sm text-[#023047]"><i class="fa-solid ${petIcons[subCat] || 'fa-paw'} mr-2 text-base"></i>${subCat}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
+            btn.onclick = () => showSubCategoryPackages(category, subCat);
+            grid.appendChild(btn);
+        });
+    } else {
+        header.innerText = `Step 2: Select ${category} Package`;
+        packageData[category].forEach(item => {
+            const btn = document.createElement('div');
+            btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
+            btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
+            btn.onclick = () => selectPackage(item.name, item.price);
+            grid.appendChild(btn);
+        });
+    }
+}
+
+function showSubCategoryPackages(category, subCat) {
+    const grid = document.getElementById('packageListGrid');
+    const header = document.getElementById('packageHeaderTitle');
+    
+    grid.innerHTML = '';
+    header.innerText = `Step 2: ${subCat} Packages`;
+
+    const backBtn = document.createElement('div');
+    backBtn.className = "col-span-full mb-1 text-xs font-bold text-[#0f766e] cursor-pointer hover:underline flex items-center gap-1";
+    backBtn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Change Pet Type`;
+    backBtn.onclick = () => selectCategory(category);
+    grid.appendChild(backBtn);
+
+    packageData[category].subCategories[subCat].forEach(item => {
+        const btn = document.createElement('div');
+        btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
+        btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${subCat} - ${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
+        btn.onclick = () => selectPackage(`${subCat} - ${item.name}`, item.price);
+        grid.appendChild(btn);
+    });
+}
 
         function showGroomingPackages(breedSize) {
             const grid = document.getElementById('packageListGrid');
