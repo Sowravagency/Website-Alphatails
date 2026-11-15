@@ -26,7 +26,6 @@
     =========================================== -->
     <header class="site-header">
         <div class="layout-container header-inner">
-            <!-- Brand Logo & Name -->
             <a href="index.html" class="brand-logo">
                 <div class="logo-icon">
                     <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
@@ -38,17 +37,12 @@
                     <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
                 </div>
             </a>
-            <!-- Desktop Navigation -->
             <nav class="main-nav">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="booking.html" class="nav-link active">Grooming & Boarding</a>
-                <a href="booking.html" class="nav-link">Vaccination</a>
                 <a href="shop.html" class="nav-link">Shop</a>
-                <a href="index.html#veterinarians" class="nav-link">About Us</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
-
-            <!-- Right Action Buttons -->
             <div class="header-actions">
                 <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
                     <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,10 +50,24 @@
                     </svg>
                     <span id="cartCount" class="cart-badge">0</span>
                 </button>
+                <button type="button" class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                    <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
                 <a href="#bookingFlow" class="btn-primary header-cta">Book Now</a>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileNav" class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="booking.html" class="mobile-nav-link active">Grooming & Boarding</a>
+        <a href="shop.html" class="mobile-nav-link">Shop</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <div class="mobile-cta">
+            <a href="#bookingFlow" onclick="toggleMobileMenu()" class="btn-primary w-full">Book Now</a>
+        </div>
+    </div>
 
     <!-- ==========================================
          HERO SECTION
@@ -103,7 +111,7 @@
             <!-- CATEGORY SELECTION CARDS -->
             <div class="space-y-4">
                 <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Step 1: Choose Service Category</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <button type="button" onclick="selectCategory('Deworming')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-capsules text-xl text-[#00796B] mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Deworming</h4>
@@ -124,139 +132,30 @@
                         <h4 class="font-bold text-xs text-[#023047]">Grooming</h4>
                         <span class="text-[10px] text-slate-500">From ₹1500/-</span>
                     </button>
+                    <button type="button" onclick="selectCategory('Bathing & Drying')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-shower text-xl text-teal-600 mb-1.5 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-xs text-[#023047]">Bathing & Drying</h4>
+                        <span class="text-[10px] text-slate-500">From ₹499/-</span>
+                    </button>
+                    <!-- Updated Category Button -->
+                    <button type="button" onclick="selectCategory('Premium & Medicated Bathing')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-pump-soap text-xl text-teal-700 mb-1.5 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-xs text-[#023047]">Premium & Medicated</h4>
+                        <span class="text-[10px] text-slate-500">From ₹699/-</span>
+                    </button>
+                    <button type="button" onclick="selectCategory('Spa')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
+                        <i class="fa-solid fa-spa text-xl text-purple-600 mb-1.5 group-hover:scale-110 transition"></i>
+                        <h4 class="font-bold text-xs text-[#023047]">Spa Add-ons</h4>
+                        <span class="text-[10px] text-slate-500">From ₹200/-</span>
+                    </button>
                     <button type="button" onclick="selectCategory('Hygiene')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-notes-medical text-xl text-amber-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Anal Gland</h4>
                         <span class="text-[10px] text-slate-500">Fixed ₹300/-</span>
                     </button>
-                    <!-- Grooming & Add-on Services Section -->
-<div class="service-pricing-container mb-6">
-  
-  <!-- Section 1: Bathing & Drying -->
-  <div class="mb-5">
-    <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-      <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-      Bathing & Drying
-    </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="grooming_service" value="Bathing & Drying - Small (>10)" data-price="499" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Small (&gt;10 kg)</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹499/-</span>
-      </label>
+                </div>
+            </div>
 
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="grooming_service" value="Bathing & Drying - Medium (10-20)" data-price="599" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Medium (10-20 kg)</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹599/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="grooming_service" value="Bathing & Drying - Large (20-40)" data-price="699" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Large (20-40 kg)</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹699/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="grooming_service" value="Bathing & Drying - Xtra Large (>40)" data-price="799" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Xtra Large (&gt;40 kg)</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹799/-</span>
-      </label>
-    </div>
-  </div>
-
-  <!-- Section 2: Premium Bathing & Medicated Bathing (Radio Selection - pick one) -->
-  <div class="mb-5">
-    <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-      <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-      Premium Bathing & Medicated Bathing
-      <span class="text-xs text-gray-500 font-normal">(Select any one)</span>
-    </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="radio" name="premium_medicated_bath" value="Premium/Medicated - Small" data-price="699" class="service-radio text-teal-600">
-          <span class="text-sm font-medium text-gray-700">Small</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹699/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="radio" name="premium_medicated_bath" value="Premium/Medicated - Medium" data-price="799" class="service-radio text-teal-600">
-          <span class="text-sm font-medium text-gray-700">Medium</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹799/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="radio" name="premium_medicated_bath" value="Premium/Medicated - Large" data-price="899" class="service-radio text-teal-600">
-          <span class="text-sm font-medium text-gray-700">Large</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹899/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="radio" name="premium_medicated_bath" value="Premium/Medicated - Extra Large" data-price="999" class="service-radio text-teal-600">
-          <span class="text-sm font-medium text-gray-700">Extra Large</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹999/-</span>
-      </label>
-    </div>
-  </div>
-
-  <!-- Section 3: Spa -->
-  <div class="mb-3">
-    <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-      <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-      Spa Add-ons
-    </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="spa_service" value="Nail cutting & Filling" data-price="300" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Nail cutting & Filling</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹300/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="spa_service" value="Ear Cleaning" data-price="200" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Ear Cleaning</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹200/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="spa_service" value="Sanitary Cuts" data-price="300" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Sanitary Cuts</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹300/-</span>
-      </label>
-
-      <label class="flex items-center justify-between p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-teal-50 transition">
-        <div class="flex items-center gap-2">
-          <input type="checkbox" name="spa_service" value="Sanitary cut & Face cut" data-price="500" class="service-checkbox text-teal-600 rounded">
-          <span class="text-sm font-medium text-gray-700">Sanitary cut & Face cut</span>
-        </div>
-        <span class="text-sm font-bold text-teal-700">₹500/-</span>
-      </label>
-    </div>
-  </div>
-
-</div>
             <!-- DYNAMIC PACKAGE OPTIONS CONTAINER -->
             <div id="packageContainer" class="hidden space-y-4 pt-2 border-t border-slate-100">
                 <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500" id="packageHeaderTitle">Step 2: Select Specific Package</h3>
@@ -313,17 +212,15 @@
                     Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
                 </p>
             </div>
-
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="booking.html">Services & Grooming</a></li>
-                    <li><a href="shop.html" class="-footer-link">AlphaTails Shop</a></li>
+                    <li><a href="shop.html">Shop</a></li>
                     <li><a href="about.html">About Us</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h3>Shop Categories</h3>
                 <ul>
@@ -333,7 +230,6 @@
                     <li><a href="shop.html">Chew Toys & Cat Scratchers</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h3>Get In Touch</h3>
                 <p>📍 India</p>
@@ -342,7 +238,6 @@
                 <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
             </div>
         </div>
-
         <div class="layout-container footer-bottom">
             <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
             <p>Built for Happy Pets & Pet Parents</p>
@@ -355,8 +250,13 @@
         <span id="toastMessage" class="text-sm font-semibold">Notification</span>
     </div>
 
-    <!-- JavaScript with Updated Large Breed Packages Included -->
+    <!-- JavaScript Data and Flow Control with Updated Sub-categories -->
     <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('open');
+        }
+
         const packageData = {
             'Deworming': {
                 hasSubCats: true,
@@ -427,6 +327,36 @@
                     ]
                 }
             },
+            'Bathing & Drying': [
+                { name: 'Small (>10 kg)', price: 499 },
+                { name: 'Medium (10-20 kg)', price: 599 },
+                { name: 'Large (20-40 kg)', price: 699 },
+                { name: 'Xtra Large (>40 kg)', price: 799 }
+            ],
+            // Updated Premium & Medicated Bathing with Bathing Sub-categories
+            'Premium & Medicated Bathing': {
+                hasSubCats: true,
+                subCategories: {
+                    'Premium Bathing': [
+                        { name: 'Small', price: 699 },
+                        { name: 'Medium', price: 799 },
+                        { name: 'Large', price: 899 },
+                        { name: 'Extra Large', price: 999 }
+                    ],
+                    'Medicated Bathing': [
+                        { name: 'Small', price: 699 },
+                        { name: 'Medium', price: 799 },
+                        { name: 'Large', price: 899 },
+                        { name: 'Extra Large', price: 999 }
+                    ]
+                }
+            },
+            'Spa': [
+                { name: 'Nail cutting & Filling', price: 300 },
+                { name: 'Ear Cleaning', price: 200 },
+                { name: 'Sanitary Cuts', price: 300 },
+                { name: 'Sanitary cut & Face cut', price: 500 }
+            ],
             'Hygiene': [
                 { name: 'Anal Gland Expression (Standard)', price: 300 }
             ]
@@ -460,21 +390,13 @@
                     grid.appendChild(btn);
                 });
             } else if (packageData[category].hasSubCats) {
-                header.innerText = `Step 2: Select Pet Type for ${category}`;
+                header.innerText = `Step 2: Select Bathing Type for ${category}`;
                 const subCats = Object.keys(packageData[category].subCategories);
-                const petIcons = { 
-                    'Dog Deworming': 'fa-dog text-teal-600', 
-                    'Cat Deworming': 'fa-cat text-teal-600',
-                    'Dog Tick Treatment': 'fa-dog text-red-600',
-                    'Cat Tick Treatment': 'fa-cat text-red-600',
-                    'Dog Vaccination': 'fa-dog text-sky-600',
-                    'Cat Vaccination': 'fa-cat text-sky-600'
-                };
 
                 subCats.forEach(subCat => {
                     const btn = document.createElement('div');
                     btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition bg-teal-50/30";
-                    btn.innerHTML = `<span class="font-extrabold text-sm text-[#023047]"><i class="fa-solid ${petIcons[subCat] || 'fa-paw'} mr-2 text-base"></i>${subCat}</span><span class="text-xs font-bold text-slate-500">View Packages <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
+                    btn.innerHTML = `<span class="font-extrabold text-sm text-[#023047]"><i class="fa-solid fa-shower text-teal-600 mr-2 text-base"></i>${subCat}</span><span class="text-xs font-bold text-slate-500">View Sizes <i class="fa-solid fa-chevron-right ml-1"></i></span>`;
                     btn.onclick = () => showSubCategoryPackages(category, subCat);
                     grid.appendChild(btn);
                 });
@@ -484,7 +406,7 @@
                     const btn = document.createElement('div');
                     btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
                     btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
-                    btn.onclick = () => selectPackage(item.name, item.price);
+                    btn.onclick = () => selectPackage(`${category} - ${item.name}`, item.price);
                     grid.appendChild(btn);
                 });
             }
@@ -507,7 +429,7 @@
                 const btn = document.createElement('div');
                 btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
                 btn.innerHTML = `<span class="font-semibold text-sm text-slate-700"><i class="fa-solid fa-scissors text-[#D81B60] mr-2"></i>${breedSize} - ${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
-                btn.onclick = () => selectPackage(`${breedSize} - ${item.name}`, item.price);
+                btn.onclick = () => selectPackage(`Grooming (${breedSize} - ${item.name})`, item.price);
                 grid.appendChild(btn);
             });
         }
@@ -517,11 +439,11 @@
             const header = document.getElementById('packageHeaderTitle');
             
             grid.innerHTML = '';
-            header.innerText = `Step 2: ${subCat} Packages`;
+            header.innerText = `Step 2: ${subCat} Sizes`;
 
             const backBtn = document.createElement('div');
             backBtn.className = "col-span-full mb-1 text-xs font-bold text-[#0f766e] cursor-pointer hover:underline flex items-center gap-1";
-            backBtn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Change Pet Type`;
+            backBtn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Change Bathing Type`;
             backBtn.onclick = () => selectCategory(category);
             grid.appendChild(backBtn);
 
@@ -529,7 +451,7 @@
                 const btn = document.createElement('div');
                 btn.className = "sub-item p-4 rounded-xl border border-slate-200 hover:border-[#0f766e] hover:bg-slate-50 cursor-pointer flex items-center justify-between transition";
                 btn.innerHTML = `<span class="font-semibold text-sm text-slate-700">${subCat} - ${item.name}</span><span class="price-tag font-bold text-[#0f766e]">₹${item.price}/-</span>`;
-                btn.onclick = () => selectPackage(`${subCat} - ${item.name}`, item.price);
+                btn.onclick = () => selectPackage(`${subCat} (${item.name})`, item.price);
                 grid.appendChild(btn);
             });
         }
@@ -560,5 +482,3 @@
     </script>
 </body>
 </html>
-
-```
