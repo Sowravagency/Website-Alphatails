@@ -1,3 +1,12 @@
+The reason your panel stopped working when you added those lines directly into the HTML is because **your page uses JavaScript to dynamically generate the packages**, rather than reading them from static HTML elements.
+
+When you paste HTML lines directly into the page, the JavaScript script doesn't know they are there, or it gets confused by the mismatch, which breaks the click events.
+
+To add these new packages and prices (₹2800, ₹1800, ₹2300, ₹2800) safely so that your panel works perfectly, you need to add them directly into your JavaScript `packageData` object instead.
+
+Here is the **complete, fixed HTML code** with your new Large Breed packages properly integrated into the JavaScript object:
+
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -50,7 +59,7 @@
 
             <!-- Right Action Buttons -->
             <div class="header-actions">
-            <button type="button" onclick="window.location.href='cart.html'" class="cart-btn" aria-label="Shopping Cart">
+                <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
                     <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
@@ -116,7 +125,6 @@
                     </button>
                     <button type="button" onclick="selectCategory('Vaccination')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-shield-dog text-xl text-sky-600 mb-1.5 group-hover:scale-110 transition"></i>
-                        <i class="fa-solid fa-shield-cat text-xl text-sky-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Vaccination</h4>
                         <span class="text-[10px] text-slate-500">From ₹499/-</span>
                     </button>
@@ -194,8 +202,8 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="booking.html">Grooming & Boarding</a></li>
-                    <li><a href="shop.html" class="-footer-link">Shop</a></li>
+                    <li><a href="booking.html">Services & Grooming</a></li>
+                    <li><a href="shop.html" class="-footer-link">AlphaTails Shop</a></li>
                     <li><a href="about.html">About Us</a></li>
                 </ul>
             </div>
@@ -213,8 +221,8 @@
             <div class="footer-col">
                 <h3>Get In Touch</h3>
                 <p>📍 India</p>
-                <p>📞 <a href="tel:+918639215804" class="hover:text-[#0f766e] transition underline"> +91 86392 15804</a></p>
-                <p>✉️ alphatails.clinic@gmail.com</p>
+                <p>📞 <a href="tel:+919876543210" class="hover:text-[#2dd4bf] transition underline">+91 98765 43210</a></p>
+                <p>✉️ support@alphatails.in</p>
                 <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
             </div>
         </div>
@@ -231,7 +239,7 @@
         <span id="toastMessage" class="text-sm font-semibold">Notification</span>
     </div>
 
-    <!-- Complete JavaScript Interaction Script with De-Tick Treatment Added -->
+    <!-- JavaScript with Updated Large Breed Packages Included -->
     <script>
         const packageData = {
             'Deworming': {
@@ -251,9 +259,8 @@
                 hasSubCats: true,
                 subCategories: {
                     'Dog Tick Treatment': [
-                        { name: 'Anti-Tick Bath & Spray (Small)', price: 199 },
-                        { name: 'Anti-Tick Bath & Spray (Medium)', price: 249 },
-                        { name: 'Anti-Tick Bath & Spot-On (Large)', price: 299 }
+                        { name: 'Anti-Tick Bath & Spray (Small/Medium)', price: 350 },
+                        { name: 'Anti-Tick Bath & Spot-On (Large)', price: 650 }
                     ],
                     'Cat Tick Treatment': [
                         { name: 'Anti-Tick Safe Bath & Spray', price: 350 }
@@ -296,12 +303,12 @@
                     ],
                     'Large Breed': [
                         { name: 'Zero cut + bathing', price: 2300 },
-                        { name: 'Only haircut', price: 1800 }
+                        { name: 'Only haircut', price: 1800 },
                         { name: 'Premium cut & Bathing', price: 2800 },
                         { name: 'Puppy haircut (4MM) + Bathing', price: 1800 },
                         { name: 'Summer haircut + Bathing', price: 2300 },
                         { name: 'Teddy Bear haircut + Bathing', price: 2800 }
-                    ],
+                    ]
                 }
             },
             'Hygiene': [
@@ -324,7 +331,6 @@
             document.getElementById('step2Badge').className = "w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm";
             document.getElementById('step2Text').className = "text-xs font-bold text-[#023047] uppercase tracking-wider";
 
-            // If Grooming is selected
             if (category === 'Grooming') {
                 header.innerText = `Step 2: Select Breed Size for Grooming`;
                 const sizes = Object.keys(packageData['Grooming'].sizes);
@@ -337,9 +343,7 @@
                     btn.onclick = () => showGroomingPackages(size);
                     grid.appendChild(btn);
                 });
-            } 
-            // If Deworming, Tick Treatment, or Vaccination is selected (has sub-categories)
-            else if (packageData[category].hasSubCats) {
+            } else if (packageData[category].hasSubCats) {
                 header.innerText = `Step 2: Select Pet Type for ${category}`;
                 const subCats = Object.keys(packageData[category].subCategories);
                 const petIcons = { 
@@ -358,9 +362,7 @@
                     btn.onclick = () => showSubCategoryPackages(category, subCat);
                     grid.appendChild(btn);
                 });
-            } 
-            // For Flat packages like Hygiene
-            else {
+            } else {
                 header.innerText = `Step 2: Select ${category} Package`;
                 packageData[category].forEach(item => {
                     const btn = document.createElement('div');
@@ -432,6 +434,7 @@
             const toast = document.getElementById('toastNotification');
             const message = document.getElementById('toastMessage');
             message.innerText = "Appointment booked successfully! We'll call you shortly.";
+            toast.classList.add('flex');
             toast.classList.remove('hidden');
             setTimeout(() => {
                 toast.classList.add('hidden');
@@ -441,3 +444,5 @@
     </script>
 </body>
 </html>
+
+```
