@@ -1,12 +1,3 @@
-The reason your panel stopped working when you added those lines directly into the HTML is because **your page uses JavaScript to dynamically generate the packages**, rather than reading them from static HTML elements.
-
-When you paste HTML lines directly into the page, the JavaScript script doesn't know they are there, or it gets confused by the mismatch, which breaks the click events.
-
-To add these new packages and prices (₹2800, ₹1800, ₹2300, ₹2800) safely so that your panel works perfectly, you need to add them directly into your JavaScript `packageData` object instead.
-
-Here is the **complete, fixed HTML code** with your new Large Breed packages properly integrated into the JavaScript object:
-
-```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
