@@ -2,10 +2,10 @@
    ALPHATAILS BOOKING PAGE & UNIVERSAL HEADER/FOOTER STYLES
    ========================================================= */
 :root {
-  --brand-primary: #0f766e;       /* AlphaTails Primary Accent (Teal/Emerald) */
-  --brand-primary-dark: #115e59;  /* Hover State */
-  --brand-light: #f0fdfa;         /* Soft Tint for Pills & Buttons */
-  --brand-border: #ccfbf1;        /* Subtle Card & Header Borders */
+  --brand-primary: #0f766e;       
+  --brand-primary-dark: #115e59;  
+  --brand-light: #f0fdfa;         
+  --brand-border: #ccfbf1;        
   --text-dark: #111827;
   --text-muted: #6b7280;
   --primary-teal: #00796B;
@@ -36,7 +36,6 @@ body {
   background-attachment: fixed;
 }
 
-/* Centered Container (Immune to Tailwind .container override) */
 .container,
 .layout-container {
   max-width: 1200px !important;
@@ -47,9 +46,7 @@ body {
   width: 100% !important;
 }
 
-/* ==========================================
-   UNIVERSAL HEADER STYLES (Matches Image 1)
-=========================================== */
+/* UNIVERSAL HEADER STYLES */
 .site-header {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(8px);
@@ -260,55 +257,7 @@ body {
   margin-top: 8px;
 }
 
-/* ==========================================
-   BOOKING CARDS & SERVICE ITEMS
-=========================================== */
-.booking-card {
-  background: #FFFFFF;
-  border: 1px solid var(--brand-border) !important;
-  border-radius: 24px !important;
-  box-shadow: 0 10px 25px -5px rgba(2, 48, 71, 0.06), 0 10px 10px -5px rgba(2, 48, 71, 0.04);
-  transition: all 0.3s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.booking-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 30px -5px rgba(2, 48, 71, 0.1);
-}
-
-.card-header {
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.card-body {
-  padding: 1.25rem 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.sub-group {
-  margin-bottom: 0.5rem;
-}
-
-.sub-title {
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #64748b;
-  margin-bottom: 0.4rem;
-  margin-top: 0.25rem;
-}
-
+/* BOOKING CARDS & SERVICE ITEMS */
 .sub-item {
   display: flex;
   justify-content: space-between;
@@ -342,25 +291,7 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* Custom Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-teal);
-}
-
-/* ==========================================
-   UNIVERSAL FOOTER STYLES (Matches Image 2)
-=========================================== */
+/* UNIVERSAL FOOTER STYLES */
 .site-footer {
   background-color: #0b1120;
   color: #cbd5e1;
@@ -421,8 +352,7 @@ body {
   transition: color 0.2s;
 }
 
-.footer-col a:hover,
-.active-footer-link {
+.footer-col a:hover {
   color: #2dd4bf !important;
 }
 
@@ -444,7 +374,6 @@ body {
   color: #64748b;
 }
 
-/* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
