@@ -1,9 +1,9 @@
+
 {
-{
-  "name": "website-twilio-integration",
+  "name": "alphatails.in",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "twilio": "^5.10.0"
+    "twilio": "5.10.0"
   }
 }
