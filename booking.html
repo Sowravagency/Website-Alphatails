@@ -1,50 +1,60 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>ALPHATAILS | Simple & Organized Pet Care Booking</title>
-    
-    <!-- Tailwind CSS CDN -->
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    
-    <!-- Google Fonts: Inter -->
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          emailjs.init({
-            publicKey: "_tlvikFq2NM_veQBy",
-          });
-       })();
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        (function () {
+            emailjs.init({
+                publicKey: "_tlvikFq2NM_veQBy"
+            });
+        })();
     </script>
 
-    <!-- Custom External CSS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="booking.css" />
 </head>
+
 <body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
 
-    <!-- UNIVERSAL HEADER -->
+    <!-- HEADER -->
     <header class="site-header">
         <div class="layout-container header-inner">
+
             <a href="index.html" class="brand-logo">
                 <div class="logo-icon">
                     <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
                         <path d="M12,3C10.9,3 10,3.9 10,5C10,6.1 10.9,7 12,7C13.1,7 14,6.1 14,5C14,3.9 13.1,3 12,3M6,5C4.9,5 4,5.9 4,7C4,8.1 4.9,9 6,9C7.1,9 8,8.1 8,7C8,5.9 7.1,5 6,5M18,5C16.9,5 16,5.9 16,7C16,8.1 16.9,9 18,9C19.1,9 20,8.1 20,7C20,5.9 19.1,5 18,5M3.5,10.5C2.7,10.5 2,11.2 2,12C2,12.8 2.7,13.5 3.5,13.5C4.3,13.5 5,12.8 5,12C5,11.2 4.3,10.5 3.5,10.5M20.5,10.5C19.7,10.5 19,11.2 19,12C19,12.8 19.7,13.5 20.5,13.5C21.3,13.5 22,12.8 22,12C22,11.2 21.3,10.5 20.5,10.5M12,9C9.2,9 6.8,10.6 5.6,13C4.4,15.4 4.8,18.4 6.6,20.2C8.4,22 10.4,22.5 12,22.5C13.6,22.5 15.6,22 17.4,20.2C19.2,18.4 19.6,15.4 18.4,13C17.2,10.6 14.8,9 12,9Z"/>
                     </svg>
                 </div>
+
                 <div>
                     <span class="brand-title">ALPHATAILS</span>
                     <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
                 </div>
             </a>
+
             <nav class="main-nav">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="booking.html" class="nav-link active">Grooming & Boarding</a>
@@ -53,178 +63,351 @@
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
+
             <div class="header-actions">
-                <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
+
+                <button type="button"
+                onclick="window.location.href='shop.html'"
+                class="cart-btn"
+                aria-label="Shopping Cart">
+
                     <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
+
                     <span id="cartCount" class="cart-badge">0</span>
                 </button>
-                <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu">
-                    <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    <svg id="closeIcon" class="menu-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+
+                <button type="button"
+                id="mobileMenuBtn"
+                class="mobile-menu-btn"
+                aria-label="Toggle Menu">
+
+                    <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+
+                    <svg id="closeIcon" class="menu-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
                 </button>
+
                 <a href="#bookingFlow" class="btn-primary header-cta">Book Now</a>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer Navigation -->
+    <!-- MOBILE NAVIGATION -->
     <div id="mobileNav" class="mobile-nav">
+
         <a href="index.html" class="mobile-nav-link">Home</a>
         <a href="booking.html" class="mobile-nav-link active">Grooming & Boarding</a>
         <a href="consultation.html" class="mobile-nav-link">Consultation</a>
         <a href="shop.html" class="mobile-nav-link">Shop</a>
         <a href="about.html" class="mobile-nav-link">About Us</a>
         <a href="contact.html" class="mobile-nav-link">Contact</a>
+
         <div class="mobile-cta">
-            <a href="#bookingFlow" onclick="toggleMobileMenu()" class="btn-primary w-full">Book Now</a>
+            <a href="#bookingFlow"
+            onclick="toggleMobileMenu()"
+            class="btn-primary w-full">
+                Book Now
+            </a>
         </div>
     </div>
 
     <!-- HERO SECTION -->
     <section class="bg-[#E0F7FA]/80 backdrop-blur-[2px] py-10 sm:py-14 border-b border-[#ccfbf1] text-center">
+
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+
             <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white text-[#0f766e] text-xs font-extrabold uppercase shadow-sm border border-[#ccfbf1]">
-                <i class="fa-solid fa-bolt text-amber-500"></i> Fast & Easy 3-Step Booking
+                <i class="fa-solid fa-bolt text-amber-500"></i>
+                Fast & Easy 3-Step Booking
             </span>
+
             <h1 class="text-3xl sm:text-4xl font-extrabold text-[#023047]">
                 Book Care & Grooming in Seconds
             </h1>
+
             <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
                 Pick a category, choose your preferred package, and lock in your schedule instantly with clear Indian Rupee pricing.
             </p>
+
         </div>
     </section>
 
-    <!-- MAIN BOOKING WIDGET -->
+    <!-- MAIN BOOKING -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full" id="bookingFlow">
+
         <div class="bg-white rounded-3xl shadow-xl border border-[#ccfbf1] p-6 sm:p-8 space-y-8">
-            
+
             <!-- STEP INDICATORS -->
             <div class="grid grid-cols-3 gap-2 border-b border-slate-100 pb-6 text-center">
+
                 <div class="space-y-1">
                     <span class="w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm">1</span>
                     <p class="text-xs font-bold text-[#023047] uppercase tracking-wider">Select Service</p>
                 </div>
+
                 <div class="space-y-1">
-                    <span class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm" id="step2Badge">2</span>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider" id="step2Text">Choose Package</p>
+                    <span id="step2Badge" class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm">2</span>
+                    <p id="step2Text" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Choose Package</p>
                 </div>
+
                 <div class="space-y-1">
-                    <span class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm" id="step3Badge">3</span>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider" id="step3Text">Confirm Details</p>
+                    <span id="step3Badge" class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm">3</span>
+                    <p id="step3Text" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Confirm Details</p>
                 </div>
+
             </div>
 
-            <!-- CATEGORY SELECTION CARDS -->
+            <!-- CATEGORY SELECTION -->
             <div class="space-y-4">
-                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Step 1: Choose Service Category</h3>
+
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">
+                    Step 1: Choose Service Category
+                </h3>
+
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+
                     <button type="button" onclick="selectCategory('Deworming')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-capsules text-xl text-[#00796B] mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Deworming</h4>
                         <span class="text-[10px] text-slate-500">From ₹149/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Tick Treatment')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-bug text-xl text-red-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">De-tick</h4>
                         <span class="text-[10px] text-slate-500">From ₹350/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Vaccination')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-shield-dog text-xl text-sky-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Vaccination</h4>
                         <span class="text-[10px] text-slate-500">From ₹499/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Grooming')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-scissors text-xl text-[#D81B60] mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Grooming</h4>
                         <span class="text-[10px] text-slate-500">From ₹1500/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Bathing & Drying')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-shower text-xl text-teal-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Bathing & Drying</h4>
                         <span class="text-[10px] text-slate-500">From ₹499/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Premium & Medicated Bathing')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-pump-soap text-xl text-teal-700 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Premium & Medicated</h4>
                         <span class="text-[10px] text-slate-500">From ₹699/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Spa')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-spa text-xl text-purple-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Spa Add-ons</h4>
                         <span class="text-[10px] text-slate-500">From ₹200/-</span>
                     </button>
+
                     <button type="button" onclick="selectCategory('Hygiene')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-notes-medical text-xl text-amber-600 mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Anal Gland</h4>
                         <span class="text-[10px] text-slate-500">Fixed ₹300/-</span>
                     </button>
+
                 </div>
             </div>
 
-            <!-- DYNAMIC PACKAGE OPTIONS CONTAINER -->
+            <!-- PACKAGE OPTIONS -->
             <div id="packageContainer" class="hidden space-y-4 pt-2 border-t border-slate-100">
-                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500" id="packageHeaderTitle">Step 2: Select Specific Package</h3>
+
+                <h3 id="packageHeaderTitle" class="text-sm font-extrabold uppercase tracking-wider text-slate-500">
+                    Step 2: Select Specific Package
+                </h3>
+
                 <div id="packageListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <!-- Dynamic Items loaded via JS -->
                 </div>
+
             </div>
 
-            <!-- FINAL APPOINTMENT FORM -->
+            <!-- APPOINTMENT FORM -->
             <div id="appointmentFormSection" class="hidden space-y-4 pt-2 border-t border-slate-100">
-                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Step 3: Appointment Details</h3>
+
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">
+                    Step 3: Appointment Details
+                </h3>
+
+                <!-- SELECTED SERVICE -->
                 <div class="bg-[#f0fdfa] p-4 rounded-2xl flex items-center justify-between border border-[#ccfbf1]">
+
                     <div>
-                        <span class="text-[10px] uppercase font-bold text-[#0f766e]">Selected Service</span>
-                        <input type="text" id="finalSelectedService" readonly class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none" />
+                        <span class="text-[10px] uppercase font-bold text-[#0f766e]">
+                            Selected Service
+                        </span>
+
+                        <input
+                            type="text"
+                            id="finalSelectedService"
+                            name="selected_service"
+                            readonly
+                            class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none"
+                        />
                     </div>
-                    <span id="finalSelectedPrice" class="price-tag text-sm shrink-0 ml-2">₹0/-</span>
+
+                    <span id="finalSelectedPrice" class="price-tag text-sm shrink-0 ml-2">
+                        ₹0/-
+                    </span>
+
                 </div>
-                
+
+                <!-- BOOKING FORM -->
                 <form id="bookingForm" onsubmit="handleFinalBooking(event)" class="space-y-4">
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        <!-- CUSTOMER NAME -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Parent Name</label>
-                            <input type="text" id="customerName" name="customer_name" required placeholder="Enter your full name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
+                                Pet Parent Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customerName"
+                                name="customer_name"
+                                required
+                                maxlength="80"
+                                autocomplete="name"
+                                placeholder="Enter your full name"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"
+                            />
                         </div>
+
+                        <!-- PHONE -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
-                            <input type="tel" id="customerPhone" name="customer_phone" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="customerPhone"
+                                name="customer_phone"
+                                required
+                                placeholder="10-digit mobile number"
+                                pattern="[6-9][0-9]{9}"
+                                maxlength="10"
+                                inputmode="numeric"
+                                autocomplete="tel-national"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"
+                            />
+
+                            <p class="text-xs text-slate-500 mt-1">
+                                Enter your 10-digit Indian mobile number.
+                            </p>
                         </div>
+
                     </div>
+
+                    <!-- EMAIL -->
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Email Address (For Confirmation)</label>
-                        <input type="email" id="customerEmail" name="customer_email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="customerEmail"
+                            name="customer_email"
+                            required
+                            autocomplete="email"
+                            placeholder="name@example.com"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"
+                        />
                     </div>
+
+                    <!-- DATE -->
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Preferred Appointment Date</label>
-                        <input type="date" id="bookingDate" name="booking_date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm" />
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
+                            Preferred Appointment Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="bookingDate"
+                            name="booking_date"
+                            required
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"
+                        />
                     </div>
-                    <button type="submit" class="w-full py-4 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
+
+                    <!-- TIME -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
+                            Preferred Appointment Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="bookingTime"
+                            name="booking_time"
+                            required
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"
+                        />
+                    </div>
+
+                    <!-- SUBMIT -->
+                    <button
+                        type="submit"
+                        id="bookingSubmitBtn"
+                        class="w-full py-4 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition"
+                    >
                         Confirm & Book Appointment Now
                     </button>
+
+                    <!-- BOOKING STATUS -->
+                    <p
+                        id="bookingStatus"
+                        class="text-sm text-center font-semibold"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
                 </form>
+
             </div>
 
         </div>
     </main>
 
-    <!-- UNIVERSAL FOOTER -->
+    <!-- FOOTER -->
     <footer class="site-footer">
+
         <div class="container footer-grid">
+
             <div class="footer-col">
+
                 <div class="footer-brand">
                     <div class="logo-icon small">·ᴥ·</div>
                     <span>ALPHATAILS</span>
                 </div>
+
                 <p class="footer-desc">
                     Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
                 </p>
+
             </div>
+
             <div class="footer-col">
                 <h3>Quick Links</h3>
+
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="booking.html">Services & Grooming</a></li>
@@ -232,8 +415,10 @@
                     <li><a href="about.html">About Us</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h3>Shop Categories</h3>
+
                 <ul>
                     <li><a href="shop.html">Tactical & Padded Harnesses</a></li>
                     <li><a href="shop.html">Grooming & Tick Shampoos</a></li>
@@ -241,27 +426,73 @@
                     <li><a href="shop.html">Chew Toys & Cat Scratchers</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
+
                 <h3>Get In Touch</h3>
-                <p>📍 Tirupati[span_0](start_span)[span_0](end_span)</p>
-                <p>📞 <a href="tel:+918639215804" class="hover:text-[#2dd4bf] transition underline">+91 863921 5804</a>[span_1](start_span)[span_1](end_span)</p>
-                <p>✉️ alphatails.clinic@gmail.com[span_2](start_span)[span_2](end_span)</p>
-                <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM[span_3](start_span)[span_3](end_span)</p>
+
+                <p>📍 Tirupati</p>
+
+                <p>
+                    📞 <a href="tel:+918639215804" class="hover:text-[#2dd4bf] transition underline">
+                        +91 863921 5804
+                    </a>
+                </p>
+
+                <p>✉️ alphatails.clinic@gmail.com</p>
+
+                <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
+
             </div>
+
         </div>
+
         <div class="layout-container footer-bottom">
-            <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.[span_4](start_span)[span_4](end_span)</p>
-            <p>Built for Happy Pets & Pet Parents[span_5](start_span)[span_5](end_span)</p>
+
+            <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
+
+            <p>Built for Happy Pets & Pet Parents</p>
+
         </div>
+
     </footer>
 
     <!-- TOAST NOTIFICATION -->
-    <div id="toastNotification" class="hidden fixed bottom-6 right-6 z-50 bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-[#0f766e]">
+    <div
+        id="toastNotification"
+        class="hidden fixed bottom-6 right-6 z-50 bg-[#023047] text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-[#0f766e]"
+        role="status"
+        aria-live="polite"
+    >
+
         <i class="fa-solid fa-circle-check text-[#2dd4bf] text-lg"></i>
-        <span id="toastMessage" class="text-sm font-semibold">Notification</span>
+
+        <span id="toastMessage" class="text-sm font-semibold">
+            Notification
+        </span>
+
     </div>
 
-    <!-- External JavaScript File -->
+    <!-- EXISTING BOOKING JAVASCRIPT -->
     <script src="booking.js"></script>
+
+    <!-- SET MINIMUM BOOKING DATE TO TODAY -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const dateInput = document.getElementById("bookingDate");
+
+            if (dateInput) {
+                const today = new Date();
+                const localDate = new Date(
+                    today.getTime() - today.getTimezoneOffset() * 60000
+                ).toISOString().split("T")[0];
+
+                dateInput.min = localDate;
+            }
+
+        });
+    </script>
+
 </body>
 </html>
