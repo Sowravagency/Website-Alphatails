@@ -287,20 +287,3 @@ async function sendBookingConfirmation(booking) {
   }
 }
 
-// 1. Save the booking first
-const booking = await saveBookingToDatabase();
-
-// 2. Check whether booking was successful
-if (booking && booking.id) {
-
-  // 3. Send confirmation SMS
-  const smsSent = await sendBookingConfirmation(booking);
-
-  // 4. Show booking confirmation
-  alert(
-    smsSent
-      ? "Booking confirmed! SMS notification submitted."
-      : "Booking confirmed! SMS notification could not be sent."
-  );
-
-}
