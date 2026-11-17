@@ -244,61 +244,63 @@ function selectPackage(serviceName, price) {
     document.getElementById('appointmentFormSection').scrollIntoView({ behavior: 'smooth' });
 }
 
-// EmailJS Submission Handler
-async function handleFinalBooking(event) {
-    event.preventDefault();
-    
-    const form = document.getElementById('bookingForm');
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerHTML;
 
-    submitBtn.innerHTML = 'Sending Email...';
-    submitBtn.disabled = true;
+async function sendBookingConfirmation(booking) {
 
-    const customerName = document.getElementById('customerName').value;
-    const customerPhone = document.getElementById('customerPhone').value;
-    const customerEmail = document.getElementById('customerEmail').value;
-    const bookingDate = document.getElementById('bookingDate').value;
-    const selectedService = document.getElementById('finalSelectedService').value;
+  try {
 
-    try {
-        const emailParams = {
-            to_name: customerName,
-            to_email: customerEmail,
-            service_name: selectedService,
-            booking_date: bookingDate,
-            clinic_phone: "+91 86392 15804[span_6](start_span)"[span_6](end_span)
-        };
+    const response = await fetch(
+      "/api/send-booking-sms",
+      {
+        method: "POST",
 
-        await emailjs.send('service_5mvte4b', 'template_88bxqk2', emailParams);
+        headers: {
+          "Content-Type": "application/json"
+        },
 
-        showToast("Appointment booked successfully! Confirmation email sent.");
-        form.reset();
-        
-        setTimeout(() => {
-            location.reload();
-        }, 3000);
+        body: JSON.stringify({
+          customerName: booking.customerName,
+          phone: booking.phone,
+          service: booking.service,
+          bookingDate: booking.date,
+          bookingTime: booking.time,
+          bookingId: booking.id
+        })
+      }
+    );
 
-    } catch (error) {
-        console.error('EmailJS Error:', error);
-        showToast("Booking recorded, but email failed. Please call us directly.");
-    } finally {
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.disabled = false;
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "SMS failed");
     }
+
+    console.log("SMS submitted:", result.messageSid);
+
+    return true;
+
+  } catch (error) {
+
+    console.error("SMS error:", error);
+
+    return false;
+  }
 }
 
-// Toast Notification Helper
-function showToast(message) {
-    const toast = document.getElementById('toastNotification');
-    const toastMsg = document.getElementById('toastMessage');
-    if (!toast || !toastMsg) return;
+// 1. Save the booking first
+const booking = await saveBookingToDatabase();
 
-    toastMsg.textContent = message;
-    toast.classList.remove('hidden');
+// 2. Check whether booking was successful
+if (booking && booking.id) {
 
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        toast.classList.add('hidden');
-    }, 4000);
+  // 3. Send confirmation SMS
+  const smsSent = await sendBookingConfirmation(booking);
+
+  // 4. Show booking confirmation
+  alert(
+    smsSent
+      ? "Booking confirmed! SMS notification submitted."
+      : "Booking confirmed! SMS notification could not be sent."
+  );
+
 }
