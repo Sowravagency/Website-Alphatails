@@ -276,7 +276,6 @@ async function sendBookingConfirmation(booking) {
     }
 }
 
-// Final Booking Submission Handler
 async function handleFinalBooking(event) {
     event.preventDefault();
 
@@ -300,17 +299,24 @@ async function handleFinalBooking(event) {
     statusEl.textContent = '';
 
     const bookingPayload = {
+        id: 'AT-' + Math.floor(100000 + Math.random() * 900000),
         customerName,
         phone,
         email,
         service,
         date,
         time,
-        id: 'AT-' + Math.floor(100000 + Math.random() * 900000)
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
     };
 
     try {
-        // 1. Send Email via EmailJS
+        // 1. SAVE TO LOCALSTORAGE FOR THE ADMIN PANEL INSTANT SYNC
+        const existingBookings = JSON.parse(localStorage.getItem('alphatails_bookings') || '[]');
+        existingBookings.unshift(bookingPayload); // Add new booking to the top
+        localStorage.setItem('alphatails_bookings', JSON.stringify(existingBookings));
+
+        // 2. Send Email via EmailJS (if configured)
         if (typeof emailjs !== 'undefined') {
             await emailjs.send('service_ID', 'template_ID', {
                 to_name: customerName,
@@ -323,7 +329,7 @@ async function handleFinalBooking(event) {
             });
         }
 
-        // 2. Trigger Backend Twilio SMS
+        // 3. Trigger Backend Twilio SMS
         await sendBookingConfirmation(bookingPayload);
 
         statusEl.className = "text-sm text-center font-semibold text-teal-700 mt-3";
@@ -333,7 +339,7 @@ async function handleFinalBooking(event) {
     } catch (error) {
         console.error('Booking submission error:', error);
         statusEl.className = "text-sm text-center font-semibold text-teal-700 mt-3";
-        statusEl.textContent = 'Appointment booked successfully! We will contact you shortly.';
+        statusEl.textContent = 'Appointment booked and saved to admin panel!';
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = `Confirm & Book Appointment Now`;
