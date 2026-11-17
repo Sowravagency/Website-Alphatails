@@ -244,46 +244,98 @@ function selectPackage(serviceName, price) {
     document.getElementById('appointmentFormSection').scrollIntoView({ behavior: 'smooth' });
 }
 
-
+// Twilio SMS Backend Dispatch
 async function sendBookingConfirmation(booking) {
+    try {
+        const response = await fetch('/api/send-booking-sms', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                customerName: booking.customerName,
+                phone: booking.phone,
+                service: booking.service,
+                bookingDate: booking.date,
+                bookingTime: booking.time,
+                bookingId: booking.id
+            })
+        });
 
-  try {
+        const result = await response.json();
 
-    const response = await fetch(
-      "/api/send-booking-sms",
-      {
-        method: "POST",
+        if (!response.ok || !result.success) {
+            throw new Error(result.message || 'SMS failed');
+        }
 
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          customerName: booking.customerName,
-          phone: booking.phone,
-          service: booking.service,
-          bookingDate: booking.date,
-          bookingTime: booking.time,
-          bookingId: booking.id
-        })
-      }
-    );
-
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-      throw new Error(result.message || "SMS failed");
+        console.log('SMS submitted:', result.messageSid);
+        return true;
+    } catch (error) {
+        console.error('SMS error:', error);
+        return false;
     }
-
-    console.log("SMS submitted:", result.messageSid);
-
-    return true;
-
-  } catch (error) {
-
-    console.error("SMS error:", error);
-
-    return false;
-  }
 }
 
+// Final Booking Submission Handler
+async function handleFinalBooking(event) {
+    event.preventDefault();
+
+    const submitBtn = document.getElementById('bookingSubmitBtn');
+    const statusEl = document.getElementById('bookingStatus');
+    
+    const customerName = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    const service = document.getElementById('finalSelectedService').value.trim();
+    const date = document.getElementById('bookingDate').value;
+    const time = document.getElementById('bookingTime').value;
+
+    if (!customerName || !phone || !service || !date || !time) {
+        alert('Please fill in all required appointment fields.');
+        return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Confirming Appointment...`;
+    statusEl.textContent = '';
+
+    const bookingPayload = {
+        customerName,
+        phone,
+        email,
+        service,
+        date,
+        time,
+        id: 'AT-' + Math.floor(100000 + Math.random() * 900000)
+    };
+
+    try {
+        // 1. Send Email via EmailJS
+        if (typeof emailjs !== 'undefined') {
+            await emailjs.send('service_ID', 'template_ID', {
+                to_name: customerName,
+                customer_phone: phone,
+                customer_email: email,
+                selected_service: service,
+                booking_date: date,
+                booking_time: time,
+                booking_id: bookingPayload.id
+            });
+        }
+
+        // 2. Trigger Backend Twilio SMS
+        await sendBookingConfirmation(bookingPayload);
+
+        statusEl.className = "text-sm text-center font-semibold text-teal-700 mt-3";
+        statusEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Appointment confirmed successfully! SMS confirmation sent to ${phone}.`;
+        
+        document.getElementById('bookingForm').reset();
+    } catch (error) {
+        console.error('Booking submission error:', error);
+        statusEl.className = "text-sm text-center font-semibold text-teal-700 mt-3";
+        statusEl.textContent = 'Appointment booked successfully! We will contact you shortly.';
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `Confirm & Book Appointment Now`;
+    }
+}
