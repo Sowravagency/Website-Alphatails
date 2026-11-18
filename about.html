@@ -18,29 +18,29 @@
     
     <!-- Custom External CSS -->
     <link rel="stylesheet" href="about.css">
+
+    <!-- Supabase JS SDK (Properly Closed) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";
+        const _supabase = window.supabase.createClient("https://xukjlwsidurvtxqouqvd.supabase.co";"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ");
+    </script>
 </head>
 <body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-     <script> 
-         // Initialize Supabase Client
-       const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
-       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";  
-
-       const _supabase = window.supabase.createClient("https://xukjlwsidurvtxqouqvd.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ");
-
 
     <!-- ==========================================
          UNIVERSAL HEADER
     =========================================== -->
     <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-icon">·ᴥ·</div>
-        <div class="logo-text">
-          <span class="brand-title">ALPHATAILS</span>
-          <span class="brand-subtitle">Pet Care & Accessories</span>
-        </div>
-      </a>
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">·ᴥ·</div>
+                <div class="logo-text">
+                    <span class="brand-title">ALPHATAILS</span>
+                    <span class="brand-subtitle">Pet Care & Accessories</span>
+                </div>
+            </a>
 
             <!-- Desktop Navigation -->
             <nav class="main-nav">
@@ -81,7 +81,7 @@
         <nav id="mobileNav" class="mobile-nav">
             <a href="index.html" class="mobile-nav-link">Home</a>
             <a href="booking.html" class="mobile-nav-link">Grooming & Boarding</a>
-            <a href="booking.html" class="mobile-nav-link">Consultation</a>
+            <a href="consultation.html" class="mobile-nav-link">Consultation</a>
             <a href="shop.html" class="mobile-nav-link">Shop</a>
             <a href="about.html" class="mobile-nav-link active">About Us</a>
             <a href="contact.html" class="mobile-nav-link">Contact</a>
@@ -121,13 +121,14 @@
                     Complete Care for Every Wag, Purr, and Paw
                 </h2>
                 <p class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed">
-At Alphatails, we believe pets are family—and they deserve care that feels just as warm, safe, and personal as home. We bring together expert veterinary consultations, stress-free grooming, safe boarding, and curated everyday accessories under one roof.
+                    At Alphatails, we believe pets are family—and they deserve care that feels just as warm, safe, and personal as home. We bring together expert veterinary consultations, stress-free grooming, safe boarding, and curated everyday accessories under one roof.
                 </p>
                 <p class="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed">
-Whether your furry companion needs a routine check-up, a gentle spa day, or a trusted place to stay while you travel, our experienced vets and certified handlers treat every pet with patience, hygiene, and genuine love.
+                    Whether your furry companion needs a routine check-up, a gentle spa day, or a trusted place to stay while you travel, our experienced vets and certified handlers treat every pet with patience, hygiene, and genuine love.
                 </p>
-                <section hidden>
-                <div class="grid grid-cols-2 gap-4 pt-2">
+                
+                <!-- Stats Grid (Hidden for now) -->
+                <div class="hidden grid-cols-2 gap-4 pt-2">
                     <div class="p-4 rounded-2xl bg-white border border-[#ccfbf1] shadow-sm">
                         <h3 class="text-xl sm:text-2xl font-extrabold text-[#0f766e]">24/7</h3>
                         <p class="text-[11px] sm:text-xs font-bold text-slate-500 mt-1">Emergency Readiness</p>
@@ -157,7 +158,7 @@ Whether your furry companion needs a routine check-up, a gentle spa day, or a tr
                 </div>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#023047]">Fear-Free Handling</h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      We take things slow. Our spaces are calm, hygienic, and designed to reduce anxiety so pets actually enjoy their visits.
+                    We take things slow. Our spaces are calm, hygienic, and designed to reduce anxiety so pets actually enjoy their visits.
                 </p>
             </div>
 
@@ -167,7 +168,7 @@ Whether your furry companion needs a routine check-up, a gentle spa day, or a tr
                 </div>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#023047]">Hygienic Grooming & Safe Boarding</h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                 Temperature-controlled suites, pet-safe organic shampoos, and round-the-clock supervision ensure total comfort.
+                    Temperature-controlled suites, pet-safe organic shampoos, and round-the-clock supervision ensure total comfort.
                 </p>
             </div>
 
@@ -177,7 +178,7 @@ Whether your furry companion needs a routine check-up, a gentle spa day, or a tr
                 </div>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#023047]">Licensed Veterinary Expertise</h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                   From preventive vaccinations and diagnostics to nutrition guidance, every medical decision is backed by qualified vets.
+                    From preventive vaccinations and diagnostics to nutrition guidance, every medical decision is backed by qualified vets.
                 </p>
             </div>
         </div>
@@ -205,7 +206,7 @@ Whether your furry companion needs a routine check-up, a gentle spa day, or a tr
                     <li><a href="index.html">Home</a></li>
                     <li><a href="booking.html">Services & Grooming</a></li>
                     <li><a href="shop.html">AlphaTails Shop</a></li>
-                    <li><a href="about.html" class=-footer-link">About Us</a></li>
+                    <li><a href="about.html" class="active-footer-link">About Us</a></li>
                 </ul>
             </div>
 
