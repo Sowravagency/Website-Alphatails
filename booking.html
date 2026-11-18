@@ -22,6 +22,13 @@
 
     <!-- Supabase JS Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+     <script> 
+         // Initialize Supabase Client
+       const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
+       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";  
+
+       const _supabase = window.supabase.createClient("https://xukjlwsidurvtxqouqvd.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ");
+
 
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
