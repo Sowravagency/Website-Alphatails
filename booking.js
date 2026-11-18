@@ -289,6 +289,12 @@ async function handleFinalBooking(event) {
     const date = document.getElementById('bookingDate').value;
     const time = document.getElementById('bookingTime').value;
 
+    // Optional fields if present in your HTML form
+    const petNameEl = document.getElementById('petName');
+    const notesEl = document.getElementById('bookingNotes');
+    const petName = petNameEl ? petNameEl.value.trim() : 'Not Specified';
+    const notes = notesEl ? notesEl.value.trim() : '';
+
     if (!customerName || !phone || !service || !date || !time) {
         alert('Please fill in all required appointment fields.');
         return;
@@ -311,12 +317,36 @@ async function handleFinalBooking(event) {
     };
 
     try {
-        // 1. SAVE TO LOCALSTORAGE FOR THE ADMIN PANEL INSTANT SYNC
+        // 1. SAVE TO SUPABASE DATABASE (Live Realtime Sync)
+        if (typeof supabaseClient !== 'undefined') {
+            const { data: sbData, error: sbError } = await supabaseClient
+                .from('bookings')
+                .insert([{
+                    booking_ref: bookingPayload.id,
+                    owner_name: customerName,
+                    phone: phone,
+                    email: email || null,
+                    pet_name: petName || 'Pet',
+                    service_type: service,
+                    appointment_date: date,
+                    appointment_time: time,
+                    notes: notes,
+                    status: 'Confirmed'
+                }]);
+
+            if (sbError) {
+                console.error('Supabase insert error:', sbError);
+            } else {
+                console.log('Booking saved to Supabase successfully!');
+            }
+        }
+
+        // 2. SAVE TO LOCALSTORAGE AS BACKUP FOR ADMIN PANEL
         const existingBookings = JSON.parse(localStorage.getItem('alphatails_bookings') || '[]');
-        existingBookings.unshift(bookingPayload); // Add new booking to the top
+        existingBookings.unshift(bookingPayload);
         localStorage.setItem('alphatails_bookings', JSON.stringify(existingBookings));
 
-        // 2. Send Email via EmailJS (if configured)
+        // 3. Send Email via EmailJS (if configured)
         if (typeof emailjs !== 'undefined') {
             await emailjs.send('service_ID', 'template_ID', {
                 to_name: customerName,
@@ -329,11 +359,19 @@ async function handleFinalBooking(event) {
             });
         }
 
-        // 3. Trigger Backend Twilio SMS
-        await sendBookingConfirmation(bookingPayload);
+        // 4. Trigger Backend Twilio SMS
+        const smsSuccess = await sendBookingConfirmation(bookingPayload);
+
+        // Update SMS flag in Supabase if Twilio succeeded
+        if (smsSuccess && typeof supabaseClient !== 'undefined') {
+            await supabaseClient
+                .from('bookings')
+                .update({ sms_sent: true })
+                .eq('booking_ref', bookingPayload.id);
+        }
 
         statusEl.className = "text-sm text-center font-semibold text-teal-700 mt-3";
-        statusEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Appointment confirmed successfully! SMS confirmation sent to ${phone}.`;
+        statusEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Appointment confirmed (${bookingPayload.id})! SMS confirmation sent to ${phone}.`;
         
         document.getElementById('bookingForm').reset();
     } catch (error) {
