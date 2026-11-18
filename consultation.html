@@ -18,15 +18,19 @@
     
     <!-- Custom External CSS -->
     <link rel="stylesheet" href="consultation.css">
+
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
+        // IMPORTANT: Ensure this anon key is from the xukjlwsidurvtxqouqvd project in Supabase
+        const supabaseKey = "YOUR_MATCHING_ANON_KEY_HERE";
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const _supabase = supabaseClient; // Alias in case consultation.js uses _supabase
+    </script>
 </head>
 <body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-     <script> 
-         // Initialize Supabase Client
-       const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
-       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";  
 
-       const _supabase = window.supabase.createClient("https://xukjlwsidurvtxqouqvd.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ");
     <!-- ==========================================
          UNIVERSAL HEADER (Desktop & Mobile Responsive)
     =========================================== -->
@@ -34,22 +38,23 @@
         <div class="layout-container header-inner">
             <!-- Brand Logo & Name -->
             <a href="index.html" class="brand-logo">
-    <div class="logo-icon">
-        <!-- Proper Pet Paw SVG Icon -->
-        <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
-            <path d="M12,3C10.9,3 10,3.9 10,5C10,6.1 10.9,7 12,7C13.1,7 14,6.1 14,5C14,3.9 13.1,3 12,3M6,5C4.9,5 4,5.9 4,7C4,8.1 4.9,9 6,9C7.1,9 8,8.1 8,7C8,5.9 7.1,5 6,5M18,5C16.9,5 16,5.9 16,7C16,8.1 16.9,9 18,9C19.1,9 20,8.1 20,7C20,5.9 19.1,5 18,5M3.5,10.5C2.7,10.5 2,11.2 2,12C2,12.8 2.7,13.5 3.5,13.5C4.3,13.5 5,12.8 5,12C5,11.2 4.3,10.5 3.5,10.5M20.5,10.5C19.7,10.5 19,11.2 19,12C19,12.8 19.7,13.5 20.5,13.5C21.3,13.5 22,12.8 22,12C22,11.2 21.3,10.5 20.5,10.5M12,9C9.2,9 6.8,10.6 5.6,13C4.4,15.4 4.8,18.4 6.6,20.2C8.4,22 10.4,22.5 12,22.5C13.6,22.5 15.6,22 17.4,20.2C19.2,18.4 19.6,15.4 18.4,13C17.2,10.6 14.8,9 12,9Z"/>
-        </svg>
-    </div>
-    <div>
-        <span class="brand-title">ALPHATAILS</span>
-        <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
-    </div>
-</a>
+                <div class="logo-icon">
+                    <!-- Proper Pet Paw SVG Icon -->
+                    <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
+                        <path d="M12,3C10.9,3 10,3.9 10,5C10,6.1 10.9,7 12,7C13.1,7 14,6.1 14,5C14,3.9 13.1,3 12,3M6,5C4.9,5 4,5.9 4,7C4,8.1 4.9,9 6,9C7.1,9 8,8.1 8,7C8,5.9 7.1,5 6,5M18,5C16.9,5 16,5.9 16,7C16,8.1 16.9,9 18,9C19.1,9 20,8.1 20,7C20,5.9 19.1,5 18,5M3.5,10.5C2.7,10.5 2,11.2 2,12C2,12.8 2.7,13.5 3.5,13.5C4.3,13.5 5,12.8 5,12C5,11.2 4.3,10.5 3.5,10.5M20.5,10.5C19.7,10.5 19,11.2 19,12C19,12.8 19.7,13.5 20.5,13.5C21.3,13.5 22,12.8 22,12C22,11.2 21.3,10.5 20.5,10.5M12,9C9.2,9 6.8,10.6 5.6,13C4.4,15.4 4.8,18.4 6.6,20.2C8.4,22 10.4,22.5 12,22.5C13.6,22.5 15.6,22 17.4,20.2C19.2,18.4 19.6,15.4 18.4,13C17.2,10.6 14.8,9 12,9Z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="brand-title">ALPHATAILS</span>
+                    <span class="brand-subtitle">PET CARE & ACCESSORIES</span>
+                </div>
+            </a>
+
             <!-- Desktop Navigation Links -->
             <nav class="main-nav">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="booking.html" class="nav-link">Grooming & Boarding</a>
-                <a href="doctor-consulting.html" class="nav-link active">Consulatation</a>
+                <a href="consultation.html" class="nav-link active">Consultation</a>
                 <a href="shop.html" class="nav-link">Shop</a>
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="contact.html" class="nav-link">Contact</a>
@@ -152,9 +157,9 @@
                         Book Consultation (₹299)
                     </button>
                 </div>
-<section hidden>
-                <!-- Vet 2 -->
-                <div class="bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex flex-col justify-between hover:-translate-y-1 transition">
+
+                <!-- Vet 2 (Hidden) -->
+                <div class="hidden bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex-col justify-between hover:-translate-y-1 transition">
                     <div>
                         <div class="relative h-64 rounded-2xl overflow-hidden mb-5 bg-slate-100">
                             <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" 
@@ -177,9 +182,9 @@
                         Book Dermatologist (₹499)
                     </button>
                 </div>
-<section hidden>
-                <!-- Vet 3 -->
-                <div class="bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex flex-col justify-between hover:-translate-y-1 transition">
+
+                <!-- Vet 3 (Hidden) -->
+                <div class="hidden bg-white rounded-3xl p-6 shadow-card border border-[#ccfbf1] flex-col justify-between hover:-translate-y-1 transition">
                     <div>
                         <div class="relative h-64 rounded-2xl overflow-hidden mb-5 bg-slate-100">
                             <img src="https://images.unsplash.com/photo-1594824813572-46e300dbbc80?auto=format&fit=crop&w=600&q=80" 
@@ -290,7 +295,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="booking.html">Services & Grooming</a></li>
-                    <li><a href="doctor-consulting.html" class="active-footer-link">Doctors</a></li>
+                    <li><a href="consultation.html" class="active-footer-link">Doctors</a></li>
                     <li><a href="shop.html">AlphaTails Shop</a></li>
                     <li><a href="about.html">About Us</a></li>
                 </ul>
@@ -337,20 +342,20 @@
                 <input type="text" id="selectedService" readonly class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none" />
                 <span id="selectedPrice" class="price-tag text-sm shrink-0 ml-2">₹0/-</span>
             </div>
-            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+            <form id="consultationForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Parent Name</label>
-                    <input type="text" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                    <input type="text" id="consultOwnerName" required placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
-                    <input type="tel" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                    <input type="tel" id="consultPhone" required placeholder="10-digit mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Preferred Date</label>
-                    <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                    <input type="date" id="consultDate" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
                 </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
+                <button type="submit" id="consultSubmitBtn" class="w-full py-3.5 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-md transition">
                     Confirm Consultation Booking
                 </button>
             </form>
