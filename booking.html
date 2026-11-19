@@ -22,17 +22,17 @@
 
     <!-- Supabase JS Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-     <script> 
-         // Initialize Supabase Client
-       const SUPABASE_URL = "https://hknuzqtfqpfulsgaqnhh.supabase.co;
-       const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";  
+    <script>
+        // Initialize Supabase Client
+        const SUPABASE_URL = "https://hknuzqtfqpfulsgaqnhh.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";
 
-       const _supabase = window.supabase.createClient("https://hknuzqtfqpfulsgaqnhh.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ");
-
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const _supabase = supabaseClient;
+    </script>
 
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
     <script>
         (function () {
             emailjs.init({
@@ -48,15 +48,16 @@
 <body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
 
     <!-- HEADER -->
-   <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand-logo">
-        <div class="logo-icon">·ᴥ·</div>
-        <div class="logo-text">
-          <span class="brand-title">ALPHATAILS</span>
-          <span class="brand-subtitle">Pet Care & Accessories</span>
-        </div>
-      </a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">·ᴥ·</div>
+                <div class="logo-text">
+                    <span class="brand-title">ALPHATAILS</span>
+                    <span class="brand-subtitle">Pet Care & Accessories</span>
+                </div>
+            </a>
+
             <nav class="main-nav">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="booking.html" class="nav-link active">Grooming & Boarding</a>
@@ -67,17 +68,14 @@
             </nav>
 
             <div class="header-actions">
-
                 <button type="button"
                 onclick="window.location.href='shop.html'"
                 class="cart-btn"
                 aria-label="Shopping Cart">
-
                     <svg class="cart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
-
                     <span id="cartCount" class="cart-badge">0</span>
                 </button>
 
@@ -85,12 +83,10 @@
                 id="mobileMenuBtn"
                 class="mobile-menu-btn"
                 aria-label="Toggle Menu">
-
                     <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
-
                     <svg id="closeIcon" class="menu-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M6 18L18 6M6 6l12 12"/>
@@ -104,7 +100,6 @@
 
     <!-- MOBILE NAVIGATION -->
     <div id="mobileNav" class="mobile-nav">
-
         <a href="index.html" class="mobile-nav-link">Home</a>
         <a href="booking.html" class="mobile-nav-link active">Grooming & Boarding</a>
         <a href="consultation.html" class="mobile-nav-link">Consultation</a>
@@ -123,9 +118,7 @@
 
     <!-- HERO SECTION -->
     <section class="bg-[#E0F7FA]/80 backdrop-blur-[2px] py-10 sm:py-14 border-b border-[#ccfbf1] text-center">
-
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
-
             <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white text-[#0f766e] text-xs font-extrabold uppercase shadow-sm border border-[#ccfbf1]">
                 <i class="fa-solid fa-bolt text-amber-500"></i>
                 Fast & Easy 3-Step Booking
@@ -138,18 +131,15 @@
             <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
                 Pick a category, choose your preferred package, and lock in your schedule instantly with clear Indian Rupee pricing.
             </p>
-
         </div>
     </section>
 
     <!-- MAIN BOOKING -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full" id="bookingFlow">
-
         <div class="bg-white rounded-3xl shadow-xl border border-[#ccfbf1] p-6 sm:p-8 space-y-8">
 
             <!-- STEP INDICATORS -->
             <div class="grid grid-cols-3 gap-2 border-b border-slate-100 pb-6 text-center">
-
                 <div class="space-y-1">
                     <span class="w-8 h-8 mx-auto rounded-full bg-[#0f766e] text-white font-bold flex items-center justify-center text-sm shadow-sm">1</span>
                     <p class="text-xs font-bold text-[#023047] uppercase tracking-wider">Select Service</p>
@@ -164,18 +154,15 @@
                     <span id="step3Badge" class="w-8 h-8 mx-auto rounded-full bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm">3</span>
                     <p id="step3Text" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Confirm Details</p>
                 </div>
-
             </div>
 
             <!-- CATEGORY SELECTION -->
             <div class="space-y-4">
-
                 <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">
                     Step 1: Choose Service Category
                 </h3>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-
                     <button type="button" onclick="selectCategory('Deworming')" class="category-btn p-3 rounded-2xl border-2 border-slate-100 hover:border-[#0f766e] text-center transition group bg-slate-50/50">
                         <i class="fa-solid fa-capsules text-xl text-[#00796B] mb-1.5 group-hover:scale-110 transition"></i>
                         <h4 class="font-bold text-xs text-[#023047]">Deworming</h4>
@@ -223,37 +210,29 @@
                         <h4 class="font-bold text-xs text-[#023047]">Anal Gland</h4>
                         <span class="text-[10px] text-slate-500">Fixed ₹300/-</span>
                     </button>
-
                 </div>
             </div>
 
             <!-- PACKAGE OPTIONS -->
             <div id="packageContainer" class="hidden space-y-4 pt-2 border-t border-slate-100">
-
                 <h3 id="packageHeaderTitle" class="text-sm font-extrabold uppercase tracking-wider text-slate-500">
                     Step 2: Select Specific Package
                 </h3>
-
-                <div id="packageListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                </div>
-
+                <div id="packageListGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
             </div>
 
             <!-- APPOINTMENT FORM -->
             <div id="appointmentFormSection" class="hidden space-y-4 pt-2 border-t border-slate-100">
-
                 <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">
                     Step 3: Appointment Details
                 </h3>
 
                 <!-- SELECTED SERVICE -->
                 <div class="bg-[#f0fdfa] p-4 rounded-2xl flex items-center justify-between border border-[#ccfbf1]">
-
                     <div>
                         <span class="text-[10px] uppercase font-bold text-[#0f766e]">
                             Selected Service
                         </span>
-
                         <input
                             type="text"
                             id="finalSelectedService"
@@ -262,24 +241,19 @@
                             class="bg-transparent font-bold text-sm text-[#023047] w-full focus:outline-none"
                         />
                     </div>
-
                     <span id="finalSelectedPrice" class="price-tag text-sm shrink-0 ml-2">
                         ₹0/-
                     </span>
-
                 </div>
 
                 <!-- BOOKING FORM -->
                 <form id="bookingForm" onsubmit="handleFinalBooking(event)" class="space-y-4">
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
                         <!-- CUSTOMER NAME -->
                         <div>
                             <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
                                 Pet Parent Name
                             </label>
-
                             <input
                                 type="text"
                                 id="customerName"
@@ -297,7 +271,6 @@
                             <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
                                 Phone Number
                             </label>
-
                             <input
                                 type="tel"
                                 id="customerPhone"
@@ -310,12 +283,10 @@
                                 autocomplete="tel-national"
                                 class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"
                             />
-
                             <p class="text-xs text-slate-500 mt-1">
                                 Enter your 10-digit Indian mobile number.
                             </p>
                         </div>
-
                     </div>
 
                     <!-- EMAIL -->
@@ -323,7 +294,6 @@
                         <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
                             Email Address
                         </label>
-
                         <input
                             type="email"
                             id="customerEmail"
@@ -340,7 +310,6 @@
                         <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
                             Preferred Appointment Date
                         </label>
-
                         <input
                             type="date"
                             id="bookingDate"
@@ -355,7 +324,6 @@
                         <label class="block text-xs font-bold text-slate-600 uppercase mb-1">
                             Preferred Appointment Time
                         </label>
-
                         <input
                             type="time"
                             id="bookingTime"
@@ -381,35 +349,26 @@
                         role="status"
                         aria-live="polite"
                     ></p>
-
                 </form>
-
             </div>
-
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-
         <div class="container footer-grid">
-
             <div class="footer-col">
-
                 <div class="footer-brand">
                     <div class="logo-icon small">·ᴥ·</div>
                     <span>ALPHATAILS</span>
                 </div>
-
                 <p class="footer-desc">
                     Your trusted destination for premium pet accessories, grooming essentials, interactive toys, and dedicated pet care.
                 </p>
-
             </div>
 
             <div class="footer-col">
                 <h3>Quick Links</h3>
-
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="booking.html">Services & Grooming</a></li>
@@ -420,7 +379,6 @@
 
             <div class="footer-col">
                 <h3>Shop Categories</h3>
-
                 <ul>
                     <li><a href="shop.html">Tactical & Padded Harnesses</a></li>
                     <li><a href="shop.html">Grooming & Tick Shampoos</a></li>
@@ -430,33 +388,22 @@
             </div>
 
             <div class="footer-col">
-
                 <h3>Get In Touch</h3>
-
                 <p>📍 Tirupati</p>
-
                 <p>
                     📞 <a href="tel:+918639215804" class="hover:text-[#2dd4bf] transition underline">
                         +91 863921 5804
                     </a>
                 </p>
-
                 <p>✉️ alphatails.clinic@gmail.com</p>
-
                 <p>🕒 Mon – Sat: 9:00 AM – 8:30 PM</p>
-
             </div>
-
         </div>
 
         <div class="layout-container footer-bottom">
-
             <p>© 2026 Sow-Ra-V Digital Solutions. All rights reserved.</p>
-
             <p>Built for Happy Pets & Pet Parents</p>
-
         </div>
-
     </footer>
 
     <!-- TOAST NOTIFICATION -->
@@ -466,17 +413,14 @@
         role="status"
         aria-live="polite"
     >
-
         <i class="fa-solid fa-circle-check text-[#2dd4bf] text-lg"></i>
-
         <span id="toastMessage" class="text-sm font-semibold">
             Notification
         </span>
-
     </div>
 
     <!-- BOOKING JAVASCRIPT -->
-     <script src="auth.js"></script>
+    <script src="auth.js"></script>
     <script src="booking.js"></script>
 
     <!-- SET MINIMUM BOOKING DATE TO TODAY -->
