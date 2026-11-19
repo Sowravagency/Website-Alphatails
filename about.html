@@ -19,12 +19,12 @@
     <!-- Custom External CSS -->
     <link rel="stylesheet" href="about.css">
 
-    <!-- Supabase JS SDK (Properly Closed) -->
+    <!-- Supabase JS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = "https://xukjlwsidurvtxqouqvd.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ";
-        const _supabase = window.supabase.createClient("https://xukjlwsidurvtxqouqvd.supabase.co";"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrbnV6cXRmcXBmdWxzZ2FxbmhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMjQ3NDMsImV4cCI6MjExMDYwMDc0M30.h8i9vnc8zK66Xf9srLEJiLWXvObAdtAvAcSQPzR5dTQ");
+        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     </script>
 </head>
 <body class="pet-pattern-bg text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-[#0f766e] selection:text-white">
@@ -50,9 +50,9 @@
                 <a href="shop.html" class="nav-link">Shop</a>
                 <a href="about.html" class="nav-link active">About Us</a>
                 <a href="contact.html" class="nav-link">Contact</a>
-             </nav>
+            </nav>
 
-                                  <!-- Right Action Buttons -->
+            <!-- Right Action Buttons -->
             <div class="header-actions">
                 <!-- Shopping Cart Button -->
                 <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
@@ -65,12 +65,12 @@
                 <!-- Book Now Button -->
                 <a href="booking.html" class="btn-primary header-cta">Book Now</a>
 
-                <!-- My Profile Button (Compact icon on mobile, full pill on desktop) -->
+                <!-- My Profile Button (Desktop only; hidden on mobile) -->
                 <a href="profile.html"
-                   class="inline-flex items-center justify-center gap-2 bg-[#023047] hover:bg-[#0f766e] text-white p-2 sm:px-4 sm:py-2 rounded-full shadow-sm border border-[#ccfbf1] transition-all group shrink-0"
+                   class="hidden md:inline-flex items-center justify-center gap-2 bg-[#023047] hover:bg-[#0f766e] text-white px-4 py-2 rounded-full shadow-sm border border-[#ccfbf1] transition-all group shrink-0"
                    aria-label="My Profile" title="My Profile">
-                    <i class="fa-solid fa-circle-user text-lg sm:text-base text-[#2dd4bf] group-hover:text-white transition"></i>
-                    <span class="hidden sm:inline text-xs font-extrabold tracking-wide uppercase">My Profile</span>
+                    <i class="fa-solid fa-circle-user text-base text-[#2dd4bf] group-hover:text-white transition"></i>
+                    <span class="text-xs font-extrabold tracking-wide uppercase">My Profile</span>
                 </a>
 
                 <!-- Mobile Hamburger Button -->
@@ -83,10 +83,9 @@
                     </svg>
                 </button>
             </div>
+        </div>
 
-
-
-        <!-- Mobile Navigation Drawer -->
+        <!-- Mobile Navigation Drawer (Includes My Profile) -->
         <nav id="mobileNav" class="mobile-nav">
             <a href="index.html" class="mobile-nav-link">Home</a>
             <a href="booking.html" class="mobile-nav-link">Grooming & Boarding</a>
@@ -94,6 +93,9 @@
             <a href="shop.html" class="mobile-nav-link">Shop</a>
             <a href="about.html" class="mobile-nav-link active">About Us</a>
             <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <a href="profile.html" class="mobile-nav-link">
+                <i class="fa-solid fa-circle-user mr-1.5 text-[#0f766e]"></i> My Profile
+            </a>
             <a href="booking.html" class="btn-primary mobile-cta">Book Now</a>
         </nav>
     </header>
