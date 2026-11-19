@@ -278,6 +278,8 @@ async function sendBookingConfirmation(booking) {
 
 async function handleFinalBooking(event) {
     event.preventDefault();
+   const loggedInUser = await requireCustomerLogin();
+   if (!loggedInUser) return; // Stops booking & redirects to login.html
 
     const submitBtn = document.getElementById('bookingSubmitBtn');
     const statusEl = document.getElementById('bookingStatus');
@@ -322,6 +324,7 @@ async function handleFinalBooking(event) {
             const { data: sbData, error: sbError } = await supabaseClient
                 .from('bookings')
                 .insert([{
+                    user_id: loggedInUser.id,
                     booking_ref: bookingPayload.id,
                     owner_name: customerName,
                     phone: phone,
