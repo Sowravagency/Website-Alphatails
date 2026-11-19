@@ -50,16 +50,9 @@
                 <a href="shop.html" class="nav-link">Shop</a>
                 <a href="about.html" class="nav-link active">About Us</a>
                 <a href="contact.html" class="nav-link">Contact</a>
- <a href="profile.html" 
-   class="fixed bottom-5 left-5 z-40 flex items-center gap-2.5 bg-[#023047] hover:bg-[#0f766e] text-white px-4 py-3 rounded-full shadow-xl border-2 border-[#ccfbf1] transition-all hover:scale-105 group"
-   aria-label="My Profile">
-    <i class="fa-solid fa-circle-user text-xl text-[#2dd4bf] group-hover:text-white transition"></i>
-    <span class="text-xs font-extrabold tracking-wide uppercase">My Profile</span>
-</a>
+             </nav>
 
-            </nav>
-
-            <!-- Right Action Buttons -->
+                        <!-- Right Action Buttons -->
             <div class="header-actions">
                 <!-- Shopping Cart Button -->
                 <button type="button" onclick="window.location.href='shop.html'" class="cart-btn" aria-label="Shopping Cart">
@@ -72,6 +65,14 @@
                 <!-- Book Now Button -->
                 <a href="booking.html" class="btn-primary header-cta">Book Now</a>
 
+                <!-- My Profile Button (Placed right after Book Now) -->
+                <a href="profile.html"
+                   class="inline-flex items-center gap-2 bg-[#023047] hover:bg-[#0f766e] text-white px-4 py-2.5 rounded-full shadow-sm border border-[#ccfbf1] transition-all group shrink-0"
+                   aria-label="My Profile">
+                    <i class="fa-solid fa-circle-user text-base text-[#2dd4bf] group-hover:text-white transition"></i>
+                    <span class="text-xs font-extrabold tracking-wide uppercase">My Profile</span>
+                </a>
+
                 <!-- Mobile Hamburger Button -->
                 <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
                     <svg id="hamburgerIcon" class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +83,7 @@
                     </svg>
                 </button>
             </div>
-        </div>
+
 
         <!-- Mobile Navigation Drawer -->
         <nav id="mobileNav" class="mobile-nav">
