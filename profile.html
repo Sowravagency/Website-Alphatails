@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | AlphaTails Pet Care</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://xukjlwsidurvtxqouqvd.supabase.co";
+        const supabaseKey = "YOUR_MATCHING_ANON_KEY_HERE";
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#023047] antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-[#0f766e] flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div>
+                    <span class="block text-lg font-extrabold tracking-tight text-[#023047] leading-none">ALPHATAILS</span>
+                    <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">Pet Care & Accessories</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+                <a href="index.html" class="hover:text-[#0f766e] transition">Home</a>
+                <a href="booking.html" class="hover:text-[#0f766e] transition">Grooming & Boarding</a>
+                <a href="consultation.html" class="hover:text-[#0f766e] transition">Consultation</a>
+                <a href="shop.html" class="hover:text-[#0f766e] transition">Shop</a>
+                <a href="profile.html" class="text-[#0f766e] font-bold">My Profile</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="logoutCustomer()" class="px-4 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs transition border border-red-200">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Profile Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-8">
+
+        <!-- User Greeting Card -->
+        <div class="bg-[#023047] text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-[#0f766e] flex items-center justify-center text-2xl font-extrabold shadow-inner" id="avatarInitial">
+                    🐾
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold" id="profileHeaderName">Loading Profile...</h1>
+                    <p class="text-xs sm:text-sm text-teal-200" id="profileHeaderEmail"></p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <a href="booking.html" class="px-4 py-2.5 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-xs transition">
+                    + New Booking
+                </a>
+                <a href="shop.html" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
+            <button onclick="switchProfileTab('bookings')" id="tabBtn-bookings" class="profile-tab px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#0f766e] text-white transition">
+                <i class="fa-solid fa-calendar-check mr-1.5"></i> My Bookings
+            </button>
+            <button onclick="switchProfileTab('consultations')" id="tabBtn-consultations" class="profile-tab px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-[#0f766e] transition">
+                <i class="fa-solid fa-user-doctor mr-1.5"></i> Consultations
+            </button>
+            <button onclick="switchProfileTab('orders')" id="tabBtn-orders" class="profile-tab px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-[#0f766e] transition">
+                <i class="fa-solid fa-bag-shopping mr-1.5"></i> Shop Orders
+            </button>
+            <button onclick="switchProfileTab('details')" id="tabBtn-details" class="profile-tab px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-[#0f766e] transition">
+                <i class="fa-solid fa-user-pen mr-1.5"></i> Edit Profile
+            </button>
+        </div>
+
+        <!-- TAB 1: MY BOOKINGS -->
+        <section id="tabContent-bookings" class="space-y-4">
+            <h2 class="text-lg font-extrabold text-[#023047]">Grooming, Boarding & Spa Appointments</h2>
+            <div id="bookingsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <p class="text-sm text-slate-500">Loading your bookings...</p>
+            </div>
+        </section>
+
+        <!-- TAB 2: MY CONSULTATIONS -->
+        <section id="tabContent-consultations" class="hidden space-y-4">
+            <h2 class="text-lg font-extrabold text-[#023047]">Veterinary Consultations</h2>
+            <div id="consultationsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <p class="text-sm text-slate-500">Loading your consultations...</p>
+            </div>
+        </section>
+
+        <!-- TAB 3: MY SHOP ORDERS -->
+        <section id="tabContent-orders" class="hidden space-y-4">
+            <h2 class="text-lg font-extrabold text-[#023047]">Shop Order History</h2>
+            <div id="ordersList" class="space-y-4">
+                <p class="text-sm text-slate-500">Loading your orders...</p>
+            </div>
+        </section>
+
+        <!-- TAB 4: EDIT PROFILE DETAILS -->
+        <section id="tabContent-details" class="hidden">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-[#ccfbf1] shadow-sm max-w-2xl">
+                <h2 class="text-lg font-extrabold text-[#023047] mb-1">Personal & Pet Details</h2>
+                <p class="text-xs text-slate-500 mb-6">Save your details for faster checkout and appointment bookings.</p>
+
+                <form id="profileForm" onsubmit="saveProfileDetails(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Full Name</label>
+                            <input type="text" id="profName" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Phone Number</label>
+                            <input type="tel" id="profPhone" placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Name</label>
+                            <input type="text" id="profPetName" placeholder="e.g. Bruno" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pet Type</label>
+                            <select id="profPetType" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm bg-white">
+                                <option value="Dog">Dog</option>
+                                <option value="Cat">Cat</option>
+                                <option value="Bird / Other">Bird / Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Delivery Address</label>
+                        <textarea id="profAddress" rows="2" placeholder="House no, Street, Landmark" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">City</label>
+                            <input type="text" id="profCity" value="Tirupati" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pincode</label>
+                            <input type="text" id="profPincode" placeholder="517501" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0f766e] focus:outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="saveProfileBtn" class="px-6 py-3 rounded-xl bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-sm shadow-sm transition">
+                        Save Changes
+                    </button>
+                    <p id="profileSaveMsg" class="text-xs font-semibold text-teal-700"></p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#023047] text-slate-300 py-6 text-center text-xs mt-12">
+        <p>© 2026 AlphaTails Pet Care. All rights reserved.</p>
+    </footer>
+
+    <!-- Auth & Profile Scripts -->
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
