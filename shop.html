@@ -153,41 +153,38 @@
       <p>Built for Happy Pets & Pet Parents</p>
     </div>
   </footer>
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('orders', this)">
-        Shop Orders (<span id="orderCount">0</span>)
-      </button>
-      <button class="tab-btn" onclick="switchTab('bookings', this)">
-        Clinic Bookings (<span id="bookingCount">0</span>)
-      </button>
-      <button class="tab-btn" onclick="switchTab('inventory', this)">
-        Pet Shop Inventory
-      </button>
-    </div>
 
-    <!-- SHOP ORDERS PANEL -->
-    <section id="orders" class="panel active">
-      <div class="card">
-        <h2>Incoming Shop Orders</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Customer & Phone</th>
-                <th>Product & Qty</th>
-                <th>Total</th>
-                <th>Delivery Address</th>
-                <th>Status</th>
-                <th>Process Order</th>
-              </tr>
-            </thead>
-            <tbody id="ordersTableBody">
-              <tr><td colspan="6">Loading orders...</td></tr>
-            </tbody>
-          </table>
-        </div>
+    <!-- ORDER CHECKOUT MODAL -->
+  <div id="orderModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>Place Order</h2>
+        <button class="close-btn" onclick="closeOrderModal()">&times;</button>
       </div>
-    </section>
+      <p id="modalProductInfo" class="modal-product-info"></p>
+      <form id="orderForm">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="cName" required />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="cPhone" placeholder="+91 98765 43210" required />
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" id="cQty" value="1" min="1" required oninput="updateOrderTotal()" />
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea id="cAddress" rows="2" placeholder="House no, street, landmark, city..." required></textarea>
+        </div>
+        <div class="order-total">Total: <strong id="cTotal">₹0</strong></div>
+        <button type="submit" id="placeOrderBtn" class="buy-btn full-btn">Confirm Order</button>
+        <div id="orderStatusMsg"></div>
+      </form>
+    </div>
+  </div>
 
   <!-- Supabase Connection -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
