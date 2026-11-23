@@ -153,6 +153,41 @@
       <p>Built for Happy Pets & Pet Parents</p>
     </div>
   </footer>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('orders', this)">
+        Shop Orders (<span id="orderCount">0</span>)
+      </button>
+      <button class="tab-btn" onclick="switchTab('bookings', this)">
+        Clinic Bookings (<span id="bookingCount">0</span>)
+      </button>
+      <button class="tab-btn" onclick="switchTab('inventory', this)">
+        Pet Shop Inventory
+      </button>
+    </div>
+
+    <!-- SHOP ORDERS PANEL -->
+    <section id="orders" class="panel active">
+      <div class="card">
+        <h2>Incoming Shop Orders</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer & Phone</th>
+                <th>Product & Qty</th>
+                <th>Total</th>
+                <th>Delivery Address</th>
+                <th>Status</th>
+                <th>Process Order</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr><td colspan="6">Loading orders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
   <!-- Supabase Connection -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
